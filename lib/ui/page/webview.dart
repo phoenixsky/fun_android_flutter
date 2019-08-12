@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
+import 'package:wan_android/utils/platform_utils.dart';
 import 'package:wan_android/utils/third_app_utils.dart';
 import 'package:wan_android/view_model/theme_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -72,8 +74,9 @@ class _WebViewState extends State<WebViewPage> {
               javascriptMode: JavascriptMode.unrestricted,
               navigationDelegate: (NavigationRequest request) {
                 debugPrint('准备加载: ${request.url}');
-                //对于需要拦截的操作 做判断
-                if (request.url.startsWith("http://www.wanandroid.com")) {
+                //对于需要拦截的操作 做判断 ios需要转为https.
+                if (Platform.isIOS &&
+                    request.url.startsWith("http://www.wanandroid.com")) {
                   //需要转https
                   var url = request.url.replaceFirst("http", 'https');
                   _controller.loadUrl(url);
