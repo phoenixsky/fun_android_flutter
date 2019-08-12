@@ -16,7 +16,7 @@ dependencies:
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
-  webview_flutter : ^0.3.10+4
+  webview_flutter : ^0.3.11+2
   device_info: ^0.4.0+1
   package_info: ^0.4.0+3
   #  connectivity: ^0.4.3+6
@@ -35,7 +35,7 @@ dependencies:
   # io
   collection: ^1.14.11
   #  common_utils: ^1.1.1
-  crypto: ^2.0.6
+#  crypto: ^2.0.6
 
   # UI
   oktoast: ^2.1.7
@@ -43,7 +43,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   cached_network_image: ^1.1.1
 
-  # third
+  # third_app
   url_launcher: ^5.1.0
 
 dev_dependencies:
