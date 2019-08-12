@@ -72,21 +72,9 @@ class _WebViewState extends State<WebViewPage> {
               initialUrl: widget.url,
               // 加载js
               javascriptMode: JavascriptMode.unrestricted,
-              navigationDelegate: (NavigationRequest request) {
-                debugPrint('准备加载: ${request.url}');
-                //对于需要拦截的操作 做判断 ios需要转为https.
-                if (Platform.isIOS &&
-                    request.url.startsWith("http://www.wanandroid.com")) {
-                  //需要转https
-                  var url = request.url.replaceFirst("http", 'https');
-                  _controller.loadUrl(url);
-                  return NavigationDecision.prevent;
-                }
-                //不需要拦截的操作
-                debugPrint('没有拦截: ${request.url}');
-//                _controller.loadUrl(request.url);
-                return NavigationDecision.navigate;
-              },
+//              navigationDelegate: (NavigationRequest request) {
+//                return NavigationDecision.navigate;
+//              },
               onWebViewCreated: (WebViewController controller) {
                 _controller = controller;
                 _controller.currentUrl().then((url) {
