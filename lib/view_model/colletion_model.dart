@@ -4,11 +4,22 @@ import 'package:wan_android/model/article.dart';
 import 'package:wan_android/provider/base_list_model.dart';
 import 'package:wan_android/provider/base_model.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:wan_android/view_model/user_model.dart';
 
 class CollectionListModel extends BaseListModel {
+  UserModel userModel;
+
+  CollectionListModel({this.userModel});
+
   @override
   Future<List> loadData(int pageNum) async {
     return await WanAndroidRepository.fetchCollectList(pageNum);
+  }
+
+  @override
+  void setUnAuthorized() {
+    userModel.logout();
+    super.setUnAuthorized();
   }
 }
 
@@ -20,7 +31,7 @@ class CollectionModel extends BaseModel {
   collect() async {
     setBusy(true);
     try {
-      await Future.delayed(Duration(seconds: 1));
+//      await Future.delayed(Duration(seconds: 1));
       // article.collect 字段为null,代表是从我的收藏页面进入的 需要调用特殊的取消接口
       if (article.collect == null) {
         await WanAndroidRepository.unMyCollect(

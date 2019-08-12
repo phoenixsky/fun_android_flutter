@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:wan_android/utils/platform_utils.dart';
+import 'package:wan_android/config/storage_manager.dart';
 
 import 'api.dart';
 
@@ -31,13 +32,11 @@ class Http extends Dio {
       // 基础设置
       ..add(HeaderInterceptor())
       // JSON处理
-      ..add(ApiInterceptor());
-    // cookie持久化 异步
-  }
+      ..add(ApiInterceptor())
+      // cookie持久化 异步
+      ..add(CookieManager(
+          PersistCookieJar(dir: StorageManager.temporaryDirectory.path)));
 
-  addCookie() async {
-    var dir = await getTemporaryDirectory();
-    interceptors.add(CookieManager(PersistCookieJar(dir: dir.path)));
   }
 }
 

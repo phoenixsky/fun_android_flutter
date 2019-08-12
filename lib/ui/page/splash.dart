@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,37 +13,42 @@ class SplashPage extends StatefulWidget {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with SingleTickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
+
+  Timer _timer;
 
   @override
   void initState() {
     _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1000));
+        vsync: this, duration: Duration(milliseconds: 1500));
 
-    _animation = Tween(begin: 0.1, end: 1.0).animate(
-        CurvedAnimation(curve: Curves.easeInOutSine, parent: _controller));
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(curve: Curves.easeInOutBack, parent: _controller));
 
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        nextPage(context);
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _controller.forward();
       }
-//        if (status == AnimationStatus.completed) {
-//          _controller.reverse();
-//        } else if (status == AnimationStatus.dismissed) {
-//          nextPage(context);
-//        }
     });
     _controller.forward();
-
+    _timer = Timer.periodic(Duration(milliseconds: 1500), (timer) {
+      setState(() {});
+      if (timer.tick == 3) {
+        timer.cancel();
+        nextPage(context);
+      }
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -51,34 +57,105 @@ class _SplashPageState extends State<SplashPage>
     return Scaffold(
       body: Stack(fit: StackFit.expand, children: <Widget>[
         Image.asset(ImageHelper.wrapAssets('splash_bg.png'), fit: BoxFit.fill),
+        AnimatedFlutterLogo(
+          animation: _animation,
+        ),
         Align(
-          alignment: Alignment(0.0, 0.47),
-          child: RotationTransition(
-            turns: _animation,
-            child: Image.asset(
-              ImageHelper.wrapAssets('ic_launcher.png'),
-              width: 140,
-              height: 140,
-              color: Theme.of(context).primaryColor,
-              colorBlendMode: BlendMode.color,
-            ),
+          alignment: Alignment(0.0, 0.7),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              AnimatedAndroidLogo(
+                animation: _animation,
+              ),
+            ],
           ),
         ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: SafeArea(
+            child: InkWell(
+              onTap: () {
+                nextPage(context);
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                margin: EdgeInsets.only(right: 20, bottom: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Colors.black.withAlpha(100),
+                ),
+                child: Text(
+                  (_timer.isActive
+                          ? '${(3 - _timer.tick).toString()} | '
+                          : '') +
+                      '跳过',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        )
       ]),
+    );
+  }
+}
+
+class AnimatedFlutterLogo extends AnimatedWidget {
+  AnimatedFlutterLogo({
+    Key key,
+    Animation<double> animation,
+  }) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return AnimatedAlign(
+      duration: Duration(milliseconds: 10),
+      alignment: Alignment(0, 0.2 + animation.value * 0.3),
+      curve: Curves.bounceOut,
+      child: Image.asset(
+        ImageHelper.wrapAssets('splash_flutter.png'),
+        width: 280,
+        height: 120,
+      ),
+    );
+  }
+}
+
+class AnimatedAndroidLogo extends AnimatedWidget {
+  AnimatedAndroidLogo({
+    Key key,
+    Animation<double> animation,
+  }) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        Image.asset(
+          ImageHelper.wrapAssets('splash_fun.png'),
+          width: 140 * animation.value,
+          height: 80 * animation.value,
+        ),
+        Image.asset(
+          ImageHelper.wrapAssets('splash_android.png'),
+          width: 200 * (1 - animation.value),
+          height: 80 * (1 - animation.value),
+        ),
+      ],
     );
   }
 }
 
 const firstEntry = 'firstEntry';
 
-void nextPage(context) async {
-  var sharedPreferences = await SharedPreferences.getInstance();
-
+void nextPage(context) {
 //  Route nextRoute = sharedPreferences.getBool(firstEntry) ?? true
 //      ? SizeRoute(GuidePage())
 //      : SizeRoute(LoginPage());
-
-//  Navigator.of(context).pushReplacement(nextRoute);
   Navigator.of(context).pushReplacementNamed(RouteName.tab);
 }
 

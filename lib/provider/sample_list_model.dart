@@ -37,9 +37,4 @@ abstract class SampleListModel<T> extends BaseModel {
 
   // 加载数据
   Future<List<T>> loadData();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

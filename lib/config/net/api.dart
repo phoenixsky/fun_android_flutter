@@ -49,6 +49,8 @@ class ApiInterceptor extends InterceptorsWrapper {
   Future<Response> handleFailed(RespData respData) {
     debugPrint('---api-response--->error---->$respData');
     if (respData.code == -1001) {
+      // 由于cookie过期,所以需要清除本地存储的登录信息
+//      StorageManager.localStorage.deleteItem(UserModel.keyUser);
       // 需要登录
       throw const UnAuthorizedException();
     }

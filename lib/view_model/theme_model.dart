@@ -2,15 +2,21 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_android/ui/widget/theme.dart';
+import 'package:wan_android/config/storage_manager.dart';
 
 //const Color(0xFF5394FF),
 
 class ThemeModel with ChangeNotifier {
+  static const keyThemeColorIndex = 'keyThemeColorIndex';
+  static const keyThemeBrightnessIndex = 'keyThemeBrightnessIndex';
+
   ThemeData _themeData;
 
   ThemeModel() {
-    _themeData = _generateThemeData(Brightness.light, 5);
+    var value = getThemeFromStorage();
+    _themeData = _generateThemeData(value[0], value[1]);
   }
 
   ThemeData get value => _themeData;
@@ -21,6 +27,7 @@ class ThemeModel with ChangeNotifier {
   void switchTheme(Brightness brightness, int index) {
     _themeData = _generateThemeData(brightness, index);
     notifyListeners();
+    saveTheme2Storage(brightness, index);
   }
 
   /// 随机一个主题色彩
@@ -76,5 +83,23 @@ class ThemeModel with ChangeNotifier {
     );
 
     return themeData;
+  }
+
+  /// 数据持久化到shared preferences
+  static saveTheme2Storage(Brightness brightness, int index) async {
+    await Future.wait([
+      StorageManager.sharedPreferences
+          .setInt(keyThemeBrightnessIndex, brightness.index),
+      StorageManager.sharedPreferences.setInt(keyThemeColorIndex, index)
+    ]);
+  }
+
+  /// 从shared preferences取出数据
+  static getThemeFromStorage() {
+    var brightness = Brightness.values[
+        StorageManager.sharedPreferences.getInt(keyThemeBrightnessIndex) ?? 1];
+    var colorIndex =
+        StorageManager.sharedPreferences.getInt(keyThemeColorIndex) ?? 5;
+    return [brightness, colorIndex];
   }
 }

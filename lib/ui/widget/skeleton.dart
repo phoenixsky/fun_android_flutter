@@ -24,7 +24,7 @@ class _SkeletonCardState extends State<SkeletonCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 1000),
     );
 
     animation = Tween<double>(begin: -1.0, end: 2.0).animate(
@@ -90,12 +90,12 @@ class _SkeletonCardState extends State<SkeletonCard>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            height: height * 0.008,
+                            height: height * 0.01,
                             width: width * 0.3,
                             decoration: boxDecoration(context, animation),
                           ),
                           Container(
-                            height: height * 0.007,
+                            height: height * 0.01,
                             width: width * 0.2,
                             decoration: boxDecoration(context, animation),
                           ),
@@ -254,41 +254,38 @@ class _SkeletonProfileCardState extends State<SkeletonProfileCard>
                     children: List.generate(
                       4,
                       (i) => Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                height: width * 0.13,
-                                width: width * 0.13,
-                                decoration: boxDecoration(context, animation,
-                                    isCircle: widget.isCircularImage),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Container(
-                                height: width * 0.13,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Container(
-                                      height: height * 0.008,
-                                      width: width * 0.3,
-                                      decoration:
-                                          boxDecoration(context, animation),
-                                    ),
-                                    Container(
-                                      height: height * 0.007,
-                                      width: width * 0.2,
-                                      decoration:
-                                          boxDecoration(context, animation),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            height: height * 0.23,
+                            width: width * 0.13,
+                            decoration: boxDecoration(context, animation,
+                                isCircle: widget.isCircularImage),
                           ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Container(
+                            height: width * 0.13,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  height: height * 0.01,
+                                  width: width * 0.3,
+                                  decoration: boxDecoration(context, animation),
+                                ),
+                                Container(
+                                  height: height * 0.01,
+                                  width: width * 0.2,
+                                  decoration: boxDecoration(context, animation),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ).toList(),
                   ),
                 ),
@@ -333,25 +330,25 @@ class _SkeletonProfileCardState extends State<SkeletonProfileCard>
 }
 
 Decoration boxDecoration(context, animation, {isCircle = false}) {
-  bool isLight = Theme.of(context).brightness == Brightness.light;
+  var theme = Theme.of(context);
+  bool isLight = theme.brightness == Brightness.light;
   return BoxDecoration(
     shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
     gradient: LinearGradient(
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
       colors: [
+//        isLight ?  Colors.grey[50] : Colors.grey[700],
+//        isLight ? Colors.grey[350] : Colors.grey[500],
+//        isLight ? Colors.grey[50]  : Colors.grey[700],
+        isLight ? Color(0xfff0f0f0) : Colors.grey[700],
+        isLight ? Color(0xffe9ebee) : Colors.grey[500],
         isLight ? Color(0xfff6f7f9) : Colors.grey[700],
-        isLight ? Color(0xffe9ebee) : Colors.grey[600],
-        isLight ? Color(0xfff6f7f9) : Colors.grey[700],
-        // Color(0xfff6f7f9),
       ],
       stops: [
-        // animation.value * 0.1,
         animation.value - 1,
         animation.value,
         animation.value + 1,
-        // animation.value + 5,
-        // 1.0,
       ],
     ),
   );

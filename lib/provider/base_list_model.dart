@@ -39,8 +39,8 @@ abstract class BaseListModel<T> extends BaseModel {
         refreshController.refreshCompleted();
         if (data.length < pageSize) {
           refreshController.loadNoData();
-        } else {
-          refreshController.resetNoData();
+        } else {//防止上次上拉加载更多失败,需要重置状态
+          refreshController.loadComplete();
         }
         if (init) {
           //改变页面状态为非加载中

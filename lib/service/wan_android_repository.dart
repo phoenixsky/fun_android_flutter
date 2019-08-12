@@ -47,7 +47,7 @@ class WanAndroidRepository {
   static Future fetchSearchHotKey() async {
     var response = await http.get('hotkey/json');
     return response.data
-        .map<SearchHotKey>((item) => SearchHotKey.fromJsonMap(item))
+        .map<SearchHotKey>((item) => SearchHotKey.fromMap(item))
         .toList();
   }
 

@@ -31,6 +31,7 @@ class _TreeCategoryPageState extends State<TreeCategoryPage>
       builder: (context, treeListModel, child) {
         return Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             title: InkWell(
                 onTap: () {
                   Provider.of<ThemeModel>(context).switchRandomTheme();

@@ -12,6 +12,7 @@ import 'package:wan_android/ui/widget/animated_provider.dart';
 import 'package:wan_android/ui/widget/banner_image.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/ui/widget/article_list_Item.dart';
+import 'package:wan_android/ui/widget/article_skeleton.dart';
 import 'package:wan_android/view_model/home_model.dart';
 
 import 'package:wan_android/ui/page/search/search_delegate.dart';
@@ -48,9 +49,9 @@ class _HomePageState extends State<HomePage>
               context: context,
               removeTop: false,
               child: Builder(builder: (_) {
-                if (homeModel.busy) {
-                  return Center(child: CircularProgressIndicator());
-                }
+//                if (homeModel.busy) {
+//                  return Center(child: CircularProgressIndicator());
+//                }
                 if (homeModel.error) {
                   return PageStateError(onPressed: homeModel.init);
                 }
@@ -91,10 +92,6 @@ class _HomePageState extends State<HomePage>
                           expandedHeight: bannerHeight,
                           pinned: true,
                         ),
-//                        SliverToBoxAdapter(
-//                            child: Container(
-//                          height: 5,
-//                        )),
                         SliverPadding(
                           padding: EdgeInsets.only(top: 5),
                         ),
@@ -140,28 +137,36 @@ class BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
         aspectRatio: 16 / 9,
-        child: Builder(builder: (_) {
-          if (homeModel.busy) {
-            return CupertinoActivityIndicator();
-          } else {
-            var banners = homeModel?.banners ?? [];
-            return Swiper(
-              pagination: SwiperPagination(),
-              itemCount: banners.length,
-              itemBuilder: (ctx, index) {
-                return InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(RouteName.webView,
-                          arguments: [
-                            banners[index].url,
-                            banners[index].title
-                          ]);
-                    },
-                    child: BannerImage(banners[index].imagePath));
-              },
-            );
-          }
-        }));
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          child: Builder(builder: (_) {
+            if (homeModel.busy) {
+              return CupertinoActivityIndicator();
+            } else {
+              var banners = homeModel?.banners ?? [];
+              return Swiper(
+                loop: true,
+                autoplay: true,
+                autoplayDelay: 5000,
+                pagination: SwiperPagination(),
+                itemCount: banners.length,
+                itemBuilder: (ctx, index) {
+                  return InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(RouteName.webView,
+                            arguments: [
+                              banners[index].url,
+                              banners[index].title
+                            ]);
+                      },
+                      child: BannerImage(banners[index].imagePath));
+                },
+              );
+            }
+          }),
+        ));
   }
 }
 
@@ -172,8 +177,6 @@ class HomeTopArticleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 固定高度可提升效率 此处所谓demo
-//    return SliverFixedExtentList(
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -197,6 +200,17 @@ class HomeArticleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (homeModel.busy) {
+      // 固定高度可提升效率 此处所谓demo
+      return SliverFixedExtentList(
+        delegate: SliverChildBuilderDelegate(
+            (context, index) => SkeletonListItem(
+                  index: index,
+                ),
+            childCount: 5),
+        itemExtent: 120,
+      );
+    }
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 
-import 'skeleton.dart';
+import 'article_skeleton.dart';
 
 /// 结果页
 /// 无数据  网络连接失败
@@ -18,23 +18,7 @@ class PageStateLoading extends StatelessWidget {
 class PageStateListSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-//    return SkeletonProfileCard();
-    return SkeletonCardList(
-      itemPadding: 5,
-      hasImage: false,
-    );
-    return ListView(
-      children: <Widget>[
-        SkeletonCard(
-          hasImage: false,
-        ),
-        SkeletonCard(
-          isCircularImage: false,
-        ),
-        SkeletonCard(isBottomLinesActive: false),
-        SkeletonCard(isBottomLinesActive: true),
-      ],
-    );
+    return SkeletonList();
   }
 }
 

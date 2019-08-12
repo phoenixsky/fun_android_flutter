@@ -8,15 +8,31 @@ class HomeModel extends BaseListModel {
   List<Article> _topArticles;
 
   List<Banner> get banners => _banners;
+
   List<Article> get topArticles => _topArticles;
 
   @override
   Future<List> loadData(int pageNum) async {
-    // Future.wait([HomeService.fetchBanners(), HomeService.fetchArticles(0)])
+    List<Future> futures = [];
     if (pageNum == BaseListModel.pageNumFirst) {
-      _banners = await WanAndroidRepository.fetchBanners();
-      _topArticles = await WanAndroidRepository.fetchTopArticles();
+      futures.add(WanAndroidRepository.fetchBanners());
+      futures.add(WanAndroidRepository.fetchTopArticles());
     }
-    return await WanAndroidRepository.fetchArticles(pageNum);
+    futures.add(WanAndroidRepository.fetchArticles(pageNum));
+
+    var result = await Future.wait(futures);
+    if (pageNum == BaseListModel.pageNumFirst) {
+      _banners = result[0];
+      _topArticles = result[1];
+      return result[2];
+    } else {
+      return result[0];
+    }
+
+//    if (pageNum == BaseListModel.pageNumFirst) {
+//      _banners = await WanAndroidRepository.fetchBanners();
+//      _topArticles = await WanAndroidRepository.fetchTopArticles();
+//    }
+//    return await WanAndroidRepository.fetchArticles(pageNum);
   }
 }

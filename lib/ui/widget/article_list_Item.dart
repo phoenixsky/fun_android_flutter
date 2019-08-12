@@ -167,24 +167,6 @@ class ArticleCollectionWidget extends StatelessWidget {
             if (!model.busy) {
               await model.collect();
               if (model.unAuthorized) {
-//                showDialog(context: context,builder: (context)=> AlertDialog(
-//                  content: Text('还没有登录,请先登录..'),
-//                  actions: <Widget>[
-//                    FlatButton(
-//                      onPressed: () {
-//                        Navigator.of(context).pop();
-//                      },
-//                      child: new Text("不了"),
-//                    ),
-//                    FlatButton(
-//                      onPressed: () {
-//                        Navigator.of(context)..pop()..pushNamed(RouteName.login);
-//                      },
-//                      child: new Text("登录"),
-//                    ),
-//                  ],
-//                ));
-
                 showCupertinoDialog(
                     context: context,
                     builder: (context) => CupertinoAlertDialog(

@@ -51,6 +51,7 @@ class _UserPageState extends State<UserPage>
 class UserHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    debugPrint('UserHeaderWidget');
     return ClipPath(
       clipper: BottomClipper(),
       child: Container(
@@ -69,14 +70,8 @@ class UserHeaderWidget extends StatelessWidget {
                     children: <Widget>[
                       ClipOval(
                         child: InkWell(
-                          onTap: () {
-//                            Navigator.of(context).pushNamed(RoutePaths.Login);
-//                            return;
-                            Provider.of<ThemeModel>(context)
-                                .switchRandomTheme();
-                          },
                           child: Image.asset(
-                              ImageHelper.wrapAssets('wan_android.png'),
+                              ImageHelper.wrapAssets('user_avatar.png'),
                               fit: BoxFit.cover,
                               width: 80,
                               height: 80,
@@ -118,7 +113,7 @@ class UserHeaderWidget extends StatelessWidget {
 }
 
 class UserListWidget extends StatelessWidget {
-  static const List<String> items = ['收藏', '稍后阅读', '开源项目','色彩主题', '设置', '关于我'];
+  static const List<String> items = ['收藏', '稍后阅读', '开源项目', '色彩主题', '设置', '关于我'];
   static const List<IconData> icons = [
     Icons.favorite_border,
     Icons.bookmark_border,
@@ -138,9 +133,10 @@ class UserListWidget extends StatelessWidget {
                   isThreeLine: false,
                   contentPadding: EdgeInsets.symmetric(horizontal: 30),
                   onTap: () {
-                    switch(index){
+                    switch (index) {
                       case 0:
-                        Navigator.of(context).pushNamed(RouteName.collectionList);
+                        Navigator.of(context)
+                            .pushNamed(RouteName.collectionList);
                         break;
                       case 1:
                         break;
