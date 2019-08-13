@@ -31,7 +31,6 @@ class CollectionModel extends BaseModel {
   collect() async {
     setBusy(true);
     try {
-//      await Future.delayed(Duration(seconds: 1));
       // article.collect 字段为null,代表是从我的收藏页面进入的 需要调用特殊的取消接口
       if (article.collect == null) {
         await WanAndroidRepository.unMyCollect(

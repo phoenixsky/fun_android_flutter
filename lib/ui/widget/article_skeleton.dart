@@ -14,7 +14,8 @@ class SkeletonListItem extends StatefulWidget {
 class _SkeletonListItemState extends State<SkeletonListItem>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> animation;
+  Animation<double> _animation;
+  Timer _timer;
 
   @override
   void initState() {
@@ -24,10 +25,10 @@ class _SkeletonListItemState extends State<SkeletonListItem>
       duration: Duration(milliseconds: 1000),
     );
 
-    animation = Tween<double>(begin: -1.0, end: 2.0).animate(
+    _animation = Tween<double>(begin: -1.0, end: 2.0).animate(
         CurvedAnimation(curve: Curves.easeInOutSine, parent: _controller));
 
-    animation.addStatusListener((status) {
+    _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed ||
           status == AnimationStatus.dismissed) {
         _controller.repeat();
@@ -35,13 +36,16 @@ class _SkeletonListItemState extends State<SkeletonListItem>
         _controller.forward();
       }
     });
-    Timer(Duration(milliseconds: widget.index * 80), () {
-      _controller.forward();
+    _timer = Timer(Duration(milliseconds: widget.index * 80), () {
+      if(mounted){
+        _controller.forward();
+      }
     });
   }
 
   @override
   void dispose() {
+    _timer.cancel();
     _controller.dispose();
     super.dispose();
   }
@@ -50,7 +54,7 @@ class _SkeletonListItemState extends State<SkeletonListItem>
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return AnimatedBuilder(
-      animation: animation,
+      animation: _animation,
       builder: (context, child) {
         bool isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -72,21 +76,21 @@ class _SkeletonListItemState extends State<SkeletonListItem>
                     height: 20,
                     width: 20,
                     decoration: SkeletonDecoration(
-                        animation: animation, isCircle: true, isDark: isDark),
+                        animation: _animation, isCircle: true, isDark: isDark),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10),
                     height: 5,
                     width: 100,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                   Expanded(child: SizedBox.shrink()),
                   Container(
                     height: 5,
                     width: 30,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                 ],
               ),
@@ -103,7 +107,7 @@ class _SkeletonListItemState extends State<SkeletonListItem>
                     height: 6.5,
                     width: width * 0.7,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                   SizedBox(
                     height: 10,
@@ -112,7 +116,7 @@ class _SkeletonListItemState extends State<SkeletonListItem>
                     height: 6.5,
                     width: width * 0.8,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                   SizedBox(
                     height: 10,
@@ -121,7 +125,7 @@ class _SkeletonListItemState extends State<SkeletonListItem>
                     height: 6.5,
                     width: width * 0.5,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                 ],
               ),
@@ -135,20 +139,20 @@ class _SkeletonListItemState extends State<SkeletonListItem>
                     height: 8,
                     width: 20,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                   Container(
                     height: 8,
                     width: 80,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                   Expanded(child: SizedBox.shrink()),
                   Container(
                     height: 20,
                     width: 20,
                     decoration: SkeletonDecoration(
-                        animation: animation, isDark: isDark),
+                        animation: _animation, isDark: isDark),
                   ),
                 ],
               ),

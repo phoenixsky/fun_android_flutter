@@ -5,24 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
+import 'package:wan_android/model/article.dart';
+import 'package:wan_android/ui/widget/dialog_helper.dart';
 import 'package:wan_android/utils/platform_utils.dart';
 import 'package:wan_android/utils/third_app_utils.dart';
+import 'package:wan_android/view_model/colletion_model.dart';
 import 'package:wan_android/view_model/theme_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:oktoast/oktoast.dart';
 
-class WebViewPage extends StatefulWidget {
-  final String url;
-  final String title;
+class ArticleWebView extends StatefulWidget {
+  final Article article;
 
-  WebViewPage({this.url, this.title});
+  ArticleWebView({this.article});
 
   @override
   _WebViewState createState() => _WebViewState();
 }
 
-class _WebViewState extends State<WebViewPage> {
+class _WebViewState extends State<ArticleWebView> {
   WebViewController _controller;
 
   Completer<bool> _finishedCompleter = Completer();
@@ -47,7 +49,7 @@ class _WebViewState extends State<WebViewPage> {
             ),
             Expanded(
                 child: Text(
-              widget.title,
+              widget.article.title,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 16),
             ))
@@ -57,10 +59,10 @@ class _WebViewState extends State<WebViewPage> {
           IconButton(
             icon: Icon(Icons.language),
             onPressed: () {
-              launch(widget.url, forceSafariVC: false);
+              launch(widget.article.link, forceSafariVC: false);
             },
           ),
-          WebViewPopupMenu(_controller)
+          WebViewPopupMenu(_controller, widget.article)
         ],
       ),
       body: SafeArea(
@@ -69,7 +71,7 @@ class _WebViewState extends State<WebViewPage> {
           children: <Widget>[
             WebView(
               // 初始化加载的url
-              initialUrl: widget.url,
+              initialUrl: widget.article.link,
               // 加载js
               javascriptMode: JavascriptMode.unrestricted,
 //              navigationDelegate: (NavigationRequest request) {
@@ -90,7 +92,7 @@ class _WebViewState extends State<WebViewPage> {
         ),
       ),
       floatingActionButton: FutureBuilder<String>(
-        future: ThirdAppUtils.canOpenApp(widget.url),
+        future: ThirdAppUtils.canOpenApp(widget.article.link),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return FloatingActionButton(
@@ -109,62 +111,86 @@ class _WebViewState extends State<WebViewPage> {
 
 class WebViewPopupMenu extends StatelessWidget {
   final WebViewController _controller;
+  final Article article;
 
-  WebViewPopupMenu(this._controller);
+  WebViewPopupMenu(this._controller, this.article);
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      itemBuilder: (context) => <PopupMenuEntry<int>>[
-        PopupMenuItem(
-          child: WebViewPopupMenuItem(Icons.refresh, '刷新'),
-          value: 0,
-        ),
-        PopupMenuItem(
-          child: WebViewPopupMenuItem(Icons.favorite_border, '收藏'),
-          value: 1,
-        ),
-        PopupMenuDivider(),
-        PopupMenuItem(
-          child: WebViewPopupMenuItem(IconFonts.train, '火车'),
-          value: 2,
-          enabled: false,
-        ),
-        PopupMenuItem(
-          child: WebViewPopupMenuItem(Icons.color_lens, '切换主题'),
-          value: 3,
-        ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CollectionModel>.value(
+            value: CollectionModel(article)),
       ],
-      onSelected: (value) {
-        switch (value) {
-          case 0:
-            _controller.reload();
-            break;
-          case 1:
-            break;
-          case 2:
-            break;
-          case 3:
-            Provider.of<ThemeModel>(context).switchRandomTheme();
-            break;
-        }
-      },
+      child: Builder(
+        builder: (context) {
+          var collectionModel = Provider.of<CollectionModel>(context);
+          return PopupMenuButton(
+            itemBuilder: (context) => <PopupMenuEntry<int>>[
+              PopupMenuItem(
+                child: WebViewPopupMenuItem(Icons.refresh, '刷新'),
+                value: 0,
+              ),
+              PopupMenuItem(
+                child: (collectionModel.article.collect ?? true)
+                    ? WebViewPopupMenuItem(Icons.favorite, '取消收藏',
+                        color: Colors.redAccent[100])
+                    : WebViewPopupMenuItem(Icons.favorite_border, '收藏'),
+                value: 1,
+              ),
+              PopupMenuDivider(),
+              PopupMenuItem(
+                child: WebViewPopupMenuItem(IconFonts.train, '火车'),
+                value: 2,
+                enabled: false,
+              ),
+              PopupMenuItem(
+                child: WebViewPopupMenuItem(Icons.color_lens, '切换主题'),
+                value: 3,
+              ),
+            ],
+            onSelected: (value) async {
+              switch (value) {
+                case 0:
+                  _controller.reload();
+                  break;
+                case 1:
+                  await collectionModel.collect();
+                  if (collectionModel.unAuthorized) {
+                    DialogHelper.showLoginDialog(context);
+                  }
+                  break;
+                case 2:
+                  break;
+                case 3:
+                  Provider.of<ThemeModel>(context).switchRandomTheme();
+                  break;
+              }
+            },
+          );
+        },
+      ),
     );
   }
 }
 
 class WebViewPopupMenuItem<T> extends StatelessWidget {
   final IconData iconData;
+  final Color color;
   final String text;
 
-  WebViewPopupMenuItem(this.iconData, this.text);
+  WebViewPopupMenuItem(this.iconData, this.text, {this.color});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Icon(iconData, size: 20),
+        Icon(
+          iconData,
+          size: 20,
+          color: color,
+        ),
         SizedBox(
           width: 20,
         ),

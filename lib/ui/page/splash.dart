@@ -14,89 +14,103 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-  AnimationController _controller;
+  AnimationController _logoController;
   Animation<double> _animation;
-
-  Timer _timer;
+  AnimationController _countdownController;
 
   @override
   void initState() {
-    _controller = AnimationController(
+    _logoController = AnimationController(
         vsync: this, duration: Duration(milliseconds: 1500));
 
     _animation = Tween(begin: 0.0, end: 1.0).animate(
-        CurvedAnimation(curve: Curves.easeInOutBack, parent: _controller));
+        CurvedAnimation(curve: Curves.easeInOutBack, parent: _logoController));
 
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        _controller.reverse();
+        _logoController.reverse();
       } else if (status == AnimationStatus.dismissed) {
-        _controller.forward();
+        _logoController.forward();
       }
     });
-    _controller.forward();
-    _timer = Timer.periodic(Duration(milliseconds: 1500), (timer) {
-      setState(() {});
-      if (timer.tick == 3) {
-        timer.cancel();
-        nextPage(context);
-      }
-    });
+    _logoController.forward();
+
+    _countdownController =
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
+    _countdownController.forward();
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
-    _timer.cancel();
+    _logoController.dispose();
+    _countdownController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(fit: StackFit.expand, children: <Widget>[
-        Image.asset(ImageHelper.wrapAssets('splash_bg.png'), fit: BoxFit.fill),
-        AnimatedFlutterLogo(
-          animation: _animation,
-        ),
-        Align(
-          alignment: Alignment(0.0, 0.7),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              AnimatedAndroidLogo(
-                animation: _animation,
-              ),
-            ],
+      body: WillPopScope(
+        onWillPop: () => Future.value(false),
+        child: Stack(fit: StackFit.expand, children: <Widget>[
+          Image.asset(ImageHelper.wrapAssets('splash_bg.png'),
+              fit: BoxFit.fill),
+          AnimatedFlutterLogo(
+            animation: _animation,
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SafeArea(
-            child: InkWell(
-              onTap: () {
-                nextPage(context);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                margin: EdgeInsets.only(right: 20, bottom: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: Colors.black.withAlpha(100),
+          Align(
+            alignment: Alignment(0.0, 0.7),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                AnimatedAndroidLogo(
+                  animation: _animation,
                 ),
-                child: Text(
-                  (_timer.isActive
-                          ? '${(3 - _timer.tick).toString()} | '
-                          : '') +
-                      '跳过',
-                  style: TextStyle(color: Colors.white),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: SafeArea(
+              child: InkWell(
+                onTap: () {
+                  nextPage(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  margin: EdgeInsets.only(right: 20, bottom: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: Colors.black.withAlpha(100),
+                  ),
+                  child: AnimatedCountdown(
+                    animation: StepTween(begin: 4, end: 0)
+                        .animate(_countdownController),
+                  ),
                 ),
               ),
             ),
-          ),
-        )
-      ]),
+          )
+        ]),
+      ),
+    );
+  }
+}
+
+class AnimatedCountdown extends AnimatedWidget {
+  final Animation<int> animation;
+
+  AnimatedCountdown({key, this.animation})
+      : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    var value = animation.value;
+    return Text(
+      (value == 0 ? '' : '$value | ') + '跳过',
+      style: TextStyle(color: Colors.white),
     );
   }
 }

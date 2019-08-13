@@ -1,5 +1,3 @@
-import 'package:html_unescape/html_unescape.dart';
-
 class Article {
   String apkLink;
   String author;

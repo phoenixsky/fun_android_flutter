@@ -10,6 +10,7 @@ import 'package:wan_android/view_model/colletion_model.dart';
 
 import 'animated_provider.dart';
 import 'article_tag.dart';
+import 'dialog_helper.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
@@ -30,7 +31,7 @@ class ArticleItemWidget extends StatelessWidget {
         onTap: onTap ??
             () {
               Navigator.of(context).pushNamed(RouteName.webView,
-                  arguments: [article.link, article.title]);
+                  arguments: article);
             },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
@@ -167,32 +168,7 @@ class ArticleCollectionWidget extends StatelessWidget {
             if (!model.busy) {
               await model.collect();
               if (model.unAuthorized) {
-                showCupertinoDialog(
-                    context: context,
-                    builder: (context) => CupertinoAlertDialog(
-                          title: Text('请先登录'),
-                          content: Text('还没有登录,请先登录..'),
-                          actions: <Widget>[
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: new Text("取消",
-                                  style: Theme.of(context).textTheme.button),
-                            ),
-                            CupertinoButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                  ..pop()
-                                  ..pushNamed(RouteName.login);
-                              },
-                              child: new Text(
-                                "确认",
-                                style: Theme.of(context).textTheme.button,
-                              ),
-                            ),
-                          ],
-                        ));
+                DialogHelper.showLoginDialog(context);
               }
             }
           },

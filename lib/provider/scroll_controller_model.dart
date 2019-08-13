@@ -13,7 +13,6 @@ class TapToTopModel with ChangeNotifier {
 
   TapToTopModel(this._scrollController, {double height: 200}) {
     _height = height;
-    debugPrint('TapToTopModel');
   }
 
   init() {

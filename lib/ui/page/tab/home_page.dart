@@ -155,11 +155,13 @@ class BannerWidget extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return InkWell(
                       onTap: () {
+                        var banner = banners[index];
                         Navigator.of(context).pushNamed(RouteName.webView,
-                            arguments: [
-                              banners[index].url,
-                              banners[index].title
-                            ]);
+                            arguments: Article()
+                              ..id = banner.id
+                              ..title = banner.title
+                              ..link = banner.url
+                              ..collect = false);
                       },
                       child: BannerImage(banners[index].imagePath));
                 },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/tree.dart';
 import 'package:wan_android/ui/page/collection_list_page.dart';
 import 'package:wan_android/ui/page/tree_list_page.dart';
@@ -8,7 +9,6 @@ import 'package:wan_android/ui/page/splash.dart';
 import 'package:wan_android/ui/page/tab/tab_navigator.dart';
 import 'package:wan_android/ui/page/webview.dart';
 import 'package:wan_android/ui/widget/page_route_anim.dart';
-
 
 class RouteName {
   static const String splash = 'splash';
@@ -30,11 +30,10 @@ class Router {
         return CupertinoPageRoute(
             fullscreenDialog: true, builder: (_) => LoginPage());
       case RouteName.webView:
-        var list = settings.arguments as List;
+        var article = settings.arguments as Article;
         return MaterialPageRoute(
-            builder: (_) => WebViewPage(
-                  url: list[0],
-                  title: list[1],
+            builder: (_) => ArticleWebView(
+                  article: article,
                 ));
       case RouteName.treeList:
         var list = settings.arguments as List;

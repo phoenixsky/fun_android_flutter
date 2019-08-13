@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wan_android/provider/view_state.dart';
 
 class BaseModel with ChangeNotifier {
+//  bool disposed = false;
   ViewState _viewState;
   String _errorMessage;
 
@@ -45,8 +46,23 @@ class BaseModel with ChangeNotifier {
     setViewState(ViewState.error);
   }
 
+
   @override
   String toString() {
     return 'BaseModel{_viewState: $_viewState, _errorMessage: $_errorMessage}';
   }
+
+//  @override
+//  void notifyListeners() {
+//    if(!disposed){
+//      super.notifyListeners();
+//    }
+//  }
+//
+//  @override
+//  void dispose() {
+//    disposed = true;
+//    super.dispose();
+//  }
+
 }

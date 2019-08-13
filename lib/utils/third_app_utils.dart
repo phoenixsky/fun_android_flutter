@@ -12,7 +12,7 @@ class ThirdAppUtils {
         scheme = 'jianshu://${uri.pathSegments.join("/")}';
         break;
       default:
-        throw 'Could not launch $url';
+//        throw 'Could not launch $url';
         break;
     }
     return scheme;
