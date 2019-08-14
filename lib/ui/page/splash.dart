@@ -86,7 +86,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     color: Colors.black.withAlpha(100),
                   ),
                   child: AnimatedCountdown(
-                    animation: StepTween(begin: 4, end: 0)
+                    context: context,
+                    animation: StepTween(begin: 3, end: 0)
                         .animate(_countdownController),
                   ),
                 ),
@@ -102,12 +103,18 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 class AnimatedCountdown extends AnimatedWidget {
   final Animation<int> animation;
 
-  AnimatedCountdown({key, this.animation})
-      : super(key: key, listenable: animation);
+  AnimatedCountdown({key, this.animation, context})
+      : super(key: key, listenable: animation) {
+    this.animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        nextPage(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    var value = animation.value;
+    var value = animation.value + 1;
     return Text(
       (value == 0 ? '' : '$value | ') + '跳过',
       style: TextStyle(color: Colors.white),

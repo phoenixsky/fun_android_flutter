@@ -21,7 +21,7 @@ abstract class BaseListModel<T> extends BaseModel {
   List<T> list = [];
 
   /// 第一次进入页面loading skeleton
-  init() async {
+  initData() async {
     setBusy(true);
     await refresh(init: true);
   }

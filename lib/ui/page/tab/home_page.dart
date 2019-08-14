@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage>
       model1: HomeModel(),
       model2: TapToTopModel(ScrollController(), height: bannerHeight - 60),
       onModelReady: (model1, model2) {
-        model1.init();
+        model1.initData();
         model2.init();
       },
       builder: (context, homeModel, tapToTopModel, child) {
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage>
 //                  return Center(child: CircularProgressIndicator());
 //                }
                 if (homeModel.error) {
-                  return PageStateError(onPressed: homeModel.init);
+                  return PageStateError(onPressed: homeModel.initData);
                 }
                 return SmartRefresher(
                     controller: homeModel.refreshController,
@@ -156,7 +156,7 @@ class BannerWidget extends StatelessWidget {
                   return InkWell(
                       onTap: () {
                         var banner = banners[index];
-                        Navigator.of(context).pushNamed(RouteName.webView,
+                        Navigator.of(context).pushNamed(RouteName.articleDetail,
                             arguments: Article()
                               ..id = banner.id
                               ..title = banner.title

@@ -17,17 +17,17 @@ class SearchResults extends StatelessWidget {
     return ProviderWidget<SearchResultModel>(
       model: SearchResultModel(keyword:keyword,searchHistoryModel:searchHistoryModel),
       onModelReady: (model) {
-        model.init();
+        model.initData();
       },
       builder: (context, model, child) {
         if (model.busy) {
           return PageStateLoading();
         }
         if (model.error) {
-          return PageStateError(onPressed: model.init);
+          return PageStateError(onPressed: model.initData);
         }
         if (model.empty) {
-          return PageStateEmpty(onPressed: model.init);
+          return PageStateEmpty(onPressed: model.initData);
         }
         return SmartRefresher(
             controller: model.refreshController,

@@ -7,24 +7,22 @@ import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/ui/widget/dialog_helper.dart';
-import 'package:wan_android/utils/platform_utils.dart';
 import 'package:wan_android/utils/third_app_utils.dart';
 import 'package:wan_android/view_model/colletion_model.dart';
 import 'package:wan_android/view_model/theme_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:oktoast/oktoast.dart';
 
-class ArticleWebView extends StatefulWidget {
+class ArticleDetailPage extends StatefulWidget {
   final Article article;
 
-  ArticleWebView({this.article});
+  ArticleDetailPage({this.article});
 
   @override
   _WebViewState createState() => _WebViewState();
 }
 
-class _WebViewState extends State<ArticleWebView> {
+class _WebViewState extends State<ArticleDetailPage> {
   WebViewController _controller;
 
   Completer<bool> _finishedCompleter = Completer();
@@ -33,27 +31,9 @@ class _WebViewState extends State<ArticleWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: <Widget>[
-            FutureBuilder<bool>(
-              future: _finishedCompleter.future,
-              initialData: false,
-              builder: (context, snapshot) {
-                return Offstage(
-                  offstage: snapshot.data,
-                  child: Padding(
-                      padding: EdgeInsets.only(right: 5),
-                      child: CupertinoActivityIndicator()),
-                );
-              },
-            ),
-            Expanded(
-                child: Text(
-              widget.article.title,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 16),
-            ))
-          ],
+        title: WebViewTitle(
+          title: widget.article.title,
+          future: _finishedCompleter.future,
         ),
         actions: <Widget>[
           IconButton(
@@ -105,6 +85,39 @@ class _WebViewState extends State<ArticleWebView> {
           return SizedBox.shrink();
         },
       ),
+    );
+  }
+}
+
+class WebViewTitle extends StatelessWidget {
+  final String title;
+  final Future<bool> future;
+
+  WebViewTitle({this.title, this.future});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        FutureBuilder<bool>(
+          future: future,
+          initialData: false,
+          builder: (context, snapshot) {
+            return Offstage(
+              offstage: snapshot.data,
+              child: Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: CupertinoActivityIndicator()),
+            );
+          },
+        ),
+        Expanded(
+            child: Text(
+          title,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 16),
+        ))
+      ],
     );
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 
 import 'package:wan_android/config/router_config.dart';
+import 'package:wan_android/model/navigation_site.dart';
 import 'package:wan_android/model/tree.dart';
 import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
-import 'package:wan_android/view_model/theme_model.dart';
 import 'package:wan_android/view_model/tree_model.dart';
 
 class TreeCategoryPage extends StatefulWidget {
@@ -16,48 +15,68 @@ class TreeCategoryPage extends StatefulWidget {
 
 class _TreeCategoryPageState extends State<TreeCategoryPage>
     with AutomaticKeepAliveClientMixin {
+  List<String> tabs = ['体系', '公众号'];
+
   @override
   bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    return ProviderWidget<TreeCategoryModel>(
-      model: TreeCategoryModel(),
-      onModelReady: (model) {
-        model.init();
-      },
-      builder: (context, treeListModel, child) {
-        return Scaffold(
+    return DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
           appBar: AppBar(
-            centerTitle: true,
-            title: InkWell(
-                onTap: () {
-                  Provider.of<ThemeModel>(context).switchRandomTheme();
-                },
-                child: Text('体系')),
-          ),
-          body: Builder(builder: (_) {
-            if (treeListModel.busy) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (treeListModel.error) {
-              return PageStateError(onPressed: treeListModel.init);
-            }
-            return Scrollbar(
-              child: ListView.builder(
-                  padding: EdgeInsets.all(15),
-                  itemCount: treeListModel.list.length,
-                  itemBuilder: (context, index) {
-                    Tree item = treeListModel.list[index];
-                    return TreeCategoryWidget(item);
-                  }),
-            );
-          }),
-        );
-      },
+              centerTitle: true,
+              title: TabBar(
+                isScrollable: true,
+                tabs: List.generate(
+                    tabs.length,
+                    (index) => Tab(
+                          text: tabs[index],
+                        )),
+              )),
+          body: TabBarView(
+              children: [TreeCategoryList(), NavigationSiteCategoryList()])),
     );
+  }
+}
+
+class TreeCategoryList extends StatefulWidget {
+  @override
+  _TreeCategoryListState createState() => _TreeCategoryListState();
+}
+
+class _TreeCategoryListState extends State<TreeCategoryList>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return ProviderWidget<TreeCategoryModel>(
+        model: TreeCategoryModel(),
+        onModelReady: (model) {
+          model.initData();
+        },
+        builder: (context, model, child) {
+          if (model.busy) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (model.error) {
+            return PageStateError(onPressed: model.initData());
+          }
+          return Scrollbar(
+            child: ListView.builder(
+                padding: EdgeInsets.all(15),
+                itemCount: model.list.length,
+                itemBuilder: (context, index) {
+                  Tree item = model.list[index];
+                  return TreeCategoryWidget(item);
+                }),
+          );
+        });
   }
 }
 
@@ -88,6 +107,82 @@ class TreeCategoryWidget extends StatelessWidget {
                         },
                         label: Text(
                           tree.children[index].name,
+                          maxLines: 1,
+                        ),
+                      )))
+        ],
+      ),
+    );
+  }
+}
+
+class NavigationSiteCategoryList extends StatefulWidget {
+  @override
+  _NavigationSiteCategoryListState createState() =>
+      _NavigationSiteCategoryListState();
+}
+
+class _NavigationSiteCategoryListState extends State<NavigationSiteCategoryList>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return ProviderWidget<NavigationSiteModel>(
+        model: NavigationSiteModel(),
+        onModelReady: (model) {
+          model.initData();
+        },
+        builder: (context, model, child) {
+          if (model.busy) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (model.error) {
+            return PageStateError(onPressed: model.initData());
+          }
+          return Scrollbar(
+            child: ListView.builder(
+                padding: EdgeInsets.all(15),
+                itemCount: model.list.length,
+                itemBuilder: (context, index) {
+                  NavigationSite item = model.list[index];
+                  return NavigationSiteCategoryWidget(item);
+                }),
+          );
+        });
+  }
+}
+
+class NavigationSiteCategoryWidget extends StatelessWidget {
+  final NavigationSite site;
+
+  NavigationSiteCategoryWidget(this.site);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            site.name,
+            style: Theme.of(context).textTheme.subtitle,
+          ),
+          Wrap(
+              spacing: 10,
+              children: List.generate(
+                  site.articles.length,
+                  (index) => ActionChip(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                              RouteName.articleDetail,
+                              arguments: site.articles[index]);
+                        },
+                        label: Text(
+                          site.articles[index].title,
                           maxLines: 1,
                         ),
                       )))

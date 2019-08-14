@@ -30,7 +30,7 @@ class ArticleItemWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap ??
             () {
-              Navigator.of(context).pushNamed(RouteName.webView,
+              Navigator.of(context).pushNamed(RouteName.articleDetail,
                   arguments: article);
             },
         child: Container(
@@ -99,15 +99,19 @@ class ArticleItemWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CachedNetworkImage(
-                      imageUrl: article.envelopePic,
-                      height: 60,
-                      width: 60,
-                      placeholder: (_, __) =>
-                          ImageHelper.placeHolder(width: 60, height: 60),
-                      errorWidget: (_, __, ___) =>
-                          ImageHelper.error(width: 60, height: 60),
-                      fit: BoxFit.cover,
+                    SizedBox(width: 5,),
+                    Hero(
+                      tag: article.id,
+                      child: CachedNetworkImage(
+                        imageUrl: article.envelopePic,
+                        height: 60,
+                        width: 60,
+                        placeholder: (_, __) =>
+                            ImageHelper.placeHolder(width: 60, height: 60),
+                        errorWidget: (_, __, ___) =>
+                            ImageHelper.error(width: 60, height: 60),
+                        fit: BoxFit.cover,
+                      ),
                     )
                   ],
                 ),

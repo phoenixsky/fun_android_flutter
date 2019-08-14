@@ -2,6 +2,7 @@ import 'package:wan_android/config/net/http.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/banner.dart';
 import 'package:wan_android/model/search.dart';
+import 'package:wan_android/model/navigation_site.dart';
 import 'package:wan_android/model/tree.dart';
 import 'package:wan_android/model/user.dart';
 
@@ -42,6 +43,18 @@ class WanAndroidRepository {
     var response = await http.get('project/tree/json');
     return response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
   }
+  // 导航
+  static Future fetchNavigationSite() async {
+    var response = await http.get('navi/json');
+    return response.data.map<NavigationSite>((item) => NavigationSite.fromMap(item)).toList();
+  }
+
+  // 公众号分类
+  static Future fetchWxMpCategories() async {
+    var response = await http.get('wxarticle/chapters/json');
+    return response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
+
+  }
 
   // 搜索热门记录
   static Future fetchSearchHotKey() async {
@@ -63,7 +76,7 @@ class WanAndroidRepository {
   }
 
   /// 登录
-  /// [Http.init] 添加了拦截器 设置了自动cookie.
+  /// [Http.initData] 添加了拦截器 设置了自动cookie.
   static Future login(String username, String password) async {
     var response = await http.post<Map>('user/login', queryParameters: {
       'username': username,

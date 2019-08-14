@@ -3,6 +3,7 @@ import 'package:wan_android/config/net/api.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/provider/base_list_model.dart';
 import 'package:wan_android/provider/base_model.dart';
+import 'package:wan_android/provider/view_state.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
 import 'package:wan_android/view_model/user_model.dart';
 
@@ -26,7 +27,9 @@ class CollectionListModel extends BaseListModel {
 class CollectionModel extends BaseModel {
   final Article article;
 
-  CollectionModel(this.article);
+  CollectionModel(this.article) {
+    viewState = ViewState.idle;
+  }
 
   collect() async {
     setBusy(true);

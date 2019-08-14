@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/tree.dart';
@@ -54,31 +55,44 @@ class _TreeListWidgetState extends State<TreeListWidget>
   bool get wantKeepAlive => true;
 
   @override
+  void initState() {
+    debugPrint('_TreeListWidgetState--initState--' + widget.tree.name);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    debugPrint('_TreeListWidgetState--dispose--' + widget.tree.name);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return ProviderWidget<TreeListModel>(
       model: TreeListModel(widget.tree.id),
-      onModelReady: (model) => model.init(),
-      builder: (context, treeListModel, child) {
-        if (treeListModel.busy) {
+      onModelReady: (model) => model.initData(),
+      builder: (context, model, child) {
+        if (model.busy) {
           return PageStateListSkeleton();
         }
-        if (treeListModel.error) {
-          return PageStateError(onPressed: treeListModel.init);
+        if (model.error) {
+          return PageStateError(onPressed: model.initData);
         }
-        if (treeListModel.empty) {
-          return PageStateEmpty(onPressed: treeListModel.init);
+        if (model.empty) {
+          return PageStateEmpty(onPressed: model.initData);
         }
         return SmartRefresher(
-            controller: treeListModel.refreshController,
+            controller: model.refreshController,
             header: WaterDropHeader(),
-            onRefresh: treeListModel.refresh,
-            onLoading: treeListModel.loadMore,
+            onRefresh: model.refresh,
+            onLoading: model.loadMore,
             enablePullUp: true,
             child: ListView.builder(
-                itemCount: treeListModel.list.length,
+                itemCount: model.list.length,
                 itemBuilder: (context, index) {
-                  Article item = treeListModel.list[index];
+                  Article item = model.list[index];
                   return ArticleItemWidget(item);
                 }));
       },

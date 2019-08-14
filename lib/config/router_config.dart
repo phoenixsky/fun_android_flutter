@@ -3,18 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/tree.dart';
 import 'package:wan_android/ui/page/collection_list_page.dart';
-import 'package:wan_android/ui/page/tree_list_page.dart';
+import 'package:wan_android/ui/page/article_list_by_category_page.dart';
 import 'package:wan_android/ui/page/user/login_page.dart';
 import 'package:wan_android/ui/page/splash.dart';
 import 'package:wan_android/ui/page/tab/tab_navigator.dart';
-import 'package:wan_android/ui/page/webview.dart';
+import 'package:wan_android/ui/page/article_detail_page.dart';
 import 'package:wan_android/ui/widget/page_route_anim.dart';
 
 class RouteName {
   static const String splash = 'splash';
   static const String tab = '/';
   static const String login = 'login';
-  static const String webView = 'webView';
+  static const String articleDetail = 'articleDetail';
   static const String treeList = 'treeList';
   static const String collectionList = 'collectionList';
 }
@@ -29,10 +29,10 @@ class Router {
       case RouteName.login:
         return CupertinoPageRoute(
             fullscreenDialog: true, builder: (_) => LoginPage());
-      case RouteName.webView:
+      case RouteName.articleDetail:
         var article = settings.arguments as Article;
         return MaterialPageRoute(
-            builder: (_) => ArticleWebView(
+            builder: (_) => ArticleDetailPage(
                   article: article,
                 ));
       case RouteName.treeList:
