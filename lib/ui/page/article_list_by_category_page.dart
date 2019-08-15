@@ -54,18 +54,6 @@ class _TreeListWidgetState extends State<TreeListWidget>
   @override
   bool get wantKeepAlive => true;
 
-  @override
-  void initState() {
-    debugPrint('_TreeListWidgetState--initState--' + widget.tree.name);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    debugPrint('_TreeListWidgetState--dispose--' + widget.tree.name);
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

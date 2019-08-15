@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:wan_android/provider/base_list_model.dart';
 import 'package:wan_android/provider/sample_list_model.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
@@ -18,6 +19,11 @@ class TreeListModel extends BaseListModel {
   Future<List> loadData(int pageNum) async {
     return await WanAndroidRepository.fetchArticles(pageNum, cid: cid);
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
 
 /// 网址导航
@@ -27,6 +33,7 @@ class NavigationSiteModel extends SampleListModel {
     return await WanAndroidRepository.fetchNavigationSite();
   }
 }
+
 /// 获取微信公众号列表
 class WxArticleCategoryModel extends SampleListModel {
   @override

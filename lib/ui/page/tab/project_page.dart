@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
 import 'package:flutter/cupertino.dart';
@@ -5,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:wan_android/flutter/dropdown.dart';
 import 'package:wan_android/model/tree.dart';
 
-import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/view_model/project_model.dart';
 
@@ -21,68 +21,80 @@ class _ProjectPageState extends State<ProjectPage>
   @override
   bool get wantKeepAlive => true;
 
+  ProjectCategoryModel model = ProjectCategoryModel();
+  ValueNotifier<int> valueNotifier = ValueNotifier(0);
+  TabController tabController;
+
+  @override
+  void initState() {
+    model.initData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    valueNotifier.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    return ChangeNotifierProvider<ProjectCategoryModel>.value(
+        value: model,
+        child: Consumer<ProjectCategoryModel>(builder: (context, model, child) {
+          if (model.busy) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (model.error) {
+            return PageStateError(onPressed: model.initData);
+          }
 
-    return ProviderWidget<ProjectCategoryModel>(
-      model: ProjectCategoryModel(),
-      onModelReady: (model) {
-        model.initData();
-      },
-      builder: (context, projectCategoryModel, child) {
-        if (projectCategoryModel.busy) {
-          return Center(child: CircularProgressIndicator());
-        }
-        if (projectCategoryModel.error) {
-          return PageStateError(onPressed: projectCategoryModel.initData);
-        }
-        List<Tree> treeList = projectCategoryModel.list;
-        var primaryColor = Theme.of(context).primaryColor;
-        return DefaultTabController(
-          length: projectCategoryModel.list.length,
-          initialIndex: 0,
-          child: Builder(
-            builder: (context) {
-              return Scaffold(
-                appBar: AppBar(
-                  title: Stack(
-                    children: [
-                      CategoryDropdownWidget(treeList: treeList),
-                      Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        color: primaryColor.withOpacity(1),
-                        child: TabBar(
-                            isScrollable: true,
-                            tabs: List.generate(
-                                treeList.length,
-                                (index) => Tab(
-                                      text: treeList[index].name,
-                                    ))),
-                      )
-                    ],
-                  ),
-                ),
-                body: Stack(
-                  overflow: Overflow.visible,
-                  children: <Widget>[
-                    TabBarView(
+          List<Tree> treeList = model.list;
+          var primaryColor = Theme.of(context).primaryColor;
+
+          return ValueListenableProvider<int>.value(
+            value: valueNotifier,
+            child: DefaultTabController(
+              length: model.list.length,
+              initialIndex: valueNotifier.value,
+              child: Builder(
+                builder: (context) {
+                  if (tabController == null) {
+                    tabController = DefaultTabController.of(context);
+                    tabController.addListener(() {
+                      valueNotifier.value = tabController.index;
+                    });
+                  }
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: Stack(
+                        children: [
+                          CategoryDropdownWidget(treeList: treeList),
+                          Container(
+                            margin: const EdgeInsets.only(right: 20),
+                            color: primaryColor.withOpacity(1),
+                            child: TabBar(
+                                isScrollable: true,
+                                tabs: List.generate(
+                                    treeList.length,
+                                    (index) => Tab(
+                                          text: treeList[index].name,
+                                        ))),
+                          )
+                        ],
+                      ),
+                    ),
+                    body: TabBarView(
                       children: List.generate(treeList.length,
                           (index) => TreeListWidget(treeList[index])),
                     ),
-                    Positioned(
-                      child: Text('123'),
-                      right: 50,
-                      top: -50,
-                    )
-                  ],
-                ),
-              );
-            },
-          ),
-        );
-      },
-    );
+                  );
+                },
+              ),
+            ),
+          );
+        }));
   }
 }
 
@@ -93,6 +105,7 @@ class CategoryDropdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int currentIndex = Provider.of<int>(context);
     return Align(
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -101,16 +114,21 @@ class CategoryDropdownWidget extends StatelessWidget {
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             elevation: 0,
-            value: DefaultTabController.of(context).index,
+            value: currentIndex,
             style: Theme.of(context).primaryTextTheme.subhead,
-            items: List.generate(
-                treeList.length,
-                (index) => DropdownMenuItem(
-                      value: index,
-                      child: Text(
-                        treeList[index].name,
-                      ),
-                    )),
+            items: List.generate(treeList.length, (index) {
+              var theme = Theme.of(context);
+              return DropdownMenuItem(
+                value: index,
+                child: Text(
+                  treeList[index].name,
+                  style: currentIndex == index
+                      ? theme.primaryTextTheme.subhead
+                          .apply(color: theme.accentColor)
+                      : theme.primaryTextTheme.subhead,
+                ),
+              );
+            }),
             onChanged: (value) {
               DefaultTabController.of(context).animateTo(value);
             },
