@@ -8,12 +8,14 @@ import 'package:wan_android/ui/page/user/login_page.dart';
 import 'package:wan_android/ui/page/splash.dart';
 import 'package:wan_android/ui/page/tab/tab_navigator.dart';
 import 'package:wan_android/ui/page/article_detail_page.dart';
+import 'package:wan_android/ui/page/user/register_page.dart';
 import 'package:wan_android/ui/widget/page_route_anim.dart';
 
 class RouteName {
-  static const String splash = 'splash';
   static const String tab = '/';
+  static const String splash = 'splash';
   static const String login = 'login';
+  static const String register = 'register';
   static const String articleDetail = 'articleDetail';
   static const String treeList = 'treeList';
   static const String collectionList = 'collectionList';
@@ -29,6 +31,8 @@ class Router {
       case RouteName.login:
         return CupertinoPageRoute(
             fullscreenDialog: true, builder: (_) => LoginPage());
+      case RouteName.register:
+        return MaterialPageRoute(builder: (_) => RegisterPage());
       case RouteName.articleDetail:
         var article = settings.arguments as Article;
         return MaterialPageRoute(

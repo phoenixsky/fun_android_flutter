@@ -30,11 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     _recognizerRegister = TapGestureRecognizer();
     _recognizerRegister.onTap = () {
-      showToast('注册');
+      Navigator.of(context).pushNamed(RouteName.register);
     };
-
-    _nameController.text = '122086517@qq.com';
-    _passwordController.text = 'forever21';
 
     super.initState();
   }
@@ -109,7 +106,7 @@ class SingUpWidget extends StatelessWidget {
     return Center(
       child: Text.rich(TextSpan(text: '还没账号? ', children: [
         TextSpan(
-            text: '申请入驻',
+            text: '去注册',
             recognizer: _recognizerRegister,
             style: TextStyle(color: Theme.of(context).primaryColor))
       ])),

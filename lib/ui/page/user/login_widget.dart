@@ -4,104 +4,137 @@ import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/view_model/theme_model.dart';
 
+
+
+//class LoginTextField extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container();
+//  }
+//}
+
+
+
 class LoginTextField extends StatefulWidget {
+
   final String label;
+  final String text;
   final IconData icon;
   final bool needObscure;
   final TextEditingController controller;
   final FormFieldSetter<String> onSaved;
+  final FormFieldValidator<String> validator;
 
   LoginTextField(
       {this.label,
       this.icon,
-      @required this.controller,
+      this.text,
+      this.controller,
       this.needObscure: false,
-      this.onSaved})
-      : assert(controller != null);
+      this.validator,
+      this.onSaved});
 
   @override
   _LoginTextFieldState createState() => _LoginTextFieldState();
 }
 
 class _LoginTextFieldState extends State<LoginTextField> {
-  bool isObscure;
-  bool showDel = true;
+  TextEditingController controller;
+
+  /// 显示清空按钮
+  ValueNotifier<bool> hideDelNotifier;
+
+  /// 默认遮挡密码
+  ValueNotifier<bool> obscureNotifier;
+
 
   @override
   void initState() {
-    isObscure = widget.needObscure;
+//    validator = widget.validator ?? (_) => null;
+    controller = controller ?? TextEditingController();
+    controller.text = widget.text;
+    hideDelNotifier = ValueNotifier(controller.text.isEmpty);
+    controller.addListener(() {
+      hideDelNotifier.value = controller.text.isEmpty;
+    });
+    obscureNotifier = ValueNotifier(widget.needObscure);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: TextFormField(
-        controller: widget.controller,
-        obscureText: isObscure,
-        validator: (value) {
-          return value.trim().length > 0 ? null : '不能为空';
-        },
-        onSaved: widget.onSaved,
+      child: ValueListenableBuilder(
+        valueListenable: obscureNotifier,
+        builder: (context, obscureText, child) => TextFormField(
+          controller: controller,
+          obscureText: obscureText,
+          validator: (value) {
+            var validator = widget.validator ?? (_) => null;
+            return value.trim().length > 0 ? validator(value) : '不能为空';
+          },
+          onSaved: widget.onSaved,
 //        textInputAction:
 //            widget.needObscure ? TextInputAction.send : TextInputAction.next,
-        decoration: InputDecoration(
+          decoration: InputDecoration(
 //          contentPadding: EdgeInsets.all(1),
-          prefixIcon: Icon(
-            widget.icon,
-            color: theme.accentColor,
-            size: 20,
-          ),
-          hintText: widget.label,
-          hintStyle: TextStyle(fontSize: 14),
-          suffixIcon: suffixIcon(theme),
-        ).applyDefaults(theme.inputDecorationTheme),
+            prefixIcon: Icon(
+              widget.icon,
+              color: theme.accentColor,
+              size: 20,
+            ),
+            hintText: widget.label,
+            hintStyle: TextStyle(fontSize: 14),
+            suffixIcon: suffixIcon(theme, obscureText),
+          ).applyDefaults(theme.inputDecorationTheme),
+        ),
       ),
     );
   }
 
-  Widget suffixIcon(ThemeData theme) {
-    return Builder(builder: (context) {
-      widget.controller.addListener(() {
-        if (mounted) {
-          setState(() {
-            showDel = widget.controller.text.length != 0;
-          });
-        }
-      });
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Offstage(
-            offstage: !widget.needObscure,
-            child: InkWell(
-                onTap: () {
-                  setState(() {
-                    isObscure = !isObscure;
-                  });
-                },
-                child: Icon(
-                  CupertinoIcons.eye,
-                  size: 30,
-                  color: isObscure ? theme.hintColor : theme.primaryColor,
-                )),
-          ),
-          Offstage(
-            offstage: !showDel,
-            child: InkWell(
-                onTap: () {
-                  widget.controller.clear();
-                },
-                child: Icon(CupertinoIcons.clear,
-                    size: 30, color: theme.hintColor)),
-//                icon: Icon(Icons.close, color: theme.hintColor)),
-          ),
-        ],
-      );
-    });
+  Widget suffixIcon(ThemeData theme, bool obscureText) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Offstage(
+          offstage: !widget.needObscure,
+          child: InkWell(
+              onTap: () {
+                obscureNotifier.value = !obscureNotifier.value;
+              },
+              child: Icon(
+                CupertinoIcons.eye,
+                size: 30,
+                color: obscureText ? theme.hintColor : theme.primaryColor,
+              )),
+        ),
+        ValueListenableBuilder(
+          valueListenable: hideDelNotifier,
+          builder: (context, bool value, child) {
+            return Offstage(
+              offstage: value,
+              child: child,
+            );
+          },
+          child: InkWell(
+              onTap: () {
+                controller.clear();
+              },
+              child:
+                  Icon(CupertinoIcons.clear, size: 30, color: theme.hintColor)),
+        ),
+      ],
+    );
   }
 }
 
@@ -135,9 +168,9 @@ class LoginLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Consumer<ThemeModel>(
-      builder: (context,themeModel,child){
+      builder: (context, themeModel, child) {
         return InkWell(
-          onTap: (){
+          onTap: () {
             themeModel.switchRandomTheme();
           },
           child: child,
@@ -148,11 +181,11 @@ class LoginLogo extends StatelessWidget {
         width: 130,
         height: 100,
         fit: BoxFit.fitWidth,
-        color: theme.brightness == Brightness.dark ? theme.accentColor : Colors.white,
+        color: theme.brightness == Brightness.dark
+            ? theme.accentColor
+            : Colors.white,
         colorBlendMode: BlendMode.srcIn,
       ),
     );
   }
 }
-
-

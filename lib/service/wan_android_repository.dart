@@ -84,6 +84,15 @@ class WanAndroidRepository {
     });
     return User.fromJsonMap(response.data);
   }
+  /// 注册
+  static Future register(String username, String password,String rePassword) async {
+    var response = await http.post<Map>('user/register', queryParameters: {
+      'username': username,
+      'password': password,
+      'repassword': rePassword,
+    });
+    return User.fromJsonMap(response.data);
+  }
 
   /// 登出
   static Future logout() async {

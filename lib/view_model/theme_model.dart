@@ -110,7 +110,6 @@ class ThemeModel with ChangeNotifier {
         StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 2];
     var colorIndex =
         StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 7;
-    return [brightness, Colors.primaries[1]];
     return [brightness, Colors.primaries[colorIndex]];
   }
 }
