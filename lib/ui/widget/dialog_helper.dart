@@ -14,8 +14,10 @@ class DialogHelper {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child:
-                      new Text("取消", style: Theme.of(context).textTheme.button),
+                  child: new Text(
+                    "取消",
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
                 CupertinoButton(
                   onPressed: () {
@@ -23,10 +25,7 @@ class DialogHelper {
                       ..pop()
                       ..pushNamed(RouteName.login);
                   },
-                  child: new Text(
-                    "确认",
-                    style: Theme.of(context).textTheme.button,
-                  ),
+                  child: new Text("确认", style: TextStyle(color: Colors.black)),
                 ),
               ],
             ));
