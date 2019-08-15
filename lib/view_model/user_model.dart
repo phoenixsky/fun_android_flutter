@@ -2,6 +2,7 @@ import 'package:wan_android/config/net/api.dart';
 import 'package:wan_android/config/storage_manager.dart';
 import 'package:wan_android/model/user.dart';
 import 'package:wan_android/provider/base_model.dart';
+import 'package:wan_android/provider/view_state.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
 
 class UserModel extends BaseModel {
@@ -14,6 +15,7 @@ class UserModel extends BaseModel {
   bool get isLogin => user != null;
 
   UserModel() {
+    viewState = ViewState.idle;
     var userMap = StorageManager.localStorage.getItem(keyUser);
     _user = userMap != null ? User.fromJsonMap(userMap) : null;
   }
