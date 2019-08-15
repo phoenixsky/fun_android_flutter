@@ -9,10 +9,13 @@ import 'package:wan_android/config/storage_manager.dart';
 //const Color(0xFF5394FF),
 
 class ThemeModel with ChangeNotifier {
-  static const keyThemeColorIndex = 'keyThemeColorIndex';
-  static const keyThemeBrightnessIndex = 'keyThemeBrightnessIndex';
+  static const kThemeColorIndex = 'kThemeColorIndex';
+  static const kThemeBrightnessIndex = 'kThemeBrightnessIndex';
 
   ThemeData _themeData;
+
+  /// 当前主题颜色
+  MaterialColor _color;
 
   ThemeModel() {
     var value = getThemeFromStorage();
@@ -23,26 +26,31 @@ class ThemeModel with ChangeNotifier {
 
   ThemeData get darkTheme => _themeData.copyWith(brightness: Brightness.dark);
 
-  /// 切换主题色彩
-  void switchTheme(Brightness brightness, int index) {
-    _themeData = _generateThemeData(brightness, index);
+  /// 切换指定色彩
+  ///
+  ///
+  void switchTheme({Brightness brightness, MaterialColor color}) {
+    _themeData = _generateThemeData(
+        brightness ?? _themeData.brightness, color ?? _color);
     notifyListeners();
-    saveTheme2Storage(brightness, index);
+
+    saveTheme2Storage(brightness, color);
   }
 
   /// 随机一个主题色彩
-  void switchRandomTheme() {
-    Brightness brightness =
-        Random().nextBool() ? Brightness.dark : Brightness.light;
-    int index = Random().nextInt(Colors.primaries.length - 1);
-    switchTheme(brightness, index);
+  ///
+  /// 可以指定明暗模式
+  void switchRandomTheme({Brightness brightness}) {
+    brightness ??= (Random().nextBool() ? Brightness.dark : Brightness.light);
+    int colorIndex = Random().nextInt(Colors.primaries.length - 1);
+    switchTheme(
+        brightness: brightness, color: Colors.primaries[colorIndex]);
   }
 
   /// 根据主题 明暗 和 颜色 生成对应的主题
-  ThemeData _generateThemeData(Brightness brightness, int colorIndex) {
-    debugPrint('brightness--' + brightness.toString());
-
-    var themeColor = Colors.primaries[colorIndex];
+  ThemeData _generateThemeData(
+      Brightness brightness, MaterialColor themeColor) {
+    _color = themeColor;
     var isDark = Brightness.dark == brightness;
     var themeData = ThemeData(
       brightness: brightness,
@@ -50,10 +58,10 @@ class ThemeModel with ChangeNotifier {
       /// 主题颜色属于亮色系还是属于暗色系(eg:dark时,AppBarTitle的颜色为白色,反之为黑色)
       primaryColorBrightness: Brightness.dark,
       accentColorBrightness: Brightness.dark,
-      primarySwatch: Colors.primaries[colorIndex],
+      primarySwatch: themeColor,
 //      accentColor: Colors.accents[colorIndex][400],
 //      accentColor: isDark ? Colors.accents[colorIndex][700] : null,
-      accentColor: isDark ? Colors.primaries[colorIndex][700] : null,
+      accentColor: isDark ? themeColor[700] : null,
     );
 
     themeData = themeData.copyWith(
@@ -86,20 +94,23 @@ class ThemeModel with ChangeNotifier {
   }
 
   /// 数据持久化到shared preferences
-  static saveTheme2Storage(Brightness brightness, int index) async {
+  static saveTheme2Storage(
+      Brightness brightness, MaterialColor themeColor) async {
+    var index = Colors.primaries.indexOf(themeColor);
     await Future.wait([
       StorageManager.sharedPreferences
-          .setInt(keyThemeBrightnessIndex, brightness.index),
-      StorageManager.sharedPreferences.setInt(keyThemeColorIndex, index)
+          .setInt(kThemeBrightnessIndex, brightness.index),
+      StorageManager.sharedPreferences.setInt(kThemeColorIndex, index)
     ]);
   }
 
   /// 从shared preferences取出数据
   static getThemeFromStorage() {
     var brightness = Brightness.values[
-        StorageManager.sharedPreferences.getInt(keyThemeBrightnessIndex) ?? 1];
+        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 2];
     var colorIndex =
-        StorageManager.sharedPreferences.getInt(keyThemeColorIndex) ?? 5;
-    return [brightness, colorIndex];
+        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 7;
+    return [brightness, Colors.primaries[1]];
+    return [brightness, Colors.primaries[colorIndex]];
   }
 }
