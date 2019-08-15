@@ -1,3 +1,5 @@
+import 'package:html_unescape/html_unescape.dart';
+
 class Article {
   String apkLink;
   String author;
@@ -31,10 +33,12 @@ class Article {
     articleBean.apkLink = map['apkLink'];
     articleBean.author = map['author'];
     articleBean.chapterId = map['chapterId'];
-    articleBean.chapterName = map['chapterName'];
+//    articleBean.chapterName = map['chapterName'];
+    articleBean.chapterName = HtmlUnescape().convert(map["chapterName"]);
     articleBean.collect = map['collect'];
     articleBean.courseId = map['courseId'];
-    articleBean.desc = map['desc'];
+//    articleBean.desc = map['desc'];
+    articleBean.desc = HtmlUnescape().convert(map["desc"]);
     articleBean.envelopePic = map['envelopePic'];
     articleBean.fresh = map['fresh'];
     articleBean.id = map['id'];
@@ -46,7 +50,8 @@ class Article {
     articleBean.projectLink = map['projectLink'];
     articleBean.publishTime = map['publishTime'];
     articleBean.superChapterId = map['superChapterId'];
-    articleBean.superChapterName = map['superChapterName'];
+//    articleBean.superChapterName = map['superChapterName'];
+    articleBean.superChapterName = HtmlUnescape().convert(map["superChapterName"]);
     articleBean.tags = List()
       ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
     articleBean.title = map['title'];
