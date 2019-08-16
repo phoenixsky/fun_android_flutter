@@ -28,10 +28,10 @@ class ThemeModel with ChangeNotifier {
 
   /// 切换指定色彩
   ///
-  ///
+  /// 没有传[brightness]就不改变brightness,color同理
   void switchTheme({Brightness brightness, MaterialColor color}) {
-    _themeData = _generateThemeData(
-        brightness ?? _themeData.brightness, color ?? _color);
+    color ??= _color;
+    _themeData = _generateThemeData(brightness ?? _themeData.brightness, color);
     notifyListeners();
 
     saveTheme2Storage(brightness, color);
@@ -43,8 +43,7 @@ class ThemeModel with ChangeNotifier {
   void switchRandomTheme({Brightness brightness}) {
     brightness ??= (Random().nextBool() ? Brightness.dark : Brightness.light);
     int colorIndex = Random().nextInt(Colors.primaries.length - 1);
-    switchTheme(
-        brightness: brightness, color: Colors.primaries[colorIndex]);
+    switchTheme(brightness: brightness, color: Colors.primaries[colorIndex]);
   }
 
   /// 根据主题 明暗 和 颜色 生成对应的主题
@@ -107,7 +106,7 @@ class ThemeModel with ChangeNotifier {
   /// 从shared preferences取出数据
   static getThemeFromStorage() {
     var brightness = Brightness.values[
-        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 2];
+        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 0];
     var colorIndex =
         StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 7;
     return [brightness, Colors.primaries[colorIndex]];
