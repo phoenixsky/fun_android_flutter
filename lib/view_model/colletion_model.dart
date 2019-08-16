@@ -7,10 +7,12 @@ import 'package:wan_android/provider/view_state.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
 import 'package:wan_android/view_model/user_model.dart';
 
-class CollectionListModel extends BaseListModel {
-  UserModel userModel;
+import 'login_model.dart';
 
-  CollectionListModel({this.userModel});
+class CollectionListModel extends BaseListModel {
+  LoginModel loginModel ;
+
+  CollectionListModel({this.loginModel});
 
   @override
   Future<List> loadData(int pageNum) async {
@@ -19,7 +21,7 @@ class CollectionListModel extends BaseListModel {
 
   @override
   void setUnAuthorized() {
-    userModel.logout();
+    loginModel.logout();
     super.setUnAuthorized();
   }
 }
@@ -52,7 +54,7 @@ class CollectionModel extends BaseModel {
         setUnAuthorized();
       } else {
         debugPrint(e.toString());
-        setError(e.toString());
+        setError(e.message ?? e.toString());
       }
     } catch (e) {
       print(e.toString());

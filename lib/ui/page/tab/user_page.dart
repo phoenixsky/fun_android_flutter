@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/config/router_config.dart';
+import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/bottom_clipper.dart';
+import 'package:wan_android/view_model/login_model.dart';
 import 'package:wan_android/view_model/theme_model.dart';
 import 'package:wan_android/view_model/user_model.dart';
 
@@ -25,9 +27,10 @@ class _UserPageState extends State<UserPage>
       slivers: <Widget>[
         SliverAppBar(
           actions: <Widget>[
-            Consumer<UserModel>(
+            ProviderWidget<LoginModel>(
+              model: LoginModel(Provider.of(context)),
                 builder: (context, model, child) => Offstage(
-                      offstage: !model.isLogin,
+                      offstage: !model.userModel.hasUser,
                       child: IconButton(
                         tooltip: '退出登录',
                         icon: Icon(Icons.exit_to_app),
@@ -51,7 +54,6 @@ class _UserPageState extends State<UserPage>
 class UserHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    debugPrint('UserHeaderWidget');
     return ClipPath(
       clipper: BottomClipper(),
       child: Container(
@@ -59,7 +61,7 @@ class UserHeaderWidget extends StatelessWidget {
         padding: EdgeInsets.only(top: 10),
         child: Consumer<UserModel>(
             builder: (context, model, child) => InkWell(
-                  onTap: model.isLogin
+                  onTap: model.hasUser
                       ? null
                       : () {
                           Navigator.of(context).pushNamed(RouteName.login);
@@ -75,7 +77,7 @@ class UserHeaderWidget extends StatelessWidget {
                               fit: BoxFit.cover,
                               width: 80,
                               height: 80,
-                              color: model.isLogin
+                              color: model.hasUser
                                   ? Theme.of(context).accentColor.withAlpha(200)
                                   : Theme.of(context).accentColor.withAlpha(10),
                               // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
@@ -85,7 +87,7 @@ class UserHeaderWidget extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(model.isLogin ? model.user.nickname : '点我登录',
+                      Text(model.hasUser ? model.user.nickname : '点我登录',
                           style: Theme.of(context)
                               .textTheme
                               .title
@@ -94,7 +96,7 @@ class UserHeaderWidget extends StatelessWidget {
                         height: 10,
                       ),
                       Visibility(
-                        visible: model.isLogin,
+                        visible: model.hasUser,
                         maintainState: true,
                         maintainSize: true,
                         maintainAnimation: true,

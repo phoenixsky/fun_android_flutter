@@ -7,6 +7,7 @@ import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/article_list_Item.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/view_model/colletion_model.dart';
+import 'package:wan_android/view_model/login_model.dart';
 
 class CollectionListPage extends StatelessWidget {
   @override
@@ -26,7 +27,8 @@ class CollectionListPage extends StatelessWidget {
         ],
       ),
       body: ProviderWidget<CollectionListModel>(
-        model: CollectionListModel(userModel: Provider.of(context)),
+        model:
+            CollectionListModel(loginModel: LoginModel(Provider.of(context))),
         onModelReady: (model) {
           model.initData();
         },

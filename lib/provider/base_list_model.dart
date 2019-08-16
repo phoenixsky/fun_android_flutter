@@ -5,7 +5,6 @@ import 'package:wan_android/provider/base_model.dart';
 import 'package:wan_android/config/net/api.dart';
 import 'package:dio/dio.dart';
 
-
 /// 基于
 abstract class BaseListModel<T> extends BaseModel {
   static const int pageNumFirst = 0;
@@ -39,7 +38,8 @@ abstract class BaseListModel<T> extends BaseModel {
         refreshController.refreshCompleted();
         if (data.length < pageSize) {
           refreshController.loadNoData();
-        } else {//防止上次上拉加载更多失败,需要重置状态
+        } else {
+          //防止上次上拉加载更多失败,需要重置状态
           refreshController.loadComplete();
         }
         if (init) {
@@ -50,16 +50,16 @@ abstract class BaseListModel<T> extends BaseModel {
         }
       }
     } on DioError catch (e) {
-      if(e.error is UnAuthorizedException){
+      if (e.error is UnAuthorizedException) {
         setUnAuthorized();
-      }else{
+      } else {
         debugPrint(e.toString());
-        setError(e.toString());
+        setError(e.message);
       }
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
-      setError(e.toString());
+      setError(e.message ?? e.toString());
     }
   }
 
@@ -78,6 +78,13 @@ abstract class BaseListModel<T> extends BaseModel {
           refreshController.loadComplete();
         }
         notifyListeners();
+      }
+    } on DioError catch (e) {
+      if (e.error is UnAuthorizedException) {
+        setUnAuthorized();
+      } else {
+        debugPrint(e.toString());
+        setError(e.message);
       }
     } catch (e) {
       print(e);

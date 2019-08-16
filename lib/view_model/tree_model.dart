@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:wan_android/provider/base_list_model.dart';
 import 'package:wan_android/provider/sample_list_model.dart';
 import 'package:wan_android/service/wan_android_repository.dart';

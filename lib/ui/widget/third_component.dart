@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
 
@@ -34,8 +35,7 @@ class ThirdLogin extends StatelessWidget {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-//                  Navigator.pushNamed(context, 'login');
-                  WanAndroidRepository.testLoginState();
+                  showToast('蓄势待发,敬请期待');
                 },
                 child: Image.asset(
                   ImageHelper.wrapAssets('logo_wechat.png'),
@@ -43,9 +43,9 @@ class ThirdLogin extends StatelessWidget {
                   height: 40,
                 ),
               ),
-              InkWell(
-                onTap: (){
-                  WanAndroidRepository.logout();
+              GestureDetector(
+                onTap: () {
+                  showToast('蓄势待发,敬请期待');
                 },
                 child: Image.asset(
                   ImageHelper.wrapAssets('logo_weibo.png'),

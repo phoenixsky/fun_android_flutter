@@ -8,12 +8,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/config/router_config.dart';
+import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/bottom_clipper.dart';
 import 'package:wan_android/ui/widget/button_progress_indicator.dart';
 import 'package:wan_android/ui/widget/third_component.dart';
+import 'package:wan_android/view_model/login_model.dart';
 import 'package:wan_android/view_model/user_model.dart';
 
 import 'package:wan_android/ui/page/user/login_widget.dart';
+
+import 'login_field_widget.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,24 +25,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TapGestureRecognizer _recognizerRegister;
-
+  /// outside new  inside dispose may be crash. watch it
+  /// 理论上应该在当前页面dispose,
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
-  void initState() {
-    _recognizerRegister = TapGestureRecognizer();
-    _recognizerRegister.onTap = () {
-      Navigator.of(context).pushNamed(RouteName.register);
-    };
-
-    super.initState();
-  }
-
-  @override
   void dispose() {
-    _recognizerRegister.dispose();
     _nameController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -51,13 +44,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
-            ClipPath(
-              clipper: BottomClipper(),
-              child: Container(
-                height: MediaQuery.of(context).size.width * 0.6,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
+            LoginTopPanel(),
             Container(
               padding: EdgeInsets.symmetric(vertical: 20),
               child: Column(
@@ -65,7 +52,19 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   LoginLogo(),
                   LoginFormContainer(
-                      child: Form(
+                      child: ProviderWidget<LoginModel>(
+                    model: LoginModel(Provider.of(context)),
+                    onModelReady: (model) {
+                      _nameController.text = model.getLoginName();
+                    },
+                    builder: (context, model, child) {
+                      return Form(
+                        onWillPop: () async {
+                          return !model.busy;
+                        },
+                        child: child,
+                      );
+                    },
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
@@ -73,16 +72,17 @@ class _LoginPageState extends State<LoginPage> {
                             label: '用户名',
                             icon: Icons.person_outline,
                             controller: _nameController,
+                            textInputAction: TextInputAction.next,
                           ),
                           LoginTextField(
                             controller: _passwordController,
                             label: '密码',
                             icon: Icons.lock_outline,
-                            needObscure: true,
+                            obscureText: true,
+                            textInputAction: TextInputAction.done,
                           ),
-                          LoginButtonWidget(
-                              _nameController, _passwordController),
-                          SingUpWidget(_recognizerRegister),
+                          LoginButton(_nameController, _passwordController),
+                          SingUpWidget(_nameController),
                         ]),
                   )),
                   ThirdLogin()
@@ -96,10 +96,73 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class SingUpWidget extends StatelessWidget {
-  final TapGestureRecognizer _recognizerRegister;
+class LoginButton extends StatelessWidget {
+  final nameController;
+  final passwordController;
 
-  SingUpWidget(this._recognizerRegister);
+  LoginButton(this.nameController, this.passwordController);
+
+  @override
+  Widget build(BuildContext context) {
+    var model = Provider.of<LoginModel>(context);
+    return LoginButtonWidget(
+      child: model.busy
+          ? ButtonProgressIndicator()
+          : Text(
+              "登录",
+              style: Theme.of(context)
+                  .accentTextTheme
+                  .title
+                  .copyWith(letterSpacing: 10),
+            ),
+      onPressed: model.busy
+          ? null
+          : () {
+              var formState = Form.of(context);
+              if (formState.validate()) {
+                model
+                    .login(nameController.text, passwordController.text)
+                    .then((value) {
+                  if (value) {
+                    Navigator.of(context).pop();
+                  } else {
+                    showToast(model.errorMessage);
+                  }
+                });
+              }
+            },
+    );
+  }
+}
+
+class SingUpWidget extends StatefulWidget {
+  final nameController;
+
+  SingUpWidget(this.nameController);
+
+  @override
+  _SingUpWidgetState createState() => _SingUpWidgetState();
+}
+
+class _SingUpWidgetState extends State<SingUpWidget> {
+  TapGestureRecognizer _recognizerRegister;
+
+  @override
+  void initState() {
+    _recognizerRegister = TapGestureRecognizer()
+      ..onTap = () async {
+        // 将注册成功的用户名,回填如登录框
+        widget.nameController.text =
+            await Navigator.of(context).pushNamed(RouteName.register);
+      };
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _recognizerRegister.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,60 +173,6 @@ class SingUpWidget extends StatelessWidget {
             recognizer: _recognizerRegister,
             style: TextStyle(color: Theme.of(context).primaryColor))
       ])),
-    );
-  }
-}
-
-class LoginButtonWidget extends StatelessWidget {
-  final TextEditingController _nameController;
-  final TextEditingController _passwordController;
-
-  LoginButtonWidget(this._nameController, this._passwordController);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
-      child: Consumer<UserModel>(
-        builder: (context, userModel, child) {
-          var color = Theme.of(context).primaryColor.withAlpha(180);
-          return CupertinoButton(
-            padding: EdgeInsets.all(0),
-            color: color,
-            disabledColor: color,
-            borderRadius: BorderRadius.circular(110),
-            pressedOpacity: 0.5,
-            child: userModel.busy
-                ? ButtonProgressIndicator()
-                : Text(
-                    "登录",
-                    style: Theme.of(context)
-                        .accentTextTheme
-                        .title
-                        .copyWith(letterSpacing: 10),
-                  ),
-            onPressed: userModel.busy
-                ? null
-                : () {
-                    var formState = Form.of(context);
-                    if (formState.validate()) {
-                      formState.save();
-                      userModel
-                          .login(_nameController.text, _passwordController.text)
-                          .then((value) {
-                        if (value) {
-//                          showToast(userModel.user.toString());
-                          Navigator.of(context).pop();
-//                          Navigator.of(context).pushReplacementNamed(RoutePaths.Tab);
-                        } else {
-                          showToast(userModel.errorMessage);
-                        }
-                      });
-                    }
-                  },
-          );
-        },
-      ),
     );
   }
 }
