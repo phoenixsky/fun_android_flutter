@@ -78,19 +78,28 @@ class PageStateEmpty extends PageStateError {
 
 class PageStateUnAuthorized extends PageStateError {
   PageStateUnAuthorized({
-    image: const Icon(
-      IconFonts.pageUnAuthorized,
-      size: 100,
-      color: Colors.grey,
-    ),
     message: "未登录",
     buttonText: const Text('登录', style: TextStyle(letterSpacing: 5)),
     onPressed,
   }) : super(
-            image: image,
+            image: PageStateUnAuthorizedImage(),
             message: message,
             buttonText: buttonText,
             onPressed: onPressed);
+}
+
+class PageStateUnAuthorizedImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      ImageHelper.wrapAssets('login_logo.png'),
+      width: 130,
+      height: 100,
+      fit: BoxFit.fitWidth,
+      color: Theme.of(context).accentColor,
+      colorBlendMode: BlendMode.srcIn,
+    );
+  }
 }
 
 class PageStateButton extends StatelessWidget {
@@ -108,6 +117,7 @@ class PageStateButton extends StatelessWidget {
             style: TextStyle(letterSpacing: 5),
           ),
       textColor: Colors.grey,
+      splashColor: Theme.of(context).splashColor,
       onPressed: onPressed,
       highlightedBorderColor: Theme.of(context).splashColor,
     );

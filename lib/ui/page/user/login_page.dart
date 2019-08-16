@@ -124,7 +124,7 @@ class LoginButton extends StatelessWidget {
                     .login(nameController.text, passwordController.text)
                     .then((value) {
                   if (value) {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(true);
                   } else {
                     showToast(model.errorMessage);
                   }

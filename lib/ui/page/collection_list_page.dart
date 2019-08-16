@@ -44,8 +44,12 @@ class CollectionListPage extends StatelessWidget {
           }
           if (model.unAuthorized) {
             return PageStateUnAuthorized(onPressed: () async {
-              await Navigator.of(context).pushNamed(RouteName.login);
-              model.initData();
+              var success =
+                  await Navigator.of(context).pushNamed(RouteName.login);
+              // 登录成功,获取数据,刷新页面
+              if (success ?? false) {
+                model.initData();
+              }
             });
           }
           return SmartRefresher(

@@ -95,7 +95,7 @@ class _SearchHotKeysWidgetState extends State<SearchHotKeysWidget> {
                       child: model.idle
                           ? FlatButton.icon(
                               textColor: Provider.of<Color>(context),
-                              onPressed: model.initData,
+                              onPressed: model.shuffle,
                               icon: Icon(
                                 Icons.autorenew,
                               ),

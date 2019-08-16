@@ -41,6 +41,12 @@ class SearchHotKeyModel extends SampleListModel {
       return localList;
     }
   }
+
+  shuffle(){
+    list.shuffle();
+    notifyListeners();
+  }
+
 }
 
 class SearchHistoryModel extends SampleListModel<String> {

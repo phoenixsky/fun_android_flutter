@@ -76,7 +76,7 @@ class ArticleItemWidget extends StatelessWidget {
               if (article.envelopePic.isEmpty)
                 Padding(
                   padding: EdgeInsets.only(top: 7),
-                  child: ArticleTitleWidget(article),
+                  child: ArticleTitleWidget(article.title),
                 )
               else
                 Row(
@@ -86,7 +86,7 @@ class ArticleItemWidget extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          ArticleTitleWidget(article),
+                          ArticleTitleWidget(article.title),
                           SizedBox(
                             height: 5,
                           ),
@@ -142,16 +142,16 @@ class ArticleItemWidget extends StatelessWidget {
 }
 
 class ArticleTitleWidget extends StatelessWidget {
-  final Article article;
+  final String title;
 
-  ArticleTitleWidget(this.article);
+  ArticleTitleWidget(this.title);
 
   @override
   Widget build(BuildContext context) {
     return Html(
       padding: EdgeInsets.symmetric(vertical: 5),
       useRichText: false,
-      data: article.title,
+      data: title,
       defaultTextStyle: Theme.of(context).textTheme.subtitle,
     );
   }

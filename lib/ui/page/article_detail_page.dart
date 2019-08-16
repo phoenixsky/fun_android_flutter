@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -113,7 +112,7 @@ class WebViewTitle extends StatelessWidget {
         ),
         Expanded(
             child: Text(
-          title,
+          title.replaceAll(RegExp('<[^>]+>'), ''), //移除html标签
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 16),
         ))
