@@ -8,6 +8,7 @@ import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/view_model/tree_model.dart';
 
+/// 体系
 class TreeCategoryPage extends StatefulWidget {
   @override
   _TreeCategoryPageState createState() => _TreeCategoryPageState();
@@ -41,7 +42,7 @@ class _TreeCategoryPageState extends State<TreeCategoryPage>
     );
   }
 }
-
+/// 体系->体系
 class TreeCategoryList extends StatefulWidget {
   @override
   _TreeCategoryListState createState() => _TreeCategoryListState();
@@ -116,6 +117,8 @@ class TreeCategoryWidget extends StatelessWidget {
   }
 }
 
+
+/// 体系->公众号
 class NavigationSiteCategoryList extends StatefulWidget {
   @override
   _NavigationSiteCategoryListState createState() =>

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/flutter/dropdown.dart';
 import 'package:wan_android/model/tree.dart';
+import 'package:wan_android/provider/provider_widget.dart';
 
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/view_model/project_model.dart';
@@ -21,15 +22,8 @@ class _ProjectPageState extends State<ProjectPage>
   @override
   bool get wantKeepAlive => true;
 
-  ProjectCategoryModel model = ProjectCategoryModel();
   ValueNotifier<int> valueNotifier = ValueNotifier(0);
   TabController tabController;
-
-  @override
-  void initState() {
-    model.initData();
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -40,9 +34,12 @@ class _ProjectPageState extends State<ProjectPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ChangeNotifierProvider<ProjectCategoryModel>.value(
-        value: model,
-        child: Consumer<ProjectCategoryModel>(builder: (context, model, child) {
+    return ProviderWidget<ProjectCategoryModel>(
+        model: ProjectCategoryModel(),
+        onModelReady: (model) {
+          model.initData();
+        },
+        builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
           }
@@ -70,7 +67,7 @@ class _ProjectPageState extends State<ProjectPage>
                     appBar: AppBar(
                       title: Stack(
                         children: [
-                          CategoryDropdownWidget(treeList: treeList),
+                          CategoryDropdownWidget(),
                           Container(
                             margin: const EdgeInsets.only(right: 20),
                             color: primaryColor.withOpacity(1),
@@ -94,15 +91,11 @@ class _ProjectPageState extends State<ProjectPage>
               ),
             ),
           );
-        }));
+        });
   }
 }
 
 class CategoryDropdownWidget extends StatelessWidget {
-  final List<Tree> treeList;
-
-  CategoryDropdownWidget({this.treeList});
-
   @override
   Widget build(BuildContext context) {
     int currentIndex = Provider.of<int>(context);
@@ -112,30 +105,32 @@ class CategoryDropdownWidget extends StatelessWidget {
           canvasColor: Theme.of(context).primaryColor,
         ),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton(
-            elevation: 0,
-            value: currentIndex,
-            style: Theme.of(context).primaryTextTheme.subhead,
-            items: List.generate(treeList.length, (index) {
-              var theme = Theme.of(context);
-              return DropdownMenuItem(
-                value: index,
-                child: Text(
-                  treeList[index].name,
-                  style: currentIndex == index
-                      ? theme.primaryTextTheme.subhead
-                          .apply(color: theme.accentColor)
-                      : theme.primaryTextTheme.subhead,
-                ),
-              );
-            }),
-            onChanged: (value) {
-              DefaultTabController.of(context).animateTo(value);
-            },
-            isExpanded: true,
-            icon: Icon(
-              Icons.keyboard_arrow_down,
-              color: Colors.white,
+          child: Consumer<ProjectCategoryModel>(
+            builder: (context, model, child) => DropdownButton(
+              elevation: 0,
+              value: currentIndex,
+              style: Theme.of(context).primaryTextTheme.subhead,
+              items: List.generate(model.list.length, (index) {
+                var theme = Theme.of(context);
+                return DropdownMenuItem(
+                  value: index,
+                  child: Text(
+                    model.list[index].name,
+                    style: currentIndex == index
+                        ? theme.primaryTextTheme.subhead
+                            .apply(color: theme.accentColor)
+                        : theme.primaryTextTheme.subhead,
+                  ),
+                );
+              }),
+              onChanged: (value) {
+                DefaultTabController.of(context).animateTo(value);
+              },
+              isExpanded: true,
+              icon: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

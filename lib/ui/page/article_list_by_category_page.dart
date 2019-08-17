@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/tree.dart';
@@ -53,7 +52,6 @@ class _TreeListWidgetState extends State<TreeListWidget>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
-
 
   @override
   Widget build(BuildContext context) {

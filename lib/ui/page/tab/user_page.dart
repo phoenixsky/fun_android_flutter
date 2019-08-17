@@ -28,7 +28,7 @@ class _UserPageState extends State<UserPage>
         SliverAppBar(
           actions: <Widget>[
             ProviderWidget<LoginModel>(
-              model: LoginModel(Provider.of(context)),
+                model: LoginModel(Provider.of(context)),
                 builder: (context, model, child) => Offstage(
                       offstage: !model.userModel.hasUser,
                       child: IconButton(
@@ -70,18 +70,21 @@ class UserHeaderWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      ClipOval(
-                        child: InkWell(
-                          child: Image.asset(
-                              ImageHelper.wrapAssets('user_avatar.png'),
-                              fit: BoxFit.cover,
-                              width: 80,
-                              height: 80,
-                              color: model.hasUser
-                                  ? Theme.of(context).accentColor.withAlpha(200)
-                                  : Theme.of(context).accentColor.withAlpha(10),
-                              // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
-                              colorBlendMode: BlendMode.colorDodge),
+                      InkWell(
+                        child: Hero(
+                          tag: 'loginLogo',
+                          child: ClipOval(
+                            child: Image.asset(
+                                ImageHelper.wrapAssets('user_avatar.png'),
+                                fit: BoxFit.cover,
+                                width: 80,
+                                height: 80,
+                                color: model.hasUser
+                                    ? Theme.of(context).accentColor.withAlpha(200)
+                                    : Theme.of(context).accentColor.withAlpha(10),
+                                // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
+                                colorBlendMode: BlendMode.colorDodge),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -114,7 +117,7 @@ class UserHeaderWidget extends StatelessWidget {
   }
 }
 
-const List<String> settingItems = ['收藏',  '黑夜模式', '色彩主题', '设置', '关于我'];
+const List<String> settingItems = ['收藏', '黑夜模式', '色彩主题', '设置', '关于我'];
 
 const List<IconData> settingLeadingIcons = [
   Icons.favorite_border,

@@ -15,16 +15,6 @@ class CollectionListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('我的收藏'),
-        actions: <Widget>[
-//          IconButton(
-//            icon: Icon(Icons.block),
-//            tooltip: '测试cookie过期',
-//            onPressed: () async {
-//              showToast('登录cookie已过期');
-//              await WanAndroidRepository.logout();
-//            },
-//          )
-        ],
       ),
       body: ProviderWidget<CollectionListModel>(
         model:

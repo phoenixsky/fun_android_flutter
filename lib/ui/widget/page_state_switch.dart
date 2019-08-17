@@ -91,13 +91,16 @@ class PageStateUnAuthorized extends PageStateError {
 class PageStateUnAuthorizedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      ImageHelper.wrapAssets('login_logo.png'),
-      width: 130,
-      height: 100,
-      fit: BoxFit.fitWidth,
-      color: Theme.of(context).accentColor,
-      colorBlendMode: BlendMode.srcIn,
+    return Hero(
+      tag: 'loginLogo',
+      child: Image.asset(
+        ImageHelper.wrapAssets('login_logo.png'),
+        width: 130,
+        height: 100,
+        fit: BoxFit.fitWidth,
+        color: Theme.of(context).accentColor,
+        colorBlendMode: BlendMode.srcIn,
+      ),
     );
   }
 }

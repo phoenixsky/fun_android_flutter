@@ -31,15 +31,18 @@ class LoginLogo extends StatelessWidget {
           child: child,
         );
       },
-      child: Image.asset(
-        ImageHelper.wrapAssets('login_logo.png'),
-        width: 130,
-        height: 100,
-        fit: BoxFit.fitWidth,
-        color: theme.brightness == Brightness.dark
-            ? theme.accentColor
-            : Colors.white,
-        colorBlendMode: BlendMode.srcIn,
+      child: Hero(
+        tag: 'loginLogo',
+        child: Image.asset(
+          ImageHelper.wrapAssets('login_logo.png'),
+          width: 130,
+          height: 100,
+          fit: BoxFit.fitWidth,
+          color: theme.brightness == Brightness.dark
+              ? theme.accentColor
+              : Colors.white,
+          colorBlendMode: BlendMode.srcIn,
+        ),
       ),
     );
   }
