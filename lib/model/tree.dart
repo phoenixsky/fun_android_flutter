@@ -1,4 +1,4 @@
-import 'package:html_unescape/html_unescape_small.dart';
+import 'package:wan_android/utils/string_utils.dart';
 
 class Tree {
   List<Tree> children;
@@ -15,7 +15,7 @@ class Tree {
             List<Tree>.from(map["children"].map((it) => Tree.fromJsonMap(it))),
         courseId = map["courseId"],
         id = map["id"],
-        name = HtmlUnescape().convert(map["name"]),
+        name = StringUtils.removeHtmlLabel(map["name"]),
         order = map["order"],
         parentChapterId = map["parentChapterId"],
         userControlSetTop = map["userControlSetTop"],

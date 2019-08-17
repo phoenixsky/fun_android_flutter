@@ -54,7 +54,7 @@ class CollectionModel extends BaseModel {
         setUnAuthorized();
       } else {
         debugPrint(e.toString());
-        setError(e.message ?? e.toString());
+        setError(e is Error ? e.toString() : e.message);
       }
     } catch (e) {
       print(e.toString());

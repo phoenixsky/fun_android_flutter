@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/ui/widget/dialog_helper.dart';
+import 'package:wan_android/utils/string_utils.dart';
 import 'package:wan_android/utils/third_app_utils.dart';
 import 'package:wan_android/view_model/colletion_model.dart';
 import 'package:wan_android/view_model/theme_model.dart';
@@ -112,7 +113,7 @@ class WebViewTitle extends StatelessWidget {
         ),
         Expanded(
             child: Text(
-          title.replaceAll(RegExp('<[^>]+>'), ''), //移除html标签
+          StringUtils.removeHtmlLabel(title), //移除html标签
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 16),
         ))

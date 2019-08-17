@@ -1,4 +1,4 @@
-import 'package:html_unescape/html_unescape.dart';
+import 'package:wan_android/utils/string_utils.dart';
 
 class Article {
   String apkLink;
@@ -27,6 +27,8 @@ class Article {
   int visible;
   int zan;
 
+
+
   static Article fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     Article articleBean = Article();
@@ -34,11 +36,11 @@ class Article {
     articleBean.author = map['author'];
     articleBean.chapterId = map['chapterId'];
 //    articleBean.chapterName = map['chapterName'];
-    articleBean.chapterName = HtmlUnescape().convert(map["chapterName"]);
+    articleBean.chapterName = StringUtils.removeHtmlLabel(map["chapterName"]);
     articleBean.collect = map['collect'];
     articleBean.courseId = map['courseId'];
 //    articleBean.desc = map['desc'];
-    articleBean.desc = HtmlUnescape().convert(map["desc"]);
+    articleBean.desc = StringUtils.removeHtmlLabel(map["desc"]);
     articleBean.envelopePic = map['envelopePic'];
     articleBean.fresh = map['fresh'];
     articleBean.id = map['id'];
@@ -51,7 +53,7 @@ class Article {
     articleBean.publishTime = map['publishTime'];
     articleBean.superChapterId = map['superChapterId'];
 //    articleBean.superChapterName = map['superChapterName'];
-    articleBean.superChapterName = HtmlUnescape().convert(map["superChapterName"]);
+    articleBean.superChapterName = StringUtils.removeHtmlLabel(map["superChapterName"]);
     articleBean.tags = List()
       ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
     articleBean.title = map['title'];

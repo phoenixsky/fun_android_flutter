@@ -57,9 +57,9 @@ abstract class BaseListModel<T> extends BaseModel {
         setError(e.message);
       }
     } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      setError(e.message ?? e.toString());
+      debugPrint('error--->\n' + e.toString());
+      debugPrint('statck--->\n' + s.toString());
+      setError(e is Error ? e.toString() : e.message);
     }
   }
 

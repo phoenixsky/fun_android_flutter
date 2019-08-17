@@ -31,7 +31,7 @@ abstract class SampleListModel<T> extends BaseModel {
       }
     } catch (e) {
       debugPrint(e.toString());
-      setError(e.message ?? e.toString());
+      setError(e is Error ? e.toString() : e.message);
     }
   }
 

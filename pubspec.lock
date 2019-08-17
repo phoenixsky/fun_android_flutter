@@ -130,13 +130,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.14.0+2"
-  html_unescape:
-    dependency: "direct main"
-    description:
-      name: html_unescape
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.1+3"
   http:
     dependency: transitive
     description:

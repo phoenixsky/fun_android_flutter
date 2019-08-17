@@ -28,7 +28,7 @@ class LoginModel extends BaseModel {
       setBusy(false);
       return true;
     } catch (e) {
-      setError(e.message ?? e.toString());
+      setError(e is Error ? e.toString() : e.message);
       return false;
     }
   }
@@ -45,7 +45,7 @@ class LoginModel extends BaseModel {
       setBusy(false);
       return true;
     } catch (e) {
-      setError(e.message ?? e.toString());
+      setError(e is Error ? e.toString() : e.message);
       return false;
     }
   }
