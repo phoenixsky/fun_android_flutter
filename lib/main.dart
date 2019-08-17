@@ -28,10 +28,9 @@ class App extends StatelessWidget {
     return OKToast(
         child: MultiProvider(
             providers: providers,
-            child: Builder(builder: (context) {
-              var themeModel = Provider.of<ThemeModel>(context);
+            child: Consumer<ThemeModel>(builder: (context, themeModel, child) {
               return RefreshConfiguration(
-                hideFooterWhenNotFull: true,
+                hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
                 child: MaterialApp(
                   theme: themeModel.value,
                   darkTheme: themeModel.darkTheme,

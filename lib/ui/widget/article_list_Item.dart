@@ -100,18 +100,15 @@ class ArticleItemWidget extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 5,),
-                    Hero(
-                      tag: article.id,
-                      child: CachedNetworkImage(
-                        imageUrl: article.envelopePic,
-                        height: 60,
-                        width: 60,
-                        placeholder: (_, __) =>
-                            ImageHelper.placeHolder(width: 60, height: 60),
-                        errorWidget: (_, __, ___) =>
-                            ImageHelper.error(width: 60, height: 60),
-                        fit: BoxFit.cover,
-                      ),
+                    CachedNetworkImage(
+                      imageUrl: article.envelopePic,
+                      height: 60,
+                      width: 60,
+                      placeholder: (_, __) =>
+                          ImageHelper.placeHolder(width: 60, height: 60),
+                      errorWidget: (_, __, ___) =>
+                          ImageHelper.error(width: 60, height: 60),
+                      fit: BoxFit.cover,
                     )
                   ],
                 ),

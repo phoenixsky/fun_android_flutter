@@ -18,18 +18,34 @@ class FadeRouteBuilder extends PageRouteBuilder {
   FadeRouteBuilder(this.page)
       : super(
             pageBuilder: (context, animation, secondaryAnimation) => page,
-            transitionDuration: Duration(milliseconds: 1400),
+            transitionDuration: Duration(milliseconds: 500),
             transitionsBuilder: (context, animation, secondaryAnimation,
                     child) =>
                 FadeTransition(
-                  //渐变过渡 0.0-1.0
-                  opacity: Tween(begin: 0.5, end: 0.0).animate(CurvedAnimation(
-                    parent: animation, //动画样式
-                    curve: Curves.fastOutSlowIn, //动画曲线
+                  opacity: Tween(begin: 0.1, end: 1.0).animate(CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.fastOutSlowIn,
                   )),
                   child: child,
                 ));
-//                FadeTransition(opacity: animation, child: child));
+}
+
+class SlideTopRouteBuilder extends PageRouteBuilder {
+  final Widget page;
+
+  SlideTopRouteBuilder(this.page)
+      : super(
+            pageBuilder: (context, animation, secondaryAnimation) => page,
+            transitionDuration: Duration(milliseconds: 800),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    SlideTransition(
+                      position: Tween<Offset>(
+                              begin: Offset(0.0, -1.0), end: Offset(0.0, 0.0))
+                          .animate(CurvedAnimation(
+                              parent: animation, curve: Curves.fastOutSlowIn)),
+                      child: child,
+                    ));
 }
 
 class SizeRoute extends PageRouteBuilder {

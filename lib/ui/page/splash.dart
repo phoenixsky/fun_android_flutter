@@ -1,11 +1,9 @@
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wan_android/config/router_config.dart';
-
 import 'package:wan_android/config/resource_mananger.dart';
 
 class SplashPage extends StatefulWidget {
@@ -171,12 +169,7 @@ class AnimatedAndroidLogo extends AnimatedWidget {
   }
 }
 
-const firstEntry = 'firstEntry';
-
 void nextPage(context) {
-//  Route nextRoute = sharedPreferences.getBool(firstEntry) ?? true
-//      ? SizeRoute(GuidePage())
-//      : SizeRoute(LoginPage());
   Navigator.of(context).pushReplacementNamed(RouteName.tab);
 }
 
@@ -221,8 +214,6 @@ class _GuidePageState extends State<GuidePage> {
               color: Theme.of(context).primaryColorDark,
               child: Text('点我开始'),
               onPressed: () {
-                SharedPreferences.getInstance()
-                    .then((sp) => sp.setBool(firstEntry, false));
                 nextPage(context);
               },
             ),

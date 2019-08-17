@@ -36,6 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
         child: Stack(
           children: <Widget>[
             LoginTopPanel(),

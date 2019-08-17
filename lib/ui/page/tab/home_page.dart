@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wan_android/config/router_config.dart';
 import 'package:wan_android/flutter/search.dart';
@@ -17,6 +18,10 @@ import 'package:wan_android/view_model/home_model.dart';
 
 import 'package:wan_android/ui/page/search/search_delegate.dart';
 
+import 'package:wan_android/ui/page/tab/home_second_floor_page.dart';
+
+const double kHomeRefreshHeight = 180.0;
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -26,6 +31,7 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,59 +55,79 @@ class _HomePageState extends State<HomePage>
               context: context,
               removeTop: false,
               child: Builder(builder: (_) {
-//                if (homeModel.busy) {
-//                  return Center(child: CircularProgressIndicator());
-//                }
                 if (homeModel.error) {
                   return PageStateError(onPressed: homeModel.initData);
                 }
-                return SmartRefresher(
-                    controller: homeModel.refreshController,
-                    header: MaterialClassicHeader(),
-                    onRefresh: homeModel.refresh,
-                    onLoading: homeModel.loadMore,
-                    enablePullUp: true,
-                    child: CustomScrollView(
-                      controller: tapToTopModel.scrollController,
-                      slivers: <Widget>[
-                        SliverAppBar(
-                          actions: <Widget>[
-                            EmptyAnimatedSwitcher(
-                              display: tapToTopModel.showTopBtn,
-                              child: IconButton(
-                                icon: Icon(Icons.search),
-                                onPressed: () {
-                                  showSearch(
-                                      context: context,
-                                      delegate: DefaultSearchDelegate());
-                                },
-                              ),
-                            ),
-                          ],
-                          flexibleSpace: FlexibleSpaceBar(
-                            background: BannerWidget(homeModel),
-                            centerTitle: true,
-                            title: GestureDetector(
-                              onDoubleTap: tapToTopModel.scrollToTop,
-                              child: EmptyAnimatedSwitcher(
+                return RefreshConfiguration.copyAncestor(
+                  context: context,
+                  // 下拉触发二楼距离
+                  twiceTriggerDistance: kHomeRefreshHeight - 15,
+                  //最大下拉距离,android默认为0,这里为了触发二楼
+                  maxOverScrollExtent: kHomeRefreshHeight,
+                  child: SmartRefresher(
+                      enableTwoLevel: true,
+                      controller: homeModel.refreshController,
+                      header: ClassicHeader(
+                        textStyle: TextStyle(color: Colors.white),
+                        outerBuilder: (child) => HomeSecondFloorOuter(child),
+                        twoLevelView: Container(),
+                      ),
+                      onTwoLevel: () async {
+                        await Navigator.of(context)
+                            .pushNamed(RouteName.homeSecondFloor);
+                        await Future.delayed(Duration(milliseconds: 300));
+                        Provider.of<HomeModel>(context)
+                            .refreshController
+                            .twoLevelComplete();
+                      },
+                      onRefresh: homeModel.refresh,
+                      onLoading: homeModel.loadMore,
+                      enablePullUp: true,
+                      child: CustomScrollView(
+                        controller: tapToTopModel.scrollController,
+                        slivers: <Widget>[
+                          SliverToBoxAdapter(),
+                          SliverAppBar(
+                            actions: <Widget>[
+                              EmptyAnimatedSwitcher(
                                 display: tapToTopModel.showTopBtn,
-                                child: Text('玩Android'),
+                                child: IconButton(
+                                  icon: Icon(Icons.search),
+                                  onPressed: () {
+                                    showSearch(
+                                        context: context,
+                                        delegate: DefaultSearchDelegate());
+                                  },
+                                ),
+                              ),
+                            ],
+                            flexibleSpace: FlexibleSpaceBar(
+                              background: BannerWidget(),
+                              centerTitle: true,
+                              title: GestureDetector(
+                                onDoubleTap: tapToTopModel.scrollToTop,
+                                child: EmptyAnimatedSwitcher(
+                                  display: tapToTopModel.showTopBtn,
+                                  child: Text('玩Android'),
+                                ),
                               ),
                             ),
+                            expandedHeight: bannerHeight,
+                            pinned: true,
                           ),
-                          expandedHeight: bannerHeight,
-                          pinned: true,
-                        ),
-                        SliverPadding(
-                          padding: EdgeInsets.only(top: 5),
-                        ),
-                        HomeTopArticleList(homeModel),
-                        HomeArticleList(homeModel),
-                      ],
-                    ));
+                          SliverPadding(
+                            padding: EdgeInsets.only(top: 5),
+                          ),
+                          HomeTopArticleList(),
+                          HomeArticleList(),
+                        ],
+                      )),
+                );
               })),
           floatingActionButton: ScaleAnimatedSwitcher(
-            child: tapToTopModel.showTopBtn
+            child: tapToTopModel.showTopBtn &&
+                    homeModel.refreshController.headerStatus !=
+                        RefreshStatus.twoLevelOpening
                 ? FloatingActionButton(
                     key: ValueKey(Icons.vertical_align_top),
                     onPressed: () {
@@ -112,6 +138,7 @@ class _HomePageState extends State<HomePage>
                     ),
                   )
                 : FloatingActionButton(
+                    heroTag: 'homeFab',
                     key: ValueKey(Icons.search),
                     onPressed: () {
                       showSearch(
@@ -129,10 +156,6 @@ class _HomePageState extends State<HomePage>
 }
 
 class BannerWidget extends StatelessWidget {
-  final HomeModel homeModel;
-
-  BannerWidget(this.homeModel);
-
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -141,7 +164,7 @@ class BannerWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          child: Builder(builder: (_) {
+          child: Consumer<HomeModel>(builder: (_, homeModel, __) {
             if (homeModel.busy) {
               return CupertinoActivityIndicator();
             } else {
@@ -173,12 +196,9 @@ class BannerWidget extends StatelessWidget {
 }
 
 class HomeTopArticleList extends StatelessWidget {
-  final HomeModel homeModel;
-
-  HomeTopArticleList(this.homeModel);
-
   @override
   Widget build(BuildContext context) {
+    HomeModel homeModel = Provider.of(context);
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -196,12 +216,9 @@ class HomeTopArticleList extends StatelessWidget {
 }
 
 class HomeArticleList extends StatelessWidget {
-  final HomeModel homeModel;
-
-  HomeArticleList(this.homeModel);
-
   @override
   Widget build(BuildContext context) {
+    HomeModel homeModel = Provider.of(context);
     if (homeModel.busy) {
       // 固定高度可提升效率 此处所谓demo
       return SliverFixedExtentList(
