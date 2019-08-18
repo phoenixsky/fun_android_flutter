@@ -5,12 +5,11 @@ import 'package:wan_android/provider/base_list_model.dart';
 import 'package:wan_android/provider/base_model.dart';
 import 'package:wan_android/provider/view_state.dart';
 import 'package:wan_android/service/wan_android_repository.dart';
-import 'package:wan_android/view_model/user_model.dart';
 
 import 'login_model.dart';
 
 class CollectionListModel extends BaseListModel<Article> {
-  LoginModel loginModel ;
+  LoginModel loginModel;
 
   CollectionListModel({this.loginModel});
 
@@ -28,8 +27,9 @@ class CollectionListModel extends BaseListModel<Article> {
 
 class CollectionModel extends BaseModel {
   final Article article;
+  final CollectionAnimationModel animationModel;
 
-  CollectionModel(this.article) {
+  CollectionModel(this.article, {this.animationModel}) {
     viewState = ViewState.idle;
   }
 
@@ -44,6 +44,7 @@ class CollectionModel extends BaseModel {
         if (article.collect) {
           await WanAndroidRepository.unCollect(article.id);
         } else {
+          animationModel?.play();
           await WanAndroidRepository.collect(article.id);
         }
       }
@@ -59,6 +60,25 @@ class CollectionModel extends BaseModel {
     } catch (e) {
       print(e.toString());
       setError(e.toString());
+    }
+  }
+}
+
+class CollectionAnimationModel extends ChangeNotifier {
+  /// 正在播放动画
+  bool playing = false;
+
+  play() {
+    if (!playing) {
+      playing = true;
+      notifyListeners();
+    }
+  }
+
+  pause() {
+    if (playing) {
+      playing = false;
+      notifyListeners();
     }
   }
 }

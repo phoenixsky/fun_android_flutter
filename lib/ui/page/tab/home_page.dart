@@ -11,9 +11,11 @@ import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/provider/scroll_controller_model.dart';
 import 'package:wan_android/ui/widget/animated_provider.dart';
 import 'package:wan_android/ui/widget/banner_image.dart';
+import 'package:wan_android/ui/widget/like_animation.dart';
 import 'package:wan_android/ui/widget/page_state_switch.dart';
 import 'package:wan_android/ui/widget/article_list_Item.dart';
 import 'package:wan_android/ui/widget/article_skeleton.dart';
+import 'package:wan_android/view_model/colletion_model.dart';
 import 'package:wan_android/view_model/home_model.dart';
 
 import 'package:wan_android/ui/page/search/search_delegate.dart';
@@ -32,7 +34,6 @@ class _HomePageState extends State<HomePage>
   @override
   bool get wantKeepAlive => true;
 
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -45,10 +46,11 @@ class _HomePageState extends State<HomePage>
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
       // 保留iOS点击状态栏回到顶部的功能
-      model2: TapToTopModel(PrimaryScrollController.of(context), height: bannerHeight - 60),
-      onModelReady: (model1, model2) {
-        model1.initData();
-        model2.init();
+      model2: TapToTopModel(PrimaryScrollController.of(context),
+          height: bannerHeight - kToolbarHeight),
+      onModelReady: (homeModel, tapToTopModel) {
+        homeModel.initData();
+        tapToTopModel.init();
       },
       builder: (context, homeModel, tapToTopModel, child) {
         return Scaffold(
@@ -84,45 +86,51 @@ class _HomePageState extends State<HomePage>
                       onRefresh: homeModel.refresh,
                       onLoading: homeModel.loadMore,
                       enablePullUp: true,
-                      child: CustomScrollView(
-                        controller: tapToTopModel.scrollController,
-                        slivers: <Widget>[
-                          SliverToBoxAdapter(),
-                          SliverAppBar(
-                            actions: <Widget>[
-                              EmptyAnimatedSwitcher(
-                                display: tapToTopModel.showTopBtn,
-                                child: IconButton(
-                                  icon: Icon(Icons.search),
-                                  onPressed: () {
-                                    showSearch(
-                                        context: context,
-                                        delegate: DefaultSearchDelegate());
-                                  },
-                                ),
+                      child: ProviderWidget<CollectionAnimationModel>(
+                          model: CollectionAnimationModel(),
+                          builder: (context, collectionAnimationModel, child) =>
+                              Stack(
+                                children: <Widget>[child, LikeAnimatedWidget()],
                               ),
+                          child: CustomScrollView(
+                            controller: tapToTopModel.scrollController,
+                            slivers: <Widget>[
+                              SliverToBoxAdapter(),
+                              SliverAppBar(
+                                actions: <Widget>[
+                                  EmptyAnimatedSwitcher(
+                                    display: tapToTopModel.showTopBtn,
+                                    child: IconButton(
+                                      icon: Icon(Icons.search),
+                                      onPressed: () {
+                                        showSearch(
+                                            context: context,
+                                            delegate: DefaultSearchDelegate());
+                                      },
+                                    ),
+                                  ),
+                                ],
+                                flexibleSpace: FlexibleSpaceBar(
+                                  background: BannerWidget(),
+                                  centerTitle: true,
+                                  title: GestureDetector(
+                                    onDoubleTap: tapToTopModel.scrollToTop,
+                                    child: EmptyAnimatedSwitcher(
+                                      display: tapToTopModel.showTopBtn,
+                                      child: Text('玩Android'),
+                                    ),
+                                  ),
+                                ),
+                                expandedHeight: bannerHeight,
+                                pinned: true,
+                              ),
+                              SliverPadding(
+                                padding: EdgeInsets.only(top: 5),
+                              ),
+                              HomeTopArticleList(),
+                              HomeArticleList(),
                             ],
-                            flexibleSpace: FlexibleSpaceBar(
-                              background: BannerWidget(),
-                              centerTitle: true,
-                              title: GestureDetector(
-                                onDoubleTap: tapToTopModel.scrollToTop,
-                                child: EmptyAnimatedSwitcher(
-                                  display: tapToTopModel.showTopBtn,
-                                  child: Text('玩Android'),
-                                ),
-                              ),
-                            ),
-                            expandedHeight: bannerHeight,
-                            pinned: true,
-                          ),
-                          SliverPadding(
-                            padding: EdgeInsets.only(top: 5),
-                          ),
-                          HomeTopArticleList(),
-                          HomeArticleList(),
-                        ],
-                      )),
+                          ))),
                 );
               })),
           floatingActionButton: ScaleAnimatedSwitcher(

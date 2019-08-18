@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/model/article.dart';
+import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/dialog_helper.dart';
+import 'package:wan_android/ui/widget/like_animation.dart';
 import 'package:wan_android/utils/string_utils.dart';
 import 'package:wan_android/utils/third_app_utils.dart';
 import 'package:wan_android/view_model/colletion_model.dart';
@@ -27,6 +29,8 @@ class _WebViewState extends State<ArticleDetailPage> {
 
   Completer<bool> _finishedCompleter = Completer();
 
+  CollectionAnimationModel _animationModel = CollectionAnimationModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,14 +46,23 @@ class _WebViewState extends State<ArticleDetailPage> {
               launch(widget.article.link, forceSafariVC: false);
             },
           ),
-          WebViewPopupMenu(_controller, widget.article)
+          WebViewPopupMenu(
+            _controller,
+            widget.article,
+            animationModel: _animationModel,
+          )
         ],
       ),
       body: SafeArea(
         bottom: false,
-        child: Stack(
-          children: <Widget>[
-            WebView(
+        child: ProviderWidget<CollectionAnimationModel>(
+            model: _animationModel,
+            builder: (context, model, child) => Stack(
+                  children: <Widget>[
+                    child,LikeAnimatedWidget(),
+                  ],
+                ),
+            child: WebView(
               // 初始化加载的url
               initialUrl: widget.article.link,
               // 加载js
@@ -67,9 +80,7 @@ class _WebViewState extends State<ArticleDetailPage> {
                 debugPrint('加载完成: $value');
                 _finishedCompleter.complete(true);
               },
-            ),
-          ],
-        ),
+            )),
       ),
       floatingActionButton: FutureBuilder<String>(
         future: ThirdAppUtils.canOpenApp(widget.article.link),
@@ -123,17 +134,18 @@ class WebViewTitle extends StatelessWidget {
 }
 
 class WebViewPopupMenu extends StatelessWidget {
-  final WebViewController _controller;
+  final WebViewController controller;
   final Article article;
+  final CollectionAnimationModel animationModel;
 
-  WebViewPopupMenu(this._controller, this.article);
+  WebViewPopupMenu(this.controller, this.article, {this.animationModel});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<CollectionModel>.value(
-            value: CollectionModel(article)),
+            value: CollectionModel(article, animationModel: animationModel)),
       ],
       child: Builder(
         builder: (context) {
@@ -165,7 +177,7 @@ class WebViewPopupMenu extends StatelessWidget {
             onSelected: (value) async {
               switch (value) {
                 case 0:
-                  _controller.reload();
+                  controller.reload();
                   break;
                 case 1:
                   await collectionModel.collect();
@@ -212,5 +224,3 @@ class WebViewPopupMenuItem<T> extends StatelessWidget {
     );
   }
 }
-
-

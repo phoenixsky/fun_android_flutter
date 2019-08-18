@@ -1,22 +1,36 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wan_android/view_model/colletion_model.dart';
 
-class LikeAnimationWidget extends StatelessWidget {
+class LikeAnimatedWidget extends StatelessWidget {
+  static const kAnimNameLike = 'like';
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      child: OverflowBox(
-//        maxWidth: 30.0,
-//        maxHeight: 30.0,
-        minWidth: 30,
-        minHeight: 30,
-        child: FlareActor("assets/animations/like.flr",
+    var model = Provider.of<CollectionAnimationModel>(context);
+    if (model.playing) {
+      return Align(
+        alignment: Alignment.center,
+        child: Container(
+          width: 300,
+          height: 300,
+          child: FlareActor(
+            "assets/animations/like.flr",
             alignment: Alignment.center,
             fit: BoxFit.contain,
-            animation: "like"),
-      ),
-    );
+            animation: kAnimNameLike,
+            callback: (name) {
+              switch (name) {
+                case kAnimNameLike:
+                  model.pause();
+                  break;
+              }
+            },
+          ),
+        ),
+      );
+    }
+    return SizedBox.shrink();
   }
 }

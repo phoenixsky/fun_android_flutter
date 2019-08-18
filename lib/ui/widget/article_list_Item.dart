@@ -12,7 +12,6 @@ import 'package:wan_android/view_model/colletion_model.dart';
 import 'animated_provider.dart';
 import 'article_tag.dart';
 import 'dialog_helper.dart';
-import 'like_animation.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
@@ -134,7 +133,7 @@ class ArticleItemWidget extends StatelessWidget {
                     child: SizedBox.shrink(),
                   ),
                   article.collect == null
-                      ? SizedBox(height: 25,)
+                      ? SizedBox(height: 25)
                       : ArticleCollectionWidget(article),
                 ],
               ),
@@ -169,8 +168,12 @@ class ArticleCollectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var animationModel;
+    try {
+      animationModel = Provider.of<CollectionAnimationModel>(context);
+    } catch (e) {}
     return ProviderWidget<CollectionModel>(
-      model: CollectionModel(article),
+      model: CollectionModel(article, animationModel: animationModel),
       builder: (context, model, child) {
         return InkWell(
           onTap: () async {
@@ -183,9 +186,6 @@ class ArticleCollectionWidget extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.all(3.0),
-//            child:
-//                LikeAnimationWidget(),
-
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
@@ -196,11 +196,11 @@ class ArticleCollectionWidget extends StatelessWidget {
                       ),
                     )
                   : Icon(
-                      // 收藏列表返回的collect为空.article.collect
                       model.article.collect
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: Colors.redAccent[100],
+//                      color: Color(0xffF44062),
                     ),
             ),
           ),
