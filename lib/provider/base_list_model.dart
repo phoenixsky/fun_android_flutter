@@ -20,13 +20,13 @@ abstract class BaseListModel<T> extends BaseModel {
   List<T> list = [];
 
   /// 第一次进入页面loading skeleton
-  initData() async {
+  Future<List<T>> initData() async {
     setBusy(true);
-    await refresh(init: true);
+    return await refresh(init: true);
   }
 
   // 下拉刷新
-  refresh({bool init = false}) async {
+  Future<List<T>> refresh({bool init = false}) async {
     try {
       _currentPageNum = pageNumFirst;
       var data = await loadData(pageNumFirst);
@@ -49,6 +49,7 @@ abstract class BaseListModel<T> extends BaseModel {
           notifyListeners();
         }
       }
+      return data;
     } on DioError catch (e) {
       if (e.error is UnAuthorizedException) {
         setUnAuthorized();
@@ -56,15 +57,17 @@ abstract class BaseListModel<T> extends BaseModel {
         debugPrint(e.toString());
         setError(e.message);
       }
+      return null;
     } catch (e, s) {
       debugPrint('error--->\n' + e.toString());
       debugPrint('statck--->\n' + s.toString());
       setError(e is Error ? e.toString() : e.message);
+      return null;
     }
   }
 
   // 上拉加载更多
-  loadMore() async {
+  Future<List<T>> loadMore() async {
     try {
       var data = await loadData(++_currentPageNum);
       if (data.isEmpty) {
@@ -79,6 +82,7 @@ abstract class BaseListModel<T> extends BaseModel {
         }
         notifyListeners();
       }
+      return data;
     } on DioError catch (e) {
       if (e.error is UnAuthorizedException) {
         setUnAuthorized();
@@ -86,10 +90,13 @@ abstract class BaseListModel<T> extends BaseModel {
         debugPrint(e.toString());
         setError(e.message);
       }
-    } catch (e) {
-      print(e);
+      return null;
+    } catch (e, s) {
       _currentPageNum--;
       refreshController.loadFailed();
+      debugPrint('error--->\n' + e.toString());
+      debugPrint('statck--->\n' + s.toString());
+      return null;
     }
   }
 

@@ -80,8 +80,12 @@ class UserHeaderWidget extends StatelessWidget {
                                 width: 80,
                                 height: 80,
                                 color: model.hasUser
-                                    ? Theme.of(context).accentColor.withAlpha(200)
-                                    : Theme.of(context).accentColor.withAlpha(10),
+                                    ? Theme.of(context)
+                                        .accentColor
+                                        .withAlpha(200)
+                                    : Theme.of(context)
+                                        .accentColor
+                                        .withAlpha(10),
                                 // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
                                 colorBlendMode: BlendMode.colorDodge),
                           ),

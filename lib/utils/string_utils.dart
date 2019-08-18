@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class StringUtils {
   static String toMD5(String data) {
@@ -9,7 +10,11 @@ class StringUtils {
     return hex.encode(digest.bytes);
   }
 
-  static String removeHtmlLabel(String data){
+  static String urlDecoder(String data) {
+    return data == null ? null : HtmlUnescape().convert(data);
+  }
+
+  static String removeHtmlLabel(String data) {
     return data?.replaceAll(RegExp('<[^>]+>'), '');
   }
 }

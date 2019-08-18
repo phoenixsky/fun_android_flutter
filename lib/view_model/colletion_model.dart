@@ -9,13 +9,13 @@ import 'package:wan_android/view_model/user_model.dart';
 
 import 'login_model.dart';
 
-class CollectionListModel extends BaseListModel {
+class CollectionListModel extends BaseListModel<Article> {
   LoginModel loginModel ;
 
   CollectionListModel({this.loginModel});
 
   @override
-  Future<List> loadData(int pageNum) async {
+  Future<List<Article>> loadData(int pageNum) async {
     return await WanAndroidRepository.fetchCollectList(pageNum);
   }
 

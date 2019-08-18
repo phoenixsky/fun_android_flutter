@@ -15,7 +15,7 @@ class Tree {
             List<Tree>.from(map["children"].map((it) => Tree.fromJsonMap(it))),
         courseId = map["courseId"],
         id = map["id"],
-        name = StringUtils.removeHtmlLabel(map["name"]),
+        name = StringUtils.urlDecoder(map["name"]),
         order = map["order"],
         parentChapterId = map["parentChapterId"],
         userControlSetTop = map["userControlSetTop"],

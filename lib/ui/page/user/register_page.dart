@@ -75,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       icon: Icons.lock_outline,
                                       obscureText: true,
                                       controller: _rePasswordController,
-                                      textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.done,
                                       validator: (value) {
                                         return value != _passwordController.text
                                             ? '两次密码不一致'

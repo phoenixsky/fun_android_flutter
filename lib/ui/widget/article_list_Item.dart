@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:provider/provider.dart';
 import 'package:wan_android/config/resource_mananger.dart';
 import 'package:wan_android/config/router_config.dart';
 import 'package:wan_android/model/article.dart';
@@ -11,11 +12,14 @@ import 'package:wan_android/view_model/colletion_model.dart';
 import 'animated_provider.dart';
 import 'article_tag.dart';
 import 'dialog_helper.dart';
+import 'like_animation.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
   final int index;
   final GestureTapCallback onTap;
+
+  /// 首页置顶
   final bool top;
 
   ArticleItemWidget(this.article, {this.index, this.onTap, this.top: false})
@@ -30,8 +34,8 @@ class ArticleItemWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap ??
             () {
-              Navigator.of(context).pushNamed(RouteName.articleDetail,
-                  arguments: article);
+              Navigator.of(context)
+                  .pushNamed(RouteName.articleDetail, arguments: article);
             },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
@@ -99,7 +103,9 @@ class ArticleItemWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    SizedBox(
+                      width: 5,
+                    ),
                     CachedNetworkImage(
                       imageUrl: article.envelopePic,
                       height: 60,
@@ -127,7 +133,9 @@ class ArticleItemWidget extends StatelessWidget {
                   Expanded(
                     child: SizedBox.shrink(),
                   ),
-                  ArticleCollectionWidget(article)
+                  article.collect == null
+                      ? SizedBox(height: 25,)
+                      : ArticleCollectionWidget(article),
                 ],
               ),
             ],
@@ -175,6 +183,9 @@ class ArticleCollectionWidget extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.all(3.0),
+//            child:
+//                LikeAnimationWidget(),
+
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
@@ -186,7 +197,7 @@ class ArticleCollectionWidget extends StatelessWidget {
                     )
                   : Icon(
                       // 收藏列表返回的collect为空.article.collect
-                      model.article.collect ?? true
+                      model.article.collect
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: Colors.redAccent[100],

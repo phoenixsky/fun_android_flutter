@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
 import 'package:wan_android/config/router_config.dart';
+import 'package:wan_android/flutter/refresh_animatedlist.dart';
 import 'package:wan_android/model/article.dart';
 import 'package:wan_android/provider/provider_widget.dart';
 import 'package:wan_android/ui/widget/article_list_Item.dart';
@@ -10,6 +13,9 @@ import 'package:wan_android/view_model/colletion_model.dart';
 import 'package:wan_android/view_model/login_model.dart';
 
 class CollectionListPage extends StatelessWidget {
+  final GlobalKey<SliverAnimatedListState> listKey =
+      GlobalKey<SliverAnimatedListState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +25,8 @@ class CollectionListPage extends StatelessWidget {
       body: ProviderWidget<CollectionListModel>(
         model:
             CollectionListModel(loginModel: LoginModel(Provider.of(context))),
-        onModelReady: (model) {
-          model.initData();
+        onModelReady: (model) async {
+          await model.initData();
         },
         builder: (context, model, child) {
           if (model.busy) {
@@ -45,15 +51,48 @@ class CollectionListPage extends StatelessWidget {
           return SmartRefresher(
               controller: model.refreshController,
               header: WaterDropHeader(),
-              onRefresh: model.refresh,
-              onLoading: model.loadMore,
+              onRefresh: () async {
+                await model.refresh();
+                listKey.currentState.refresh(model.list.length);
+              },
+              onLoading: () async {
+                await model.loadMore();
+                listKey.currentState.refresh(model.list.length);
+              },
               enablePullUp: true,
-              child: ListView.builder(
-                  itemCount: model.list.length,
-                  itemBuilder: (context, index) {
-                    Article item = model.list[index];
-                    return ArticleItemWidget(item);
-                  }));
+              child: CustomScrollView(slivers: <Widget>[
+                SliverAnimatedList(
+                    key: listKey,
+                    initialItemCount: model.list.length,
+                    itemBuilder: (context, index, animation) {
+                      Article item = model.list[index];
+                      return Slidable(
+                        actionPane: SlidableDrawerActionPane(),
+                        secondaryActions: <Widget>[
+                          IconSlideAction(
+                            caption: '移除收藏',
+                            color: Colors.redAccent,
+                            icon: Icons.delete,
+                            onTap: () {
+                              CollectionModel(item).collect();
+                              model.list.removeAt(index);
+                              listKey.currentState.removeItem(
+                                  index,
+                                  (context, animation) => SizeTransition(
+                                      axis: Axis.vertical,
+                                      axisAlignment: 1.0,
+                                      sizeFactor: animation,
+                                      child: ArticleItemWidget(item)));
+                            },
+                          )
+                        ],
+                        child: SizeTransition(
+                            axis: Axis.vertical,
+                            sizeFactor: animation,
+                            child: ArticleItemWidget(item)),
+                      );
+                    })
+              ]));
         },
       ),
     );
