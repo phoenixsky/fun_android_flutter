@@ -44,7 +44,8 @@ class _HomePageState extends State<HomePage>
 
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
-      model2: TapToTopModel(ScrollController(), height: bannerHeight - 60),
+      // 保留iOS点击状态栏回到顶部的功能
+      model2: TapToTopModel(PrimaryScrollController.of(context), height: bannerHeight - 60),
       onModelReady: (model1, model2) {
         model1.initData();
         model2.init();

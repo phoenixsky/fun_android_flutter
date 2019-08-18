@@ -29,6 +29,6 @@ class TapToTopModel with ChangeNotifier {
 
   scrollToTop() {
     _scrollController.animateTo(0,
-        duration: Duration(milliseconds: 500), curve: Curves.easeOutCubic);
+        duration: Duration(milliseconds: 300), curve: Curves.easeOutCubic);
   }
 }
