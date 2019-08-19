@@ -59,7 +59,8 @@ class _WebViewState extends State<ArticleDetailPage> {
             model: _animationModel,
             builder: (context, model, child) => Stack(
                   children: <Widget>[
-                    child,LikeAnimatedWidget(),
+                    child,
+                    LikeAnimatedWidget(),
                   ],
                 ),
             child: WebView(

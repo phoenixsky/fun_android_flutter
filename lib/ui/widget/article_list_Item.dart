@@ -27,120 +27,129 @@ class ArticleItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var backgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    return Material(
-      color:
-          top ? Theme.of(context).accentColor.withAlpha(10) : backgroundColor,
-      child: InkWell(
-        onTap: onTap ??
-            () {
-              Navigator.of(context)
-                  .pushNamed(RouteName.articleDetail, arguments: article);
-            },
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-              border: Border(
-            bottom: Divider.createBorderSide(context, width: 0.7),
-          )),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  ClipOval(
-                    child: CachedNetworkImage(
-                      imageUrl: ImageHelper.randomUrl(
-                          key: article.author, width: 20, height: 20),
-                      placeholder: (_, __) =>
-                          ImageHelper.placeHolder(width: 20, height: 20),
-                      errorWidget: (_, __, ___) =>
-                          ImageHelper.error(width: 20, height: 20),
-                      height: 20,
-                      width: 20,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Text(
-                      article.author,
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                  ),
-                  Expanded(
-                    child: SizedBox.shrink(),
-                  ),
-                  Text(article.niceDate,
-                      style: Theme.of(context).textTheme.caption),
-                ],
-              ),
-              if (article.envelopePic.isEmpty)
-                Padding(
-                  padding: EdgeInsets.only(top: 7),
-                  child: ArticleTitleWidget(article.title),
-                )
-              else
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ArticleTitleWidget(article.title),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            article.desc,
-                            style: Theme.of(context).textTheme.caption,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    CachedNetworkImage(
-                      imageUrl: article.envelopePic,
-                      height: 60,
-                      width: 60,
-                      placeholder: (_, __) =>
-                          ImageHelper.placeHolder(width: 60, height: 60),
-                      errorWidget: (_, __, ___) =>
-                          ImageHelper.error(width: 60, height: 60),
-                      fit: BoxFit.cover,
-                    )
-                  ],
-                ),
-              Row(
+    return Stack(
+      children: <Widget>[
+        Material(
+          color: top
+              ? Theme.of(context).accentColor.withAlpha(10)
+              : backgroundColor,
+          child: InkWell(
+            onTap: onTap ??
+                () {
+                  Navigator.of(context)
+                      .pushNamed(RouteName.articleDetail, arguments: article);
+                },
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                bottom: Divider.createBorderSide(context, width: 0.7),
+              )),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  if (top) ArticleTag('置顶'),
-                  Text(
-                    (article.superChapterName == null
-                                ? ''
-                                : article.superChapterName + ' · ') +
-                            article.chapterName ??
-                        '',
-                    style: Theme.of(context).textTheme.overline,
+                  Row(
+                    children: <Widget>[
+                      ClipOval(
+                        child: CachedNetworkImage(
+                          imageUrl: ImageHelper.randomUrl(
+                              key: article.author, width: 20, height: 20),
+                          placeholder: (_, __) =>
+                              ImageHelper.placeHolder(width: 20, height: 20),
+                          errorWidget: (_, __, ___) =>
+                              ImageHelper.error(width: 20, height: 20),
+                          height: 20,
+                          width: 20,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(
+                          article.author,
+                          style: Theme.of(context).textTheme.caption,
+                        ),
+                      ),
+                      Expanded(
+                        child: SizedBox.shrink(),
+                      ),
+                      Text(article.niceDate,
+                          style: Theme.of(context).textTheme.caption),
+                    ],
                   ),
-                  Expanded(
-                    child: SizedBox.shrink(),
+                  if (article.envelopePic.isEmpty)
+                    Padding(
+                      padding: EdgeInsets.only(top: 7),
+                      child: ArticleTitleWidget(article.title),
+                    )
+                  else
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              ArticleTitleWidget(article.title),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                article.desc,
+                                style: Theme.of(context).textTheme.caption,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        CachedNetworkImage(
+                          imageUrl: article.envelopePic,
+                          height: 60,
+                          width: 60,
+                          placeholder: (_, __) =>
+                              ImageHelper.placeHolder(width: 60, height: 60),
+                          errorWidget: (_, __, ___) =>
+                              ImageHelper.error(width: 60, height: 60),
+                          fit: BoxFit.cover,
+                        )
+                      ],
+                    ),
+                  Row(
+                    children: <Widget>[
+                      if (top) ArticleTag('置顶'),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        child: Text(
+                          (article.superChapterName == null
+                                      ? ''
+                                      : article.superChapterName + ' · ') +
+                                  article.chapterName ??
+                              '',
+                          style: Theme.of(context).textTheme.overline,
+                        ),
+                      ),
+                    ],
                   ),
-                  article.collect == null
-                      ? SizedBox(height: 25)
-                      : ArticleCollectionWidget(article),
                 ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: article.collect == null
+              ? SizedBox.shrink()
+              : ArticleCollectionWidget(article),
+        )
+      ],
     );
   }
 }
@@ -189,7 +198,7 @@ class ArticleCollectionWidget extends StatelessWidget {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.all(3.0),
+            padding: const EdgeInsets.fromLTRB(5, 5, 20, 10),
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
