@@ -1,4 +1,4 @@
-import 'package:wan_android/utils/string_utils.dart';
+import 'package:fun_android/utils/string_utils.dart';
 
 class Article {
   String apkLink;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:wan_android/config/resource_mananger.dart';
-import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:fun_android/config/resource_mananger.dart';
+import 'package:fun_android/service/wan_android_repository.dart';
 
 class ThirdLogin extends StatelessWidget {
   @override

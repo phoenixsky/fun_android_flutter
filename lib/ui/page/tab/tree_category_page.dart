@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:wan_android/config/router_config.dart';
-import 'package:wan_android/model/navigation_site.dart';
-import 'package:wan_android/model/tree.dart';
-import 'package:wan_android/provider/provider_widget.dart';
-import 'package:wan_android/ui/widget/page_state_switch.dart';
-import 'package:wan_android/view_model/tree_model.dart';
+import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/model/navigation_site.dart';
+import 'package:fun_android/model/tree.dart';
+import 'package:fun_android/provider/provider_widget.dart';
+import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/view_model/tree_model.dart';
 
 /// 体系
 class TreeCategoryPage extends StatefulWidget {

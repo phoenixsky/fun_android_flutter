@@ -1,6 +1,6 @@
 import 'package:provider/provider.dart';
-import 'package:wan_android/view_model/theme_model.dart';
-import 'package:wan_android/view_model/user_model.dart';
+import 'package:fun_android/view_model/theme_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
 
 List<SingleChildCloneableWidget> providers = [
   ...independentServices,

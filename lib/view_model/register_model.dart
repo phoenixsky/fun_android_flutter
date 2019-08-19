@@ -1,6 +1,6 @@
-import 'package:wan_android/provider/base_model.dart';
-import 'package:wan_android/provider/view_state.dart';
-import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state.dart';
+import 'package:fun_android/service/wan_android_repository.dart';
 
 class RegisterModel extends BaseModel {
   RegisterModel() {

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:wan_android/model/article.dart';
-import 'package:wan_android/model/tree.dart';
-import 'package:wan_android/ui/page/collection_list_page.dart';
-import 'package:wan_android/ui/page/article_list_by_category_page.dart';
-import 'package:wan_android/ui/page/setting_page.dart';
-import 'package:wan_android/ui/page/tab/home_second_floor_page.dart';
-import 'package:wan_android/ui/page/user/login_page.dart';
-import 'package:wan_android/ui/page/splash.dart';
-import 'package:wan_android/ui/page/tab/tab_navigator.dart';
-import 'package:wan_android/ui/page/article_detail_page.dart';
-import 'package:wan_android/ui/page/user/register_page.dart';
-import 'package:wan_android/ui/widget/page_route_anim.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/model/tree.dart';
+import 'package:fun_android/ui/page/collection_list_page.dart';
+import 'package:fun_android/ui/page/article_list_by_category_page.dart';
+import 'package:fun_android/ui/page/setting_page.dart';
+import 'package:fun_android/ui/page/tab/home_second_floor_page.dart';
+import 'package:fun_android/ui/page/user/login_page.dart';
+import 'package:fun_android/ui/page/splash.dart';
+import 'package:fun_android/ui/page/tab/tab_navigator.dart';
+import 'package:fun_android/ui/page/article_detail_page.dart';
+import 'package:fun_android/ui/page/user/register_page.dart';
+import 'package:fun_android/ui/widget/page_route_anim.dart';
 
 class RouteName {
   static const String splash = 'splash';

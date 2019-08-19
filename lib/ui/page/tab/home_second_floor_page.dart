@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wan_android/config/resource_mananger.dart';
+import 'package:fun_android/config/resource_mananger.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'home_page.dart';

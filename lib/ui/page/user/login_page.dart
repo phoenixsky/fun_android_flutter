@@ -7,15 +7,15 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:wan_android/config/router_config.dart';
-import 'package:wan_android/provider/provider_widget.dart';
-import 'package:wan_android/ui/widget/bottom_clipper.dart';
-import 'package:wan_android/ui/widget/button_progress_indicator.dart';
-import 'package:wan_android/ui/widget/third_component.dart';
-import 'package:wan_android/view_model/login_model.dart';
-import 'package:wan_android/view_model/user_model.dart';
+import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/provider/provider_widget.dart';
+import 'package:fun_android/ui/widget/bottom_clipper.dart';
+import 'package:fun_android/ui/widget/button_progress_indicator.dart';
+import 'package:fun_android/ui/widget/third_component.dart';
+import 'package:fun_android/view_model/login_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
 
-import 'package:wan_android/ui/page/user/login_widget.dart';
+import 'package:fun_android/ui/page/user/login_widget.dart';
 
 import 'login_field_widget.dart';
 

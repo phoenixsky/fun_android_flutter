@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' hide SearchDelegate;
 import 'package:provider/provider.dart';
-import 'package:wan_android/flutter/search.dart';
-import 'package:wan_android/view_model/search_model.dart';
+import 'package:fun_android/flutter/search.dart';
+import 'package:fun_android/view_model/search_model.dart';
 
 import 'search_results.dart';
 import 'search_suggestions.dart';

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:oktoast/oktoast.dart';
-import 'package:wan_android/provider/provider_widget.dart';
-import 'package:wan_android/ui/widget/button_progress_indicator.dart';
-import 'package:wan_android/view_model/register_model.dart';
+import 'package:fun_android/provider/provider_widget.dart';
+import 'package:fun_android/ui/widget/button_progress_indicator.dart';
+import 'package:fun_android/view_model/register_model.dart';
 
-import 'package:wan_android/ui/page/user/login_widget.dart';
+import 'package:fun_android/ui/page/user/login_widget.dart';
 
 import 'login_page.dart';
 import 'login_field_widget.dart';

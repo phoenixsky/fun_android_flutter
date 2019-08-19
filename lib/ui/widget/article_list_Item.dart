@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
-import 'package:wan_android/config/resource_mananger.dart';
-import 'package:wan_android/config/router_config.dart';
-import 'package:wan_android/model/article.dart';
-import 'package:wan_android/provider/provider_widget.dart';
-import 'package:wan_android/view_model/colletion_model.dart';
+import 'package:fun_android/config/resource_mananger.dart';
+import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/provider/provider_widget.dart';
+import 'package:fun_android/view_model/colletion_model.dart';
 
 import 'animated_provider.dart';
 import 'article_tag.dart';

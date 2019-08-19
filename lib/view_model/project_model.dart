@@ -1,7 +1,7 @@
-import 'package:wan_android/model/article.dart';
-import 'package:wan_android/model/tree.dart';
-import 'package:wan_android/provider/base_list_model.dart';
-import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/model/tree.dart';
+import 'package:fun_android/provider/base_list_model.dart';
+import 'package:fun_android/service/wan_android_repository.dart';
 
 class ProjectCategoryModel extends BaseListModel<Tree> {
   @override

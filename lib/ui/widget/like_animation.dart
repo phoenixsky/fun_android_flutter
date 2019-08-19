@@ -1,7 +1,7 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wan_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/colletion_model.dart';
 
 class LikeAnimatedWidget extends StatelessWidget {
   static const kAnimNameLike = 'like';

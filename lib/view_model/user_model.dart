@@ -1,7 +1,7 @@
-import 'package:wan_android/config/storage_manager.dart';
-import 'package:wan_android/model/user.dart';
-import 'package:wan_android/provider/base_model.dart';
-import 'package:wan_android/provider/view_state.dart';
+import 'package:fun_android/config/storage_manager.dart';
+import 'package:fun_android/model/user.dart';
+import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state.dart';
 
 class UserModel extends BaseModel {
   static const String kUser = 'kUser';

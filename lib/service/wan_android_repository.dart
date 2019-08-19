@@ -1,10 +1,10 @@
-import 'package:wan_android/config/net/http.dart';
-import 'package:wan_android/model/article.dart';
-import 'package:wan_android/model/banner.dart';
-import 'package:wan_android/model/search.dart';
-import 'package:wan_android/model/navigation_site.dart';
-import 'package:wan_android/model/tree.dart';
-import 'package:wan_android/model/user.dart';
+import 'package:fun_android/config/net/http.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/model/banner.dart';
+import 'package:fun_android/model/search.dart';
+import 'package:fun_android/model/navigation_site.dart';
+import 'package:fun_android/model/tree.dart';
+import 'package:fun_android/model/user.dart';
 
 class WanAndroidRepository {
   // 轮播
@@ -18,9 +18,7 @@ class WanAndroidRepository {
   // 置顶文章
   static Future fetchTopArticles() async {
     var response = await http.get('article/top/json');
-    return response.data
-        .map<Article>((item) => Article.fromMap(item))
-        .toList();
+    return response.data.map<Article>((item) => Article.fromMap(item)).toList();
   }
 
   // 文章
@@ -43,17 +41,19 @@ class WanAndroidRepository {
     var response = await http.get('project/tree/json');
     return response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
   }
+
   // 导航
   static Future fetchNavigationSite() async {
     var response = await http.get('navi/json');
-    return response.data.map<NavigationSite>((item) => NavigationSite.fromMap(item)).toList();
+    return response.data
+        .map<NavigationSite>((item) => NavigationSite.fromMap(item))
+        .toList();
   }
 
   // 公众号分类
   static Future fetchWxMpCategories() async {
     var response = await http.get('wxarticle/chapters/json');
     return response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
-
   }
 
   // 搜索热门记录
@@ -84,8 +84,10 @@ class WanAndroidRepository {
     });
     return User.fromJsonMap(response.data);
   }
+
   /// 注册
-  static Future register(String username, String password,String rePassword) async {
+  static Future register(
+      String username, String password, String rePassword) async {
     var response = await http.post<Map>('user/register', queryParameters: {
       'username': username,
       'password': password,
@@ -104,9 +106,8 @@ class WanAndroidRepository {
     var response1 = await http.get('lg/todo/listnotdo/0/json/1');
   }
 
-
   // 收藏列表
-  static Future fetchCollectList(int pageNum ) async {
+  static Future fetchCollectList(int pageNum) async {
     var response = await http.get<Map>('lg/collect/list/$pageNum/json');
     return response.data['datas']
         .map<Article>((item) => Article.fromMap(item))
@@ -118,16 +119,17 @@ class WanAndroidRepository {
     var response = await http.post('lg/collect/$id/json');
     return response;
   }
+
   // 取消收藏
   static Future unCollect(id) async {
     var response = await http.post('lg/uncollect_originId/$id/json');
     return response;
   }
+
   // 取消收藏2
-  static Future unMyCollect({id,originId}) async {
-    var response = await http.post('lg/uncollect/$id/json',queryParameters: {
-      'originId':originId??-1
-    });
+  static Future unMyCollect({id, originId}) async {
+    var response = await http.post('lg/uncollect/$id/json',
+        queryParameters: {'originId': originId ?? -1});
     return response;
   }
 }

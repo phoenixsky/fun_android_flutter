@@ -3,14 +3,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:wan_android/config/router_config.dart';
-import 'package:wan_android/flutter/refresh_animatedlist.dart';
-import 'package:wan_android/model/article.dart';
-import 'package:wan_android/provider/provider_widget.dart';
-import 'package:wan_android/ui/widget/article_list_Item.dart';
-import 'package:wan_android/ui/widget/page_state_switch.dart';
-import 'package:wan_android/view_model/colletion_model.dart';
-import 'package:wan_android/view_model/login_model.dart';
+import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/flutter/refresh_animatedlist.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/provider/provider_widget.dart';
+import 'package:fun_android/ui/widget/article_list_Item.dart';
+import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/login_model.dart';
 
 class CollectionListPage extends StatelessWidget {
   final GlobalKey<SliverAnimatedListState> listKey =

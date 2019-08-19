@@ -1,4 +1,4 @@
-name: FunAndroid
+name: fun_android
 description: Fun or Flutter for Android
 
 version: 1.0.0+1
@@ -28,8 +28,8 @@ dependencies:
   shared_preferences: ^0.5.2+2
   localstorage: ^2.0.0 # 本地json存储
 
-  # html数据处理类handle
-  html_unescape: ^1.0.1+3 # Html Encoder/Decoder
+  # Html Encoder/Decoder
+  html_unescape: ^1.0.1+3
   # 解析html标签
   flutter_html: ^0.10.4
 
@@ -43,8 +43,12 @@ dependencies:
   pull_to_refresh: ^1.5.4
   flutter_swiper: ^1.1.6
   cached_network_image: ^1.1.1
-  flutter_slidable: 0.5.3 # 类iOS侧滑菜单
-  shimmer: ^1.0.0 # 谁用谁闪亮
+  # 类iOS侧滑菜单
+  flutter_slidable: 0.5.3
+  # 谁用谁闪亮
+  shimmer: ^1.0.0
+  # 更新展示支持mark_down
+  flutter_whatsnew: ^1.0.0
 
   # third_app
   url_launcher: ^5.1.0 #启动第三方app
@@ -72,4 +76,5 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - CHANGELOG.md
 

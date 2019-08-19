@@ -3,12 +3,12 @@ import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:wan_android/flutter/dropdown.dart';
-import 'package:wan_android/model/tree.dart';
-import 'package:wan_android/provider/provider_widget.dart';
+import 'package:fun_android/flutter/dropdown.dart';
+import 'package:fun_android/model/tree.dart';
+import 'package:fun_android/provider/provider_widget.dart';
 
-import 'package:wan_android/ui/widget/page_state_switch.dart';
-import 'package:wan_android/view_model/project_model.dart';
+import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/view_model/project_model.dart';
 
 import '../article_list_by_category_page.dart';
 

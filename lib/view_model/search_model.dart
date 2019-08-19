@@ -4,10 +4,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wan_android/model/search.dart';
-import 'package:wan_android/provider/base_list_model.dart';
-import 'package:wan_android/provider/sample_list_model.dart';
-import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:fun_android/model/search.dart';
+import 'package:fun_android/provider/base_list_model.dart';
+import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/service/wan_android_repository.dart';
 
 const String kLocalStorageSearch = 'kLocalStorageSearch';
 const String kSearchHotList = 'kSearchHotList';

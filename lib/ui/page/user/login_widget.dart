@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wan_android/config/resource_mananger.dart';
-import 'package:wan_android/ui/widget/bottom_clipper.dart';
-import 'package:wan_android/view_model/theme_model.dart';
+import 'package:fun_android/config/resource_mananger.dart';
+import 'package:fun_android/ui/widget/bottom_clipper.dart';
+import 'package:fun_android/view_model/theme_model.dart';
 
 class LoginTopPanel extends StatelessWidget {
   @override

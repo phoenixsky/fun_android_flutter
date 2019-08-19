@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wan_android/ui/widget/theme.dart';
-import 'package:wan_android/config/storage_manager.dart';
+import 'package:fun_android/ui/widget/theme.dart';
+import 'package:fun_android/config/storage_manager.dart';
 
 //const Color(0xFF5394FF),
 

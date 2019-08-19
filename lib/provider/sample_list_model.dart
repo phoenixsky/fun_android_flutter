@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:wan_android/provider/base_model.dart';
+import 'package:fun_android/provider/base_model.dart';
 
 /// 基于
 abstract class SampleListModel<T> extends BaseModel {

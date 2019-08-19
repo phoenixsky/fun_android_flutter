@@ -6,8 +6,8 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:wan_android/utils/platform_utils.dart';
-import 'package:wan_android/config/storage_manager.dart';
+import 'package:fun_android/utils/platform_utils.dart';
+import 'package:fun_android/config/storage_manager.dart';
 
 import 'api.dart';
 

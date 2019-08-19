@@ -1,6 +1,6 @@
-import 'package:wan_android/provider/base_list_model.dart';
-import 'package:wan_android/provider/sample_list_model.dart';
-import 'package:wan_android/service/wan_android_repository.dart';
+import 'package:fun_android/provider/base_list_model.dart';
+import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/service/wan_android_repository.dart';
 
 class TreeCategoryModel extends SampleListModel {
   @override
