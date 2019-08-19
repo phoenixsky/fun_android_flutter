@@ -12,7 +12,7 @@ class DialogHelper {
               actions: <Widget>[
                 CupertinoButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(false);
                   },
                   child: new Text(
                     "取消",
@@ -20,10 +20,8 @@ class DialogHelper {
                   ),
                 ),
                 CupertinoButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                      ..pop()
-                      ..pushNamed(RouteName.login);
+                  onPressed: () async {
+                    Navigator.of(context).pop(true);
                   },
                   child: new Text("确认", style: TextStyle(color: Colors.black)),
                 ),

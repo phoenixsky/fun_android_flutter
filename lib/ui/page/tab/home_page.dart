@@ -61,37 +61,38 @@ class _HomePageState extends State<HomePage>
                 if (homeModel.error) {
                   return PageStateError(onPressed: homeModel.initData);
                 }
-                return RefreshConfiguration.copyAncestor(
-                  context: context,
-                  // 下拉触发二楼距离
-                  twiceTriggerDistance: kHomeRefreshHeight - 15,
-                  //最大下拉距离,android默认为0,这里为了触发二楼
-                  maxOverScrollExtent: kHomeRefreshHeight,
-                  child: SmartRefresher(
-                      enableTwoLevel: true,
-                      controller: homeModel.refreshController,
-                      header: ClassicHeader(
-                        textStyle: TextStyle(color: Colors.white),
-                        outerBuilder: (child) => HomeSecondFloorOuter(child),
-                        twoLevelView: Container(),
-                      ),
-                      onTwoLevel: () async {
-                        await Navigator.of(context)
-                            .pushNamed(RouteName.homeSecondFloor);
-                        await Future.delayed(Duration(milliseconds: 300));
-                        Provider.of<HomeModel>(context)
-                            .refreshController
-                            .twoLevelComplete();
-                      },
-                      onRefresh: homeModel.refresh,
-                      onLoading: homeModel.loadMore,
-                      enablePullUp: true,
-                      child: ProviderWidget<CollectionAnimationModel>(
-                          model: CollectionAnimationModel(),
-                          builder: (context, collectionAnimationModel, child) =>
-                              Stack(
-                                children: <Widget>[child, LikeAnimatedWidget()],
-                              ),
+                return ProviderWidget<CollectionAnimationModel>(
+                    model: CollectionAnimationModel(),
+                    builder: (context, collectionAnimationModel, child) =>
+                        Stack(
+                          children: <Widget>[child, LikeAnimatedWidget()],
+                        ),
+                    child: RefreshConfiguration.copyAncestor(
+                      context: context,
+                      // 下拉触发二楼距离
+                      twiceTriggerDistance: kHomeRefreshHeight - 15,
+                      //最大下拉距离,android默认为0,这里为了触发二楼
+                      maxOverScrollExtent: kHomeRefreshHeight,
+                      child: SmartRefresher(
+                          enableTwoLevel: true,
+                          controller: homeModel.refreshController,
+                          header: ClassicHeader(
+                            textStyle: TextStyle(color: Colors.white),
+                            outerBuilder: (child) =>
+                                HomeSecondFloorOuter(child),
+                            twoLevelView: Container(),
+                          ),
+                          onTwoLevel: () async {
+                            await Navigator.of(context)
+                                .pushNamed(RouteName.homeSecondFloor);
+                            await Future.delayed(Duration(milliseconds: 300));
+                            Provider.of<HomeModel>(context)
+                                .refreshController
+                                .twoLevelComplete();
+                          },
+                          onRefresh: homeModel.refresh,
+                          onLoading: homeModel.loadMore,
+                          enablePullUp: true,
                           child: CustomScrollView(
                             controller: tapToTopModel.scrollController,
                             slivers: <Widget>[
@@ -130,8 +131,8 @@ class _HomePageState extends State<HomePage>
                               HomeTopArticleList(),
                               HomeArticleList(),
                             ],
-                          ))),
-                );
+                          )),
+                    ));
               })),
           floatingActionButton: ScaleAnimatedSwitcher(
             child: tapToTopModel.showTopBtn &&

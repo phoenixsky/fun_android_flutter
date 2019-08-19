@@ -44,8 +44,8 @@ class CollectionModel extends BaseModel {
         if (article.collect) {
           await WanAndroidRepository.unCollect(article.id);
         } else {
-          animationModel?.play();
           await WanAndroidRepository.collect(article.id);
+          animationModel?.play();
         }
       }
       article.collect = !(article.collect ?? true);

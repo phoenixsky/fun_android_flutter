@@ -180,7 +180,11 @@ class ArticleCollectionWidget extends StatelessWidget {
             if (!model.busy) {
               await model.collect();
               if (model.unAuthorized) {
-                DialogHelper.showLoginDialog(context);
+                if (await DialogHelper.showLoginDialog(context)) {
+                  var success =
+                      await Navigator.pushNamed(context, RouteName.login);
+                  if (success ?? false) model.collect();
+                }
               }
             }
           },

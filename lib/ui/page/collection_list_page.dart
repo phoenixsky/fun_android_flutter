@@ -30,7 +30,7 @@ class CollectionListPage extends StatelessWidget {
         },
         builder: (context, model, child) {
           if (model.busy) {
-            return PageStateLoading();
+            return PageStateListSkeleton();
           }
           if (model.error) {
             return PageStateError(onPressed: model.initData);

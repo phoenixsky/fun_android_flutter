@@ -35,7 +35,7 @@ class App extends StatelessWidget {
                   theme: themeModel.value,
                   darkTheme: themeModel.darkTheme,
                   onGenerateRoute: Router.generateRoute,
-                  initialRoute: RouteName.tab,
+                  initialRoute: RouteName.splash,
 //                  initialRoute: RouteName.collectionList,
 //                home: AnimatedListExample(),
                 ),

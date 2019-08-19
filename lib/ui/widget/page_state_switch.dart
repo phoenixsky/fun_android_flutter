@@ -72,7 +72,10 @@ class PageStateEmpty extends PageStateError {
       : super(
             image: image,
             message: message,
-            buttonText: buttonText,
+            buttonText: Text(
+              '刷新一下',
+              style: TextStyle(letterSpacing: 5),
+            ),
             onPressed: onPressed);
 }
 
