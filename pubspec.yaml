@@ -51,6 +51,7 @@ dependencies:
   flutter_whatsnew: ^1.0.0
 
   # third_app
+  share: 0.6.2+1 #分享
   url_launcher: ^5.1.0 #启动第三方app
 
   flare_flutter: 1.5.5

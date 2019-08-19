@@ -12,6 +12,7 @@ import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/theme_model.dart';
+import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -166,14 +167,13 @@ class WebViewPopupMenu extends StatelessWidget {
               ),
               PopupMenuDivider(),
               PopupMenuItem(
-                child: WebViewPopupMenuItem(IconFonts.train, '火车'),
+                child: WebViewPopupMenuItem(Icons.share, '分享'),
                 value: 2,
-                enabled: false,
               ),
-              PopupMenuItem(
-                child: WebViewPopupMenuItem(Icons.color_lens, '切换主题'),
-                value: 3,
-              ),
+//              PopupMenuItem(
+//                child: WebViewPopupMenuItem(Icons.color_lens, '切换主题'),
+//                value: 3,
+//              ),
             ],
             onSelected: (value) async {
               switch (value) {
@@ -187,6 +187,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   }
                   break;
                 case 2:
+                  Share.share(article.link);
                   break;
                 case 3:
                   Provider.of<ThemeModel>(context).switchRandomTheme();

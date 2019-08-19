@@ -9,6 +9,8 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - share (0.5.2):
+    - Flutter
   - shared_preferences (0.0.1):
     - Flutter
   - sqflite (0.0.1):
@@ -21,9 +23,10 @@ PODS:
 
 DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios-release`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -37,11 +40,13 @@ EXTERNAL SOURCES:
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: ".symlinks/flutter/ios-release"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   sqflite:
@@ -57,6 +62,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   package_info: 78cabb3c322943c55d39676f4a5bfc748c01d055
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
+  share: 7d22fe8baedfe93aefd864bf0b73f29711fbb0a3
   shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
   sqflite: ff1d9da63c06588cc8d1faf7256d741f16989d5a
   url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298

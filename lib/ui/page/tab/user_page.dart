@@ -187,7 +187,7 @@ class UserListWidget extends StatelessWidget {
                   builder: (context) => WhatsNewPage.changelog(
                     buttonColor: Theme.of(context).accentColor,
                     title: Text(
-                      "What's New",
+                      "Fun Android",
                       textScaleFactor: 1.0,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
