@@ -43,9 +43,10 @@ class CollectionModel extends BaseModel {
       } else {
         if (article.collect) {
           await WanAndroidRepository.unCollect(article.id);
+          animationModel?.play(false);
         } else {
           await WanAndroidRepository.collect(article.id);
-          animationModel?.play();
+          animationModel?.play(true);
         }
       }
       article.collect = !(article.collect ?? true);
@@ -66,18 +67,24 @@ class CollectionModel extends BaseModel {
 
 class CollectionAnimationModel extends ChangeNotifier {
   /// 正在播放动画
-  bool playing = false;
+  bool _playing = false;
+  bool _like = true;
 
-  play() {
-    if (!playing) {
-      playing = true;
+  get like => _like;
+
+  get playing => _playing;
+
+  play(bool like) {
+    if (!_playing) {
+      _playing = true;
+      _like = like;
       notifyListeners();
     }
   }
 
   pause() {
-    if (playing) {
-      playing = false;
+    if (_playing) {
+      _playing = false;
       notifyListeners();
     }
   }

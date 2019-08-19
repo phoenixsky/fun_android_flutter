@@ -5,6 +5,7 @@ import 'package:wan_android/view_model/colletion_model.dart';
 
 class LikeAnimatedWidget extends StatelessWidget {
   static const kAnimNameLike = 'like';
+  static const kAnimNameUnLike = 'Heart Break';
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +17,20 @@ class LikeAnimatedWidget extends StatelessWidget {
           width: 300,
           height: 300,
           child: FlareActor(
-            "assets/animations/like.flr",
+            model.like
+                ? "assets/animations/like.flr"
+                : "assets/animations/unLike.flr",
             alignment: Alignment.center,
             fit: BoxFit.contain,
-            animation: kAnimNameLike,
+            animation: model.like ? kAnimNameLike : kAnimNameUnLike,
+            shouldClip: false,
             callback: (name) {
-              switch (name) {
-                case kAnimNameLike:
-                  model.pause();
-                  break;
-              }
+              model.pause();
+//              switch (name) {
+//                case kAnimNameUnLike:
+//                  model.pause();
+//                  break;
+//              }
             },
           ),
         ),

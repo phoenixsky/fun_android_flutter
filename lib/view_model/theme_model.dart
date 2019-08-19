@@ -37,7 +37,7 @@ class ThemeModel with ChangeNotifier {
         StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 0];
 
     /// 获取字体
-    _fontIndex = StorageManager.sharedPreferences.getString(kFontIndex) ?? 0;
+    _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
     _generateThemeData();
   }
 

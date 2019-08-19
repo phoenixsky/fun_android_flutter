@@ -112,14 +112,17 @@ class CategoryDropdownWidget extends StatelessWidget {
               style: Theme.of(context).primaryTextTheme.subhead,
               items: List.generate(model.list.length, (index) {
                 var theme = Theme.of(context);
+                var subhead = theme.primaryTextTheme.subhead;
                 return DropdownMenuItem(
                   value: index,
                   child: Text(
                     model.list[index].name,
                     style: currentIndex == index
-                        ? theme.primaryTextTheme.subhead
-                            .apply(color: theme.accentColor)
-                        : theme.primaryTextTheme.subhead,
+                        ? subhead.apply(
+                            color: theme.brightness == Brightness.light
+                                ? Colors.white
+                                : theme.accentColor)
+                        : subhead.apply(color: subhead.color.withAlpha(200)),
                   ),
                 );
               }),
