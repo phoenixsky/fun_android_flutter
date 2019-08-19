@@ -19,9 +19,10 @@ class SearchHotKeyModel extends SampleListModel {
     LocalStorage localStorage = LocalStorage(kLocalStorageSearch);
 //    localStorage.deleteItem(keySearchHotList);//测试没有缓存
     await localStorage.ready;
-    List localList = (localStorage.getItem(kSearchHotList) ?? []).map((item) {
+    List localList = (localStorage.getItem(kSearchHotList) ?? []).map<SearchHotKey>((item) {
       return SearchHotKey.fromMap(item);
     }).toList();
+
     if (localList.isEmpty) {
       //缓存为空,需要同步加载网络数据
       List netList = await WanAndroidRepository.fetchSearchHotKey();
@@ -37,7 +38,6 @@ class SearchHotKeyModel extends SampleListModel {
           setBusy(false);
         }
       });
-
       return localList;
     }
   }

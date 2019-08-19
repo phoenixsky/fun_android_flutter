@@ -29,8 +29,9 @@ abstract class SampleListModel<T> extends BaseModel {
           notifyListeners();
         }
       }
-    } catch (e) {
+    } catch (e,s) {
       debugPrint(e.toString());
+      debugPrint(s.toString());
       setError(e is Error ? e.toString() : e.message);
     }
   }
