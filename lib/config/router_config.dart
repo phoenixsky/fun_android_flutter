@@ -4,6 +4,7 @@ import 'package:wan_android/model/article.dart';
 import 'package:wan_android/model/tree.dart';
 import 'package:wan_android/ui/page/collection_list_page.dart';
 import 'package:wan_android/ui/page/article_list_by_category_page.dart';
+import 'package:wan_android/ui/page/setting_page.dart';
 import 'package:wan_android/ui/page/tab/home_second_floor_page.dart';
 import 'package:wan_android/ui/page/user/login_page.dart';
 import 'package:wan_android/ui/page/splash.dart';
@@ -21,6 +22,7 @@ class RouteName {
   static const String articleDetail = 'articleDetail';
   static const String treeList = 'treeList';
   static const String collectionList = 'collectionList';
+  static const String setting = 'setting';
 }
 
 class Router {
@@ -50,6 +52,8 @@ class Router {
         return CupertinoPageRoute(builder: (_) => TreeListTabPage(tree, index));
       case RouteName.collectionList:
         return CupertinoPageRoute(builder: (_) => CollectionListPage());
+      case RouteName.setting:
+        return CupertinoPageRoute(builder: (_) => SettingPage());
 //      case RoutePaths.Post:
 //        var post = settings.arguments as Post;
 //        return CupertinoPageRoute(builder: (_) => PostView(post: post));

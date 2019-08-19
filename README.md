@@ -19,3 +19,4 @@ samples, guidance on mobile development, and a full API reference.
 
 # 感谢
 1. 部分借鉴了[goweii]同学的WanAndroid项目的UI(https://github.com/goweii/WanAndroid)
+2. 感谢站酷提供的开源的字体

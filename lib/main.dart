@@ -32,7 +32,7 @@ class App extends StatelessWidget {
               return RefreshConfiguration(
                 hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
                 child: MaterialApp(
-                  theme: themeModel.value,
+                  theme: themeModel.themeData,
                   darkTheme: themeModel.darkTheme,
                   onGenerateRoute: Router.generateRoute,
                   initialRoute: RouteName.splash,

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -121,131 +123,136 @@ class UserHeaderWidget extends StatelessWidget {
   }
 }
 
-const List<String> settingItems = ['收藏', '黑夜模式', '色彩主题', '设置', '关于我'];
-
-const List<IconData> settingLeadingIcons = [
-  Icons.favorite_border,
-//  Icons.bookmark_border,
-  Icons.brightness_3,
-  Icons.color_lens,
-  Icons.settings,
-  Icons.error_outline,
-];
-
 class UserListWidget extends StatelessWidget {
   @override
+
   Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-      if (index == 2) {
-        return SettingThemeWidget(index);
-      }
-      return ListTile(
-        title: Text(settingItems[index]),
-        isThreeLine: false,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-        onTap: () {
-          switch (index) {
-            case 0:
+    var iconColor = Theme.of(context).accentColor;
+    return ListTileTheme(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+      child: SliverList(
+        delegate: SliverChildListDelegate([
+          ListTile(
+            title: Text('收藏'),
+            onTap: () {
               Navigator.of(context).pushNamed(RouteName.collectionList);
-              break;
-            case 1:
-              break;
-            case 2:
-              break;
-            case 4:
-              break;
-          }
-        },
-        leading: Icon(
-          settingLeadingIcons[index],
-          color: Theme.of(context).accentColor,
-        ),
-        trailing: Builder(
-          builder: (context) {
-            /// 黑夜模式开关
-            if (index == 1) {
-              return CupertinoSwitch(
-                  activeColor: Theme.of(context).accentColor,
-                  value: Theme.of(context).brightness == Brightness.dark,
-                  onChanged: (value) {
-                    Provider.of<ThemeModel>(context).switchTheme(
-                        brightness: value ? Brightness.dark : Brightness.light);
-                  });
-            }
-            return Icon(Icons.chevron_right);
-          },
-        ),
-      );
-    }, childCount: settingItems.length));
+            },
+            leading: Icon(
+              Icons.favorite_border,
+              color: iconColor,
+            ),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            title: Text('黑夜模式'),
+            onTap: () {
+              Provider.of<ThemeModel>(context).switchTheme(
+                  brightness: Theme.of(context).brightness == Brightness.light
+                      ? Brightness.dark
+                      : Brightness.light);
+            },
+            leading: Transform.rotate(
+              angle: -pi,
+              child: Icon(
+                Icons.brightness_2,
+                color: iconColor,
+              ),
+            ),
+            trailing: CupertinoSwitch(
+                activeColor: Theme.of(context).accentColor,
+                value: Theme.of(context).brightness == Brightness.dark,
+                onChanged: (value) {
+                  Provider.of<ThemeModel>(context).switchTheme(
+                      brightness: value ? Brightness.dark : Brightness.light);
+                }),
+          ),
+          SettingThemeWidget(),
+          ListTile(
+            title: Text('设置'),
+            onTap: () {
+              Navigator.pushNamed(context, RouteName.setting);
+            },
+            leading: Icon(
+              Icons.settings,
+              color: iconColor,
+            ),
+            trailing: Icon(Icons.chevron_right),
+          ),
+          ListTile(
+            title: Text('关于'),
+            onTap: () {},
+            leading: Icon(
+              Icons.error_outline,
+              color: iconColor,
+            ),
+            trailing: Icon(Icons.chevron_right),
+          ),
+        ]),
+      ),
+    );
   }
 }
 
 class SettingThemeWidget extends StatelessWidget {
-  final int index;
-
-  SettingThemeWidget(this.index);
+  SettingThemeWidget();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: ExpansionTile(
-        title: Text(settingItems[index]),
-        leading: Icon(
-          settingLeadingIcons[index],
-          color: Theme.of(context).accentColor,
-        ),
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: <Widget>[
-                ...Colors.primaries.map((color) {
-                  return Material(
-                    color: color,
-                    child: InkWell(
-                      onTap: () {
-                        var model = Provider.of<ThemeModel>(context);
-                        var brightness = Theme.of(context).brightness;
-                        model.switchTheme(brightness: brightness, color: color);
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                      ),
-                    ),
-                  );
-                }).toList(),
-                Material(
+    return ExpansionTile(
+      title: Text('色彩主题'),
+      leading: Icon(
+        Icons.color_lens,
+        color: Theme.of(context).accentColor,
+      ),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Wrap(
+            spacing: 5,
+            runSpacing: 5,
+            children: <Widget>[
+              ...Colors.primaries.map((color) {
+                return Material(
+                  color: color,
                   child: InkWell(
                     onTap: () {
                       var model = Provider.of<ThemeModel>(context);
                       var brightness = Theme.of(context).brightness;
-                      model.switchRandomTheme(brightness: brightness);
+                      model.switchTheme(brightness: brightness, color: color);
                     },
                     child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Theme.of(context).accentColor)),
                       width: 40,
                       height: 40,
-                      child: Text(
-                        "?",
-                        style: TextStyle(
-                            fontSize: 20, color: Theme.of(context).accentColor),
-                      ),
                     ),
                   ),
-                )
-              ],
-            ),
+                );
+              }).toList(),
+              Material(
+                child: InkWell(
+                  onTap: () {
+                    var model = Provider.of<ThemeModel>(context);
+                    var brightness = Theme.of(context).brightness;
+                    model.switchRandomTheme(brightness: brightness);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Theme.of(context).accentColor)),
+                    width: 40,
+                    height: 40,
+                    child: Text(
+                      "?",
+                      style: TextStyle(
+                          fontSize: 20, color: Theme.of(context).accentColor),
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -64,7 +64,9 @@ flutter:
     - family: iconfont
       fonts:
         - asset: assets/fonts/iconfont.ttf
-
+    - family: kuaile #https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
+      fonts:
+        - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
   assets:
     - assets/images/
     - assets/animations/

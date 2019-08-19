@@ -125,7 +125,7 @@ class ArticleItemWidget extends StatelessWidget {
                       if (top) ArticleTag('置顶'),
                       Padding(
                         padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                            EdgeInsets.symmetric(vertical: 5),
                         child: Text(
                           (article.superChapterName == null
                                       ? ''
