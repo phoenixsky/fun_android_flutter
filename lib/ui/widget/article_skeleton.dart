@@ -1,207 +1,147 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
-class SkeletonListItem extends StatefulWidget {
+class SkeletonListItem extends StatelessWidget {
   final int index;
 
   SkeletonListItem({this.index: 0});
 
   @override
-  _SkeletonListItemState createState() => _SkeletonListItemState();
-}
-
-class _SkeletonListItemState extends State<SkeletonListItem>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
-  Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 1000),
-    );
-
-    _animation = Tween<double>(begin: -1.0, end: 2.0).animate(
-        CurvedAnimation(curve: Curves.easeInOutSine, parent: _controller));
-
-    _animation.addStatusListener((status) {
-      if (status == AnimationStatus.completed ||
-          status == AnimationStatus.dismissed) {
-        _controller.repeat();
-      } else if (status == AnimationStatus.dismissed) {
-        _controller.forward();
-      }
-    });
-    _timer = Timer(Duration(milliseconds: widget.index * 80), () {
-      if(mounted){
-        _controller.forward();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        bool isDark = Theme.of(context).brightness == Brightness.dark;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
 
-        return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: Divider.createBorderSide(context, width: 0.5))),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: Divider.createBorderSide(context,
+                  width: 0.7, color: Colors.redAccent))),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 20,
+                width: 20,
+                decoration: SkeletonDecoration(isCircle: true, isDark: isDark),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                height: 5,
+                width: 100,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+              Expanded(child: SizedBox.shrink()),
+              Container(
+                height: 5,
+                width: 30,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 0,
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isCircle: true, isDark: isDark),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    height: 5,
-                    width: 100,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                  Expanded(child: SizedBox.shrink()),
-                  Container(
-                    height: 5,
-                    width: 30,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: 0,
+                height: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 6.5,
-                    width: width * 0.7,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 6.5,
-                    width: width * 0.8,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 6.5,
-                    width: width * 0.5,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                ],
+              Container(
+                height: 6.5,
+                width: width * 0.7,
+                decoration: SkeletonDecoration(isDark: isDark),
               ),
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(right: 10),
-                    height: 8,
-                    width: 20,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                  Container(
-                    height: 8,
-                    width: 80,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                  Expanded(child: SizedBox.shrink()),
-                  Container(
-                    height: 20,
-                    width: 20,
-                    decoration: SkeletonDecoration(
-                        animation: _animation, isDark: isDark),
-                  ),
-                ],
+              Container(
+                height: 6.5,
+                width: width * 0.8,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 6.5,
+                width: width * 0.5,
+                decoration: SkeletonDecoration(isDark: isDark),
               ),
             ],
           ),
-        );
-      },
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(right: 10),
+                height: 8,
+                width: 20,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+              Container(
+                height: 8,
+                width: 80,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+              Expanded(child: SizedBox.shrink()),
+              Container(
+                height: 20,
+                width: 20,
+                decoration: SkeletonDecoration(isDark: isDark),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
 class SkeletonDecoration extends BoxDecoration {
   SkeletonDecoration({
-    Animation animation,
     isCircle: false,
     isDark: false,
   }) : super(
-            shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [
-                !isDark ? Colors.grey[200] : Colors.grey[700],
-                !isDark ? Colors.grey[350] : Colors.grey[500],
-                !isDark ? Colors.grey[200] : Colors.grey[700],
-              ],
-              stops: [
-                animation.value - 1,
-                animation.value,
-                animation.value + 1,
-              ],
-            ));
+          color: !isDark ? Colors.grey[350] : Colors.grey[700],
+          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+        );
 }
 
 class SkeletonList extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final int length;
 
-  SkeletonList({this.length, this.padding = const EdgeInsets.all(7)});
+  SkeletonList({this.length: 10, this.padding = const EdgeInsets.all(7)});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return SingleChildScrollView(
+      //防止超过屏幕高度溢出
       physics: NeverScrollableScrollPhysics(),
-      itemCount: length,
-      padding: padding,
-      itemBuilder: (BuildContext context, int index) {
-        return SkeletonListItem();
-      },
+      child: Shimmer.fromColors(
+        baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
+        highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
+        child: Padding(
+          padding: padding,
+          child: Column(
+            children: List.generate(length , (index) => SkeletonListItem()),
+          ),
+        ),
+      ),
     );
   }
 }

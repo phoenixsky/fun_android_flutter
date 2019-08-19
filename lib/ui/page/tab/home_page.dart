@@ -230,14 +230,8 @@ class HomeArticleList extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeModel homeModel = Provider.of(context);
     if (homeModel.busy) {
-      // 固定高度可提升效率 此处所谓demo
-      return SliverFixedExtentList(
-        delegate: SliverChildBuilderDelegate(
-            (context, index) => SkeletonListItem(
-                  index: index,
-                ),
-            childCount: 5),
-        itemExtent: 120,
+      return SliverToBoxAdapter(
+        child: SkeletonList(),
       );
     }
     return SliverList(
