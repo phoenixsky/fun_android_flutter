@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_whatsnew/flutter_whatsnew.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -125,7 +126,6 @@ class UserHeaderWidget extends StatelessWidget {
 
 class UserListWidget extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
     var iconColor = Theme.of(context).accentColor;
     return ListTileTheme(
@@ -180,7 +180,31 @@ class UserListWidget extends StatelessWidget {
           ),
           ListTile(
             title: Text('关于'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => WhatsNewPage.changelog(
+                    buttonColor: Theme.of(context).accentColor,
+                    title: Text(
+                      "What's New",
+                      textScaleFactor: 1.0,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    buttonText: Text(
+                      '关闭',
+                      textScaleFactor: 1.0,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
             leading: Icon(
               Icons.error_outline,
               color: iconColor,

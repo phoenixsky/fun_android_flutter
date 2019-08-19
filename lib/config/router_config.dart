@@ -54,10 +54,6 @@ class Router {
         return CupertinoPageRoute(builder: (_) => CollectionListPage());
       case RouteName.setting:
         return CupertinoPageRoute(builder: (_) => SettingPage());
-//      case RoutePaths.Post:
-//        var post = settings.arguments as Post;
-//        return CupertinoPageRoute(builder: (_) => PostView(post: post));
-
       default:
         return CupertinoPageRoute(
             builder: (_) => Scaffold(

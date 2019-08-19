@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
 
@@ -100,9 +101,11 @@ class SettingPage extends StatelessWidget {
                 color: Theme.of(context).cardColor,
                 child: ListTile(
                   title: Text('意见反馈'),
-                  onTap: () {},
+                  onTap: () {
+                    showToast('请前往github,提issue');
+                  },
                   leading: Icon(
-                    Icons.alternate_email,
+                    Icons.feedback,
                     color: iconColor,
                   ),
                   trailing: Icon(Icons.chevron_right),
