@@ -56,7 +56,7 @@ class Article {
     articleBean.superChapterName = StringUtils.urlDecoder(map["superChapterName"]);
     articleBean.tags = List()
       ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
-    articleBean.title = map['title'];
+    articleBean.title = StringUtils.urlDecoder(map["title"]);
     articleBean.type = map['type'];
     articleBean.userId = map['userId'];
     articleBean.visible = map['visible'];

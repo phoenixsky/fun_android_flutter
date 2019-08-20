@@ -126,7 +126,8 @@ class WebViewTitle extends StatelessWidget {
         ),
         Expanded(
             child: Text(
-          StringUtils.removeHtmlLabel(title), //移除html标签
+          //移除html标签
+          StringUtils.removeHtmlLabel(title),
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 16),
         ))
@@ -187,7 +188,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   }
                   break;
                 case 2:
-                  Share.share(article.link);
+                  Share.share(article.link, subject: article.title);
                   break;
                 case 3:
                   Provider.of<ThemeModel>(context).switchRandomTheme();

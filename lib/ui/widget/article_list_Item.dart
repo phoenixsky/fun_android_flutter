@@ -124,14 +124,12 @@ class ArticleItemWidget extends StatelessWidget {
                     children: <Widget>[
                       if (top) ArticleTag('置顶'),
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5),
+                        padding: EdgeInsets.symmetric(vertical: 5),
                         child: Text(
-                          (article.superChapterName == null
-                                      ? ''
-                                      : article.superChapterName + ' · ') +
-                                  article.chapterName ??
-                              '',
+                          (article.superChapterName != null
+                                  ? article.superChapterName + ' · '
+                                  : '') +
+                              (article.chapterName ?? ''),
                           style: Theme.of(context).textTheme.overline,
                         ),
                       ),
