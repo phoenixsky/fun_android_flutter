@@ -21,11 +21,47 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get Like => "Like";
+  String get about => "About";
+  String get appName => "Fun Android";
+  String get autoBySystem => "Auto";
+  String get clear => "Clear";
+  String get close => "Close";
+  String get darkMode => "Dark Mode";
+  String get favourites => "Favorites";
+  String get feedback => "FeedBack";
+  String get fieldNotNull => "not empty";
+  String get fontKuaiLe => "ZCOOL KuaiLe";
+  String get githubIssue => "please github issues";
+  String get login => "Login";
+  String get logout => "Sign Out";
+  String get myFavourites => "My favourites";
+  String get noAccount => "No Account ? ";
+  String get pageStateError => "Failed";
+  String get pageStateRetry => "Retry";
+  String get password => "Password";
+  String get rePassword => "Confirm Password";
+  String get refresh => "Refresh";
+  String get register => "Sing Up";
+  String get retry => "Retry";
+  String get searchHistory => "History";
+  String get searchHot => "Hot";
+  String get searchShake => "Shake";
+  String get setting => "Setting";
+  String get settingFont => "System Font";
   String get setting_language => "Language";
+  String get share => "Share";
+  String get signIn3thd => "More";
+  String get singIn => "Sing In";
+  String get splash_skip => "Skip";
   String get tab_home => "Home";
   String get tab_project => "Project";
   String get tab_structure => "Structure";
   String get tab_user => "Me";
+  String get theme => "Theme";
+  String get twoPwdDifferent => "The two passwords differ";
+  String get unLike => "UnLike";
+  String get userName => "Username";
 }
 
 class $en extends S {
@@ -39,15 +75,87 @@ class $zh_CN extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
+  String get tab_user => "我的";
+  @override
+  String get favourites => "收藏";
+  @override
+  String get fontKuaiLe => "快乐字体";
+  @override
+  String get twoPwdDifferent => "两次密码不一致";
+  @override
+  String get about => "关于";
+  @override
+  String get unLike => "取消收藏";
+  @override
+  String get myFavourites => "我的收藏";
+  @override
+  String get login => "登 录";
+  @override
+  String get setting => "设置";
+  @override
+  String get settingFont => "字体";
+  @override
   String get tab_structure => "体系";
+  @override
+  String get feedback => "意见反馈";
+  @override
+  String get signIn3thd => "第三方登录";
+  @override
+  String get logout => "退出登录";
+  @override
+  String get password => "密码";
+  @override
+  String get searchShake => "换一换";
+  @override
+  String get Like => "收藏";
+  @override
+  String get pageStateError => "加载失败";
+  @override
+  String get theme => "色彩主题";
+  @override
+  String get share => "分享";
+  @override
+  String get fieldNotNull => "不能为空";
+  @override
+  String get autoBySystem => "跟随系统";
+  @override
+  String get close => "关闭";
+  @override
+  String get retry => "重试";
   @override
   String get tab_home => "首页";
   @override
-  String get tab_user => "我的";
+  String get pageStateRetry => "重试";
+  @override
+  String get appName => "玩Android";
   @override
   String get tab_project => "项目";
   @override
+  String get clear => "清空";
+  @override
+  String get refresh => "刷新";
+  @override
+  String get userName => "用户名";
+  @override
+  String get singIn => "点我登录";
+  @override
+  String get splash_skip => "跳过";
+  @override
+  String get rePassword => "确认密码";
+  @override
+  String get githubIssue => "请前往github,提issue";
+  @override
+  String get searchHot => "热门搜索";
+  @override
+  String get noAccount => "还没账号? ";
+  @override
+  String get darkMode => "黑夜模式";
+  @override
+  String get searchHistory => "历史搜索";
+  @override
   String get setting_language => "多语言";
+  @override
+  String get register => "去注册";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {

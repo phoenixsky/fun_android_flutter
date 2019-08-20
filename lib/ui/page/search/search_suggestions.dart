@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide SearchDelegate;
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/flutter/search.dart';
@@ -84,7 +85,7 @@ class _SearchHotKeysWidgetState extends State<SearchHotKeysWidget> {
             children: <Widget>[
               FlatButton(
                 child: Text(
-                  '热门搜索',
+                  S.of(context).searchHot,
                   style: Provider.of<TextStyle>(context),
                 ),
               ),
@@ -100,13 +101,13 @@ class _SearchHotKeysWidgetState extends State<SearchHotKeysWidget> {
                                 Icons.autorenew,
                               ),
                               label: Text(
-                                '换一换',
+                                S.of(context).searchShake,
                               ))
                           : FlatButton.icon(
                               textColor: Provider.of<Color>(context),
                               onPressed: model.initData,
                               icon: Icon(Icons.refresh),
-                              label: Text('重试')));
+                              label: Text(S.of(context).retry)));
                 },
               )
             ],
@@ -156,7 +157,7 @@ class _SearchHistoriesWidgetState extends State<SearchHistoriesWidget> {
             children: <Widget>[
               FlatButton(
                 child: Text(
-                  '历史搜索',
+                  S.of(context).searchHistory,
                   style: Provider.of<TextStyle>(context),
                 ),
               ),
@@ -168,12 +169,12 @@ class _SearchHistoriesWidgetState extends State<SearchHistoriesWidget> {
                             textColor: Provider.of<Color>(context),
                             onPressed: model.clearHistory,
                             icon: Icon(Icons.clear),
-                            label: Text('清空'))
+                            label: Text(S.of(context).clear))
                         : FlatButton.icon(
                             textColor: Provider.of<Color>(context),
                             onPressed: model.initData,
                             icon: Icon(Icons.refresh),
-                            label: Text('重试'))),
+                            label: Text(S.of(context).retry))),
               ),
             ],
           ),

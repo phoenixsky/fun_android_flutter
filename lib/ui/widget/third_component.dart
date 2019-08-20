@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
@@ -19,7 +20,7 @@ class ThirdLogin extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text('第三方登录', style: TextStyle(color: theme.hintColor)),
+              child: Text(S.of(context).signIn3thd, style: TextStyle(color: theme.hintColor)),
             ),
             Container(
               color: theme.hintColor.withAlpha(50),

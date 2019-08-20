@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage>
                                     onDoubleTap: tapToTopModel.scrollToTop,
                                     child: EmptyAnimatedSwitcher(
                                       display: tapToTopModel.showTopBtn,
-                                      child: Text('玩Android'),
+                                      child: Text(S.of(context).appName),
                                     ),
                                   ),
                                 ),

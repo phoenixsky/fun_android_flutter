@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/model/article.dart';
@@ -156,19 +157,19 @@ class WebViewPopupMenu extends StatelessWidget {
           return PopupMenuButton(
             itemBuilder: (context) => <PopupMenuEntry<int>>[
               PopupMenuItem(
-                child: WebViewPopupMenuItem(Icons.refresh, '刷新'),
+                child: WebViewPopupMenuItem(Icons.refresh, S.of(context).refresh),
                 value: 0,
               ),
               PopupMenuItem(
                 child: (collectionModel.article.collect ?? true)
-                    ? WebViewPopupMenuItem(Icons.favorite, '取消收藏',
+                    ? WebViewPopupMenuItem(Icons.favorite, S.of(context).unLike,
                         color: Colors.redAccent[100])
-                    : WebViewPopupMenuItem(Icons.favorite_border, '收藏'),
+                    : WebViewPopupMenuItem(Icons.favorite_border, S.of(context).Like),
                 value: 1,
               ),
               PopupMenuDivider(),
               PopupMenuItem(
-                child: WebViewPopupMenuItem(Icons.share, '分享'),
+                child: WebViewPopupMenuItem(Icons.share, S.of(context).share),
                 value: 2,
               ),
 //              PopupMenuItem(

@@ -79,6 +79,9 @@ flutter:
     - family: kuaile # 站酷 快乐字体  https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
       fonts:
         - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+    - family: xiaowei # 站酷 xiaowei  https://fonts.google.com/specimen/ZCOOL+XiaoWei
+      fonts:
+        - asset: assets/fonts/ZCOOLXiaoWei-Regular.ttf
   assets:
     - assets/images/
     - assets/animations/

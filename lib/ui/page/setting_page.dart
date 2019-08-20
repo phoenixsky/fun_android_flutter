@@ -12,7 +12,7 @@ class SettingPage extends StatelessWidget {
     var iconColor = Theme.of(context).accentColor;
     return Scaffold(
       appBar: AppBar(
-        title: Text('设置'),
+        title: Text(S.of(context).setting),
       ),
       body: SingleChildScrollView(
         child: ListTileTheme(
@@ -28,10 +28,11 @@ class SettingPage extends StatelessWidget {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('字体'),
+                      Text(S.of(context).settingFont),
                       Text(
-                        ThemeModel.fontNameList[
-                            Provider.of<ThemeModel>(context).fontIndex],
+                        ThemeModel.fontName(
+                            Provider.of<ThemeModel>(context).fontIndex,
+                            context),
                         style: Theme.of(context).textTheme.caption,
                       )
                     ],
@@ -52,7 +53,7 @@ class SettingPage extends StatelessWidget {
                               model.switchFont(index);
                             },
                             groupValue: model.fontIndex,
-                            title: Text(ThemeModel.fontNameList[index]),
+                            title: Text(ThemeModel.fontName(index, context)),
                           );
                         })
                   ],
@@ -72,8 +73,9 @@ class SettingPage extends StatelessWidget {
                         style: TextStyle(),
                       ),
                       Text(
-                        LocaleModel.localeNameList[
-                            Provider.of<LocaleModel>(context).localeIndex],
+                        LocaleModel.localeName(
+                            Provider.of<LocaleModel>(context).localeIndex,
+                            context),
                         style: Theme.of(context).textTheme.caption,
                       )
                     ],
@@ -85,7 +87,7 @@ class SettingPage extends StatelessWidget {
                   children: <Widget>[
                     ListView.builder(
                         shrinkWrap: true,
-                        itemCount: LocaleModel.localeNameList.length,
+                        itemCount: LocaleModel.localeValueList.length,
                         itemBuilder: (context, index) {
                           var model = Provider.of<LocaleModel>(context);
                           return RadioListTile(
@@ -94,8 +96,7 @@ class SettingPage extends StatelessWidget {
                               model.switchLocale(index);
                             },
                             groupValue: model.localeIndex,
-                            title: Text(
-                                LocaleModel.localeNameList[index]),
+                            title: Text(LocaleModel.localeName(index, context)),
                           );
                         })
                   ],
@@ -107,9 +108,9 @@ class SettingPage extends StatelessWidget {
               Material(
                 color: Theme.of(context).cardColor,
                 child: ListTile(
-                  title: Text('意见反馈'),
+                  title: Text(S.of(context).feedback),
                   onTap: () {
-                    showToast('请前往github,提issue');
+                    showToast(S.of(context).githubIssue);
                   },
                   leading: Icon(
                     Icons.feedback,

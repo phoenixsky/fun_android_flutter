@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/widget/theme.dart';
 import 'package:fun_android/config/storage_manager.dart';
 
@@ -13,8 +13,8 @@ class ThemeModel with ChangeNotifier {
   static const kThemeBrightnessIndex = 'kThemeBrightnessIndex';
   static const kFontIndex = 'kFontIndex';
 
-  static const fontNameList = ['跟随系统', '快乐字体'];
-  static const fontValueList = ['system', 'kuaile'];
+//  static const fontNameList = ['跟随系统', '快乐字体'];
+  static const fontValueList = ['system', 'kuaile', 'xiaowei'];
 
   ThemeData _themeData;
 
@@ -98,8 +98,7 @@ class ThemeModel with ChangeNotifier {
       cursorColor: accentColor,
       textSelectionColor: accentColor.withAlpha(60),
       textSelectionHandleColor: accentColor.withAlpha(60),
-      toggleableActiveColor : accentColor,
-
+      toggleableActiveColor: accentColor,
       chipTheme: themeData.chipTheme.copyWith(
         pressElevation: 0,
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -124,6 +123,19 @@ class ThemeModel with ChangeNotifier {
           .setInt(kThemeBrightnessIndex, brightness.index),
       StorageManager.sharedPreferences.setInt(kThemeColorIndex, index)
     ]);
+  }
+
+  static String fontName(index, context) {
+    switch (index) {
+      case 0:
+        return S.of(context).autoBySystem;
+      case 1:
+        return S.of(context).fontKuaiLe;
+      case 2:
+        return 'xiaowei';
+      default:
+        return '';
+    }
   }
 
   /// 字体选择持久化

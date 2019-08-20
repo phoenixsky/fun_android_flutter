@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 import 'package:oktoast/oktoast.dart';
 import 'package:fun_android/provider/provider_widget.dart';
@@ -58,27 +59,27 @@ class _RegisterPageState extends State<RegisterPage> {
                                       CrossAxisAlignment.stretch,
                                   children: <Widget>[
                                     LoginTextField(
-                                      label: '用户名',
+                                      label: S.of(context).userName,
                                       icon: Icons.person_outline,
                                       controller: _nameController,
                                       textInputAction: TextInputAction.next,
                                     ),
                                     LoginTextField(
-                                      label: '密码',
+                                      label: S.of(context).password,
                                       icon: Icons.lock_outline,
                                       obscureText: true,
                                       controller: _passwordController,
                                       textInputAction: TextInputAction.next,
                                     ),
                                     LoginTextField(
-                                      label: '确认密码',
+                                      label: S.of(context).rePassword,
                                       icon: Icons.lock_outline,
                                       obscureText: true,
                                       controller: _rePasswordController,
                                       textInputAction: TextInputAction.done,
                                       validator: (value) {
                                         return value != _passwordController.text
-                                            ? '两次密码不一致'
+                                            ? S.of(context).twoPwdDifferent
                                             : null;
                                       },
                                     ),
@@ -115,7 +116,7 @@ class RegisterButton extends StatelessWidget {
       child: model.busy
           ? ButtonProgressIndicator()
           : Text(
-              "注册",
+              S.of(context).register,
               style: Theme.of(context)
                   .accentTextTheme
                   .title

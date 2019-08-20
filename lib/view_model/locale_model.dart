@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/storage_manager.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 class LocaleModel extends ChangeNotifier {
-  static const localeNameList = ['跟随系统', '中文', '英文'];
+//  static const localeNameList = ['auto', '中文', 'English'];
   static const localeValueList = ['', 'zh-CN', 'en'];
 
   //
@@ -29,5 +30,18 @@ class LocaleModel extends ChangeNotifier {
     _localeIndex = index;
     notifyListeners();
     StorageManager.sharedPreferences.setInt(kLocaleIndex, index);
+  }
+
+  static String localeName(index, context) {
+    switch (index) {
+      case 0:
+        return S.of(context).autoBySystem;
+      case 1:
+        return '中文';
+      case 2:
+        return 'English';
+      default:
+        return '';
+    }
   }
 }

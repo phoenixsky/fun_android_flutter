@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 /// 登录页面表单字段框封装类
 class LoginTextField extends StatefulWidget {
@@ -58,7 +59,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           obscureText: value,
           validator: (text) {
             var validator = widget.validator ?? (_) => null;
-            return text.trim().length > 0 ? validator(text) : '不能为空';
+            return text.trim().length > 0 ? validator(text) : S.of(context).fieldNotNull;
           },
           textInputAction: widget.textInputAction,
           decoration: InputDecoration(

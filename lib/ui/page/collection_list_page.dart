@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -20,7 +21,7 @@ class CollectionListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的收藏'),
+        title: Text(S.of(context).myFavourites),
       ),
       body: ProviderWidget<CollectionListModel>(
         model:

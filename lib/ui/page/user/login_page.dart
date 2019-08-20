@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -70,14 +71,14 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           LoginTextField(
-                            label: '用户名',
+                            label: S.of(context).userName,
                             icon: Icons.person_outline,
                             controller: _nameController,
                             textInputAction: TextInputAction.next,
                           ),
                           LoginTextField(
                             controller: _passwordController,
-                            label: '密码',
+                            label: S.of(context).password,
                             icon: Icons.lock_outline,
                             obscureText: true,
                             textInputAction: TextInputAction.done,
@@ -110,11 +111,11 @@ class LoginButton extends StatelessWidget {
       child: model.busy
           ? ButtonProgressIndicator()
           : Text(
-              "登录",
+              S.of(context).login,
               style: Theme.of(context)
                   .accentTextTheme
                   .title
-                  .copyWith(letterSpacing: 10),
+                  .copyWith(wordSpacing: 10),
             ),
       onPressed: model.busy
           ? null
@@ -168,11 +169,11 @@ class _SingUpWidgetState extends State<SingUpWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text.rich(TextSpan(text: '还没账号? ', children: [
+      child: Text.rich(TextSpan(text: S.of(context).noAccount, children: [
         TextSpan(
-            text: '去注册',
+            text: S.of(context).register,
             recognizer: _recognizerRegister,
-            style: TextStyle(color: Theme.of(context).primaryColor))
+            style: TextStyle(color: Theme.of(context).accentColor))
       ])),
     );
   }

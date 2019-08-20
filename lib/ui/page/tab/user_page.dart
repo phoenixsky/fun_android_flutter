@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_whatsnew/flutter_whatsnew.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -35,7 +36,7 @@ class _UserPageState extends State<UserPage>
                 builder: (context, model, child) => Offstage(
                       offstage: !model.userModel.hasUser,
                       child: IconButton(
-                        tooltip: '退出登录',
+                        tooltip: S.of(context).logout,
                         icon: Icon(Icons.exit_to_app),
                         onPressed: () {
                           model.logout();
@@ -97,7 +98,7 @@ class UserHeaderWidget extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(model.hasUser ? model.user.nickname : '点我登录',
+                      Text(model.hasUser ? model.user.nickname : S.of(context).singIn,
                           style: Theme.of(context)
                               .textTheme
                               .title
@@ -133,7 +134,7 @@ class UserListWidget extends StatelessWidget {
       child: SliverList(
         delegate: SliverChildListDelegate([
           ListTile(
-            title: Text('收藏'),
+            title: Text(S.of(context).favourites),
             onTap: () {
               Navigator.of(context).pushNamed(RouteName.collectionList);
             },
@@ -144,7 +145,7 @@ class UserListWidget extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
-            title: Text('黑夜模式'),
+            title: Text(S.of(context).darkMode),
             onTap: () {
               Provider.of<ThemeModel>(context).switchTheme(
                   brightness: Theme.of(context).brightness == Brightness.light
@@ -170,7 +171,7 @@ class UserListWidget extends StatelessWidget {
           ),
           SettingThemeWidget(),
           ListTile(
-            title: Text('设置'),
+            title: Text(S.of(context).setting),
             onTap: () {
               Navigator.pushNamed(context, RouteName.setting);
             },
@@ -181,7 +182,7 @@ class UserListWidget extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
-            title: Text('关于'),
+            title: Text(S.of(context).about),
             onTap: () {
               Navigator.push(
                 context,
@@ -198,7 +199,7 @@ class UserListWidget extends StatelessWidget {
                       ),
                     ),
                     buttonText: Text(
-                      '关闭',
+                      S.of(context).close,
                       textScaleFactor: 1.0,
                       style: const TextStyle(color: Colors.white),
                     ),
@@ -225,7 +226,7 @@ class SettingThemeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text('色彩主题'),
+      title: Text(S.of(context).theme),
       leading: Icon(
         Icons.color_lens,
         color: Theme.of(context).accentColor,

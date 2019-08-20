@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/resource_mananger.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 import 'article_skeleton.dart';
 
@@ -42,7 +43,7 @@ class PageStateError extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 150),
             child: Text(
-              message ?? '加载失败',
+              message ?? S.of(context).pageStateError,
               style: Theme.of(context)
                   .textTheme
                   .body1
@@ -66,12 +67,12 @@ class PageStateEmpty extends PageStateError {
         size: 100,
         color: Colors.grey,
       ),
-      message: "空空如也",
+      message,
       buttonText,
       onPressed})
       : super(
             image: image,
-            message: message,
+            message: message??'空空如也',
             buttonText: Text(
               '刷新一下',
               style: TextStyle(letterSpacing: 5),
@@ -119,7 +120,7 @@ class PageStateButton extends StatelessWidget {
     return OutlineButton(
       child: child ??
           Text(
-            '重试',
+            S.of(context).pageStateRetry,
             style: TextStyle(letterSpacing: 5),
           ),
       textColor: Colors.grey,

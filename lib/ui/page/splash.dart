@@ -5,6 +5,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/config/resource_mananger.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -114,7 +115,7 @@ class AnimatedCountdown extends AnimatedWidget {
   Widget build(BuildContext context) {
     var value = animation.value + 1;
     return Text(
-      (value == 0 ? '' : '$value | ') + '跳过',
+      (value == 0 ? '' : '$value | ') + S.of(context).splash_skip,
       style: TextStyle(color: Colors.white),
     );
   }
