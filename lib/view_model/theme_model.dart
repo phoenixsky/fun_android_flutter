@@ -76,28 +76,30 @@ class ThemeModel with ChangeNotifier {
 
   /// 根据主题 明暗 和 颜色 生成对应的主题
   _generateThemeData() {
-    var themeColor = _themeColor;
     var isDark = Brightness.dark == _brightness;
+    var themeColor = _themeColor;
+    var accentColor = isDark ? themeColor[700] : _themeColor;
     var themeData = ThemeData(
         brightness: _brightness,
-
-        /// 主题颜色属于亮色系还是属于暗色系(eg:dark时,AppBarTitle的颜色为白色,反之为黑色)
+        // 主题颜色属于亮色系还是属于暗色系(eg:dark时,AppBarTitle文字及状态栏文字的颜色为白色,反之为黑色)
         primaryColorBrightness: Brightness.dark,
         accentColorBrightness: Brightness.dark,
         primarySwatch: themeColor,
-        accentColor: isDark ? themeColor[700] : null,
+        accentColor: accentColor,
         fontFamily: fontValueList[fontIndex]);
 
     themeData = themeData.copyWith(
       brightness: _brightness,
-      accentColor: themeColor,
+      accentColor: accentColor,
       appBarTheme: themeData.appBarTheme.copyWith(elevation: 0),
       splashColor: themeColor.withAlpha(50),
       hintColor: themeData.hintColor.withAlpha(90),
       errorColor: Colors.red,
-      cursorColor: themeColor,
-      textSelectionColor: themeColor.withAlpha(60),
-      textSelectionHandleColor: themeColor.withAlpha(60),
+      cursorColor: accentColor,
+      textSelectionColor: accentColor.withAlpha(60),
+      textSelectionHandleColor: accentColor.withAlpha(60),
+      toggleableActiveColor : accentColor,
+
       chipTheme: themeData.chipTheme.copyWith(
         pressElevation: 0,
         padding: EdgeInsets.symmetric(horizontal: 10),
