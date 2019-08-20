@@ -1,3 +1,4 @@
+import 'package:fun_android/view_model/locale_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
 import 'package:fun_android/view_model/user_model.dart';
@@ -12,6 +13,7 @@ List<SingleChildCloneableWidget> providers = [
 List<SingleChildCloneableWidget> independentServices = [
 //  Provider.value(value: Api())
   ChangeNotifierProvider<ThemeModel>.value(value: ThemeModel()),
+  ChangeNotifierProvider<LocaleModel>.value(value: LocaleModel()),
   ChangeNotifierProvider<UserModel>.value(value: UserModel())
 ];
 

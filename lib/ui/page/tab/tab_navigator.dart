@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_android/generated/i18n.dart';
 
 import 'home_page.dart';
 import 'project_page.dart';
@@ -44,22 +45,22 @@ class _TabNavigatorState extends State<TabNavigator> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('首页'),
+            title: Text(S.of(context).tab_home),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted),
-            title: Text('项目'),
+            title: Text(S.of(context).tab_project),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.call_split),
-            title: Text('体系'),
+            title: Text(S.of(context).tab_structure),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.insert_emoticon),
-            title: Text('我的'),
+            title: Text(S.of(context).tab_user),
           ),
         ],
         currentIndex: _selectedIndex,

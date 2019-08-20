@@ -133,7 +133,7 @@ packages:
     source: hosted
     version: "0.1.6"
   flutter_localizations:
-    dependency: transitive
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"

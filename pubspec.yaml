@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+      sdk: flutter
   cupertino_icons: ^0.1.2
 
   # State
@@ -50,11 +52,14 @@ dependencies:
   # 更新展示支持mark_down
   flutter_whatsnew: ^1.0.0
 
+  flare_flutter: 1.5.5
+
   # third_app
   share: 0.6.2+1 #分享
   url_launcher: ^5.1.0 #启动第三方app
 
-  flare_flutter: 1.5.5
+
+
 
 dev_dependencies:
   flutter_test:

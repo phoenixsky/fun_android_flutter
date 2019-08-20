@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/view_model/locale_model.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
@@ -46,7 +48,7 @@ class SettingPage extends StatelessWidget {
                           var model = Provider.of<ThemeModel>(context);
                           return RadioListTile(
                             value: index,
-                            onChanged: (value) {
+                            onChanged: (index) {
                               model.switchFont(index);
                             },
                             groupValue: model.fontIndex,
@@ -66,11 +68,12 @@ class SettingPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        '多语言',
+                        S.of(context).setting_language,
                         style: TextStyle(),
                       ),
                       Text(
-                        '跟随系统',
+                        LocaleModel.localeNameList[
+                            Provider.of<LocaleModel>(context).localeIndex],
                         style: Theme.of(context).textTheme.caption,
                       )
                     ],
@@ -82,13 +85,17 @@ class SettingPage extends StatelessWidget {
                   children: <Widget>[
                     ListView.builder(
                         shrinkWrap: true,
-                        itemCount: 3,
+                        itemCount: LocaleModel.localeNameList.length,
                         itemBuilder: (context, index) {
+                          var model = Provider.of<LocaleModel>(context);
                           return RadioListTile(
-                            value: 1,
-                            onChanged: (value) {},
-                            groupValue: 2,
-                            title: Text('中文' + index.toString()),
+                            value: index,
+                            onChanged: (index) {
+                              model.switchLocale(index);
+                            },
+                            groupValue: model.localeIndex,
+                            title: Text(
+                                LocaleModel.localeNameList[index]),
                           );
                         })
                   ],

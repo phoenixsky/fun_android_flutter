@@ -154,7 +154,9 @@ class UserListWidget extends StatelessWidget {
             leading: Transform.rotate(
               angle: -pi,
               child: Icon(
-                Icons.brightness_2,
+                Theme.of(context).brightness == Brightness.light
+                    ? Icons.brightness_2
+                    : Icons.brightness_5,
                 color: iconColor,
               ),
             ),
