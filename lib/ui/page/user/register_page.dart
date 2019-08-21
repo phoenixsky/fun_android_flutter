@@ -35,67 +35,76 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-        child: Stack(
-          children: <Widget>[
-            LoginTopPanel(),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  LoginLogo(),
-                  ProviderWidget<RegisterModel>(
-                      model: RegisterModel(),
-                      builder: (context, model, child) => Form(
-                            onWillPop: () async {
-                              return !model.busy;
-                            },
-                            child: LoginFormContainer(
-                              child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: <Widget>[
-                                    LoginTextField(
-                                      label: S.of(context).userName,
-                                      icon: Icons.person_outline,
-                                      controller: _nameController,
-                                      textInputAction: TextInputAction.next,
-                                    ),
-                                    LoginTextField(
-                                      label: S.of(context).password,
-                                      icon: Icons.lock_outline,
-                                      obscureText: true,
-                                      controller: _passwordController,
-                                      textInputAction: TextInputAction.next,
-                                    ),
-                                    LoginTextField(
-                                      label: S.of(context).rePassword,
-                                      icon: Icons.lock_outline,
-                                      obscureText: true,
-                                      controller: _rePasswordController,
-                                      textInputAction: TextInputAction.done,
-                                      validator: (value) {
-                                        return value != _passwordController.text
-                                            ? S.of(context).twoPwdDifferent
-                                            : null;
-                                      },
-                                    ),
-                                    RegisterButton(
-                                        _nameController,
-                                        _passwordController,
-                                        _rePasswordController,
-                                        model)
-                                  ]),
-                            ),
-                          )),
-                ],
-              ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(),
+          SliverToBoxAdapter(
+            child: Stack(
+              children: <Widget>[
+                LoginTopPanel(),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      LoginLogo(),
+                      ProviderWidget<RegisterModel>(
+                          model: RegisterModel(),
+                          builder: (context, model, child) => Form(
+                                onWillPop: () async {
+                                  return !model.busy;
+                                },
+                                child: LoginFormContainer(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: <Widget>[
+                                        LoginTextField(
+                                          label: S.of(context).userName,
+                                          icon: Icons.person_outline,
+                                          controller: _nameController,
+                                          textInputAction:
+                                              TextInputAction.next,
+                                        ),
+                                        LoginTextField(
+                                          label: S.of(context).password,
+                                          icon: Icons.lock_outline,
+                                          obscureText: true,
+                                          controller: _passwordController,
+                                          textInputAction:
+                                              TextInputAction.next,
+                                        ),
+                                        LoginTextField(
+                                          label: S.of(context).rePassword,
+                                          icon: Icons.lock_outline,
+                                          obscureText: true,
+                                          controller: _rePasswordController,
+                                          textInputAction:
+                                              TextInputAction.done,
+                                          validator: (value) {
+                                            return value !=
+                                                    _passwordController.text
+                                                ? S
+                                                    .of(context)
+                                                    .twoPwdDifferent
+                                                : null;
+                                          },
+                                        ),
+                                        RegisterButton(
+                                            _nameController,
+                                            _passwordController,
+                                            _rePasswordController,
+                                            model)
+                                      ]),
+                                ),
+                              )),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

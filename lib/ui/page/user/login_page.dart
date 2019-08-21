@@ -41,58 +41,67 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-        child: Stack(
-          children: <Widget>[
-            LoginTopPanel(),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  LoginLogo(),
-                  LoginFormContainer(
-                      child: ProviderWidget<LoginModel>(
-                    model: LoginModel(Provider.of(context)),
-                    onModelReady: (model) {
-                      _nameController.text = model.getLoginName();
-                    },
-                    builder: (context, model, child) {
-                      return Form(
-                        onWillPop: () async {
-                          return !model.busy;
-                        },
-                        child: child,
-                      );
-                    },
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          LoginTextField(
-                            label: S.of(context).userName,
-                            icon: Icons.person_outline,
-                            controller: _nameController,
-                            textInputAction: TextInputAction.next,
-                          ),
-                          LoginTextField(
-                            controller: _passwordController,
-                            label: S.of(context).password,
-                            icon: Icons.lock_outline,
-                            obscureText: true,
-                            textInputAction: TextInputAction.done,
-                          ),
-                          LoginButton(_nameController, _passwordController),
-                          SingUpWidget(_nameController),
-                        ]),
-                  )),
-                  ThirdLogin()
-                ],
-              ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(),
+          SliverToBoxAdapter(
+            child: Container(
+              color: Colors.transparent,
+              height: 0,
             ),
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(
+            child: Stack(
+              children: <Widget>[
+                LoginTopPanel(),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      LoginLogo(),
+                      LoginFormContainer(
+                          child: ProviderWidget<LoginModel>(
+                        model: LoginModel(Provider.of(context)),
+                        onModelReady: (model) {
+                          _nameController.text = model.getLoginName();
+                        },
+                        builder: (context, model, child) {
+                          return Form(
+                            onWillPop: () async {
+                              return !model.busy;
+                            },
+                            child: child,
+                          );
+                        },
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              LoginTextField(
+                                label: S.of(context).userName,
+                                icon: Icons.person_outline,
+                                controller: _nameController,
+                                textInputAction: TextInputAction.next,
+                              ),
+                              LoginTextField(
+                                controller: _passwordController,
+                                label: S.of(context).password,
+                                icon: Icons.lock_outline,
+                                obscureText: true,
+                                textInputAction: TextInputAction.done,
+                              ),
+                              LoginButton(_nameController, _passwordController),
+                              SingUpWidget(_nameController),
+                            ]),
+                      )),
+                      ThirdLogin()
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

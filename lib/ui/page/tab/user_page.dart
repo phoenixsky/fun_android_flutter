@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_whatsnew/flutter_whatsnew.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/page/change_log_page.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -98,7 +98,10 @@ class UserHeaderWidget extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(model.hasUser ? model.user.nickname : S.of(context).singIn,
+                      Text(
+                          model.hasUser
+                              ? model.user.nickname
+                              : S.of(context).singIn,
                           style: Theme.of(context)
                               .textTheme
                               .title
@@ -187,23 +190,7 @@ class UserListWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => WhatsNewPage.changelog(
-                    buttonColor: Theme.of(context).accentColor,
-                    title: Text(
-                      "Fun Android",
-                      textScaleFactor: 1.0,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    buttonText: Text(
-                      S.of(context).close,
-                      textScaleFactor: 1.0,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
+                  builder: (context) => ChangeLogPage(),
                   fullscreenDialog: true,
                 ),
               );

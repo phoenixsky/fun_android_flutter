@@ -123,22 +123,26 @@ class SkeletonList extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final int length;
 
-  SkeletonList({this.length: 10, this.padding = const EdgeInsets.all(7)});
+  SkeletonList({this.length: 6, this.padding = const EdgeInsets.all(7)});
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    var theme = Theme.of(context);
+    bool isDark = theme.brightness == Brightness.dark;
 
     return SingleChildScrollView(
       //防止超过屏幕高度溢出
       physics: NeverScrollableScrollPhysics(),
       child: Shimmer.fromColors(
+        period: Duration(milliseconds: 1200),
         baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
+//        highlightColor: isDark ? Colors.grey[500] : Color.alphaBlend(
+//          theme.accentColor.withAlpha(20), Colors.grey[100],),
         highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
         child: Padding(
           padding: padding,
           child: Column(
-            children: List.generate(length , (index) => SkeletonListItem()),
+            children: List.generate(length, (index) => SkeletonListItem()),
           ),
         ),
       ),
