@@ -5,6 +5,7 @@ import 'package:fun_android/view_model/locale_model.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatelessWidget {
   @override
@@ -109,8 +110,17 @@ class SettingPage extends StatelessWidget {
                 color: Theme.of(context).cardColor,
                 child: ListTile(
                   title: Text(S.of(context).feedback),
-                  onTap: () {
-                    showToast(S.of(context).githubIssue);
+                  onTap: () async {
+                    var url =
+                        'mailto:moran.fc@gmail.com?subject=FunAndroid%20Feedback&body=feedback';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      showToast(S.of(context).githubIssue);
+                      await Future.delayed(Duration(seconds: 1));
+                      launch('https://github.com/phoenixsky/fun_android_flutter',
+                          forceSafariVC: false);
+                    }
                   },
                   leading: Icon(
                     Icons.feedback,

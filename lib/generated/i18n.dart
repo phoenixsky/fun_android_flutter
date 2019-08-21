@@ -32,7 +32,7 @@ class S implements WidgetsLocalizations {
   String get feedback => "FeedBack";
   String get fieldNotNull => "not empty";
   String get fontKuaiLe => "ZCOOL KuaiLe";
-  String get githubIssue => "please github issues";
+  String get githubIssue => "Can't find mail app,please github issues";
   String get login => "Login";
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
@@ -146,7 +146,7 @@ class $zh_CN extends S {
   @override
   String get rePassword => "确认密码";
   @override
-  String get githubIssue => "请前往github,提issue";
+  String get githubIssue => "未找到邮件客户端,请前往github,提issue";
   @override
   String get searchHot => "热门搜索";
   @override

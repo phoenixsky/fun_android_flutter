@@ -16,7 +16,7 @@
   "login": "登 录",
   "settingFont": "字体",
   "feedback": "意见反馈",
-  "githubIssue": "请前往github,提issue",
+  "githubIssue": "未找到邮件客户端,请前往github,提issue",
   "autoBySystem": "跟随系统",
   "fontKuaiLe": "快乐字体",
   "fieldNotNull": "不能为空",
