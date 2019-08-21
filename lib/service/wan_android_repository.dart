@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fun_android/config/net/http.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/banner.dart';
@@ -23,6 +25,7 @@ class WanAndroidRepository {
 
   // 文章
   static Future fetchArticles(int pageNum, {int cid}) async {
+//    await Future.delayed(Duration(seconds: 10));
     var response = await http.get('article/list/$pageNum/json',
         queryParameters: (cid != null ? {'cid': cid} : null));
     return response.data['datas']
@@ -51,9 +54,15 @@ class WanAndroidRepository {
   }
 
   // 公众号分类
-  static Future fetchWxMpCategories() async {
+  static Future fetchWechatAccounts() async {
     var response = await http.get('wxarticle/chapters/json');
     return response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
+  }
+  // 公众号文章
+  static Future fetchWechatAccountArticles(int pageNum,int id) async {
+//    https://wanandroid.com/wxarticle/list/408/1/json
+    var response = await http.get('wxarticle/list/$id/$pageNum/json');
+    return response.data['datas'].map<Article>((item) => Article.fromMap(item)).toList();
   }
 
   // 搜索热门记录

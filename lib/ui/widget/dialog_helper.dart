@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_android/config/router_config.dart';
 
 class DialogHelper {
   static showLoginDialog(context) async {

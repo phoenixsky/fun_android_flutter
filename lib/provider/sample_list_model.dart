@@ -20,8 +20,7 @@ abstract class SampleListModel<T> extends BaseModel {
       if (data.isEmpty) {
         setEmpty();
       } else {
-        list.clear();
-        list.addAll(data);
+        list = data;
         if (init) {
           //改变页面状态为非加载中
           setBusy(false);
@@ -29,7 +28,7 @@ abstract class SampleListModel<T> extends BaseModel {
           notifyListeners();
         }
       }
-    } catch (e,s) {
+    } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
       setError(e is Error ? e.toString() : e.message);

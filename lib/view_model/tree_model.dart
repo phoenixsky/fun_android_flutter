@@ -33,10 +33,3 @@ class NavigationSiteModel extends SampleListModel {
   }
 }
 
-/// 获取微信公众号列表
-class WxArticleCategoryModel extends SampleListModel {
-  @override
-  Future<List> loadData() async {
-    return await WanAndroidRepository.fetchWxMpCategories();
-  }
-}

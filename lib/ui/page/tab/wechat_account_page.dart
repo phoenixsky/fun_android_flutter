@@ -2,7 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
 import 'package:flutter/cupertino.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/model/article.dart';
+import 'package:fun_android/ui/widget/article_list_Item.dart';
+import 'package:fun_android/ui/widget/like_animation.dart';
+import 'package:fun_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/wechat_account_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/flutter/dropdown.dart';
 import 'package:fun_android/model/tree.dart';
@@ -10,15 +14,17 @@ import 'package:fun_android/provider/provider_widget.dart';
 
 import 'package:fun_android/ui/widget/page_state_switch.dart';
 import 'package:fun_android/view_model/project_model.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../article_list_by_category_page.dart';
+import 'project_page.dart';
 
-class ProjectPage extends StatefulWidget {
+class WechatAccountPage extends StatefulWidget {
   @override
-  _ProjectPageState createState() => _ProjectPageState();
+  _WechatAccountPageState createState() => _WechatAccountPageState();
 }
 
-class _ProjectPageState extends State<ProjectPage>
+class _WechatAccountPageState extends State<WechatAccountPage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -35,8 +41,8 @@ class _ProjectPageState extends State<ProjectPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ProviderWidget<ProjectCategoryModel>(
-        model: ProjectCategoryModel(),
+    return ProviderWidget<WechatAccountCategoryModel>(
+        model: WechatAccountCategoryModel(),
         onModelReady: (model) {
           model.initData();
         },
@@ -68,7 +74,8 @@ class _ProjectPageState extends State<ProjectPage>
                     appBar: AppBar(
                       title: Stack(
                         children: [
-                          CategoryDropdownWidget(Provider.of<ProjectCategoryModel>(context)),
+                          CategoryDropdownWidget(
+                              Provider.of<WechatAccountCategoryModel>(context)),
                           Container(
                             margin: const EdgeInsets.only(right: 20),
                             color: primaryColor.withOpacity(1),
@@ -85,7 +92,7 @@ class _ProjectPageState extends State<ProjectPage>
                     ),
                     body: TabBarView(
                       children: List.generate(treeList.length,
-                          (index) => TreeListWidget(treeList[index])),
+                          (index) => WechatArticleList(treeList[index].id)),
                     ),
                   );
                 },
@@ -96,51 +103,56 @@ class _ProjectPageState extends State<ProjectPage>
   }
 }
 
-class CategoryDropdownWidget extends StatelessWidget {
-  final SampleListModel model;
+/// 微信公众号 文章列表
+class WechatArticleList extends StatefulWidget {
+  final int id;
 
-  CategoryDropdownWidget(this.model);
+  WechatArticleList(this.id);
+
+  @override
+  _WechatArticleListState createState() => _WechatArticleListState();
+}
+
+class _WechatArticleListState extends State<WechatArticleList>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
-    int currentIndex = Provider.of<int>(context);
-    return Align(
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Theme.of(context).primaryColor,
-        ),
-        child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-          elevation: 0,
-          value: currentIndex,
-          style: Theme.of(context).primaryTextTheme.subhead,
-          items: List.generate(model.list.length, (index) {
-            var theme = Theme.of(context);
-            var subhead = theme.primaryTextTheme.subhead;
-            return DropdownMenuItem(
-              value: index,
-              child: Text(
-                model.list[index].name,
-                style: currentIndex == index
-                    ? subhead.apply(
-                        color: theme.brightness == Brightness.light
-                            ? Colors.white
-                            : theme.accentColor)
-                    : subhead.apply(color: subhead.color.withAlpha(200)),
-              ),
-            );
-          }),
-          onChanged: (value) {
-            DefaultTabController.of(context).animateTo(value);
+    super.build(context);
+
+    return ProviderWidget<CollectionAnimationModel>(
+        model: CollectionAnimationModel(),
+        builder: (context, collectionAnimationModel, child) => Stack(
+              children: <Widget>[child, LikeAnimatedWidget()],
+            ),
+        child: ProviderWidget<WechatArticleListModel>(
+          model: WechatArticleListModel(widget.id),
+          onModelReady: (model) => model.initData(),
+          builder: (context, model, child) {
+            if (model.busy) {
+              return PageStateListSkeleton();
+            }
+            if (model.error) {
+              return PageStateError(onPressed: model.initData);
+            }
+            if (model.empty) {
+              return PageStateEmpty(onPressed: model.initData);
+            }
+            return SmartRefresher(
+                controller: model.refreshController,
+                header: WaterDropHeader(),
+                onRefresh: model.refresh,
+                onLoading: model.loadMore,
+                enablePullUp: true,
+                child: ListView.builder(
+                    itemCount: model.list.length,
+                    itemBuilder: (context, index) {
+                      Article item = model.list[index];
+                      return ArticleItemWidget(item);
+                    }));
           },
-          isExpanded: true,
-          icon: Icon(
-            Icons.keyboard_arrow_down,
-            color: Colors.white,
-          ),
-        )),
-      ),
-      alignment: Alignment(1.1, -1),
-    );
+        ));
   }
 }

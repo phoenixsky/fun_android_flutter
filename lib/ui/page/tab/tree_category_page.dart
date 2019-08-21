@@ -16,7 +16,7 @@ class TreeCategoryPage extends StatefulWidget {
 
 class _TreeCategoryPageState extends State<TreeCategoryPage>
     with AutomaticKeepAliveClientMixin {
-  List<String> tabs = ['体系', '公众号'];
+  List<String> tabs = ['体系', '导航'];
 
   @override
   bool get wantKeepAlive => true;

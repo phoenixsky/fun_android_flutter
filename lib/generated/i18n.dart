@@ -62,6 +62,7 @@ class S implements WidgetsLocalizations {
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
+  String get wechatAccount => "Wechat";
 }
 
 class $en extends S {
@@ -122,6 +123,8 @@ class $zh_CN extends S {
   String get close => "关闭";
   @override
   String get retry => "重试";
+  @override
+  String get wechatAccount => "公众号";
   @override
   String get tab_home => "首页";
   @override

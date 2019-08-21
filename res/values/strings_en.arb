@@ -39,5 +39,6 @@
   "refresh": "Refresh",
   "unLike": "UnLike",
   "Like": "Like",
-  "share": "Share"
+  "share": "Share",
+  "wechatAccount": "Wechat"
 }

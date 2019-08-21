@@ -4,16 +4,23 @@ import 'package:fun_android/provider/base_list_model.dart';
 import 'package:fun_android/provider/sample_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
-class ProjectCategoryModel extends SampleListModel<Tree> {
+/// 微信公众号
+class WechatAccountCategoryModel extends SampleListModel<Tree> {
   @override
   Future<List<Tree>> loadData() async {
-    return await WanAndroidRepository.fetchProjectCategories();
+    return await WanAndroidRepository.fetchWechatAccounts();
   }
 }
 
-class ProjectListModel extends BaseListModel<Article> {
+/// 微信公众号文章
+class WechatArticleListModel extends BaseListModel<Article> {
+  /// 公众号id
+  final int id;
+
+  WechatArticleListModel(this.id);
+
   @override
   Future<List<Article>> loadData(int pageNum) async {
-    return await WanAndroidRepository.fetchArticles(pageNum, cid: 294);
+    return await WanAndroidRepository.fetchWechatAccountArticles(pageNum, id);
   }
 }

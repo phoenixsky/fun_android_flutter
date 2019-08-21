@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/generated/i18n.dart';
 
@@ -5,6 +6,7 @@ import 'home_page.dart';
 import 'project_page.dart';
 import 'tree_category_page.dart';
 import 'user_page.dart';
+import 'wechat_account_page.dart';
 
 class TabNavigator extends StatefulWidget {
   TabNavigator({Key key}) : super(key: key);
@@ -55,6 +57,10 @@ class _TabNavigatorState extends State<TabNavigator> {
             title: Text(S.of(context).tab_project),
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.group_work),
+            title: Text(S.of(context).wechatAccount),
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.call_split),
             title: Text(S.of(context).tab_structure),
           ),
@@ -75,6 +81,7 @@ class _TabNavigatorState extends State<TabNavigator> {
 List<Widget> pages = <Widget>[
   HomePage(),
   ProjectPage(),
+  WechatAccountPage(),
   TreeCategoryPage(),
   UserPage()
 ];
