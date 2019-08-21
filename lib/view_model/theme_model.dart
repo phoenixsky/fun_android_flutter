@@ -13,8 +13,7 @@ class ThemeModel with ChangeNotifier {
   static const kThemeBrightnessIndex = 'kThemeBrightnessIndex';
   static const kFontIndex = 'kFontIndex';
 
-//  static const fontNameList = ['跟随系统', '快乐字体'];
-  static const fontValueList = ['system', 'kuaile', 'xiaowei'];
+  static const fontValueList = ['system', 'kuaile'];
 
   ThemeData _themeData;
 
@@ -125,14 +124,13 @@ class ThemeModel with ChangeNotifier {
     ]);
   }
 
+  /// 根据索引获取字体名称,这里牵涉到国际化
   static String fontName(index, context) {
     switch (index) {
       case 0:
         return S.of(context).autoBySystem;
       case 1:
         return S.of(context).fontKuaiLe;
-      case 2:
-        return 'xiaowei';
       default:
         return '';
     }
