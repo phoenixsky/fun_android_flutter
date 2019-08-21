@@ -198,6 +198,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.15.8"
+  launch_review:
+    dependency: "direct main"
+    description:
+      name: launch_review
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.0"
   localstorage:
     dependency: "direct main"
     description:

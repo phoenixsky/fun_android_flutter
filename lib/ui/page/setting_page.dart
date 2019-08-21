@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/view_model/locale_model.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
@@ -101,6 +102,24 @@ class SettingPage extends StatelessWidget {
                           );
                         })
                   ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Material(
+                color: Theme.of(context).cardColor,
+                child: ListTile(
+                  title: Text(S.of(context).rate),
+                  onTap: () async {
+                    LaunchReview.launch(androidAppId: "cn.phoenixsky.funandroid",
+                        iOSAppId: "1477299503");
+                  },
+                  leading: Icon(
+                    Icons.star,
+                    color: iconColor,
+                  ),
+                  trailing: Icon(Icons.chevron_right),
                 ),
               ),
               SizedBox(

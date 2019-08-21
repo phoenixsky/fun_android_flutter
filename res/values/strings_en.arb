@@ -40,5 +40,6 @@
   "unLike": "UnLike",
   "Like": "Like",
   "share": "Share",
-  "wechatAccount": "Wechat"
+  "wechatAccount": "Wechat",
+  "rate": "Rate"
 }

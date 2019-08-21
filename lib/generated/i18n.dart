@@ -40,6 +40,7 @@ class S implements WidgetsLocalizations {
   String get pageStateError => "Failed";
   String get pageStateRetry => "Retry";
   String get password => "Password";
+  String get rate => "Rate";
   String get rePassword => "Confirm Password";
   String get refresh => "Refresh";
   String get register => "Sing Up";
@@ -111,6 +112,8 @@ class $zh_CN extends S {
   String get Like => "收藏";
   @override
   String get pageStateError => "加载失败";
+  @override
+  String get rate => "评分";
   @override
   String get theme => "色彩主题";
   @override

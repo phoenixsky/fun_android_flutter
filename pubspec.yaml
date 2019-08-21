@@ -57,7 +57,8 @@ dependencies:
   share: 0.6.2+1 #分享
   url_launcher: ^5.1.0 #启动第三方app
 
-
+  # 评分
+  launch_review: ^2.0.0
 
 
 dev_dependencies:
