@@ -41,6 +41,7 @@ class App extends StatelessWidget {
                   locale: localeModel.locale,
                   localizationsDelegates: const [
                     S.delegate,
+                    GlobalCupertinoLocalizations.delegate,
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate
                   ],
