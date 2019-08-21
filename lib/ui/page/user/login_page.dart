@@ -42,13 +42,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: ClampingScrollPhysics(),
         slivers: <Widget>[
-          SliverAppBar(),
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              height: 0,
-            ),
+          SliverAppBar(
+            floating: true,
           ),
           SliverToBoxAdapter(
             child: Stack(

@@ -112,7 +112,7 @@ class WanAndroidRepository {
   }
 
   static testLoginState() async {
-    var response1 = await http.get('lg/todo/listnotdo/0/json/1');
+    await http.get('lg/todo/listnotdo/0/json/1');
   }
 
   // 收藏列表
