@@ -123,7 +123,7 @@ class SettingPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Material(
                 color: Theme.of(context).cardColor,
