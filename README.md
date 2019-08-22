@@ -6,7 +6,13 @@
 
 ![0-欢迎页面](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif)
 
+
+![1-空中阁楼.gif](https://upload-images.jianshu.io/upload_images/581515-54b8e7498039dc11.gif?imageMogr2/auto-orient/strip)
+
 ![1-空中阁楼](http://blogimgs.phoenixsky.cn/2019-08-22-1-%E7%A9%BA%E4%B8%AD%E9%98%81%E6%A5%BC.gif)
+
+![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip)
+
 
 ![2-页面状态骨架屏](http://blogimgs.phoenixsky.cn/2019-08-22-2-%E9%A1%B5%E9%9D%A2%E7%8A%B6%E6%80%81%E9%AA%A8%E6%9E%B6%E5%B1%8F.gif)
 
@@ -17,6 +23,7 @@
 ![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif)
 
 ![6-收藏及跳转app](http://blogimgs.phoenixsky.cn/2019-08-22-6-%E6%94%B6%E8%97%8F%E5%8F%8A%E8%B7%B3%E8%BD%ACapp.gif)
+
 
 ![7-移除收藏](http://blogimgs.phoenixsky.cn/2019-08-22-7-%E7%A7%BB%E9%99%A4%E6%94%B6%E8%97%8F.gif)
 
@@ -123,3 +130,4 @@
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
 5.  感谢站酷提供的开源的字体。
+
