@@ -23,7 +23,7 @@ class LocaleModel extends ChangeNotifier {
   }
 
   LocaleModel() {
-    _localeIndex = StorageManager.sharedPreferences.getInt(kLocaleIndex) ?? 1;
+    _localeIndex = StorageManager.sharedPreferences.getInt(kLocaleIndex) ?? 0;
   }
 
   switchLocale(int index) {
