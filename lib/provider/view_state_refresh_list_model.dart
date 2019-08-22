@@ -48,9 +48,6 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
         }
       }
       return data;
-    } on UnAuthorizedException catch (_) {
-      setUnAuthorized();
-      return null;
     } catch (e, s) {
       handleCatch(e, s);
       return null;
@@ -74,10 +71,6 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
         notifyListeners();
       }
       return data;
-    } on UnAuthorizedException catch (_) {
-      _currentPageNum--; //页面减1
-      setUnAuthorized();
-      return null;
     } catch (e, s) {
       _currentPageNum--;
       refreshController.loadFailed();

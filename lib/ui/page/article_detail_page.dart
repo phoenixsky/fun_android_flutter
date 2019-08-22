@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/helper/collection_helper.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
-import 'package:fun_android/ui/widget/dialog_helper.dart';
+import 'package:fun_android/ui/helper/dialog_helper.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
@@ -158,14 +159,16 @@ class WebViewPopupMenu extends StatelessWidget {
           return PopupMenuButton(
             itemBuilder: (context) => <PopupMenuEntry<int>>[
               PopupMenuItem(
-                child: WebViewPopupMenuItem(Icons.refresh, S.of(context).refresh),
+                child:
+                    WebViewPopupMenuItem(Icons.refresh, S.of(context).refresh),
                 value: 0,
               ),
               PopupMenuItem(
                 child: (collectionModel.article.collect ?? true)
                     ? WebViewPopupMenuItem(Icons.favorite, S.of(context).unLike,
                         color: Colors.redAccent[100])
-                    : WebViewPopupMenuItem(Icons.favorite_border, S.of(context).Like),
+                    : WebViewPopupMenuItem(
+                        Icons.favorite_border, S.of(context).Like),
                 value: 1,
               ),
               PopupMenuDivider(),
@@ -173,10 +176,6 @@ class WebViewPopupMenu extends StatelessWidget {
                 child: WebViewPopupMenuItem(Icons.share, S.of(context).share),
                 value: 2,
               ),
-//              PopupMenuItem(
-//                child: WebViewPopupMenuItem(Icons.color_lens, '切换主题'),
-//                value: 3,
-//              ),
             ],
             onSelected: (value) async {
               switch (value) {
@@ -184,7 +183,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   controller.reload();
                   break;
                 case 1:
-                  ArticleCollectionWidget.toCollect(context,collectionModel);
+                  collectArticle(context, collectionModel);
                   break;
                 case 2:
                   Share.share(article.link, subject: article.title);

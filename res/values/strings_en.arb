@@ -58,6 +58,6 @@
   "rate": "Rate",
   "joinWanAndroid": "Join WanAndroid",
   "needLogin": "Go to Sign In",
-  "loadFailed": "Load failed,retry later"
-
+  "loadFailed": "Load failed,retry later",
+  "collectionRemove": "Remove"
 }

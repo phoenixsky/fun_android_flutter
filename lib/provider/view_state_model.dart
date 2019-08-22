@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fun_android/provider/view_state.dart';
@@ -85,6 +86,11 @@ class ViewStateModel with ChangeNotifier {
   /// [e],有可能是Error,也有可能是Exception.所以需要判断处理
   /// [s] 为堆栈信息
   void handleCatch(e,s){
+    // DioError的判断,理论不应该拿进来,增强了代码耦合性,抽取为时组件时.应移除
+    if (e is DioError && e.error is UnAuthorizedException) {
+      setUnAuthorized();
+      return;
+    }
     debugPrint('error--->\n' + e.toString());
     debugPrint('statck--->\n' + s.toString());
     setError(e is Error ? e.toString() : e.message);

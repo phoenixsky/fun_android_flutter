@@ -11,7 +11,7 @@ import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/project_model.dart';
 
-import '../article_list_by_category_page.dart';
+import '../article_list_page.dart';
 
 class ProjectPage extends StatefulWidget {
   @override
@@ -85,7 +85,7 @@ class _ProjectPageState extends State<ProjectPage>
                     ),
                     body: TabBarView(
                       children: List.generate(treeList.length,
-                          (index) => TreeListWidget(treeList[index])),
+                          (index) => ArticleListPage(treeList[index].id)),
                     ),
                   );
                 },

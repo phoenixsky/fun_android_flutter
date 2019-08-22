@@ -11,47 +11,19 @@ import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/tree_model.dart';
 
-class TreeListTabPage extends StatelessWidget {
-  final Tree tree;
-  final int index;
 
-  TreeListTabPage(this.tree, this.index);
+/// 文章列表页面
+class ArticleListPage extends StatefulWidget {
+  /// 目录id
+  final int cid;
 
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: tree.children.length,
-      initialIndex: index,
-      child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(tree.name),
-            bottom: TabBar(
-                isScrollable: true,
-                tabs: List.generate(
-                    tree.children.length,
-                    (index) => Tab(
-                          text: tree.children[index].name,
-                        ))),
-          ),
-          body: TabBarView(
-            children: List.generate(tree.children.length,
-                (index) => TreeListWidget(tree.children[index])),
-          )),
-    );
-  }
-}
-
-class TreeListWidget extends StatefulWidget {
-  final Tree tree;
-
-  TreeListWidget(this.tree);
+  ArticleListPage(this.cid);
 
   @override
-  _TreeListWidgetState createState() => _TreeListWidgetState();
+  _ArticleListPageState createState() => _ArticleListPageState();
 }
 
-class _TreeListWidgetState extends State<TreeListWidget>
+class _ArticleListPageState extends State<ArticleListPage>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -66,7 +38,7 @@ class _TreeListWidgetState extends State<TreeListWidget>
               children: <Widget>[child, LikeAnimatedWidget()],
             ),
         child: ProviderWidget<TreeListModel>(
-          model: TreeListModel(widget.tree.id),
+          model: TreeListModel(widget.cid),
           onModelReady: (model) => model.initData(),
           builder: (context, model, child) {
             if (model.busy) {
@@ -94,5 +66,37 @@ class _TreeListWidgetState extends State<TreeListWidget>
                     }));
           },
         ));
+  }
+}
+
+/// 体系--> 选择相关知识点的详情页
+class ArticleCategoryTabPage extends StatelessWidget {
+  final Tree tree;
+  final int index;
+
+  ArticleCategoryTabPage(this.tree, this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: tree.children.length,
+      initialIndex: index,
+      child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(tree.name),
+            bottom: TabBar(
+                isScrollable: true,
+                tabs: List.generate(
+                    tree.children.length,
+                    (index) => Tab(
+                          text: tree.children[index].name,
+                        ))),
+          ),
+          body: TabBarView(
+            children: List.generate(tree.children.length,
+                (index) => ArticleListPage(tree.children[index].id)),
+          )),
+    );
   }
 }

@@ -74,7 +74,7 @@ class CollectionListPage extends StatelessWidget {
                         actionPane: SlidableDrawerActionPane(),
                         secondaryActions: <Widget>[
                           IconSlideAction(
-                            caption: '移除收藏',
+                            caption: S.of(context).collectionRemove,
                             color: Colors.redAccent,
                             icon: Icons.delete,
                             onTap: () {

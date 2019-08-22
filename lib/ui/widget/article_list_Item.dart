@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/helper/collection_helper.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
@@ -13,7 +14,7 @@ import 'package:fun_android/view_model/colletion_model.dart';
 
 import 'animated_provider.dart';
 import 'article_tag.dart';
-import 'dialog_helper.dart';
+import 'package:fun_android/ui/helper/dialog_helper.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
@@ -187,7 +188,7 @@ class ArticleCollectionWidget extends StatelessWidget {
         return GestureDetector(
           onTap: () async {
             if (!model.busy) {
-              toCollect(context, model);
+              collectArticle(context, model);
             }
           },
           child: Padding(
@@ -195,40 +196,24 @@ class ArticleCollectionWidget extends StatelessWidget {
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CupertinoActivityIndicator(
-                        radius: 8,
-                      ),
-                    )
+                height: 24,
+                width: 24,
+                child: CupertinoActivityIndicator(
+                  radius: 8,
+                ),
+              )
                   : Icon(
-                      model.article.collect
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Colors.redAccent[100],
+                model.article.collect
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color: Colors.redAccent[100],
 //                      color: Color(0xffF44062),
-                    ),
+              ),
             ),
           ),
+
         );
       },
     );
-  }
-
-  /// 由于存在递归操作,所以抽取为方法,而且多出调用
-  ///
-  /// 多个页面使用该方法,目前这种方式并不优雅,抽取位置有待商榷
-  static toCollect(context, CollectionModel model) async {
-    await model.collect();
-    if (model.unAuthorized) {
-      //未登录
-      if (await DialogHelper.showLoginDialog(context)) {
-        var success = await Navigator.pushNamed(context, RouteName.login);
-        if (success ?? false) toCollect(context, model);
-      }
-    } else if (model.error) {
-      //失败
-      showToast(S.of(context).loadFailed);
-    }
   }
 }

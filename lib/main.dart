@@ -18,8 +18,9 @@ import 'view_model/theme_model.dart';
 //void main() => runApp(App());
 
 void main() async {
-  await StorageManager.init();
+  /// 一些必备首选项的初始化
   Provider.debugCheckInvalidValueType = null;
+  await StorageManager.init();
   InnerWidgetsFlutterBinding.ensureInitialized()
     ..attachRootWidget(new App())
     ..scheduleWarmUpFrame();
@@ -35,10 +36,10 @@ class App extends StatelessWidget {
                 builder: (context, themeModel, localeModel, child) {
               return RefreshConfiguration(
                 hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
-                footerBuilder: ()=> ClassicFooter(
-                ),
+                footerBuilder: () => ClassicFooter(),
                 child: MaterialApp(
-                  debugShowCheckedModeBanner: false,  // 设置
+                  debugShowCheckedModeBanner: false,
+                  // 设置
                   theme: themeModel.themeData,
                   darkTheme: themeModel.darkTheme,
                   locale: localeModel.locale,
@@ -51,8 +52,6 @@ class App extends StatelessWidget {
                   supportedLocales: S.delegate.supportedLocales,
                   onGenerateRoute: Router.generateRoute,
                   initialRoute: RouteName.splash,
-//                  initialRoute: RouteName.collectionList,
-//                home: AnimatedListExample(),
                 ),
               );
             })));

@@ -6,6 +6,7 @@ import 'package:fun_android/provider/view_state.dart';
 import 'http.dart';
 export 'package:dio/dio.dart';
 
+/// 玩Android API
 class ApiInterceptor extends InterceptorsWrapper {
   static const baseUrl = 'https://www.wanandroid.com/';
 

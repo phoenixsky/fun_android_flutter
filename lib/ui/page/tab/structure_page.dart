@@ -9,12 +9,12 @@ import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/tree_model.dart';
 
 /// 体系
-class TreeCategoryPage extends StatefulWidget {
+class StructurePage extends StatefulWidget {
   @override
-  _TreeCategoryPageState createState() => _TreeCategoryPageState();
+  _StructurePageState createState() => _StructurePageState();
 }
 
-class _TreeCategoryPageState extends State<TreeCategoryPage>
+class _StructurePageState extends State<StructurePage>
     with AutomaticKeepAliveClientMixin {
   List<String> tabs = ['体系', '导航'];
 

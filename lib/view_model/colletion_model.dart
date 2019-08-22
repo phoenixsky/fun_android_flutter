@@ -49,8 +49,6 @@ class CollectionModel extends ViewStateModel {
       }
       article.collect = !(article.collect ?? true);
       setBusy(false);
-    } on UnAuthorizedException catch (_) {
-      setUnAuthorized();
     } catch (e, s) {
       handleCatch(e, s);
     }

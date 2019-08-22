@@ -17,7 +17,7 @@ import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/project_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../article_list_by_category_page.dart';
+import '../article_list_page.dart';
 import 'project_page.dart';
 
 class WechatAccountPage extends StatefulWidget {

@@ -4,7 +4,7 @@ import 'package:fun_android/generated/i18n.dart';
 
 import 'home_page.dart';
 import 'project_page.dart';
-import 'tree_category_page.dart';
+import 'structure_page.dart';
 import 'user_page.dart';
 import 'wechat_account_page.dart';
 
@@ -82,6 +82,6 @@ List<Widget> pages = <Widget>[
   HomePage(),
   ProjectPage(),
   WechatAccountPage(),
-  TreeCategoryPage(),
+  StructurePage(),
   UserPage()
 ];
