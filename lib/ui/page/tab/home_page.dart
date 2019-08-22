@@ -9,7 +9,7 @@ import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/flutter/search.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
-import 'package:fun_android/provider/scroll_controller_model.dart';
+import 'package:fun_android/view_model/scroll_controller_model.dart';
 import 'package:fun_android/ui/widget/animated_provider.dart';
 import 'package:fun_android/ui/widget/banner_image.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';

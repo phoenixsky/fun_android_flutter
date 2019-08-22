@@ -109,6 +109,7 @@ class SkeletonListItem extends StatelessWidget {
   }
 }
 
+/// 骨架屏 元素背景 ->形状及颜色
 class SkeletonDecoration extends BoxDecoration {
   SkeletonDecoration({
     isCircle: false,
