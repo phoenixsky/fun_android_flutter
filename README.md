@@ -7,7 +7,7 @@
 先来几张图
 ![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
 
-![列表页面](https://upload-images.jianshu.io/upload_images/581515-9cb4e37f8b83674d.gif?imageMogr2/auto-orient/strip)
+![2.gif](https://upload-images.jianshu.io/upload_images/581515-b9347bee10e4d77c.gif?imageMogr2/auto-orient/strip)
 
 ![列表的状态页面](https://upload-images.jianshu.io/upload_images/581515-1a5737bb73e57016.gif?imageMogr2/auto-orient/strip)
 
