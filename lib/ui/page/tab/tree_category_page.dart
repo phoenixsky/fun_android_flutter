@@ -5,7 +5,7 @@ import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/model/navigation_site.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/tree_model.dart';
 
 /// 体系
@@ -66,7 +66,7 @@ class _TreeCategoryListState extends State<TreeCategoryList>
             return Center(child: CircularProgressIndicator());
           }
           if (model.error) {
-            return PageStateError(onPressed: model.initData());
+            return ViewStateWidget(onPressed: model.initData());
           }
           return Scrollbar(
             child: ListView.builder(
@@ -143,7 +143,7 @@ class _NavigationSiteCategoryListState extends State<NavigationSiteCategoryList>
             return Center(child: CircularProgressIndicator());
           }
           if (model.error) {
-            return PageStateError(onPressed: model.initData());
+            return ViewStateWidget(onPressed: model.initData());
           }
           return Scrollbar(
             child: ListView.builder(

@@ -47,5 +47,8 @@
   "needLogin": "Go to Sign In",
   "cancel": "Cancel",
   "confirm": "Confirm",
-  "loadFailed": "Load failed,retry later"
+  "loadFailed": "Load failed,retry later",
+  "view_state_message_empty": "Nothing Found",
+  "view_state_button_refresh": "Refresh",
+  "view_state_message_un_auth": "Not sign in yet"
 }

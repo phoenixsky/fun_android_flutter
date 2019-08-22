@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -9,7 +10,7 @@ import 'package:fun_android/flutter/refresh_animatedlist.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/login_model.dart';
 
@@ -31,16 +32,18 @@ class CollectionListPage extends StatelessWidget {
         },
         builder: (context, model, child) {
           if (model.busy) {
-            return PageStateListSkeleton();
+            return ViewStateSkeletonList(
+              builder: (context, index) => ArticleSkeletonItem(),
+            );
           }
           if (model.error) {
-            return PageStateError(onPressed: model.initData);
+            return ViewStateWidget(onPressed: model.initData);
           }
           if (model.empty) {
-            return PageStateEmpty(onPressed: model.initData);
+            return ViewStateEmptyWidget(onPressed: model.initData);
           }
           if (model.unAuthorized) {
-            return PageStateUnAuthorized(onPressed: () async {
+            return ViewStateUnAuthWidget(onPressed: () async {
               var success =
                   await Navigator.of(context).pushNamed(RouteName.login);
               // 登录成功,获取数据,刷新页面

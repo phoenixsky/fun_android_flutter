@@ -8,7 +8,7 @@ import 'package:fun_android/flutter/dropdown.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/project_model.dart';
 
 import '../article_list_by_category_page.dart';
@@ -45,7 +45,7 @@ class _ProjectPageState extends State<ProjectPage>
             return Center(child: CircularProgressIndicator());
           }
           if (model.error) {
-            return PageStateError(onPressed: model.initData);
+            return ViewStateWidget(onPressed: model.initData);
           }
 
           List<Tree> treeList = model.list;

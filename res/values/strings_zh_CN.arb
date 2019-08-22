@@ -47,5 +47,8 @@
   "needLogin": "还没有登录,请先登录..",
   "cancel": "取消",
   "confirm": "确认",
-  "loadFailed": "加载失败,请稍后重试"
+  "loadFailed": "加载失败,请稍后重试",
+  "view_state_message_empty": "空空如也",
+  "view_state_button_refresh": "刷新一下",
+  "view_state_message_un_auth": "未登录"
 }

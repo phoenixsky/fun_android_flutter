@@ -69,6 +69,9 @@ class S implements WidgetsLocalizations {
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
+  String get view_state_button_refresh => "Refresh";
+  String get view_state_message_empty => "Nothing Found";
+  String get view_state_message_un_auth => "Not sign in yet";
   String get wechatAccount => "Wechat";
 }
 
@@ -86,6 +89,8 @@ class $zh_CN extends S {
   String get cancel => "取消";
   @override
   String get favourites => "收藏";
+  @override
+  String get view_state_message_empty => "空空如也";
   @override
   String get twoPwdDifferent => "两次密码不一致";
   @override
@@ -145,6 +150,8 @@ class $zh_CN extends S {
   @override
   String get close => "关闭";
   @override
+  String get view_state_message_un_auth => "未登录";
+  @override
   String get retry => "重试";
   @override
   String get wechatAccount => "公众号";
@@ -154,6 +161,8 @@ class $zh_CN extends S {
   String get toSignUp => "去注册";
   @override
   String get appName => "玩Android";
+  @override
+  String get view_state_button_refresh => "刷新一下";
   @override
   String get clear => "清空";
   @override

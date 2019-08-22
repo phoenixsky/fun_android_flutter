@@ -4,6 +4,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
+import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/wechat_account_model.dart';
@@ -12,7 +13,7 @@ import 'package:fun_android/flutter/dropdown.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/project_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -51,7 +52,7 @@ class _WechatAccountPageState extends State<WechatAccountPage>
             return Center(child: CircularProgressIndicator());
           }
           if (model.error) {
-            return PageStateError(onPressed: model.initData);
+            return ViewStateWidget(onPressed: model.initData);
           }
 
           List<Tree> treeList = model.list;
@@ -132,13 +133,15 @@ class _WechatArticleListState extends State<WechatArticleList>
           onModelReady: (model) => model.initData(),
           builder: (context, model, child) {
             if (model.busy) {
-              return PageStateListSkeleton();
+              return ViewStateSkeletonList(
+                builder: (context, index) => ArticleSkeletonItem(),
+              );
             }
             if (model.error) {
-              return PageStateError(onPressed: model.initData);
+              return ViewStateWidget(onPressed: model.initData);
             }
             if (model.empty) {
-              return PageStateEmpty(onPressed: model.initData);
+              return ViewStateEmptyWidget(onPressed: model.initData);
             }
             return SmartRefresher(
                 controller: model.refreshController,

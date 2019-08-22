@@ -4,7 +4,7 @@ import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/search_model.dart';
 
@@ -29,13 +29,13 @@ class SearchResults extends StatelessWidget {
           },
           builder: (context, model, child) {
             if (model.busy) {
-              return PageStateLoading();
+              return ViewStateBusyWidget();
             }
             if (model.error) {
-              return PageStateError(onPressed: model.initData);
+              return ViewStateWidget(onPressed: model.initData);
             }
             if (model.empty) {
-              return PageStateEmpty(onPressed: model.initData);
+              return ViewStateEmptyWidget(onPressed: model.initData);
             }
             return SmartRefresher(
                 controller: model.refreshController,

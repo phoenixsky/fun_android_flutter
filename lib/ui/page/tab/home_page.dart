@@ -13,7 +13,7 @@ import 'package:fun_android/view_model/scroll_controller_model.dart';
 import 'package:fun_android/ui/widget/animated_provider.dart';
 import 'package:fun_android/ui/widget/banner_image.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';
-import 'package:fun_android/ui/widget/page_state_switch.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage>
               removeTop: false,
               child: Builder(builder: (_) {
                 if (homeModel.error) {
-                  return PageStateError(onPressed: homeModel.initData);
+                  return ViewStateWidget(onPressed: homeModel.initData);
                 }
                 return ProviderWidget<CollectionAnimationModel>(
                     model: CollectionAnimationModel(),
@@ -232,7 +232,9 @@ class HomeArticleList extends StatelessWidget {
     HomeModel homeModel = Provider.of(context);
     if (homeModel.busy) {
       return SliverToBoxAdapter(
-        child: SkeletonList(),
+        child: ViewStateSkeletonList(
+          builder: (context, index) => ArticleSkeletonItem(),
+        ),
       );
     }
     return SliverList(

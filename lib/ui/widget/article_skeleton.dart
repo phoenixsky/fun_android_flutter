@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SkeletonListItem extends StatelessWidget {
+class ArticleSkeletonItem extends StatelessWidget {
   final int index;
 
-  SkeletonListItem({this.index: 0});
+  ArticleSkeletonItem({this.index: 0});
 
   @override
   Widget build(BuildContext context) {
@@ -104,48 +105,6 @@ class SkeletonListItem extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// 骨架屏 元素背景 ->形状及颜色
-class SkeletonDecoration extends BoxDecoration {
-  SkeletonDecoration({
-    isCircle: false,
-    isDark: false,
-  }) : super(
-          color: !isDark ? Colors.grey[350] : Colors.grey[700],
-          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
-        );
-}
-
-class SkeletonList extends StatelessWidget {
-  final EdgeInsetsGeometry padding;
-  final int length;
-
-  SkeletonList({this.length: 6, this.padding = const EdgeInsets.all(7)});
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    bool isDark = theme.brightness == Brightness.dark;
-
-    return SingleChildScrollView(
-      //防止超过屏幕高度溢出
-      physics: NeverScrollableScrollPhysics(),
-      child: Shimmer.fromColors(
-        period: Duration(milliseconds: 1200),
-        baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-//        highlightColor: isDark ? Colors.grey[500] : Color.alphaBlend(
-//          theme.accentColor.withAlpha(20), Colors.grey[100],),
-        highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-        child: Padding(
-          padding: padding,
-          child: Column(
-            children: List.generate(length, (index) => SkeletonListItem()),
-          ),
-        ),
       ),
     );
   }
