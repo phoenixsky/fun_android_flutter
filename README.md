@@ -4,18 +4,19 @@
 
 > Logo的里F，既代表了`Fun`也代表了`Flutter`.
 
-先来几张图
+## 先来几张图
+
 ![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
 
-![列表页面](https://upload-images.jianshu.io/upload_images/581515-9cb4e37f8b83674d.gif?imageMogr2/auto-orient/strip)
+![空中阁楼](https://upload-images.jianshu.io/upload_images/581515-0bb247769ec4b1e6.gif?imageMogr2/auto-orient/strip)
+
+![页面状态骨架屏](https://upload-images.jianshu.io/upload_images/581515-3851164513ebe273.gif?imageMogr2/auto-orient/strip)
 
 ![列表的状态页面](https://upload-images.jianshu.io/upload_images/581515-1a5737bb73e57016.gif?imageMogr2/auto-orient/strip)
 
 ![多种状态页](https://upload-images.jianshu.io/upload_images/581515-f7f8ecf6af689445.gif?imageMogr2/auto-orient/strip)
 
 ![主题](https://upload-images.jianshu.io/upload_images/581515-c7a1f77dc9b32a13.gif?imageMogr2/auto-orient/strip)
-
-![收藏](https://upload-images.jianshu.io/upload_images/581515-dd11e514735dab7c.gif?imageMogr2/auto-orient/strip)
 
 ![收藏列表](https://upload-images.jianshu.io/upload_images/581515-b74c4d9f33f5ebcc.gif?imageMogr2/auto-orient/strip)
 
@@ -106,7 +107,7 @@
 
 4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
-5.  TabBar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
+5.  Tabbar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 ## Future
 
@@ -118,7 +119,7 @@
 
 2.  借鉴了`goweii`[WanAndroid](https://github.com/goweii/WanAndroid)项目的UI，最美原生版WanAndroid，感谢。
 
-3.  在实践Provider时，发现了[Tutorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
+3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
 
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
