@@ -8,19 +8,17 @@
 
 ![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
 
-![空中阁楼](https://upload-images.jianshu.io/upload_images/581515-0bb247769ec4b1e6.gif?imageMogr2/auto-orient/strip)
+![1-空中阁楼.gif](https://upload-images.jianshu.io/upload_images/581515-8b30ab563bde4ed6.gif?imageMogr2/auto-orient/strip)
 
 ![页面状态骨架屏](https://upload-images.jianshu.io/upload_images/581515-3851164513ebe273.gif?imageMogr2/auto-orient/strip)
 
-![列表的状态页面](https://upload-images.jianshu.io/upload_images/581515-1a5737bb73e57016.gif?imageMogr2/auto-orient/strip)
-
-![多种状态页](https://upload-images.jianshu.io/upload_images/581515-f7f8ecf6af689445.gif?imageMogr2/auto-orient/strip)
+![3-状态页.gif](https://upload-images.jianshu.io/upload_images/581515-60eef9e15ff49b2a.gif?imageMogr2/auto-orient/strip)
 
 ![主题](https://upload-images.jianshu.io/upload_images/581515-c7a1f77dc9b32a13.gif?imageMogr2/auto-orient/strip)
 
+![4-字体.gif](https://upload-images.jianshu.io/upload_images/581515-e8b76a8e98210863.gif?imageMogr2/auto-orient/strip)
+
 ![收藏列表](https://upload-images.jianshu.io/upload_images/581515-b74c4d9f33f5ebcc.gif?imageMogr2/auto-orient/strip)
-
-
 
 > 项目地址：[https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
@@ -124,4 +122,3 @@
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
 5.  感谢站酷提供的开源的字体。
-![6.gif](https://upload-images.jianshu.io/upload_images/581515-8edb21b4c5826b38.gif?imageMogr2/auto-orient/strip)
