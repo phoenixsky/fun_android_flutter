@@ -80,10 +80,10 @@ class ViewStateEmptyWidget extends StatelessWidget {
             size: 100,
             color: Colors.grey,
           ),
-      message: message ?? S.of(context).view_state_message_empty,
+      message: message ?? S.of(context).viewStateMessageEmpty,
       buttonText: buttonText ??
           Text(
-            S.of(context).view_state_button_refresh,
+            S.of(context).viewStateButtonRefresh,
             style: TextStyle(letterSpacing: 5),
           ),
     );
@@ -110,7 +110,7 @@ class ViewStateUnAuthWidget extends StatelessWidget {
     return ViewStateWidget(
       onPressed: this.onPressed,
       image: image ?? ViewStateUnAuthImage(),
-      message: message ?? S.of(context).view_state_message_un_auth,
+      message: message ?? S.of(context).viewStateMessageUnAuth,
       buttonText: buttonText ??
           Text(
             S.of(context).signIn,

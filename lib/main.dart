@@ -35,6 +35,8 @@ class App extends StatelessWidget {
                 builder: (context, themeModel, localeModel, child) {
               return RefreshConfiguration(
                 hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
+                footerBuilder: ()=> ClassicFooter(
+                ),
                 child: MaterialApp(
                   debugShowCheckedModeBanner: false,  // 设置
                   theme: themeModel.themeData,

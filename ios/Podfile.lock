@@ -25,7 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
-  - Flutter (from `.symlinks/flutter/ios-release`)
+  - Flutter (from `.symlinks/flutter/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios-release"
+    :path: ".symlinks/flutter/ios"
   launch_review:
     :path: ".symlinks/plugins/launch_review/ios"
   package_info:

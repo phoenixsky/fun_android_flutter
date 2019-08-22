@@ -43,8 +43,7 @@ class _ProjectPageState extends State<ProjectPage>
         builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
-          }
-          if (model.error) {
+          }  if (model.error) {
             return ViewStateWidget(onPressed: model.initData);
           }
 
@@ -68,7 +67,8 @@ class _ProjectPageState extends State<ProjectPage>
                     appBar: AppBar(
                       title: Stack(
                         children: [
-                          CategoryDropdownWidget(Provider.of<ProjectCategoryModel>(context)),
+                          CategoryDropdownWidget(
+                              Provider.of<ProjectCategoryModel>(context)),
                           Container(
                             margin: const EdgeInsets.only(right: 20),
                             color: primaryColor.withOpacity(1),

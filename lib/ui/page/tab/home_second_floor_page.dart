@@ -30,19 +30,10 @@ class HomeSecondFloorOuter extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
+                fontFamily: 'kuaile'
                   ),
             ),
           ),
-//          Align(
-//            alignment: Alignment(0.9, 0.3),
-//            child: Text(
-//              'phoenixsky',
-//              style: Theme.of(context)
-//                  .textTheme
-//                  .overline
-//                  .copyWith(color: Colors.white, fontSize: 14),
-//            ),
-//          ),
           Align(alignment: Alignment(0, 0.8), child: child),
         ],
       ),

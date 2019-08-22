@@ -115,7 +115,7 @@ class AnimatedCountdown extends AnimatedWidget {
   Widget build(BuildContext context) {
     var value = animation.value + 1;
     return Text(
-      (value == 0 ? '' : '$value | ') + S.of(context).splash_skip,
+      (value == 0 ? '' : '$value | ') + S.of(context).splashSkip,
       style: TextStyle(color: Colors.white),
     );
   }

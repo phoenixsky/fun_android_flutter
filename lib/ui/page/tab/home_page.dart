@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage>
 
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
-      // 保留iOS点击状态栏回到顶部的功能
+      // 使用PrimaryScrollController保留iOS点击状态栏回到顶部的功能
       model2: TapToTopModel(PrimaryScrollController.of(context),
           height: bannerHeight - kToolbarHeight),
       onModelReady: (homeModel, tapToTopModel) {
@@ -74,10 +74,15 @@ class _HomePageState extends State<HomePage>
                       twiceTriggerDistance: kHomeRefreshHeight - 15,
                       //最大下拉距离,android默认为0,这里为了触发二楼
                       maxOverScrollExtent: kHomeRefreshHeight,
+
                       child: SmartRefresher(
                           enableTwoLevel: true,
                           controller: homeModel.refreshController,
                           header: ClassicHeader(
+                            idleText:S.of(context).refreshIdle,
+                            releaseText: S.of(context).refreshRefreshWhenRelease,
+                            refreshingText: S.of(context).refreshing,
+                            canTwoLevelText: S.of(context).refreshTwoLevel,
                             textStyle: TextStyle(color: Colors.white),
                             outerBuilder: (child) =>
                                 HomeSecondFloorOuter(child),

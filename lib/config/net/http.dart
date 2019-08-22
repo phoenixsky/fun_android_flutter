@@ -36,7 +36,6 @@ class Http extends Dio {
       // cookie持久化 异步
       ..add(CookieManager(
           PersistCookieJar(dir: StorageManager.temporaryDirectory.path)));
-
   }
 }
 

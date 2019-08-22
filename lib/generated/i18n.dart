@@ -37,6 +37,10 @@ class S implements WidgetsLocalizations {
   String get githubIssue => "Can't find mail app,please github issues";
   String get joinWanAndroid => "Join WanAndroid";
   String get loadFailed => "Load failed,retry later";
+  String get loadMoreFailed => "Load Failed,Click Retry!";
+  String get loadMoreIdle => "Load More..";
+  String get loadMoreLoading => "Loading...";
+  String get loadMoreNoData => "No more data";
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
   String get needLogin => "Go to Sign In";
@@ -47,31 +51,35 @@ class S implements WidgetsLocalizations {
   String get rate => "Rate";
   String get rePassword => "Confirm Password";
   String get refresh => "Refresh";
+  String get refreshIdle => "Pull down to refresh";
+  String get refreshRefreshWhenRelease => "Refresh when release";
+  String get refreshTwoLevel => "release to enter second floor";
+  String get refreshing => "Refreshing...";
   String get retry => "Retry";
   String get searchHistory => "History";
   String get searchHot => "Hot";
   String get searchShake => "Shake";
   String get setting => "Setting";
   String get settingFont => "System Font";
-  String get setting_language => "Language";
+  String get settingLanguage => "Language";
   String get share => "Share";
   String get signIn => "Sign In";
   String get signIn3thd => "More";
   String get signUp => "Sign Up";
-  String get splash_skip => "Skip";
-  String get tab_home => "Home";
-  String get tab_project => "Project";
-  String get tab_structure => "Structure";
-  String get tab_user => "Me";
+  String get splashSkip => "Skip";
+  String get tabHome => "Home";
+  String get tabProject => "Project";
+  String get tabStructure => "Structure";
+  String get tabUser => "Me";
   String get theme => "Theme";
   String get toSignIn => "Sign In";
   String get toSignUp => "Sign Up";
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
-  String get view_state_button_refresh => "Refresh";
-  String get view_state_message_empty => "Nothing Found";
-  String get view_state_message_un_auth => "Not sign in yet";
+  String get viewStateButtonRefresh => "Refresh";
+  String get viewStateMessageEmpty => "Nothing Found";
+  String get viewStateMessageUnAuth => "Not sign in yet";
   String get wechatAccount => "Wechat";
 }
 
@@ -90,7 +98,7 @@ class $zh_CN extends S {
   @override
   String get favourites => "收藏";
   @override
-  String get view_state_message_empty => "空空如也";
+  String get refreshIdle => "下拉可刷新";
   @override
   String get twoPwdDifferent => "两次密码不一致";
   @override
@@ -98,7 +106,13 @@ class $zh_CN extends S {
   @override
   String get unLike => "取消收藏";
   @override
+  String get tabStructure => "体系";
+  @override
   String get signUp => "注册";
+  @override
+  String get viewStateMessageEmpty => "空空如也";
+  @override
+  String get viewStateMessageUnAuth => "未登录";
   @override
   String get setting => "设置";
   @override
@@ -114,27 +128,29 @@ class $zh_CN extends S {
   @override
   String get Like => "收藏";
   @override
+  String get loadMoreFailed => "加载失败,请点击重试";
+  @override
+  String get refreshRefreshWhenRelease => "释放可刷新";
+  @override
   String get autoBySystem => "跟随系统";
   @override
-  String get tab_home => "首页";
+  String get viewStateButtonRefresh => "刷新一下";
   @override
   String get loadFailed => "加载失败,请稍后重试";
   @override
-  String get tab_project => "项目";
-  @override
-  String get splash_skip => "跳过";
+  String get refreshTwoLevel => "欢迎光临,我的空中阁楼";
   @override
   String get noAccount => "还没账号? ";
   @override
-  String get setting_language => "多语言";
+  String get loadMoreIdle => "上拉加载更多";
   @override
-  String get tab_user => "我的";
+  String get splashSkip => "跳过";
   @override
   String get fontKuaiLe => "快乐字体";
   @override
-  String get myFavourites => "我的收藏";
+  String get settingLanguage => "多语言";
   @override
-  String get tab_structure => "体系";
+  String get myFavourites => "我的收藏";
   @override
   String get signIn3thd => "第三方登录";
   @override
@@ -150,11 +166,11 @@ class $zh_CN extends S {
   @override
   String get close => "关闭";
   @override
-  String get view_state_message_un_auth => "未登录";
-  @override
   String get retry => "重试";
   @override
   String get wechatAccount => "公众号";
+  @override
+  String get loadMoreLoading => "加载中...";
   @override
   String get pageStateRetry => "重试";
   @override
@@ -162,7 +178,7 @@ class $zh_CN extends S {
   @override
   String get appName => "玩Android";
   @override
-  String get view_state_button_refresh => "刷新一下";
+  String get tabUser => "我的";
   @override
   String get clear => "清空";
   @override
@@ -175,6 +191,12 @@ class $zh_CN extends S {
   String get userName => "用户名";
   @override
   String get confirm => "确认";
+  @override
+  String get tabHome => "首页";
+  @override
+  String get tabProject => "项目";
+  @override
+  String get refreshing => "刷新中";
   @override
   String get rePassword => "确认密码";
   @override
@@ -189,6 +211,8 @@ class $zh_CN extends S {
   String get darkMode => "黑夜模式";
   @override
   String get searchHistory => "历史搜索";
+  @override
+  String get loadMoreNoData => "没有更多数据了";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {

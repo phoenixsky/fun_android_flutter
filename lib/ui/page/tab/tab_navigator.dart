@@ -50,11 +50,11 @@ class _TabNavigatorState extends State<TabNavigator> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text(S.of(context).tab_home),
+            title: Text(S.of(context).tabHome),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted),
-            title: Text(S.of(context).tab_project),
+            title: Text(S.of(context).tabProject),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group_work),
@@ -62,11 +62,11 @@ class _TabNavigatorState extends State<TabNavigator> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.call_split),
-            title: Text(S.of(context).tab_structure),
+            title: Text(S.of(context).tabStructure),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.insert_emoticon),
-            title: Text(S.of(context).tab_user),
+            title: Text(S.of(context).tabUser),
           ),
         ],
         currentIndex: _selectedIndex,

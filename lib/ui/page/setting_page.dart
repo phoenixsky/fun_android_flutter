@@ -71,7 +71,7 @@ class SettingPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        S.of(context).setting_language,
+                        S.of(context).settingLanguage,
                         style: TextStyle(),
                       ),
                       Text(

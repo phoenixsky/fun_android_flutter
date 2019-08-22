@@ -8,7 +8,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/widgets.dart';
 
 const double SCREEN_WIDTH = 414;
-const double DESIGN_ASPECT_RATIO = 414/896;
+//const double DESIGN_ASPECT_RATIO = 414/896;
 
 /// Android  480  * 800  aspectRatio为0.6
 /// Android  720  * 1280 aspectRatio为0.5625
@@ -52,7 +52,7 @@ class InnerWidgetsFlutterBinding extends WidgetsFlutterBinding {
   }
 
   ///
-  /// 以下一大重写与 GestureBinding
+  /// 以下用于重写 GestureBinding
   /// 唯一目的 把 _handlePointerDataPacket 方法 事件原始数据转换 改用
   /// 修改过的 PixelRatio
 
