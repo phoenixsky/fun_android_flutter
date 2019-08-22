@@ -4,21 +4,22 @@
 
 > Logo的里F，既代表了`Fun`也代表了`Flutter`.
 
-## 先来几张图
+![0-欢迎页面](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif)
 
-![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
+![1-空中阁楼](http://blogimgs.phoenixsky.cn/2019-08-22-1-%E7%A9%BA%E4%B8%AD%E9%98%81%E6%A5%BC.gif)
 
-![1-空中阁楼.gif](https://upload-images.jianshu.io/upload_images/581515-8b30ab563bde4ed6.gif?imageMogr2/auto-orient/strip)
+![2-页面状态骨架屏](http://blogimgs.phoenixsky.cn/2019-08-22-2-%E9%A1%B5%E9%9D%A2%E7%8A%B6%E6%80%81%E9%AA%A8%E6%9E%B6%E5%B1%8F.gif)
 
-![页面状态骨架屏](https://upload-images.jianshu.io/upload_images/581515-3851164513ebe273.gif?imageMogr2/auto-orient/strip)
+![3-状态页](http://blogimgs.phoenixsky.cn/2019-08-22-3-%E7%8A%B6%E6%80%81%E9%A1%B5.gif)
 
-![3-状态页.gif](https://upload-images.jianshu.io/upload_images/581515-60eef9e15ff49b2a.gif?imageMogr2/auto-orient/strip)
+![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif)
 
-![主题](https://upload-images.jianshu.io/upload_images/581515-c7a1f77dc9b32a13.gif?imageMogr2/auto-orient/strip)
+![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif)
 
-![4-字体.gif](https://upload-images.jianshu.io/upload_images/581515-e8b76a8e98210863.gif?imageMogr2/auto-orient/strip)
+![6-收藏及跳转app](http://blogimgs.phoenixsky.cn/2019-08-22-6-%E6%94%B6%E8%97%8F%E5%8F%8A%E8%B7%B3%E8%BD%ACapp.gif)
 
-![收藏列表](https://upload-images.jianshu.io/upload_images/581515-b74c4d9f33f5ebcc.gif?imageMogr2/auto-orient/strip)
+![7-移除收藏](http://blogimgs.phoenixsky.cn/2019-08-22-7-%E7%A7%BB%E9%99%A4%E6%94%B6%E8%97%8F.gif)
+
 
 > 项目地址：[https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
