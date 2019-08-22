@@ -7,7 +7,7 @@
 先来几张图
 ![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
 
-[图片上传中...(2.gif-1dba04-1566467145688-0)]
+![列表页面](https://upload-images.jianshu.io/upload_images/581515-9cb4e37f8b83674d.gif?imageMogr2/auto-orient/strip)
 
 ![列表的状态页面](https://upload-images.jianshu.io/upload_images/581515-1a5737bb73e57016.gif?imageMogr2/auto-orient/strip)
 
@@ -106,7 +106,7 @@
 
 4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
-5.  Tabbar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
+5.  TabBar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 ## Future
 
