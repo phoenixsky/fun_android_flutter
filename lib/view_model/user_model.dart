@@ -1,9 +1,9 @@
 import 'package:fun_android/config/storage_manager.dart';
 import 'package:fun_android/model/user.dart';
-import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/provider/view_state.dart';
 
-class UserModel extends BaseModel {
+class UserModel extends ViewStateModel {
   static const String kUser = 'kUser';
 
   User _user;

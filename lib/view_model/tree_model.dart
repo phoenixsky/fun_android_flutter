@@ -1,15 +1,15 @@
-import 'package:fun_android/provider/base_list_model.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/provider/view_state_refresh_list_model.dart';
+import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
-class TreeCategoryModel extends SampleListModel {
+class TreeCategoryModel extends ViewStateListModel {
   @override
   Future<List> loadData() async {
     return await WanAndroidRepository.fetchTreeCategories();
   }
 }
 
-class TreeListModel extends BaseListModel {
+class TreeListModel extends ViewStateRefreshListModel {
   final int cid;
 
   TreeListModel(this.cid);
@@ -26,7 +26,7 @@ class TreeListModel extends BaseListModel {
 }
 
 /// 网址导航
-class NavigationSiteModel extends SampleListModel {
+class NavigationSiteModel extends ViewStateListModel {
   @override
   Future<List> loadData() async {
     return await WanAndroidRepository.fetchNavigationSite();

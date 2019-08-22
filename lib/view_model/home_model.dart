@@ -1,9 +1,9 @@
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/banner.dart';
-import 'package:fun_android/provider/base_list_model.dart';
+import 'package:fun_android/provider/view_state_refresh_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
-class HomeModel extends BaseListModel {
+class HomeModel extends ViewStateRefreshListModel {
   List<Banner> _banners;
   List<Article> _topArticles;
 
@@ -14,14 +14,14 @@ class HomeModel extends BaseListModel {
   @override
   Future<List> loadData(int pageNum) async {
     List<Future> futures = [];
-    if (pageNum == BaseListModel.pageNumFirst) {
+    if (pageNum == ViewStateRefreshListModel.pageNumFirst) {
       futures.add(WanAndroidRepository.fetchBanners());
       futures.add(WanAndroidRepository.fetchTopArticles());
     }
     futures.add(WanAndroidRepository.fetchArticles(pageNum));
 
     var result = await Future.wait(futures);
-    if (pageNum == BaseListModel.pageNumFirst) {
+    if (pageNum == ViewStateRefreshListModel.pageNumFirst) {
       _banners = result[0];
       _topArticles = result[1];
       return result[2];

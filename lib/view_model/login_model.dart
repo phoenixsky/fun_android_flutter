@@ -1,5 +1,5 @@
 import 'package:fun_android/config/storage_manager.dart';
-import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/provider/view_state.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
@@ -7,7 +7,7 @@ import 'user_model.dart';
 
 const String kLoginName = 'kLoginName';
 
-class LoginModel extends BaseModel {
+class LoginModel extends ViewStateModel {
   final UserModel userModel;
 
   LoginModel(this.userModel) : assert(userModel != null) {

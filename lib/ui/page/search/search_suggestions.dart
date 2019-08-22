@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/flutter/search.dart';
 import 'package:fun_android/model/search.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:fun_android/view_model/search_model.dart';
 
 class SearchSuggestions<T> extends StatelessWidget {
@@ -193,7 +193,7 @@ class _SearchHistoriesWidgetState extends State<SearchHistoriesWidget> {
   }
 }
 
-class SearchSuggestionStateWidget<T extends SampleListModel, E>
+class SearchSuggestionStateWidget<T extends ViewStateListModel, E>
     extends StatelessWidget {
   final Widget Function(BuildContext context, E data) builder;
 

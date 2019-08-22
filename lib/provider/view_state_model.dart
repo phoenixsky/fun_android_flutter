@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fun_android/provider/view_state.dart';
 
-class BaseModel with ChangeNotifier {
+class ViewStateModel with ChangeNotifier {
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool _disposed = false;
 

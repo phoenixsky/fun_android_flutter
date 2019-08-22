@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/config/net/api.dart';
 import 'package:dio/dio.dart';
 
 /// 基于
-abstract class BaseListModel<T> extends BaseModel {
+abstract class ViewStateRefreshListModel<T> extends ViewStateModel {
   static const int pageNumFirst = 0;
   static const int pageSize = 20;
 

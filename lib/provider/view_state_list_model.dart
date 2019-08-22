@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state_model.dart';
 
 /// 基于
-abstract class SampleListModel<T> extends BaseModel {
+abstract class ViewStateListModel<T> extends ViewStateModel {
   List<T> list = [];
 
   /// 第一次进入页面loading skeleton

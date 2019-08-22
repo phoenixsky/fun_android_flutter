@@ -5,15 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fun_android/model/search.dart';
-import 'package:fun_android/provider/base_list_model.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/provider/view_state_refresh_list_model.dart';
+import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
 const String kLocalStorageSearch = 'kLocalStorageSearch';
 const String kSearchHotList = 'kSearchHotList';
 const String kSearchHistory = 'kSearchHistory';
 
-class SearchHotKeyModel extends SampleListModel {
+class SearchHotKeyModel extends ViewStateListModel {
   @override
   Future<List> loadData() async {
     LocalStorage localStorage = LocalStorage(kLocalStorageSearch);
@@ -49,7 +49,7 @@ class SearchHotKeyModel extends SampleListModel {
 
 }
 
-class SearchHistoryModel extends SampleListModel<String> {
+class SearchHistoryModel extends ViewStateListModel<String> {
   clearHistory() async {
     debugPrint('clearHistory');
     var sharedPreferences = await SharedPreferences.getInstance();
@@ -75,7 +75,7 @@ class SearchHistoryModel extends SampleListModel<String> {
   }
 }
 
-class SearchResultModel extends BaseListModel {
+class SearchResultModel extends ViewStateRefreshListModel {
   final String keyword;
   final SearchHistoryModel searchHistoryModel;
 

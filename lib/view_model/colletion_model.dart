@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/net/api.dart';
 import 'package:fun_android/model/article.dart';
-import 'package:fun_android/provider/base_list_model.dart';
-import 'package:fun_android/provider/base_model.dart';
+import 'package:fun_android/provider/view_state_refresh_list_model.dart';
+import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/provider/view_state.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
 import 'login_model.dart';
 
-class CollectionListModel extends BaseListModel<Article> {
+class CollectionListModel extends ViewStateRefreshListModel<Article> {
   LoginModel loginModel;
 
   CollectionListModel({this.loginModel});
@@ -25,7 +25,7 @@ class CollectionListModel extends BaseListModel<Article> {
   }
 }
 
-class CollectionModel extends BaseModel {
+class CollectionModel extends ViewStateModel {
   final Article article;
   final CollectionAnimationModel animationModel;
 

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
 import 'package:flutter/cupertino.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/flutter/dropdown.dart';
 import 'package:fun_android/model/tree.dart';
@@ -97,7 +97,7 @@ class _ProjectPageState extends State<ProjectPage>
 }
 
 class CategoryDropdownWidget extends StatelessWidget {
-  final SampleListModel model;
+  final ViewStateListModel model;
 
   CategoryDropdownWidget(this.model);
 

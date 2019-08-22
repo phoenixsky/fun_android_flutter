@@ -1,11 +1,11 @@
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/tree.dart';
-import 'package:fun_android/provider/base_list_model.dart';
-import 'package:fun_android/provider/sample_list_model.dart';
+import 'package:fun_android/provider/view_state_refresh_list_model.dart';
+import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
 /// 微信公众号
-class WechatAccountCategoryModel extends SampleListModel<Tree> {
+class WechatAccountCategoryModel extends ViewStateListModel<Tree> {
   @override
   Future<List<Tree>> loadData() async {
     return await WanAndroidRepository.fetchWechatAccounts();
@@ -13,7 +13,7 @@ class WechatAccountCategoryModel extends SampleListModel<Tree> {
 }
 
 /// 微信公众号文章
-class WechatArticleListModel extends BaseListModel<Article> {
+class WechatArticleListModel extends ViewStateRefreshListModel<Article> {
   /// 公众号id
   final int id;
 
