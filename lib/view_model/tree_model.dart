@@ -15,7 +15,7 @@ class TreeListModel extends ViewStateRefreshListModel {
   TreeListModel(this.cid);
 
   @override
-  Future<List> loadData(int pageNum) async {
+  Future<List> loadData({int pageNum}) async {
     return await WanAndroidRepository.fetchArticles(pageNum, cid: cid);
   }
 

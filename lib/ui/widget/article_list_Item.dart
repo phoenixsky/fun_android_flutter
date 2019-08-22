@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fun_android/generated/i18n.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -182,21 +184,14 @@ class ArticleCollectionWidget extends StatelessWidget {
     return ProviderWidget<CollectionModel>(
       model: CollectionModel(article, animationModel: animationModel),
       builder: (context, model, child) {
-        return InkWell(
+        return GestureDetector(
           onTap: () async {
             if (!model.busy) {
-              await model.collect();
-              if (model.unAuthorized) {
-                if (await DialogHelper.showLoginDialog(context)) {
-                  var success =
-                      await Navigator.pushNamed(context, RouteName.login);
-                  if (success ?? false) model.collect();
-                }
-              }
+              toCollect(context, model);
             }
           },
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(5, 5, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
@@ -218,5 +213,22 @@ class ArticleCollectionWidget extends StatelessWidget {
         );
       },
     );
+  }
+
+  /// 由于存在递归操作,所以抽取为方法,而且多出调用
+  ///
+  /// 多个页面使用该方法,目前这种方式并不优雅,抽取位置有待商榷
+  static toCollect(context, CollectionModel model) async {
+    await model.collect();
+    if (model.unAuthorized) {
+      //未登录
+      if (await DialogHelper.showLoginDialog(context)) {
+        var success = await Navigator.pushNamed(context, RouteName.login);
+        if (success ?? false) toCollect(context, model);
+      }
+    } else if (model.error) {
+      //失败
+      showToast(S.of(context).loadFailed);
+    }
   }
 }

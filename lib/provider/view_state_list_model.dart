@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:fun_android/provider/view_state_model.dart';
 
 /// 基于
 abstract class ViewStateListModel<T> extends ViewStateModel {
+  /// 页面数据
   List<T> list = [];
 
   /// 第一次进入页面loading skeleton
@@ -28,9 +27,7 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
         }
       }
     } catch (e, s) {
-      debugPrint(e.toString());
-      debugPrint(s.toString());
-      setError(e is Error ? e.toString() : e.message);
+      handleCatch(e, s);
     }
   }
 

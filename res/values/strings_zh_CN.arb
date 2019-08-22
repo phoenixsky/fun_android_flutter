@@ -46,5 +46,6 @@
   "joinWanAndroid": "请先登录",
   "needLogin": "还没有登录,请先登录..",
   "cancel": "取消",
-  "confirm": "确认"
+  "confirm": "确认",
+  "loadFailed": "加载失败,请稍后重试"
 }

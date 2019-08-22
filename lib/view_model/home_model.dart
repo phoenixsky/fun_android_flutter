@@ -12,7 +12,7 @@ class HomeModel extends ViewStateRefreshListModel {
   List<Article> get topArticles => _topArticles;
 
   @override
-  Future<List> loadData(int pageNum) async {
+  Future<List> loadData({int pageNum}) async {
     List<Future> futures = [];
     if (pageNum == ViewStateRefreshListModel.pageNumFirst) {
       futures.add(WanAndroidRepository.fetchBanners());

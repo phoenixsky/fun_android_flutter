@@ -13,7 +13,7 @@ class ProjectCategoryModel extends ViewStateListModel<Tree> {
 
 class ProjectListModel extends ViewStateRefreshListModel<Article> {
   @override
-  Future<List<Article>> loadData(int pageNum) async {
+  Future<List<Article>> loadData({int pageNum}) async {
     return await WanAndroidRepository.fetchArticles(pageNum, cid: 294);
   }
 }

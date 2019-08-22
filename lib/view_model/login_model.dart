@@ -10,9 +10,7 @@ const String kLoginName = 'kLoginName';
 class LoginModel extends ViewStateModel {
   final UserModel userModel;
 
-  LoginModel(this.userModel) : assert(userModel != null) {
-    viewState = ViewState.idle;
-  }
+  LoginModel(this.userModel) : assert(userModel != null);
 
   String getLoginName() {
     return StorageManager.sharedPreferences.getString(kLoginName);

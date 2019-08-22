@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/model/article.dart';
@@ -183,10 +184,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   controller.reload();
                   break;
                 case 1:
-                  await collectionModel.collect();
-                  if (collectionModel.unAuthorized) {
-                    DialogHelper.showLoginDialog(context);
-                  }
+                  ArticleCollectionWidget.toCollect(context,collectionModel);
                   break;
                 case 2:
                   Share.share(article.link, subject: article.title);

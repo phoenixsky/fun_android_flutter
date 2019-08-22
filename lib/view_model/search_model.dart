@@ -82,7 +82,7 @@ class SearchResultModel extends ViewStateRefreshListModel {
   SearchResultModel({this.keyword, this.searchHistoryModel});
 
   @override
-  Future<List> loadData(int pageNum) async {
+  Future<List> loadData({int pageNum}) async {
     if (keyword.isEmpty) return [];
     searchHistoryModel.addHistory(keyword);
     return await WanAndroidRepository.fetchSearchResult(

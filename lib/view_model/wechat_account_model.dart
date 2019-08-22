@@ -20,7 +20,7 @@ class WechatArticleListModel extends ViewStateRefreshListModel<Article> {
   WechatArticleListModel(this.id);
 
   @override
-  Future<List<Article>> loadData(int pageNum) async {
+  Future<List<Article>> loadData({int pageNum}) async {
     return await WanAndroidRepository.fetchWechatAccountArticles(pageNum, id);
   }
 }

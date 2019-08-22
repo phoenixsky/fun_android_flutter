@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:fun_android/provider/view_state.dart';
 import 'http.dart';
 export 'package:dio/dio.dart';
 
@@ -87,9 +88,4 @@ class RespData {
   }
 }
 
-class UnAuthorizedException implements Exception {
-  const UnAuthorizedException();
 
-  @override
-  String toString() => 'UnAuthorizedException';
-}

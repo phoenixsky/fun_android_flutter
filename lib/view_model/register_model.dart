@@ -3,9 +3,6 @@ import 'package:fun_android/provider/view_state.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
 class RegisterModel extends ViewStateModel {
-  RegisterModel() {
-    viewState = ViewState.idle;
-  }
 
   Future<bool> singUp(loginName, password, rePassword) async {
     setBusy(true);

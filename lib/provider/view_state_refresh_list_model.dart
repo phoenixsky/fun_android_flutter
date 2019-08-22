@@ -1,13 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/config/net/api.dart';
 import 'package:dio/dio.dart';
 
+import 'view_state.dart';
+import 'view_state_list_model.dart';
+
 /// 基于
-abstract class ViewStateRefreshListModel<T> extends ViewStateModel {
+abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
+  /// 分页第一页页码
   static const int pageNumFirst = 0;
+
+  /// 分页条目数量
   static const int pageSize = 20;
 
   RefreshController _refreshController =
@@ -15,21 +20,14 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateModel {
 
   RefreshController get refreshController => _refreshController;
 
+  /// 当前页码
   int _currentPageNum = pageNumFirst;
 
-  List<T> list = [];
-
-  /// 第一次进入页面loading skeleton
-  Future<List<T>> initData() async {
-    setBusy(true);
-    return await refresh(init: true);
-  }
-
-  // 下拉刷新
+  /// 下拉刷新
   Future<List<T>> refresh({bool init = false}) async {
     try {
       _currentPageNum = pageNumFirst;
-      var data = await loadData(pageNumFirst);
+      var data = await loadData(pageNum: pageNumFirst);
       if (data.isEmpty) {
         setEmpty();
       } else {
@@ -50,26 +48,19 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateModel {
         }
       }
       return data;
-    } on DioError catch (e) {
-      if (e.error is UnAuthorizedException) {
-        setUnAuthorized();
-      } else {
-        debugPrint(e.toString());
-        setError(e.message);
-      }
+    } on UnAuthorizedException catch (_) {
+      setUnAuthorized();
       return null;
     } catch (e, s) {
-      debugPrint('error--->\n' + e.toString());
-      debugPrint('statck--->\n' + s.toString());
-      setError(e is Error ? e.toString() : e.message);
+      handleCatch(e, s);
       return null;
     }
   }
 
-  // 上拉加载更多
+  /// 上拉加载更多
   Future<List<T>> loadMore() async {
     try {
-      var data = await loadData(++_currentPageNum);
+      var data = await loadData(pageNum: ++_currentPageNum);
       if (data.isEmpty) {
         _currentPageNum--;
         refreshController.loadNoData();
@@ -83,25 +74,20 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateModel {
         notifyListeners();
       }
       return data;
-    } on DioError catch (e) {
-      if (e.error is UnAuthorizedException) {
-        setUnAuthorized();
-      } else {
-        debugPrint(e.toString());
-        setError(e.message);
-      }
+    } on UnAuthorizedException catch (_) {
+      _currentPageNum--; //页面减1
+      setUnAuthorized();
       return null;
     } catch (e, s) {
       _currentPageNum--;
       refreshController.loadFailed();
-      debugPrint('error--->\n' + e.toString());
-      debugPrint('statck--->\n' + s.toString());
+      handleCatch(e, s);
       return null;
     }
   }
 
   // 加载数据
-  Future<List<T>> loadData(int pageNum);
+  Future<List<T>> loadData({int pageNum});
 
   @override
   void dispose() {
