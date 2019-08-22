@@ -6,10 +6,7 @@
 
 ![0-欢迎页面](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif)
 
-
-![1-空中阁楼.gif](https://upload-images.jianshu.io/upload_images/581515-54b8e7498039dc11.gif?imageMogr2/auto-orient/strip)
-
-![1-空中阁楼](http://blogimgs.phoenixsky.cn/2019-08-22-1-%E7%A9%BA%E4%B8%AD%E9%98%81%E6%A5%BC.gif)
+![1-空中阁楼小.gif](https://upload-images.jianshu.io/upload_images/581515-54b8e7498039dc11.gif?imageMogr2/auto-orient/strip)
 
 ![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip)
 
