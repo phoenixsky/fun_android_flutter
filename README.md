@@ -7,7 +7,7 @@
 先来几张图
 ![欢迎页面](https://upload-images.jianshu.io/upload_images/581515-45787a41ac243df7.gif?imageMogr2/auto-orient/strip)
 
-![2.gif](https://upload-images.jianshu.io/upload_images/581515-b9347bee10e4d77c.gif?imageMogr2/auto-orient/strip)
+[图片上传中...(2.gif-1dba04-1566467145688-0)]
 
 ![列表的状态页面](https://upload-images.jianshu.io/upload_images/581515-1a5737bb73e57016.gif?imageMogr2/auto-orient/strip)
 
@@ -15,7 +15,7 @@
 
 ![主题](https://upload-images.jianshu.io/upload_images/581515-c7a1f77dc9b32a13.gif?imageMogr2/auto-orient/strip)
 
-![收藏](https://upload-images.jianshu.io/upload_images/581515-81ee4a39da35215f.gif?imageMogr2/auto-orient/strip)
+![收藏](https://upload-images.jianshu.io/upload_images/581515-82b3fee8e98c580d.gif?imageMogr2/auto-orient/strip)
 
 ![收藏列表](https://upload-images.jianshu.io/upload_images/581515-b74c4d9f33f5ebcc.gif?imageMogr2/auto-orient/strip)
 
@@ -123,3 +123,4 @@
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
 5.  感谢站酷提供的开源的字体。
+![6.gif](https://upload-images.jianshu.io/upload_images/581515-8edb21b4c5826b38.gif?imageMogr2/auto-orient/strip)
