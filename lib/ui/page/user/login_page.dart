@@ -117,11 +117,11 @@ class LoginButton extends StatelessWidget {
       child: model.busy
           ? ButtonProgressIndicator()
           : Text(
-              S.of(context).login,
+              S.of(context).signIn,
               style: Theme.of(context)
                   .accentTextTheme
                   .title
-                  .copyWith(wordSpacing: 10),
+                  .copyWith(wordSpacing: 6),
             ),
       onPressed: model.busy
           ? null
@@ -177,7 +177,7 @@ class _SingUpWidgetState extends State<SingUpWidget> {
     return Center(
       child: Text.rich(TextSpan(text: S.of(context).noAccount, children: [
         TextSpan(
-            text: S.of(context).register,
+            text: S.of(context).toSignUp,
             recognizer: _recognizerRegister,
             style: TextStyle(color: Theme.of(context).accentColor))
       ])),

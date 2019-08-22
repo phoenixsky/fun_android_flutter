@@ -13,7 +13,6 @@
   "setting": "Setting",
   "about": "About",
   "close": "Close",
-  "login": "Login",
   "settingFont": "System Font",
   "feedback": "FeedBack",
   "githubIssue": "Can't find mail app,please github issues",
@@ -22,10 +21,12 @@
   "fieldNotNull": "not empty",
   "userName": "Username",
   "password": "Password",
-  "register": "Sing Up",
+  "toSignUp": "Sign Up",
+  "signUp": "Sign Up",
   "rePassword": "Confirm Password",
   "twoPwdDifferent": "The two passwords differ",
-  "singIn": "Sing In",
+  "toSignIn": "Sign In",
+  "signIn": "Sign In",
   "noAccount": "No Account ? ",
   "myFavourites": "My favourites",
   "signIn3thd": "More",
@@ -41,5 +42,9 @@
   "Like": "Like",
   "share": "Share",
   "wechatAccount": "Wechat",
-  "rate": "Rate"
+  "rate": "Rate",
+  "joinWanAndroid": "Join WanAndroid",
+  "needLogin": "Go to Sign In",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
 }

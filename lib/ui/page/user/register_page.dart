@@ -126,11 +126,11 @@ class RegisterButton extends StatelessWidget {
       child: model.busy
           ? ButtonProgressIndicator()
           : Text(
-              S.of(context).register,
+              S.of(context).signUp,
               style: Theme.of(context)
                   .accentTextTheme
                   .title
-                  .copyWith(letterSpacing: 10),
+                  .copyWith(wordSpacing: 6),
             ),
       onPressed: model.busy
           ? null

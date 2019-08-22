@@ -25,17 +25,20 @@ class S implements WidgetsLocalizations {
   String get about => "About";
   String get appName => "Fun Android";
   String get autoBySystem => "Auto";
+  String get cancel => "Cancel";
   String get clear => "Clear";
   String get close => "Close";
+  String get confirm => "Confirm";
   String get darkMode => "Dark Mode";
   String get favourites => "Favorites";
   String get feedback => "FeedBack";
   String get fieldNotNull => "not empty";
   String get fontKuaiLe => "ZCOOL KuaiLe";
   String get githubIssue => "Can't find mail app,please github issues";
-  String get login => "Login";
+  String get joinWanAndroid => "Join WanAndroid";
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
+  String get needLogin => "Go to Sign In";
   String get noAccount => "No Account ? ";
   String get pageStateError => "Failed";
   String get pageStateRetry => "Retry";
@@ -43,7 +46,6 @@ class S implements WidgetsLocalizations {
   String get rate => "Rate";
   String get rePassword => "Confirm Password";
   String get refresh => "Refresh";
-  String get register => "Sing Up";
   String get retry => "Retry";
   String get searchHistory => "History";
   String get searchHot => "Hot";
@@ -52,14 +54,17 @@ class S implements WidgetsLocalizations {
   String get settingFont => "System Font";
   String get setting_language => "Language";
   String get share => "Share";
+  String get signIn => "Sign In";
   String get signIn3thd => "More";
-  String get singIn => "Sing In";
+  String get signUp => "Sign Up";
   String get splash_skip => "Skip";
   String get tab_home => "Home";
   String get tab_project => "Project";
   String get tab_structure => "Structure";
   String get tab_user => "Me";
   String get theme => "Theme";
+  String get toSignIn => "Sign In";
+  String get toSignUp => "Sign Up";
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
@@ -77,6 +82,8 @@ class $zh_CN extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
+  String get cancel => "取消";
+  @override
   String get tab_user => "我的";
   @override
   String get favourites => "收藏";
@@ -91,7 +98,7 @@ class $zh_CN extends S {
   @override
   String get myFavourites => "我的收藏";
   @override
-  String get login => "登 录";
+  String get signUp => "注册";
   @override
   String get setting => "设置";
   @override
@@ -133,25 +140,35 @@ class $zh_CN extends S {
   @override
   String get pageStateRetry => "重试";
   @override
+  String get toSignUp => "去注册";
+  @override
   String get appName => "玩Android";
   @override
   String get tab_project => "项目";
   @override
   String get clear => "清空";
   @override
+  String get needLogin => "还没有登录,请先登录..";
+  @override
   String get refresh => "刷新";
+  @override
+  String get toSignIn => "点我登录";
   @override
   String get userName => "用户名";
   @override
-  String get singIn => "点我登录";
+  String get confirm => "确认";
   @override
   String get splash_skip => "跳过";
   @override
   String get rePassword => "确认密码";
   @override
+  String get signIn => "登录";
+  @override
   String get githubIssue => "未找到邮件客户端,请前往github,提issue";
   @override
   String get searchHot => "热门搜索";
+  @override
+  String get joinWanAndroid => "请先登录";
   @override
   String get noAccount => "还没账号? ";
   @override
@@ -160,8 +177,6 @@ class $zh_CN extends S {
   String get searchHistory => "历史搜索";
   @override
   String get setting_language => "多语言";
-  @override
-  String get register => "去注册";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {

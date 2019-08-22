@@ -101,7 +101,7 @@ class UserHeaderWidget extends StatelessWidget {
                       Text(
                           model.hasUser
                               ? model.user.nickname
-                              : S.of(context).singIn,
+                              : S.of(context).toSignIn,
                           style: Theme.of(context)
                               .textTheme
                               .title
