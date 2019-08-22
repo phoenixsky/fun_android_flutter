@@ -13,17 +13,13 @@
 
 ![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip)
 
-
-![2-页面状态骨架屏](http://blogimgs.phoenixsky.cn/2019-08-22-2-%E9%A1%B5%E9%9D%A2%E7%8A%B6%E6%80%81%E9%AA%A8%E6%9E%B6%E5%B1%8F.gif)
-
 ![3-状态页](http://blogimgs.phoenixsky.cn/2019-08-22-3-%E7%8A%B6%E6%80%81%E9%A1%B5.gif)
 
 ![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif)
 
 ![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif)
 
-![6-收藏及跳转app](http://blogimgs.phoenixsky.cn/2019-08-22-6-%E6%94%B6%E8%97%8F%E5%8F%8A%E8%B7%B3%E8%BD%ACapp.gif)
-
+![6-收藏及跳转app.gif](https://upload-images.jianshu.io/upload_images/581515-6de61fdded963914.gif?imageMogr2/auto-orient/strip)
 
 ![7-移除收藏](http://blogimgs.phoenixsky.cn/2019-08-22-7-%E7%A7%BB%E9%99%A4%E6%94%B6%E8%97%8F.gif)
 
