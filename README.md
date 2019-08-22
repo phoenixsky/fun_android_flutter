@@ -15,7 +15,7 @@
 
 ![主题](https://upload-images.jianshu.io/upload_images/581515-c7a1f77dc9b32a13.gif?imageMogr2/auto-orient/strip)
 
-![收藏](https://upload-images.jianshu.io/upload_images/581515-82b3fee8e98c580d.gif?imageMogr2/auto-orient/strip)
+![收藏](https://upload-images.jianshu.io/upload_images/581515-dd11e514735dab7c.gif?imageMogr2/auto-orient/strip)
 
 ![收藏列表](https://upload-images.jianshu.io/upload_images/581515-b74c4d9f33f5ebcc.gif?imageMogr2/auto-orient/strip)
 
@@ -118,7 +118,7 @@
 
 2.  借鉴了`goweii`[WanAndroid](https://github.com/goweii/WanAndroid)项目的UI，最美原生版WanAndroid，感谢。
 
-3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
+3.  在实践Provider时，发现了[Tutorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
 
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
