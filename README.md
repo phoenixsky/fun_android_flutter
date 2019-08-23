@@ -48,11 +48,11 @@ iOS: `审核被拒...待调整后上架`
 ## Provider的简单实用方式
 *  快速添加一个拥有下拉刷新,上拉加载更多的页面.比如开发一个`玩Android`首页列表页面
     1. 定义获取数据的接口
-        ![Api](http://blogimgs.phoenixsky.cn/2019-08-23-15665325063583.jpg)
+        ![Api](https://upload-images.jianshu.io/upload_images/581515-f60f2fceef71b2cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     2. 编写ViewModel
-        ![-w494](http://blogimgs.phoenixsky.cn/2019-08-23-15665326497907.jpg)
+        ![-w494](https://upload-images.jianshu.io/upload_images/581515-3ab778bafeb3b5b7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
     3. 编写页面
-        ![-w637](http://blogimgs.phoenixsky.cn/2019-08-23-15665326957741.jpg)
+        ![-w637](https://upload-images.jianshu.io/upload_images/581515-1aa9bd76f0e6f600.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 > 以上是Provider结合ViewModel的基础使用方式,考虑了App中会出现的比较全面的情况,希望大家一起探讨使用方式
 
@@ -130,8 +130,7 @@ iOS: `审核被拒...待调整后上架`
 1.  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
 
 ## 作者的话
-
-* 坐标上海,想找Flutter方向的工作,4年Android开发,可面向API进行小程序,Vue开发.还成功上架过weex应用.
+*  坐标上海,想找Flutter方向的工作,4年Android开发,可面向API进行小程序,Vue开发.还成功上架过weex应用.
 
 ## 感谢
 
@@ -139,7 +138,7 @@ iOS: `审核被拒...待调整后上架`
 
 2.  借鉴了`goweii`[WanAndroid](https://github.com/goweii/WanAndroid)项目的UI，最美原生版WanAndroid，感谢。
 
-3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
+3.  在实践Provider时，发现了[Tutorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
 
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
@@ -150,4 +149,3 @@ iOS: `审核被拒...待调整后上架`
 * [个人博客](http://blog.phoenixsky.cn/)
 * [简书](https://www.jianshu.com/u/145e6297cb26)
 * Email: moran.fc@gmail.com
-
