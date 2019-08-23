@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/collection_helper.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -14,7 +12,6 @@ import 'package:fun_android/view_model/colletion_model.dart';
 
 import 'animated_provider.dart';
 import 'article_tag.dart';
-import 'package:fun_android/ui/helper/dialog_helper.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
@@ -196,22 +193,17 @@ class ArticleCollectionWidget extends StatelessWidget {
             child: ScaleAnimatedSwitcher(
               child: model.busy
                   ? SizedBox(
-                height: 24,
-                width: 24,
-                child: CupertinoActivityIndicator(
-                  radius: 8,
-                ),
-              )
+                      height: 24,
+                      width: 24,
+                      child: CupertinoActivityIndicator(radius: 8),
+                    )
                   : Icon(
-                model.article.collect
-                    ? Icons.favorite
-                    : Icons.favorite_border,
-                color: Colors.redAccent[100],
-//                      color: Color(0xffF44062),
-              ),
+                      model.article.collect
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: Colors.redAccent[100]),
             ),
           ),
-
         );
       },
     );
