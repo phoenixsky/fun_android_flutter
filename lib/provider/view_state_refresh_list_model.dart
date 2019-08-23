@@ -74,7 +74,8 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
     } catch (e, s) {
       _currentPageNum--;
       refreshController.loadFailed();
-      handleCatch(e, s);
+      debugPrint('error--->\n' + e.toString());
+      debugPrint('statck--->\n' + s.toString());
       return null;
     }
   }

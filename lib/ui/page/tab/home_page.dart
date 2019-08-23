@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -74,20 +75,11 @@ class _HomePageState extends State<HomePage>
                       twiceTriggerDistance: kHomeRefreshHeight - 15,
                       //最大下拉距离,android默认为0,这里为了触发二楼
                       maxOverScrollExtent: kHomeRefreshHeight,
-
+                      
                       child: SmartRefresher(
                           enableTwoLevel: true,
                           controller: homeModel.refreshController,
-                          header: ClassicHeader(
-                            idleText:S.of(context).refreshIdle,
-                            releaseText: S.of(context).refreshRefreshWhenRelease,
-                            refreshingText: S.of(context).refreshing,
-                            canTwoLevelText: S.of(context).refreshTwoLevel,
-                            textStyle: TextStyle(color: Colors.white),
-                            outerBuilder: (child) =>
-                                HomeSecondFloorOuter(child),
-                            twoLevelView: Container(),
-                          ),
+                          header: HomeRefreshHeader(),
                           onTwoLevel: () async {
                             await Navigator.of(context)
                                 .pushNamed(RouteName.homeSecondFloor);
@@ -96,6 +88,7 @@ class _HomePageState extends State<HomePage>
                                 .refreshController
                                 .twoLevelComplete();
                           },
+                          footer: RefresherFooter(),
                           onRefresh: homeModel.refresh,
                           onLoading: homeModel.loadMore,
                           enablePullUp: true,
@@ -134,7 +127,7 @@ class _HomePageState extends State<HomePage>
                               SliverPadding(
                                 padding: EdgeInsets.only(top: 5),
                               ),
-                              HomeTopArticleList(),
+                              if (homeModel.idle) HomeTopArticleList(),
                               HomeArticleList(),
                             ],
                           )),

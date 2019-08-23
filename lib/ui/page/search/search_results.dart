@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
@@ -30,16 +31,15 @@ class SearchResults extends StatelessWidget {
           builder: (context, model, child) {
             if (model.busy) {
               return ViewStateBusyWidget();
-            }
-            if (model.error) {
+            } else  if (model.error) {
               return ViewStateWidget(onPressed: model.initData);
-            }
-            if (model.empty) {
+            } else if (model.empty) {
               return ViewStateEmptyWidget(onPressed: model.initData);
             }
             return SmartRefresher(
                 controller: model.refreshController,
                 header: WaterDropHeader(),
+                footer: RefresherFooter(),
                 onRefresh: model.refresh,
                 onLoading: model.loadMore,
                 enablePullUp: true,

@@ -6,6 +6,7 @@
   "refreshIdle": "下拉可刷新",
   "refreshRefreshWhenRelease": "释放可刷新",
   "refreshing": "刷新中",
+  "refreshComplete": "刷新完成",
   "refreshTwoLevel": "欢迎光临,我的空中阁楼",
   "loadMoreLoading": "加载中...",
   "loadMoreNoData": "没有更多数据了",

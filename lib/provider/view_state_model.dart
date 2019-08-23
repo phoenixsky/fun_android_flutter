@@ -10,7 +10,6 @@ class ViewStateModel with ChangeNotifier {
   /// 当前的页面状态,默认为busy,可在viewModel的构造方法中指定;
   ViewState _viewState;
 
-
   /// 根据状态构造
   ///
   /// 子类可以在构造函数指定需要的页面状态
@@ -85,14 +84,14 @@ class ViewStateModel with ChangeNotifier {
   /// 统一处理子类的异常情况
   /// [e],有可能是Error,也有可能是Exception.所以需要判断处理
   /// [s] 为堆栈信息
-  void handleCatch(e,s){
+  void handleCatch(e, s) {
     // DioError的判断,理论不应该拿进来,增强了代码耦合性,抽取为时组件时.应移除
     if (e is DioError && e.error is UnAuthorizedException) {
       setUnAuthorized();
-      return;
+    } else {
+      debugPrint('error--->\n' + e.toString());
+      debugPrint('statck--->\n' + s.toString());
+      setError(e is Error ? e.toString() : e.message);
     }
-    debugPrint('error--->\n' + e.toString());
-    debugPrint('statck--->\n' + s.toString());
-    setError(e is Error ? e.toString() : e.message);
   }
 }

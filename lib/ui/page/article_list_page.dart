@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/model/article.dart';
@@ -45,16 +46,15 @@ class _ArticleListPageState extends State<ArticleListPage>
               return ViewStateSkeletonList(
                 builder: (context, index) => ArticleSkeletonItem(),
               );
-            }
-            if (model.error) {
+            } else if (model.error) {
               return ViewStateWidget(onPressed: model.initData);
-            }
-            if (model.empty) {
+            } else if (model.empty) {
               return ViewStateEmptyWidget(onPressed: model.initData);
             }
             return SmartRefresher(
                 controller: model.refreshController,
                 header: WaterDropHeader(),
+                footer: RefresherFooter(),
                 onRefresh: model.refresh,
                 onLoading: model.loadMore,
                 enablePullUp: true,

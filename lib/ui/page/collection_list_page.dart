@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -35,14 +36,11 @@ class CollectionListPage extends StatelessWidget {
             return ViewStateSkeletonList(
               builder: (context, index) => ArticleSkeletonItem(),
             );
-          }
-          if (model.error) {
+          } else if (model.error) {
             return ViewStateWidget(onPressed: model.initData);
-          }
-          if (model.empty) {
+          } else if (model.empty) {
             return ViewStateEmptyWidget(onPressed: model.initData);
-          }
-          if (model.unAuthorized) {
+          } else if (model.unAuthorized) {
             return ViewStateUnAuthWidget(onPressed: () async {
               var success =
                   await Navigator.of(context).pushNamed(RouteName.login);
@@ -55,6 +53,7 @@ class CollectionListPage extends StatelessWidget {
           return SmartRefresher(
               controller: model.refreshController,
               header: WaterDropHeader(),
+              footer: RefresherFooter(),
               onRefresh: () async {
                 await model.refresh();
                 listKey.currentState.refresh(model.list.length);

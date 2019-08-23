@@ -3,6 +3,7 @@ import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/model/article.dart';
+import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:fun_android/ui/widget/like_animation.dart';
@@ -50,8 +51,7 @@ class _WechatAccountPageState extends State<WechatAccountPage>
         builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
-          }
-          if (model.error) {
+          } else if (model.error) {
             return ViewStateWidget(onPressed: model.initData);
           }
 
@@ -136,16 +136,15 @@ class _WechatArticleListState extends State<WechatArticleList>
               return ViewStateSkeletonList(
                 builder: (context, index) => ArticleSkeletonItem(),
               );
-            }
-            if (model.error) {
+            } else if (model.error) {
               return ViewStateWidget(onPressed: model.initData);
-            }
-            if (model.empty) {
+            } else if (model.empty) {
               return ViewStateEmptyWidget(onPressed: model.initData);
             }
             return SmartRefresher(
                 controller: model.refreshController,
                 header: WaterDropHeader(),
+                footer: RefresherFooter(),
                 onRefresh: model.refresh,
                 onLoading: model.loadMore,
                 enablePullUp: true,

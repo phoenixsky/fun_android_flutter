@@ -64,8 +64,7 @@ class _TreeCategoryListState extends State<TreeCategoryList>
         builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
-          }
-          if (model.error) {
+          } else if (model.error) {
             return ViewStateWidget(onPressed: model.initData());
           }
           return Scrollbar(
@@ -141,8 +140,7 @@ class _NavigationSiteCategoryListState extends State<NavigationSiteCategoryList>
         builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
-          }
-          if (model.error) {
+          } else if (model.error) {
             return ViewStateWidget(onPressed: model.initData());
           }
           return Scrollbar(

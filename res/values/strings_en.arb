@@ -6,6 +6,7 @@
   "refreshIdle": "Pull down to refresh",
   "refreshRefreshWhenRelease": "Refresh when release",
   "refreshing": "Refreshing...",
+  "refreshComplete": "Refresh Complete",
   "refreshTwoLevel": "release to enter second floor",
   "loadMoreLoading": "Loading...",
   "loadMoreNoData": "No more data",

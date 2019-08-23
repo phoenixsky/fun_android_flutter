@@ -222,15 +222,13 @@ class SearchSuggestionStateWidget<T extends ViewStateListModel, E>
                             padding: const EdgeInsets.symmetric(vertical: 40),
                             child: CupertinoActivityIndicator(),
                           );
-                        }
-                        if (model.error) {
+                        } else if (model.error) {
                           return const Icon(
                             IconFonts.pageError,
                             size: 60,
                             color: Colors.grey,
                           );
-                        }
-                        if (model.empty) {
+                        } else if (model.empty) {
                           return const Icon(
                             IconFonts.pageEmpty,
                             size: 70,

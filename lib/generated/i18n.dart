@@ -52,6 +52,7 @@ class S implements WidgetsLocalizations {
   String get rate => "Rate";
   String get rePassword => "Confirm Password";
   String get refresh => "Refresh";
+  String get refreshComplete => "Refresh Complete";
   String get refreshIdle => "Pull down to refresh";
   String get refreshRefreshWhenRelease => "Refresh when release";
   String get refreshTwoLevel => "release to enter second floor";
@@ -134,6 +135,8 @@ class $zh_CN extends S {
   String get refreshRefreshWhenRelease => "释放可刷新";
   @override
   String get autoBySystem => "跟随系统";
+  @override
+  String get refreshComplete => "刷新完成";
   @override
   String get viewStateButtonRefresh => "刷新一下";
   @override
