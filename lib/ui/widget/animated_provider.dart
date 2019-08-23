@@ -9,15 +9,10 @@ class ScaleAnimatedSwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 300),
-      transitionBuilder: scaleTransitionBuilder,
-      child: child,
-    );
-  }
-
-  static Widget scaleTransitionBuilder(
-      Widget child, Animation<double> animation) {
-    return ScaleTransition(
-      scale: animation,
+      transitionBuilder: (child, animation) => ScaleTransition(
+        scale: animation,
+        child: child,
+      ),
       child: child,
     );
   }
