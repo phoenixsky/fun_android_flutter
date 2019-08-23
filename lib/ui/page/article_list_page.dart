@@ -10,7 +10,7 @@ import 'package:fun_android/ui/widget/like_animation.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/view_model/colletion_model.dart';
-import 'package:fun_android/view_model/tree_model.dart';
+import 'package:fun_android/view_model/structure_model.dart';
 
 
 /// 文章列表页面
@@ -38,8 +38,8 @@ class _ArticleListPageState extends State<ArticleListPage>
         builder: (context, collectionAnimationModel, child) => Stack(
               children: <Widget>[child, LikeAnimatedWidget()],
             ),
-        child: ProviderWidget<TreeListModel>(
-          model: TreeListModel(widget.cid),
+        child: ProviderWidget<StructureListModel>(
+          model: StructureListModel(widget.cid),
           onModelReady: (model) => model.initData(),
           builder: (context, model, child) {
             if (model.busy) {

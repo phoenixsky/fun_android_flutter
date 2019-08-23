@@ -6,7 +6,7 @@ import 'package:fun_android/model/navigation_site.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
-import 'package:fun_android/view_model/tree_model.dart';
+import 'package:fun_android/view_model/structure_model.dart';
 
 /// 体系
 class StructurePage extends StatefulWidget {
@@ -56,8 +56,8 @@ class _TreeCategoryListState extends State<TreeCategoryList>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ProviderWidget<TreeCategoryModel>(
-        model: TreeCategoryModel(),
+    return ProviderWidget<StructureCategoryModel>(
+        model: StructureCategoryModel(),
         onModelReady: (model) {
           model.initData();
         },
