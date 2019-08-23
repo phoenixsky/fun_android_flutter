@@ -10,8 +10,6 @@
 
 ![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip)
 
-![3-状态页](http://blogimgs.phoenixsky.cn/2019-08-22-3-%E7%8A%B6%E6%80%81%E9%A1%B5.gif)
-
 ![3-状态页小](https://upload-images.jianshu.io/upload_images/581515-b94dfce6335bc25d.gif?imageMogr2/auto-orient/strip)
 
 ![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif)
@@ -25,6 +23,9 @@
 
 > 项目地址：[https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
+> 下载地址: 
+Android：https://github.com/phoenixsky/fun_android_flutter/releases/download/0.1.0/FunAndroid_0.1.0.apk
+iOS: `审核被拒...待调整后上架`
 
 借用群里水友的两句对白，在预览版出来时候
 
@@ -121,6 +122,7 @@
 
 4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
+
 5.  Tabbar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 ## Future
@@ -128,6 +130,7 @@
 1.  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
 
 ## 作者的话
+* 坐标上海,想找Flutter方向的工作,4年Android开发,可面向API进行小程序,Vue开发.还成功上架过weex应用.
 
 ## 感谢
 
@@ -140,3 +143,10 @@
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
 5.  感谢站酷提供的开源的字体。
+
+## 关于作者
+* [Github](https://github.com/phoenixsky)
+* [个人博客](http://blog.phoenixsky.cn/)
+* [简书](https://www.jianshu.com/u/145e6297cb26)
+* Email: moran.fc@gmail.com
+
