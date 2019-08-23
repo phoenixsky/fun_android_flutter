@@ -12,6 +12,8 @@
 
 ![3-状态页](http://blogimgs.phoenixsky.cn/2019-08-22-3-%E7%8A%B6%E6%80%81%E9%A1%B5.gif)
 
+![3-状态页小](https://upload-images.jianshu.io/upload_images/581515-b94dfce6335bc25d.gif?imageMogr2/auto-orient/strip)
+
 ![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif)
 
 ![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif)
@@ -28,13 +30,32 @@
 
 *   1A：话说`玩Android`的开源项目已经多如牛毛了。
 
-*   3C：我想看最漂亮的。
+*   3C：我想看最完美的。
 
 感谢这位朋友对`FunAndroid`的认可。
 
 关于App的主题风格，不是Google倡导的Material Design 也不是Apple的Cupertino Style。由于我是一个Android开发者，但又长期使用的iPhone，所以App的风格是两者的结合又夹杂了点私货。个人认为iOS版本的确实好看点。
 
 我也不是大佬，刚玩Flutter不久，用音乐圈的方式来说，做了一些代码裁缝，加了点自己的思考。所以代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
+
+## 简单介绍一下项目结构
+
+  ![项目结构1](https://upload-images.jianshu.io/upload_images/581515-74078e828d25fa7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+  ![项目解构2](https://upload-images.jianshu.io/upload_images/581515-362f48ef83763615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+## Provider的简单实用方式
+*  快速添加一个拥有下拉刷新,上拉加载更多的页面.比如开发一个`玩Android`首页列表页面
+    1. 定义获取数据的接口
+        ![Api](http://blogimgs.phoenixsky.cn/2019-08-23-15665325063583.jpg)
+    2. 编写ViewModel
+        ![-w494](http://blogimgs.phoenixsky.cn/2019-08-23-15665326497907.jpg)
+    3. 编写页面
+        ![-w637](http://blogimgs.phoenixsky.cn/2019-08-23-15665326957741.jpg)
+
+> 以上是Provider结合ViewModel的基础使用方式,考虑了App中会出现的比较全面的情况,希望大家一起探讨使用方式
+
+> 另外再判断页面状态的时候,其实拿`model.viewState == ViewState.busy`会更严谨一点.为了书写方便,加了一个对应方法     
 
 ## 这里能找到什么？
 
@@ -82,16 +103,13 @@
 
 ## 未完成的功能
 
-2.  收藏的两个动画不匹配，`like`是在[2dimensions](https://www.2dimensions.com/a/Ramzi/files/flare/like-heart/previewl) fork 的。
+1.  文章详情页面，也就是webview页面没有加入导航功能，没有找到不影响美观的地方，实在不想像微信那样底部加个箭头，所以目前还不能后退。
 
-3.  文章详情页面，也就是webview页面没有加入导航功能，没有找到不影响美观的地方，实在不想像微信那样底部加个箭头，所以目前还不能后退。
+2.  首页二楼目前是我个人的blog，也无法前进后退。后期会放一个flutter专题。
 
-4.  首页二楼目前是我个人的blog，也无法前进后退。后期会放一个flutter专题。
+3.  Hero动画，在非最后一个tab登陆时，logo的动画会漂移到最后一个，需要加状态判断。
 
-5.  Hero动画，在非最后一个tab登陆时，logo的动画会漂移到最后一个，需要加状态判断。
-
-6.  退出登陆加入动效。
-
+4.  退出登陆加入动效。
 
 ## 目前已知存在的问题
 
@@ -109,15 +127,16 @@
 
 1.  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
 
+## 作者的话
+
 ## 感谢
 
 1.  感谢 [V2Lf](https://github.com/w4mxl/V2LF) 开源项目，很早就在TestFlight中下载了该App,那时还没开源。萌生了想做一个开源的App的想法。
 
 2.  借鉴了`goweii`[WanAndroid](https://github.com/goweii/WanAndroid)项目的UI，最美原生版WanAndroid，感谢。
 
-3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者在Youtube的教程很好。
+3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
 
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
 5.  感谢站酷提供的开源的字体。
-
