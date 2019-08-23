@@ -142,7 +142,7 @@ class $zh_CN extends S {
   @override
   String get loadFailed => "加载失败,请稍后重试";
   @override
-  String get refreshTwoLevel => "欢迎光临,我的空中阁楼";
+  String get refreshTwoLevel => "欢迎光临,我的空中楼阁";
   @override
   String get noAccount => "还没账号? ";
   @override

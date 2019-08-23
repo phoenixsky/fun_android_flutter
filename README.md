@@ -82,9 +82,7 @@
 
 ## 未完成的功能
 
-1.  几个用来表示页面状态的Widget (`loading`、`error`、`empty`、`idle`)，由于前期没有考虑国际化，用的是`Const`的方式传参，国际化后，变量、参数需要context来判断获取，目前待重构。
-
-2.  收藏的两个动画不匹配，`like`是在[2dimensions](https://www.2dimensions.com/a/Ramzi/files/flare/like-heart/previewl) fork 的,`unLike`是在 [V2](https://github.com/w4mxl/V2LF)[Lf](https://github.com/w4mxl/V2LF)[](https://github.com/w4mxl/V2LF) 项目中copy出来的。其实like这个flr文件，喜欢和不喜欢两个动画是都有的，只是不完善，后期会调整，并且将与列表右下角的♥联动。
+2.  收藏的两个动画不匹配，`like`是在[2dimensions](https://www.2dimensions.com/a/Ramzi/files/flare/like-heart/previewl) fork 的。
 
 3.  文章详情页面，也就是webview页面没有加入导航功能，没有找到不影响美观的地方，实在不想像微信那样底部加个箭头，所以目前还不能后退。
 
@@ -94,7 +92,6 @@
 
 6.  退出登陆加入动效。
 
-7.  一些国际化不完善。
 
 ## 目前已知存在的问题
 
@@ -118,7 +115,7 @@
 
 2.  借鉴了`goweii`[WanAndroid](https://github.com/goweii/WanAndroid)项目的UI，最美原生版WanAndroid，感谢。
 
-3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者Youtube的教程很好。
+3.  在实践Provider时，发现了[Turorials](https://github.com/FilledStacks/flutter-tutorials),作者在Youtube的教程很好。
 
 4.  感谢优秀的[pull_to_refresh](https://pub.dev/packages/pull_to_refresh)刷新库。
 
