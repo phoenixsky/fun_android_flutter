@@ -183,10 +183,9 @@ class ArticleCollectionWidget extends StatelessWidget {
       model: CollectionModel(article, animationModel: animationModel),
       builder: (context, model, child) {
         return GestureDetector(
+          behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
-            if (!model.busy) {
-              collectArticle(context, model);
-            }
+            if (!model.busy) collectArticle(context, model);
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
