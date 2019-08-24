@@ -151,7 +151,7 @@ class ViewStateButton extends StatelessWidget {
       child: child ??
           Text(
             S.of(context).pageStateRetry,
-            style: TextStyle(letterSpacing: 5),
+            style: TextStyle(wordSpacing: 5),
           ),
       textColor: Colors.grey,
       splashColor: Theme.of(context).splashColor,

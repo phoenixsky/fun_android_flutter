@@ -13,7 +13,6 @@ import 'package:fun_android/ui/page/article_detail_page.dart';
 import 'package:fun_android/ui/page/user/register_page.dart';
 import 'package:fun_android/ui/widget/page_route_anim.dart';
 
-
 class RouteName {
   static const String splash = 'splash';
   static const String tab = '/';
@@ -50,9 +49,10 @@ class Router {
         var list = settings.arguments as List;
         Tree tree = list[0] as Tree;
         int index = list[1];
-        return CupertinoPageRoute(builder: (_) => ArticleCategoryTabPage(tree, index));
+        return CupertinoPageRoute(
+            builder: (_) => ArticleCategoryTabPage(tree, index));
       case RouteName.collectionList:
-        return CupertinoPageRoute(builder: (_) => CollectionListPage());
+        return CupertinoPageRoute(builder: (_) => FavouriteListPage());
       case RouteName.setting:
         return CupertinoPageRoute(builder: (_) => SettingPage());
       default:
@@ -64,4 +64,30 @@ class Router {
                 ));
     }
   }
+}
+
+/// Pop路由
+class PopRoute extends PopupRoute {
+  final Duration _duration = Duration(milliseconds: 300);
+  Widget child;
+
+  PopRoute({@required this.child});
+
+  @override
+  Color get barrierColor => null;
+
+  @override
+  bool get barrierDismissible => true;
+
+  @override
+  String get barrierLabel => null;
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return child;
+  }
+
+  @override
+  Duration get transitionDuration => _duration;
 }

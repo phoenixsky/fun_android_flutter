@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/collection_helper.dart';
-import 'package:fun_android/ui/widget/article_list_Item.dart';
+import 'package:fun_android/ui/widget/favourite_animation.dart';
 import 'package:provider/provider.dart';
-import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
-import 'package:fun_android/ui/helper/dialog_helper.dart';
-import 'package:fun_android/ui/widget/like_animation.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
-import 'package:fun_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/theme_model.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -33,8 +30,6 @@ class _WebViewState extends State<ArticleDetailPage> {
 
   Completer<bool> _finishedCompleter = Completer();
 
-  CollectionAnimationModel _animationModel = CollectionAnimationModel();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,39 +48,30 @@ class _WebViewState extends State<ArticleDetailPage> {
           WebViewPopupMenu(
             _controller,
             widget.article,
-            animationModel: _animationModel,
           )
         ],
       ),
       body: SafeArea(
         bottom: false,
-        child: ProviderWidget<CollectionAnimationModel>(
-            model: _animationModel,
-            builder: (context, model, child) => Stack(
-                  children: <Widget>[
-                    child,
-                    LikeAnimatedWidget(),
-                  ],
-                ),
-            child: WebView(
-              // 初始化加载的url
-              initialUrl: widget.article.link,
-              // 加载js
-              javascriptMode: JavascriptMode.unrestricted,
+        child: WebView(
+          // 初始化加载的url
+          initialUrl: widget.article.link,
+          // 加载js
+          javascriptMode: JavascriptMode.unrestricted,
 //              navigationDelegate: (NavigationRequest request) {
 //                return NavigationDecision.navigate;
 //              },
-              onWebViewCreated: (WebViewController controller) {
-                _controller = controller;
-                _controller.currentUrl().then((url) {
-                  debugPrint('返回当前$url');
-                });
-              },
-              onPageFinished: (String value) {
-                debugPrint('加载完成: $value');
-                _finishedCompleter.complete(true);
-              },
-            )),
+          onWebViewCreated: (WebViewController controller) {
+            _controller = controller;
+            _controller.currentUrl().then((url) {
+              debugPrint('返回当前$url');
+            });
+          },
+          onPageFinished: (String value) {
+            debugPrint('加载完成: $value');
+            _finishedCompleter.complete(true);
+          },
+        ),
       ),
       floatingActionButton: FutureBuilder<String>(
         future: ThirdAppUtils.canOpenApp(widget.article.link),
@@ -142,20 +128,20 @@ class WebViewTitle extends StatelessWidget {
 class WebViewPopupMenu extends StatelessWidget {
   final WebViewController controller;
   final Article article;
-  final CollectionAnimationModel animationModel;
 
-  WebViewPopupMenu(this.controller, this.article, {this.animationModel});
+  WebViewPopupMenu(this.controller, this.article);
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<CollectionModel>.value(
-            value: CollectionModel(article, animationModel: animationModel)),
+        ChangeNotifierProvider<FavouriteModel>.value(
+          value: FavouriteModel(article),
+        )
       ],
       child: Builder(
         builder: (context) {
-          var collectionModel = Provider.of<CollectionModel>(context);
+          var favouriteModel = Provider.of<FavouriteModel>(context);
           return PopupMenuButton(
             itemBuilder: (context) => <PopupMenuEntry<int>>[
               PopupMenuItem(
@@ -164,7 +150,7 @@ class WebViewPopupMenu extends StatelessWidget {
                 value: 0,
               ),
               PopupMenuItem(
-                child: (collectionModel.article.collect ?? true)
+                child: (favouriteModel.article.collect ?? true)
                     ? WebViewPopupMenuItem(Icons.favorite, S.of(context).unLike,
                         color: Colors.redAccent[100])
                     : WebViewPopupMenuItem(
@@ -183,7 +169,16 @@ class WebViewPopupMenu extends StatelessWidget {
                   controller.reload();
                   break;
                 case 1:
-                  collectArticle(context, collectionModel);
+                  await collectArticle(context, favouriteModel);
+                  if (!favouriteModel.error) {
+                    await Navigator.push(
+                        context,
+                        HeroDialogRoute(
+                            builder: (_) => FavouriteAnimationWidget(
+                                  tag: 'detail',
+                                  add: favouriteModel.article.collect,
+                                )));
+                  }
                   break;
                 case 2:
                   Share.share(article.link, subject: article.title);

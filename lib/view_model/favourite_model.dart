@@ -8,10 +8,11 @@ import 'package:fun_android/service/wan_android_repository.dart';
 
 import 'login_model.dart';
 
-class CollectionListModel extends ViewStateRefreshListModel<Article> {
+/// 我的收藏列表
+class FavouriteListModel extends ViewStateRefreshListModel<Article> {
   LoginModel loginModel;
 
-  CollectionListModel({this.loginModel});
+  FavouriteListModel({this.loginModel});
 
   @override
   void setUnAuthorized() {
@@ -25,11 +26,11 @@ class CollectionListModel extends ViewStateRefreshListModel<Article> {
   }
 }
 
-class CollectionModel extends ViewStateModel {
+/// 收藏/取消收藏
+class FavouriteModel extends ViewStateModel {
   final Article article;
-  final CollectionAnimationModel animationModel;
 
-  CollectionModel(this.article, {this.animationModel});
+  FavouriteModel(this.article);
 
   collect() async {
     setBusy(true);
@@ -41,41 +42,14 @@ class CollectionModel extends ViewStateModel {
       } else {
         if (article.collect) {
           await WanAndroidRepository.unCollect(article.id);
-          animationModel?.play(false);
         } else {
           await WanAndroidRepository.collect(article.id);
-          animationModel?.play(true);
         }
       }
       article.collect = !(article.collect ?? true);
       setBusy(false);
     } catch (e, s) {
       handleCatch(e, s);
-    }
-  }
-}
-
-class CollectionAnimationModel extends ChangeNotifier {
-  /// 正在播放动画
-  bool _playing = false;
-  bool _like = true;
-
-  get like => _like;
-
-  get playing => _playing;
-
-  play(bool like) {
-    if (!_playing) {
-      _playing = true;
-      _like = like;
-      notifyListeners();
-    }
-  }
-
-  pause() {
-    if (_playing) {
-      _playing = false;
-      notifyListeners();
     }
   }
 }

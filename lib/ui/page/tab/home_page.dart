@@ -13,16 +13,12 @@ import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/scroll_controller_model.dart';
 import 'package:fun_android/ui/widget/animated_provider.dart';
 import 'package:fun_android/ui/widget/banner_image.dart';
-import 'package:fun_android/ui/widget/like_animation.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
-import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/home_model.dart';
 
 import 'package:fun_android/ui/page/search/search_delegate.dart';
-
-import 'package:fun_android/ui/page/tab/home_second_floor_page.dart';
 
 const double kHomeRefreshHeight = 180.0;
 
@@ -63,81 +59,76 @@ class _HomePageState extends State<HomePage>
                 if (homeModel.error) {
                   return ViewStateWidget(onPressed: homeModel.initData);
                 }
-                return ProviderWidget<CollectionAnimationModel>(
-                    model: CollectionAnimationModel(),
-                    builder: (context, collectionAnimationModel, child) =>
-                        Stack(
-                          children: <Widget>[child, LikeAnimatedWidget()],
-                        ),
-                    child: RefreshConfiguration.copyAncestor(
-                      context: context,
-                      // 下拉触发二楼距离
-                      twiceTriggerDistance: kHomeRefreshHeight - 15,
-                      //最大下拉距离,android默认为0,这里为了触发二楼
-                      maxOverScrollExtent: kHomeRefreshHeight,
-                      
-                      child: SmartRefresher(
-                          enableTwoLevel: true,
-                          controller: homeModel.refreshController,
-                          header: HomeRefreshHeader(),
-                          onTwoLevel: () async {
-                            await Navigator.of(context)
-                                .pushNamed(RouteName.homeSecondFloor);
-                            await Future.delayed(Duration(milliseconds: 300));
-                            Provider.of<HomeModel>(context)
-                                .refreshController
-                                .twoLevelComplete();
-                          },
-                          footer: RefresherFooter(),
-                          onRefresh: homeModel.refresh,
-                          onLoading: homeModel.loadMore,
-                          enablePullUp: true,
-                          child: CustomScrollView(
-                            controller: tapToTopModel.scrollController,
-                            slivers: <Widget>[
-                              SliverToBoxAdapter(),
-                              SliverAppBar(
-                                actions: <Widget>[
-                                  EmptyAnimatedSwitcher(
-                                    display: tapToTopModel.showTopBtn,
-                                    child: IconButton(
-                                      icon: Icon(Icons.search),
-                                      onPressed: () {
-                                        showSearch(
-                                            context: context,
-                                            delegate: DefaultSearchDelegate());
-                                      },
-                                    ),
-                                  ),
-                                ],
-                                flexibleSpace: FlexibleSpaceBar(
-                                  background: BannerWidget(),
-                                  centerTitle: true,
-                                  title: GestureDetector(
-                                    onDoubleTap: tapToTopModel.scrollToTop,
-                                    child: EmptyAnimatedSwitcher(
-                                      display: tapToTopModel.showTopBtn,
-                                      child: Text(S.of(context).appName),
-                                    ),
-                                  ),
+                return RefreshConfiguration.copyAncestor(
+                  context: context,
+                  // 下拉触发二楼距离
+                  twiceTriggerDistance: kHomeRefreshHeight - 15,
+                  //最大下拉距离,android默认为0,这里为了触发二楼
+                  maxOverScrollExtent: kHomeRefreshHeight,
+
+                  child: SmartRefresher(
+                      enableTwoLevel: true,
+                      controller: homeModel.refreshController,
+                      header: HomeRefreshHeader(),
+                      onTwoLevel: () async {
+                        await Navigator.of(context)
+                            .pushNamed(RouteName.homeSecondFloor);
+                        await Future.delayed(Duration(milliseconds: 300));
+                        Provider.of<HomeModel>(context)
+                            .refreshController
+                            .twoLevelComplete();
+                      },
+                      footer: RefresherFooter(),
+                      onRefresh: homeModel.refresh,
+                      onLoading: homeModel.loadMore,
+                      enablePullUp: true,
+                      child: CustomScrollView(
+                        controller: tapToTopModel.scrollController,
+                        slivers: <Widget>[
+                          SliverToBoxAdapter(),
+                          SliverAppBar(
+                            actions: <Widget>[
+                              EmptyAnimatedSwitcher(
+                                display: tapToTopModel.showTopBtn,
+                                child: IconButton(
+                                  icon: Icon(Icons.search),
+                                  onPressed: () {
+                                    showSearch(
+                                        context: context,
+                                        delegate: DefaultSearchDelegate());
+                                  },
                                 ),
-                                expandedHeight: bannerHeight,
-                                pinned: true,
                               ),
-                              SliverPadding(
-                                padding: EdgeInsets.only(top: 5),
-                              ),
-                              if (homeModel.idle) HomeTopArticleList(),
-                              HomeArticleList(),
                             ],
-                          )),
-                    ));
+                            flexibleSpace: FlexibleSpaceBar(
+                              background: BannerWidget(),
+                              centerTitle: true,
+                              title: GestureDetector(
+                                onDoubleTap: tapToTopModel.scrollToTop,
+                                child: EmptyAnimatedSwitcher(
+                                  display: tapToTopModel.showTopBtn,
+                                  child: Text(S.of(context).appName),
+                                ),
+                              ),
+                            ),
+                            expandedHeight: bannerHeight,
+                            pinned: true,
+                          ),
+                          SliverPadding(
+                            padding: EdgeInsets.only(top: 5),
+                          ),
+                          if (homeModel.idle) HomeTopArticleList(),
+                          HomeArticleList(),
+                        ],
+                      )),
+                );
               })),
           floatingActionButton: ScaleAnimatedSwitcher(
             child: tapToTopModel.showTopBtn &&
                     homeModel.refreshController.headerStatus !=
                         RefreshStatus.twoLevelOpening
                 ? FloatingActionButton(
+                    heroTag: 'homeEmpty',
                     key: ValueKey(Icons.vertical_align_top),
                     onPressed: () {
                       tapToTopModel.scrollToTop();

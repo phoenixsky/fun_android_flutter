@@ -46,7 +46,7 @@
   "myFavourites": "My favourites",
   "signIn3thd": "More",
   "pageStateRetry": "Retry",
-  "pageStateError": "Failed",
+  "pageStateError": "Load Failed",
   "searchHot": "Hot",
   "searchShake": "Shake",
   "searchHistory": "History",
@@ -60,5 +60,6 @@
   "joinWanAndroid": "Join WanAndroid",
   "needLogin": "Go to Sign In",
   "loadFailed": "Load failed,retry later",
-  "collectionRemove": "Remove"
+  "collectionRemove": "Remove",
+  "article_tag_top": "Top"
 }

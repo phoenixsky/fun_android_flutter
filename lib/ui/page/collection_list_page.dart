@@ -12,10 +12,10 @@ import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
-import 'package:fun_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/login_model.dart';
 
-class CollectionListPage extends StatelessWidget {
+class FavouriteListPage extends StatelessWidget {
   final GlobalKey<SliverAnimatedListState> listKey =
       GlobalKey<SliverAnimatedListState>();
 
@@ -25,9 +25,9 @@ class CollectionListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).myFavourites),
       ),
-      body: ProviderWidget<CollectionListModel>(
+      body: ProviderWidget<FavouriteListModel>(
         model:
-            CollectionListModel(loginModel: LoginModel(Provider.of(context))),
+            FavouriteListModel(loginModel: LoginModel(Provider.of(context))),
         onModelReady: (model) async {
           await model.initData();
         },
@@ -77,7 +77,7 @@ class CollectionListPage extends StatelessWidget {
                             color: Colors.redAccent,
                             icon: Icons.delete,
                             onTap: () {
-                              CollectionModel(item).collect();
+                              FavouriteModel(item).collect();
                               model.list.removeAt(index);
                               listKey.currentState.removeItem(
                                   index,

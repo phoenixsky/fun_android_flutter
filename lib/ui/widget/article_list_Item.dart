@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/collection_helper.dart';
-import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
-import 'package:fun_android/view_model/colletion_model.dart';
+import 'package:fun_android/view_model/favourite_model.dart';
 
 import 'animated_provider.dart';
+import 'favourite_animation.dart';
 import 'article_tag.dart';
 
 class ArticleItemWidget extends StatelessWidget {
   final Article article;
   final int index;
   final GestureTapCallback onTap;
-
   /// 首页置顶
   final bool top;
 
-  ArticleItemWidget(this.article, {this.index, this.onTap, this.top: false})
+  ArticleItemWidget(this.article,{this.index, this.onTap, this.top: false})
       : super(key: ValueKey(article.id));
 
   @override
@@ -122,7 +122,7 @@ class ArticleItemWidget extends StatelessWidget {
                     ),
                   Row(
                     children: <Widget>[
-                      if (top) ArticleTag('置顶'),
+                      if (top) ArticleTag(S.of(context).article_tag_top),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 5),
                         child: Text(
@@ -145,7 +145,7 @@ class ArticleItemWidget extends StatelessWidget {
           right: 0,
           child: article.collect == null
               ? SizedBox.shrink()
-              : ArticleCollectionWidget(article),
+              : ArticleFavouriteWidget(article),
         )
       ],
     );
@@ -168,39 +168,52 @@ class ArticleTitleWidget extends StatelessWidget {
   }
 }
 
-class ArticleCollectionWidget extends StatelessWidget {
+/// 收藏按钮
+class ArticleFavouriteWidget extends StatelessWidget {
   final Article article;
 
-  ArticleCollectionWidget(this.article);
+  ArticleFavouriteWidget(this.article);
 
   @override
   Widget build(BuildContext context) {
-    var animationModel;
-    try {
-      animationModel = Provider.of<CollectionAnimationModel>(context);
-    } catch (e) {}
-    return ProviderWidget<CollectionModel>(
-      model: CollectionModel(article, animationModel: animationModel),
-      builder: (context, model, child) {
+    var uniqueKey = UniqueKey();
+    return ProviderWidget<FavouriteModel>(
+      model: FavouriteModel(article),
+      builder: (_, model, child) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
-            if (!model.busy) collectArticle(context, model);
+            if (!model.busy) {
+              await collectArticle(context, model);
+              if (!model.error) {
+                await Navigator.push(
+                    context,
+                    HeroDialogRoute(
+                        builder: (_) => FavouriteAnimationWidget(
+                              tag: uniqueKey,
+                              add: model.article.collect,
+                            )));
+              }
+            }
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-            child: ScaleAnimatedSwitcher(
-              child: model.busy
-                  ? SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CupertinoActivityIndicator(radius: 8),
-                    )
-                  : Icon(
-                      model.article.collect
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: Colors.redAccent[100]),
+            child: Hero(
+              tag: uniqueKey,
+              child: ScaleAnimatedSwitcher(
+                child: model.busy
+                    ? SizedBox.shrink()
+//                  ? SizedBox(
+//                      height: 24,
+//                      width: 24,
+//                      child: CupertinoActivityIndicator(radius: 8),
+//                    )
+                    : Icon(
+                        model.article.collect
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Colors.redAccent[100]),
+              ),
             ),
           ),
         );

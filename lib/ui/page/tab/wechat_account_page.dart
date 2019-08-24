@@ -6,19 +6,14 @@ import 'package:fun_android/model/article.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
-import 'package:fun_android/ui/widget/like_animation.dart';
-import 'package:fun_android/view_model/colletion_model.dart';
 import 'package:fun_android/view_model/wechat_account_model.dart';
 import 'package:provider/provider.dart';
-import 'package:fun_android/flutter/dropdown.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 
 import 'package:fun_android/provider/view_state_widget.dart';
-import 'package:fun_android/view_model/project_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../article_list_page.dart';
 import 'project_page.dart';
 
 class WechatAccountPage extends StatefulWidget {
@@ -123,38 +118,33 @@ class _WechatArticleListState extends State<WechatArticleList>
   Widget build(BuildContext context) {
     super.build(context);
 
-    return ProviderWidget<CollectionAnimationModel>(
-        model: CollectionAnimationModel(),
-        builder: (context, collectionAnimationModel, child) => Stack(
-              children: <Widget>[child, LikeAnimatedWidget()],
-            ),
-        child: ProviderWidget<WechatArticleListModel>(
-          model: WechatArticleListModel(widget.id),
-          onModelReady: (model) => model.initData(),
-          builder: (context, model, child) {
-            if (model.busy) {
-              return ViewStateSkeletonList(
-                builder: (context, index) => ArticleSkeletonItem(),
-              );
-            } else if (model.error) {
-              return ViewStateWidget(onPressed: model.initData);
-            } else if (model.empty) {
-              return ViewStateEmptyWidget(onPressed: model.initData);
-            }
-            return SmartRefresher(
-                controller: model.refreshController,
-                header: WaterDropHeader(),
-                footer: RefresherFooter(),
-                onRefresh: model.refresh,
-                onLoading: model.loadMore,
-                enablePullUp: true,
-                child: ListView.builder(
-                    itemCount: model.list.length,
-                    itemBuilder: (context, index) {
-                      Article item = model.list[index];
-                      return ArticleItemWidget(item);
-                    }));
-          },
-        ));
+    return ProviderWidget<WechatArticleListModel>(
+      model: WechatArticleListModel(widget.id),
+      onModelReady: (model) => model.initData(),
+      builder: (context, model, child) {
+        if (model.busy) {
+          return ViewStateSkeletonList(
+            builder: (context, index) => ArticleSkeletonItem(),
+          );
+        } else if (model.error) {
+          return ViewStateWidget(onPressed: model.initData);
+        } else if (model.empty) {
+          return ViewStateEmptyWidget(onPressed: model.initData);
+        }
+        return SmartRefresher(
+            controller: model.refreshController,
+            header: WaterDropHeader(),
+            footer: RefresherFooter(),
+            onRefresh: model.refresh,
+            onLoading: model.loadMore,
+            enablePullUp: true,
+            child: ListView.builder(
+                itemCount: model.list.length,
+                itemBuilder: (context, index) {
+                  Article item = model.list[index];
+                  return ArticleItemWidget(item);
+                }));
+      },
+    );
   }
 }

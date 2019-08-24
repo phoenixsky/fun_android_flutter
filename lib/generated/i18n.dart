@@ -24,6 +24,7 @@ class S implements WidgetsLocalizations {
   String get Like => "Like";
   String get about => "About";
   String get appName => "Fun Android";
+  String get article_tag_top => "Top";
   String get autoBySystem => "Auto";
   String get cancel => "Cancel";
   String get clear => "Clear";
@@ -46,7 +47,7 @@ class S implements WidgetsLocalizations {
   String get myFavourites => "My favourites";
   String get needLogin => "Go to Sign In";
   String get noAccount => "No Account ? ";
-  String get pageStateError => "Failed";
+  String get pageStateError => "Load Failed";
   String get pageStateRetry => "Retry";
   String get password => "Password";
   String get rate => "Rate";
@@ -143,6 +144,8 @@ class $zh_CN extends S {
   String get loadFailed => "加载失败,请稍后重试";
   @override
   String get refreshTwoLevel => "欢迎光临,我的空中楼阁";
+  @override
+  String get article_tag_top => "置顶";
   @override
   String get noAccount => "还没账号? ";
   @override

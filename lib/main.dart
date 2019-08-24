@@ -15,16 +15,20 @@ import 'generated/i18n.dart';
 import 'view_model/locale_model.dart';
 import 'view_model/theme_model.dart';
 
-//void main() => runApp(App());
-
-void main() async {
-  /// 一些必备首选项的初始化
-  Provider.debugCheckInvalidValueType = null;
+ main() async {
+   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
-  InnerWidgetsFlutterBinding.ensureInitialized()
-    ..attachRootWidget(new App())
-    ..scheduleWarmUpFrame();
+  runApp(App());
 }
+
+//void main() async {
+//  /// 一些必备首选项的初始化
+//  Provider.debugCheckInvalidValueType = null;
+//  await StorageManager.init();
+//  InnerWidgetsFlutterBinding.ensureInitialized()
+//    ..attachRootWidget(new App())
+//    ..scheduleWarmUpFrame();
+//}
 
 class App extends StatelessWidget {
   @override
