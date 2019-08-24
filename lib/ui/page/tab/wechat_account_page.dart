@@ -78,7 +78,7 @@ class _WechatAccountPageState extends State<WechatAccountPage>
                           CategoryDropdownWidget(
                               Provider.of<WechatAccountCategoryModel>(context)),
                           Container(
-                            margin: const EdgeInsets.only(right: 20),
+                            margin: const EdgeInsets.only(right: 25),
                             color: primaryColor.withOpacity(1),
                             child: TabBar(
                                 isScrollable: true,

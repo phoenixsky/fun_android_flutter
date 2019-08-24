@@ -43,12 +43,15 @@ class _ProjectPageState extends State<ProjectPage>
         builder: (context, model, child) {
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
-          }  if (model.error) {
+          }
+          if (model.error) {
             return ViewStateWidget(onPressed: model.initData);
           }
 
           List<Tree> treeList = model.list;
-          var primaryColor = Theme.of(context).primaryColor;
+          var primaryColor = Theme
+              .of(context)
+              .primaryColor;
 
           return ValueListenableProvider<int>.value(
             value: valueNotifier,
@@ -70,13 +73,14 @@ class _ProjectPageState extends State<ProjectPage>
                           CategoryDropdownWidget(
                               Provider.of<ProjectCategoryModel>(context)),
                           Container(
-                            margin: const EdgeInsets.only(right: 20),
+                            margin: const EdgeInsets.only(right: 25),
                             color: primaryColor.withOpacity(1),
                             child: TabBar(
                                 isScrollable: true,
                                 tabs: List.generate(
                                     treeList.length,
-                                    (index) => Tab(
+                                        (index) =>
+                                        Tab(
                                           text: treeList[index].name,
                                         ))),
                           )
@@ -85,7 +89,7 @@ class _ProjectPageState extends State<ProjectPage>
                     ),
                     body: TabBarView(
                       children: List.generate(treeList.length,
-                          (index) => ArticleListPage(treeList[index].id)),
+                              (index) => ArticleListPage(treeList[index].id)),
                     ),
                   );
                 },
@@ -107,38 +111,45 @@ class CategoryDropdownWidget extends StatelessWidget {
     return Align(
       child: Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: Theme.of(context).primaryColor,
+          canvasColor: Theme
+              .of(context)
+              .primaryColor,
         ),
         child: DropdownButtonHideUnderline(
             child: DropdownButton(
-          elevation: 0,
-          value: currentIndex,
-          style: Theme.of(context).primaryTextTheme.subhead,
-          items: List.generate(model.list.length, (index) {
-            var theme = Theme.of(context);
-            var subhead = theme.primaryTextTheme.subhead;
-            return DropdownMenuItem(
-              value: index,
-              child: Text(
-                model.list[index].name,
-                style: currentIndex == index
-                    ? subhead.apply(
+              elevation: 0,
+              value: currentIndex,
+              style: Theme
+                  .of(context)
+                  .primaryTextTheme
+                  .subhead,
+              items: List.generate(model.list.length, (index) {
+                var theme = Theme.of(context);
+                var subhead = theme.primaryTextTheme.subhead;
+                return DropdownMenuItem(
+                  value: index,
+                  child: Text(
+                    model.list[index].name,
+                    style: currentIndex == index
+                        ? subhead.apply(
                         color: theme.brightness == Brightness.light
                             ? Colors.white
                             : theme.accentColor)
-                    : subhead.apply(color: subhead.color.withAlpha(200)),
+                        : subhead.apply(color: subhead.color.withAlpha(200)),
+                  ),
+                );
+              }),
+              onChanged: (value) {
+                DefaultTabController.of(context).animateTo(value);
+              },
+              isExpanded: true,
+              icon: Container(
+                child: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.white,
+                ),
               ),
-            );
-          }),
-          onChanged: (value) {
-            DefaultTabController.of(context).animateTo(value);
-          },
-          isExpanded: true,
-          icon: Icon(
-            Icons.keyboard_arrow_down,
-            color: Colors.white,
-          ),
-        )),
+            )),
       ),
       alignment: Alignment(1.1, -1),
     );
