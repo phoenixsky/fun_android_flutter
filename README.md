@@ -141,7 +141,7 @@
 
 6.  感谢WanAndroid提供的API。
 
-## 关于作者
+# 关于作者
 * [Github](https://github.com/phoenixsky)
 * [个人博客](http://blog.phoenixsky.cn/)
 * [简书](https://www.jianshu.com/u/145e6297cb26)
