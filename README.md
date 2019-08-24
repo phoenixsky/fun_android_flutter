@@ -4,22 +4,12 @@
 
 > Logo的里F，既代表了`Fun`也代表了`Flutter`.
 
-![0-欢迎页面](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif)
+# 先来点样图
 
-![1-空中阁楼小.gif](https://upload-images.jianshu.io/upload_images/581515-54b8e7498039dc11.gif?imageMogr2/auto-orient/strip)
-
-![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip)
-
-![3-状态页小](https://upload-images.jianshu.io/upload_images/581515-b94dfce6335bc25d.gif?imageMogr2/auto-orient/strip)
-
-![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif)
-
-![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif)
-
-![6-收藏及跳转app.gif](https://upload-images.jianshu.io/upload_images/581515-6de61fdded963914.gif?imageMogr2/auto-orient/strip)
-
-![7-移除收藏](http://blogimgs.phoenixsky.cn/2019-08-22-7-%E7%A7%BB%E9%99%A4%E6%94%B6%E8%97%8F.gif)
-
+| ![0-欢迎页面](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif) | ![1-空中阁楼小.gif](https://upload-images.jianshu.io/upload_images/581515-54b8e7498039dc11.gif?imageMogr2/auto-orient/strip) | ![2-页面状态骨架屏.gif](https://upload-images.jianshu.io/upload_images/581515-383fba933a0abbbc.gif?imageMogr2/auto-orient/strip) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![3-状态页小](https://upload-images.jianshu.io/upload_images/581515-b94dfce6335bc25d.gif?imageMogr2/auto-orient/strip) | ![5-主题](http://blogimgs.phoenixsky.cn/2019-08-22-5-%E4%B8%BB%E9%A2%98.gif) | ![4-字体](http://blogimgs.phoenixsky.cn/2019-08-22-4-%E5%AD%97%E4%BD%93.gif) |
+| ![6-收藏及跳转app.gif](https://upload-images.jianshu.io/upload_images/581515-6de61fdded963914.gif?imageMogr2/auto-orient/strip) | ![7-移除收藏](http://blogimgs.phoenixsky.cn/2019-08-22-7-%E7%A7%BB%E9%99%A4%E6%94%B6%E8%97%8F.gif) |                                                              |
 
 # 项目地址：
  > [https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
@@ -46,9 +36,9 @@
 
 ## 简单介绍一下项目结构
 
-  ![项目结构1](https://upload-images.jianshu.io/upload_images/581515-74078e828d25fa7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-  ![项目解构2](https://upload-images.jianshu.io/upload_images/581515-362f48ef83763615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+| ![项目结构1](https://upload-images.jianshu.io/upload_images/581515-74078e828d25fa7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500) | ![项目解构2](https://upload-images.jianshu.io/upload_images/581515-362f48ef83763615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+|                                                              |                                                              |
 
 ## Provider的简单实用方式
 *  快速添加一个拥有下拉刷新,上拉加载更多的页面.比如开发一个`玩Android`首页列表页面
