@@ -177,6 +177,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///位移动画的tag
     var uniqueKey = UniqueKey();
     return ProviderWidget<FavouriteModel>(
       model: FavouriteModel(article),
@@ -185,15 +186,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
             if (!model.busy) {
-              if (await addFavourites(context, model)) {
-                await Navigator.push(
-                    context,
-                    HeroDialogRoute(
-                        builder: (_) => FavouriteAnimationWidget(
-                              tag: uniqueKey,
-                              add: model.article.collect,
-                            )));
-              }
+              addFavourites(context, model, uniqueKey);
             }
           },
           child: Padding(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/tree.dart';
-import 'package:fun_android/ui/page/collection_list_page.dart';
+import 'package:fun_android/ui/page/favourite_list_page.dart';
 import 'package:fun_android/ui/page/article_list_page.dart';
 import 'package:fun_android/ui/page/setting_page.dart';
 import 'package:fun_android/ui/page/tab/home_second_floor_page.dart';

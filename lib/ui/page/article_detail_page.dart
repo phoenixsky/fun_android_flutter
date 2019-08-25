@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
-import 'package:fun_android/ui/widget/favourite_animation.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/utils/string_utils.dart';
@@ -25,8 +24,7 @@ class ArticleDetailPage extends StatefulWidget {
 }
 
 class _WebViewState extends State<ArticleDetailPage> {
-  WebViewController _controller;
-
+  WebViewController _webViewController;
   Completer<bool> _finishedCompleter = Completer();
 
   @override
@@ -45,7 +43,7 @@ class _WebViewState extends State<ArticleDetailPage> {
             },
           ),
           WebViewPopupMenu(
-            _controller,
+            _webViewController,
             widget.article,
           )
         ],
@@ -57,19 +55,40 @@ class _WebViewState extends State<ArticleDetailPage> {
           initialUrl: widget.article.link,
           // 加载js
           javascriptMode: JavascriptMode.unrestricted,
-//              navigationDelegate: (NavigationRequest request) {
-//                return NavigationDecision.navigate;
-//              },
+
+          navigationDelegate: (NavigationRequest request) {
+            ///TODO isForMainFrame为false,页面不跳转.导致网页内很多链接点击没效果
+            debugPrint('导航$request');
+            return NavigationDecision.navigate;
+          },
           onWebViewCreated: (WebViewController controller) {
-            _controller = controller;
-            _controller.currentUrl().then((url) {
+            _webViewController = controller;
+            _webViewController.currentUrl().then((url) {
               debugPrint('返回当前$url');
             });
           },
-          onPageFinished: (String value) {
+          onPageFinished: (String value) async {
             debugPrint('加载完成: $value');
-            _finishedCompleter.complete(true);
+            if (!_finishedCompleter.isCompleted)
+              _finishedCompleter.complete(true);
           },
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  _webViewController.goBack();
+                }),
+            IconButton(
+                icon: Icon(Icons.arrow_forward_ios),
+                onPressed: () {
+                  _webViewController.goForward();
+                }),
+          ],
         ),
       ),
       floatingActionButton: FutureBuilder<String>(
@@ -168,16 +187,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   controller.reload();
                   break;
                 case 1:
-                  await addFavourites(context, favouriteModel);
-                  if (!favouriteModel.error) {
-                    await Navigator.push(
-                        context,
-                        HeroDialogRoute(
-                            builder: (_) => FavouriteAnimationWidget(
-                                  tag: 'detail',
-                                  add: favouriteModel.article.collect,
-                                )));
-                  }
+                  addFavourites(context, favouriteModel, 'detail');
                   break;
                 case 2:
                   Share.share(article.link, subject: article.title);
@@ -209,7 +219,7 @@ class WebViewPopupMenuItem<T> extends StatelessWidget {
         Icon(
           iconData,
           size: 20,
-          color: color,
+          color: color ?? Theme.of(context).textTheme.body1.color,
         ),
         SizedBox(
           width: 20,
