@@ -3,11 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
-import 'package:fun_android/ui/helper/collection_helper.dart';
+import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/ui/widget/favourite_animation.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/model/article.dart';
-import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
@@ -169,7 +168,7 @@ class WebViewPopupMenu extends StatelessWidget {
                   controller.reload();
                   break;
                 case 1:
-                  await collectArticle(context, favouriteModel);
+                  await addFavourites(context, favouriteModel);
                   if (!favouriteModel.error) {
                     await Navigator.push(
                         context,

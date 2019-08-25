@@ -10,16 +10,19 @@ import 'dialog_helper.dart';
 /// 由于存在递归操作,所以抽取为方法,而且多出调用
 ///
 /// 多个页面使用该方法,目前这种方式并不优雅,抽取位置有待商榷
-collectArticle(context, FavouriteModel model) async {
+Future addFavourites(context, FavouriteModel model) async {
   await model.collect();
   if (model.unAuthorized) {
     //未登录
     if (await DialogHelper.showLoginDialog(context)) {
       var success = await Navigator.pushNamed(context, RouteName.login);
-      if (success ?? false) collectArticle(context, model);
+      if (success ?? false) addFavourites(context, model);
     }
+    return false;
   } else if (model.error) {
     //失败
     showToast(S.of(context).loadFailed);
+    return false;
   }
+  return true;
 }

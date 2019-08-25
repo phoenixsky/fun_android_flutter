@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fun_android/generated/i18n.dart';
-import 'package:fun_android/ui/helper/collection_helper.dart';
+import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/model/article.dart';
@@ -18,10 +18,11 @@ class ArticleItemWidget extends StatelessWidget {
   final Article article;
   final int index;
   final GestureTapCallback onTap;
+
   /// 首页置顶
   final bool top;
 
-  ArticleItemWidget(this.article,{this.index, this.onTap, this.top: false})
+  ArticleItemWidget(this.article, {this.index, this.onTap, this.top: false})
       : super(key: ValueKey(article.id));
 
   @override
@@ -184,8 +185,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
             if (!model.busy) {
-              await collectArticle(context, model);
-              if (!model.error) {
+              if (await addFavourites(context, model)) {
                 await Navigator.push(
                     context,
                     HeroDialogRoute(
