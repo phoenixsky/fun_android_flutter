@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 const kAnimAddFavouritesTag = 'kAnimAddFavouritesTag';
 
 class FavouriteAnimationWidget extends StatefulWidget {
+  /// Hero动画的唯一标识
   final Object tag;
+
+  /// true 添加到收藏,false从收藏移除
   final bool add;
 
   FavouriteAnimationWidget({@required this.tag, @required this.add});
