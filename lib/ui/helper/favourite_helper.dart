@@ -10,7 +10,7 @@ import 'dialog_helper.dart';
 /// 由于存在递归操作,所以抽取为方法,而且多出调用
 ///
 /// 多个页面使用该方法,目前这种方式并不优雅,抽取位置有待商榷
-addFavourites(context, model, tag) async {
+addFavourites(context, model, tag, {playAnim:true}) async {
   await model.collect();
   //未登录
   if (model.unAuthorized) {
@@ -22,13 +22,15 @@ addFavourites(context, model, tag) async {
     //失败
     showToast(S.of(context).loadFailed);
   } else {
-    ///接口调用成功播放动画
-    Navigator.push(
-        context,
-        HeroDialogRoute(
-            builder: (_) => FavouriteAnimationWidget(
-                  tag: tag,
-                  add: model.article.collect,
-                )));
+    if (playAnim) {
+      ///接口调用成功播放动画
+      Navigator.push(
+          context,
+          HeroDialogRoute(
+              builder: (_) => FavouriteAnimationWidget(
+                    tag: tag,
+                    add: model.article.collect,
+                  )));
+    }
   }
 }

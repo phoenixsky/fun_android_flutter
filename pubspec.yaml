@@ -19,7 +19,7 @@ dependencies:
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
   webview_flutter: ^0.3.13
-#  flutter_webview_plugin: ^0.3.7
+  flutter_webview_plugin: ^0.3.7
   device_info: ^0.4.0+1
   package_info: ^0.4.0+3
   #  connectivity: ^0.4.3+6
