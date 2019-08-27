@@ -61,5 +61,6 @@
   "needLogin": "Go to Sign In",
   "loadFailed": "Load failed,retry later",
   "collectionRemove": "Remove",
-  "article_tag_top": "Top"
+  "article_tag_top": "Top",
+  "openBrowser": "Open Browser"
 }

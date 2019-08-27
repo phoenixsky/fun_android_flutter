@@ -69,44 +69,46 @@ class _WebViewState extends State<ArticleDetailPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                flutterWebViewPlugin.goBack();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.arrow_forward_ios),
-              onPressed: () {
-                flutterWebViewPlugin.goForward();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.autorenew),
-              onPressed: () {
-                flutterWebViewPlugin.reload();
-              },
-            ),
-            ProviderWidget<FavouriteModel>(
-              model: FavouriteModel(widget.article),
-              builder: (context, model, child) => IconButton(
-                icon: Icon(
-                  model.article.collect ?? true
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: Colors.redAccent[100],
-                ),
-                onPressed: () async {
-                  await addFavourites(context, model, 'detail',
-                      playAnim: false);
+      bottomNavigationBar: IconTheme(
+        data: Theme.of(context).iconTheme.copyWith(opacity: 0.5),
+        child: BottomAppBar(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: canGoBack
+                    ? () {
+                        flutterWebViewPlugin.goBack();
+                      }
+                    : null,
+              ),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward_ios),
+                onPressed: () {
+                  flutterWebViewPlugin.goForward();
                 },
               ),
-            ),
-          ],
+              IconButton(
+                icon: const Icon(Icons.autorenew),
+                onPressed: () {
+                  flutterWebViewPlugin.reload();
+                },
+              ),
+              ProviderWidget<FavouriteModel>(
+                model: FavouriteModel(widget.article),
+                builder: (context, model, child) => IconButton(
+                  icon: model.article.collect ?? true
+                      ? Icon(Icons.favorite, color: Colors.redAccent[100])
+                      : Icon(Icons.favorite_border),
+                  onPressed: () async {
+                    await addFavourites(context, model, 'detail',
+                        playAnim: false);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

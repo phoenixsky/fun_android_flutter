@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
-import 'package:provider/provider.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
-import 'package:fun_android/view_model/theme_model.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -27,6 +26,14 @@ class _WebViewState extends State<ArticleDetailPage> {
   WebViewController _webViewController;
   Completer<bool> _finishedCompleter = Completer();
 
+  ValueNotifier canGoBack = ValueNotifier(false);
+  ValueNotifier canGoForward = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +44,7 @@ class _WebViewState extends State<ArticleDetailPage> {
         ),
         actions: <Widget>[
           IconButton(
+            tooltip: S.of(context).openBrowser,
             icon: Icon(Icons.language),
             onPressed: () {
               launch(widget.article.link, forceSafariVC: false);
@@ -69,26 +77,70 @@ class _WebViewState extends State<ArticleDetailPage> {
           },
           onPageFinished: (String value) async {
             debugPrint('加载完成: $value');
-            if (!_finishedCompleter.isCompleted)
+            if (!_finishedCompleter.isCompleted) {
               _finishedCompleter.complete(true);
+            }
+            refreshNavigator();
           },
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+        child: IconTheme(
+          data: Theme.of(context).iconTheme.copyWith(opacity: 0.6),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ValueListenableBuilder(
+                valueListenable: canGoBack,
+                builder: (context, value, child) => IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    onPressed: !value
+                        ? null
+                        : () {
+                            _webViewController.goBack();
+                            refreshNavigator();
+                          }),
+              ),
+              ValueListenableBuilder(
+                valueListenable: canGoForward,
+                builder: (context, value, child) => IconButton(
+                    icon: Icon(Icons.arrow_forward_ios),
+                    onPressed: !value
+                        ? null
+                        : () {
+                            _webViewController.goForward();
+                            refreshNavigator();
+                          }),
+              ),
+              IconButton(
+                tooltip: S.of(context).refresh,
+                icon: const Icon(Icons.autorenew),
                 onPressed: () {
-                  _webViewController.goBack();
-                }),
-            IconButton(
-                icon: Icon(Icons.arrow_forward_ios),
-                onPressed: () {
-                  _webViewController.goForward();
-                }),
-          ],
+                  _webViewController.reload();
+                },
+              ),
+              ProviderWidget<FavouriteModel>(
+                model: FavouriteModel(widget.article),
+                builder: (context, model, child) {
+                  var tag = 'detail';
+                  return IconButton(
+                    tooltip: S.of(context).favourites,
+                    icon: Hero(
+                      tag: tag,
+                      child: Icon(
+                          model.article.collect ?? true
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.redAccent[100]),
+                    ),
+                    onPressed: () async {
+                      await addFavourites(context, model, tag);
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FutureBuilder<String>(
@@ -106,6 +158,25 @@ class _WebViewState extends State<ArticleDetailPage> {
         },
       ),
     );
+  }
+
+  /// 刷新导航按钮
+  ///
+  /// 目前主要用来控制 '前进','后退'按钮是否可以点击
+  /// 但是目前该方法没有合适的调用时机.
+  /// 在[onPageFinished]中,会遗漏正在加载中的状态
+  /// 在[navigationDelegate]中,会存在页面还没有加载就已经判断过了.
+  void refreshNavigator() {
+    /// 是否可以后退
+    _webViewController.canGoBack().then((value) {
+      debugPrint('canGoBack--->$value');
+      return canGoBack.value = value;
+    });
+    /// 是否可以前进
+    _webViewController.canGoForward().then((value) {
+      debugPrint('canGoForward--->$value');
+      return canGoForward.value = value;
+    });
   }
 }
 
@@ -151,55 +222,25 @@ class WebViewPopupMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<FavouriteModel>.value(
-          value: FavouriteModel(article),
-        )
+    return PopupMenuButton(
+      itemBuilder: (context) => <PopupMenuEntry<int>>[
+        PopupMenuItem(
+          child: WebViewPopupMenuItem(Icons.share, S.of(context).share),
+          value: 2,
+        ),
+//        PopupMenuDivider(),
       ],
-      child: Builder(
-        builder: (context) {
-          var favouriteModel = Provider.of<FavouriteModel>(context);
-          return PopupMenuButton(
-            itemBuilder: (context) => <PopupMenuEntry<int>>[
-              PopupMenuItem(
-                child:
-                    WebViewPopupMenuItem(Icons.refresh, S.of(context).refresh),
-                value: 0,
-              ),
-              PopupMenuItem(
-                child: (favouriteModel.article.collect ?? true)
-                    ? WebViewPopupMenuItem(Icons.favorite, S.of(context).unLike,
-                        color: Colors.redAccent[100])
-                    : WebViewPopupMenuItem(
-                        Icons.favorite_border, S.of(context).Like),
-                value: 1,
-              ),
-              PopupMenuDivider(),
-              PopupMenuItem(
-                child: WebViewPopupMenuItem(Icons.share, S.of(context).share),
-                value: 2,
-              ),
-            ],
-            onSelected: (value) async {
-              switch (value) {
-                case 0:
-                  controller.reload();
-                  break;
-                case 1:
-                  addFavourites(context, favouriteModel, 'detail');
-                  break;
-                case 2:
-                  Share.share(article.link, subject: article.title);
-                  break;
-                case 3:
-                  Provider.of<ThemeModel>(context).switchRandomTheme();
-                  break;
-              }
-            },
-          );
-        },
-      ),
+      onSelected: (value) async {
+        switch (value) {
+          case 0:
+            break;
+          case 1:
+            break;
+          case 2:
+            Share.share(article.link, subject: article.title);
+            break;
+        }
+      },
     );
   }
 }

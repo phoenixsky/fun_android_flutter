@@ -61,5 +61,6 @@
   "needLogin": "还没有登录,请先登录..",
   "loadFailed": "加载失败,请稍后重试",
   "collectionRemove": "移除收藏",
-  "article_tag_top": "置顶"
+  "article_tag_top": "置顶",
+  "openBrowser": "浏览器打开"
 }
