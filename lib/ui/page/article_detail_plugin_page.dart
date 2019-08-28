@@ -11,16 +11,16 @@ import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ArticleDetailPage extends StatefulWidget {
+class ArticleDetailPluginPage extends StatefulWidget {
   final Article article;
 
-  ArticleDetailPage({this.article});
+  ArticleDetailPluginPage({this.article});
 
   @override
   _WebViewState createState() => _WebViewState();
 }
 
-class _WebViewState extends State<ArticleDetailPage> {
+class _WebViewState extends State<ArticleDetailPluginPage> {
   final flutterWebViewPlugin = FlutterWebviewPlugin();
   Completer<bool> _finishedCompleter = Completer();
 

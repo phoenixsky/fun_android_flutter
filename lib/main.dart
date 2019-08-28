@@ -25,7 +25,7 @@ main() async {
   /// 一些必备首选项的初始化
   await StorageManager.init();
   widgetsBinding
-    ..attachRootWidget(new App())
+    ..attachRootWidget(App())
     ..scheduleWarmUpFrame();
 }
 

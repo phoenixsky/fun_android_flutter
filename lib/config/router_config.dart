@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fun_android/config/storage_manager.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/ui/page/favourite_list_page.dart';
@@ -10,8 +11,10 @@ import 'package:fun_android/ui/page/user/login_page.dart';
 import 'package:fun_android/ui/page/splash.dart';
 import 'package:fun_android/ui/page/tab/tab_navigator.dart';
 import 'package:fun_android/ui/page/article_detail_page.dart';
+import 'package:fun_android/ui/page/article_detail_plugin_page.dart';
 import 'package:fun_android/ui/page/user/register_page.dart';
 import 'package:fun_android/ui/widget/page_route_anim.dart';
+import 'package:fun_android/view_model/setting_model.dart';
 
 class RouteName {
   static const String splash = 'splash';
@@ -41,10 +44,17 @@ class Router {
         return CupertinoPageRoute(builder: (_) => RegisterPage());
       case RouteName.articleDetail:
         var article = settings.arguments as Article;
-        return CupertinoPageRoute(
-            builder: (_) => ArticleDetailPage(
+        return CupertinoPageRoute(builder: (_) {
+          // 根据配置调用页面
+          return StorageManager.sharedPreferences.getBool(kUseWebViewPlugin) ??
+                  false
+              ? ArticleDetailPluginPage(
                   article: article,
-                ));
+                )
+              : ArticleDetailPage(
+                  article: article,
+                );
+        });
       case RouteName.treeList:
         var list = settings.arguments as List;
         Tree tree = list[0] as Tree;

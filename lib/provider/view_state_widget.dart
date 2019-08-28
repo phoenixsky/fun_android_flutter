@@ -114,7 +114,7 @@ class ViewStateUnAuthWidget extends StatelessWidget {
       buttonText: buttonText ??
           Text(
             S.of(context).signIn,
-            style: TextStyle(letterSpacing: 5),
+            style: TextStyle(wordSpacing: 5),
           ),
     );
   }
