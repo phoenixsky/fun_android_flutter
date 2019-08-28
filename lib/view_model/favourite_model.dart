@@ -28,11 +28,8 @@ class FavouriteListModel extends ViewStateRefreshListModel<Article> {
 
 /// 收藏/取消收藏
 class FavouriteModel extends ViewStateModel {
-  final Article article;
 
-  FavouriteModel(this.article);
-
-  collect() async {
+  collect(Article article) async {
     setBusy(true);
     try {
 //      await Future.delayed(Duration(seconds: 2));
@@ -54,3 +51,6 @@ class FavouriteModel extends ViewStateModel {
     }
   }
 }
+
+
+

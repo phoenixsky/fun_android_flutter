@@ -86,7 +86,7 @@ class _WebViewState extends State<ArticleDetailPage> {
       ),
       bottomNavigationBar: BottomAppBar(
         child: IconTheme(
-          data: Theme.of(context).iconTheme.copyWith(opacity: 0.6),
+          data: Theme.of(context).iconTheme.copyWith(opacity: 0.7),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -120,7 +120,7 @@ class _WebViewState extends State<ArticleDetailPage> {
                 },
               ),
               ProviderWidget<FavouriteModel>(
-                model: FavouriteModel(widget.article),
+                model: FavouriteModel(),
                 builder: (context, model, child) {
                   var tag = 'detail';
                   return IconButton(
@@ -128,13 +128,14 @@ class _WebViewState extends State<ArticleDetailPage> {
                     icon: Hero(
                       tag: tag,
                       child: Icon(
-                          model.article.collect ?? true
+                          widget.article.collect ?? true
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.redAccent[100]),
                     ),
                     onPressed: () async {
-                      await addFavourites(context, model, tag);
+                      await addFavourites(context,
+                          article: widget.article, model: model, tag: tag);
                     },
                   );
                 },

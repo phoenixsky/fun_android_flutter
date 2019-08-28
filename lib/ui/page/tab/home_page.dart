@@ -117,7 +117,8 @@ class _HomePageState extends State<HomePage>
 //                          SliverPadding(
 //                            padding: EdgeInsets.only(top: 5),
 //                          ),
-                          if (homeModel.idle) HomeTopArticleList(),
+                          if (homeModel.idle)
+                            HomeTopArticleList(),
                           HomeArticleList(),
                         ],
                       )),
@@ -212,6 +213,7 @@ class HomeTopArticleList extends StatelessWidget {
         childCount: homeModel.topArticles?.length ?? 0,
       ),
     );
+    ;
   }
 }
 

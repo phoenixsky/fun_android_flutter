@@ -88,14 +88,14 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
                 onPressed: flutterWebViewPlugin.reload,
               ),
               ProviderWidget<FavouriteModel>(
-                model: FavouriteModel(widget.article),
+                model: FavouriteModel(),
                 builder: (context, model, child) => IconButton(
-                  icon: model.article.collect ?? true
+                  icon: widget.article.collect ?? true
                       ? Icon(Icons.favorite, color: Colors.redAccent[100])
                       : Icon(Icons.favorite_border),
                   onPressed: () async {
-                    await addFavourites(context, model, 'detail',
-                        playAnim: false);
+                    await addFavourites(context,
+                        article: widget.article, model: model);
                   },
                 ),
               ),

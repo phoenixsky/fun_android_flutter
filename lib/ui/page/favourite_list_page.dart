@@ -15,7 +15,14 @@ import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/login_model.dart';
 
-class FavouriteListPage extends StatelessWidget {
+/// 必须为StatefulWidget,才能根据[GlobalKey]取出[currentState].
+/// 否则从详情页返回后,无法移除没有收藏的item
+class FavouriteListPage extends StatefulWidget {
+  @override
+  _FavouriteListPageState createState() => _FavouriteListPageState();
+}
+
+class _FavouriteListPageState extends State<FavouriteListPage> {
   final GlobalKey<SliverAnimatedListState> listKey =
       GlobalKey<SliverAnimatedListState>();
 
@@ -76,18 +83,8 @@ class FavouriteListPage extends StatelessWidget {
                             color: Colors.redAccent,
                             icon: Icons.delete,
                             onTap: () {
-                              FavouriteModel(item).collect();
-                              model.list.removeAt(index);
-                              listKey.currentState.removeItem(
-                                  index,
-                                  (context, animation) => SizeTransition(
-                                      axis: Axis.vertical,
-                                      axisAlignment: 1.0,
-                                      sizeFactor: animation,
-                                      child: ArticleItemWidget(
-                                        item,
-                                        hideFavourite: true,
-                                      )));
+                              FavouriteModel().collect(item);
+                              removeItem(model.list, index);
                             },
                           )
                         ],
@@ -97,6 +94,14 @@ class FavouriteListPage extends StatelessWidget {
                             child: ArticleItemWidget(
                               item,
                               hideFavourite: true,
+                              onTap: () async {
+                                await Navigator.of(context).pushNamed(
+                                    RouteName.articleDetail,
+                                    arguments: item);
+                                if (!(item?.collect ?? true)) {
+                                  removeItem(model.list, index);
+                                }
+                              },
                             )),
                       );
                     })
@@ -104,5 +109,20 @@ class FavouriteListPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  /// 移除取消收藏的item
+  removeItem(List list, int index) {
+    var removeItem = list.removeAt(index);
+    listKey.currentState.removeItem(
+        index,
+        (context, animation) => SizeTransition(
+            axis: Axis.vertical,
+            axisAlignment: 1.0,
+            sizeFactor: animation,
+            child: ArticleItemWidget(
+              removeItem,
+              hideFavourite: true,
+            )));
   }
 }

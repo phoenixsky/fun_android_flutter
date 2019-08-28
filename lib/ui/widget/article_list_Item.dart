@@ -172,13 +172,14 @@ class ArticleFavouriteWidget extends StatelessWidget {
     ///位移动画的tag
     var uniqueKey = UniqueKey();
     return ProviderWidget<FavouriteModel>(
-      model: FavouriteModel(article),
+      model: FavouriteModel(),
       builder: (_, model, child) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
             if (!model.busy) {
-              addFavourites(context, model, uniqueKey);
+              addFavourites(context,
+                  article: article, model: model, tag: uniqueKey);
             }
           },
           child: Padding(
@@ -193,7 +194,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
                         child: CupertinoActivityIndicator(radius: 5),
                       )
                     : Icon(
-                        model.article.collect
+                        article.collect
                             ? Icons.favorite
                             : Icons.favorite_border,
                         color: Colors.redAccent[100]),
