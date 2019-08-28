@@ -15,20 +15,19 @@ import 'generated/i18n.dart';
 import 'view_model/locale_model.dart';
 import 'view_model/theme_model.dart';
 
- main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-  await StorageManager.init();
-  runApp(App());
-}
+main() async {
+  Provider.debugCheckInvalidValueType = null;
 
-//void main() async {
-//  /// 一些必备首选项的初始化
-//  Provider.debugCheckInvalidValueType = null;
-//  await StorageManager.init();
-//  InnerWidgetsFlutterBinding.ensureInitialized()
-//    ..attachRootWidget(new App())
-//    ..scheduleWarmUpFrame();
-//}
+  /// Flutter的master分支中,在使用'MethodChannel'之前
+  /// 需要确保[WidgetsFlutterBinding]的初始化
+  var widgetsBinding = InnerWidgetsFlutterBinding.ensureInitialized();
+
+  /// 一些必备首选项的初始化
+  await StorageManager.init();
+  widgetsBinding
+    ..attachRootWidget(new App())
+    ..scheduleWarmUpFrame();
+}
 
 class App extends StatelessWidget {
   @override
