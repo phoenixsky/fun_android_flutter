@@ -38,8 +38,13 @@
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## 2019-08-28
+- 在设置中添加WebViewPlugin的开关
+- 在详情中移除收藏后,回到收藏列表页面自动刷新
+
 ## 2019-08-26 
-* 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
+- 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
 
 # 项目结构
 
@@ -106,13 +111,11 @@
 
 # 未完成的功能
 
-1.  文章详情页面，也就是webview页面没有加入导航功能，没有找到不影响美观的地方，实在不想像微信那样底部加个箭头，所以目前还不能后退。
+1.  首页二楼目前是我个人的blog，也无法前进后退。后期会放一个flutter专题。
 
-2.  首页二楼目前是我个人的blog，也无法前进后退。后期会放一个flutter专题。
+2.  Hero动画，在非最后一个tab登陆时，logo的动画会漂移到最后一个，需要加状态判断。
 
-3.  Hero动画，在非最后一个tab登陆时，logo的动画会漂移到最后一个，需要加状态判断。
-
-4.  退出登陆加入动效。
+3.  退出登陆加入动效。
 
 # 目前已知存在的问题
 
