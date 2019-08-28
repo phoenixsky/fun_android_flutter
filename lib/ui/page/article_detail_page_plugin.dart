@@ -77,23 +77,15 @@ class _WebViewState extends State<ArticleDetailPage> {
             children: <Widget>[
               IconButton(
                 icon: const Icon(Icons.arrow_back_ios),
-                onPressed: canGoBack
-                    ? () {
-                        flutterWebViewPlugin.goBack();
-                      }
-                    : null,
+                onPressed: flutterWebViewPlugin.goBack,
               ),
               IconButton(
                 icon: const Icon(Icons.arrow_forward_ios),
-                onPressed: () {
-                  flutterWebViewPlugin.goForward();
-                },
+                onPressed: flutterWebViewPlugin.goForward,
               ),
               IconButton(
                 icon: const Icon(Icons.autorenew),
-                onPressed: () {
-                  flutterWebViewPlugin.reload();
-                },
+                onPressed: flutterWebViewPlugin.reload,
               ),
               ProviderWidget<FavouriteModel>(
                 model: FavouriteModel(widget.article),

@@ -24,6 +24,8 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+
+// 签名文件并没有开源,在这里可以替换你自己的release签名,或者将其注释掉,使用debug签名
 def keystorePropertiesFile = rootProject.file("signing/key.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
