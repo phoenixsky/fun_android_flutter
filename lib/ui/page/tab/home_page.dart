@@ -114,9 +114,9 @@ class _HomePageState extends State<HomePage>
                             expandedHeight: bannerHeight,
                             pinned: true,
                           ),
-                          SliverPadding(
-                            padding: EdgeInsets.only(top: 5),
-                          ),
+//                          SliverPadding(
+//                            padding: EdgeInsets.only(top: 5),
+//                          ),
                           if (homeModel.idle) HomeTopArticleList(),
                           HomeArticleList(),
                         ],

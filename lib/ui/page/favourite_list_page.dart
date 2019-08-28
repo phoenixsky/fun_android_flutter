@@ -26,8 +26,7 @@ class FavouriteListPage extends StatelessWidget {
         title: Text(S.of(context).myFavourites),
       ),
       body: ProviderWidget<FavouriteListModel>(
-        model:
-            FavouriteListModel(loginModel: LoginModel(Provider.of(context))),
+        model: FavouriteListModel(loginModel: LoginModel(Provider.of(context))),
         onModelReady: (model) async {
           await model.initData();
         },
@@ -85,14 +84,20 @@ class FavouriteListPage extends StatelessWidget {
                                       axis: Axis.vertical,
                                       axisAlignment: 1.0,
                                       sizeFactor: animation,
-                                      child: ArticleItemWidget(item)));
+                                      child: ArticleItemWidget(
+                                        item,
+                                        hideFavourite: true,
+                                      )));
                             },
                           )
                         ],
                         child: SizeTransition(
                             axis: Axis.vertical,
                             sizeFactor: animation,
-                            child: ArticleItemWidget(item)),
+                            child: ArticleItemWidget(
+                              item,
+                              hideFavourite: true,
+                            )),
                       );
                     })
               ]));

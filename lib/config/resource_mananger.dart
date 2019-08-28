@@ -38,7 +38,7 @@ class ImageHelper {
 
   static String randomUrl(
       {int width = 100, int height = 100, Object key = ''}) {
-    return 'http://placeimg.com/$width/$height/${key.toString()}';
+    return 'http://placeimg.com/$width/$height/${key.hashCode.toString()+key.toString()}';
   }
 }
 
