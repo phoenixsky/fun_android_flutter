@@ -1,3 +1,6 @@
+Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/master/README-EN.md) | [中文简体](https://github.com/phoenixsky/fun_android_flutter/blob/master/README.md)
+
+
 # 产品级Flutter开源项目FunAndroid，Provider的最佳实践
 > 基于Google的[Flutter](https://flutter.dev),及官方推荐状态管理[Provider](https://github.com/rrousselGit/provider)和[玩Android](https://wanandroid.com/)开放的API，打造的一款产品级开源App《[Fun Android](https://github.com/phoenixsky/fun_android_flutter)》
 
