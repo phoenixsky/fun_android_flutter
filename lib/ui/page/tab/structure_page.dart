@@ -141,7 +141,7 @@ class _NavigationSiteCategoryListState extends State<NavigationSiteCategoryList>
           if (model.busy) {
             return Center(child: CircularProgressIndicator());
           } else if (model.error) {
-            return ViewStateWidget(onPressed: model.initData());
+            return ViewStateWidget(onPressed: model.initData);
           }
           return Scrollbar(
             child: ListView.builder(
