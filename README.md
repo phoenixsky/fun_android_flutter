@@ -20,11 +20,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-  >  https://github.com/phoenixsky/fun_android_flutter/releases/download/0.1.1/FunAndroid_0.1.1-arm64-v8a.apk
-  >  https://github.com/phoenixsky/fun_android_flutter/releases/download/0.1.1/FunAndroid_0.1.1.apk
-     
-   ![android.png](https://upload-images.jianshu.io/upload_images/581515-5d0d8ddcd273d18b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/200)
-
+    * [请前往release页面](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS: 
   >  `审核被拒...待调整后上架` ,由于该app内容含有大量Android相关信息,过于挑衅`Apple`,不知道还有没有希望过审.
 
@@ -53,7 +49,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 ## 2019-08-26 
 - 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))
 
-![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
+    ![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
 
 # 项目结构
 

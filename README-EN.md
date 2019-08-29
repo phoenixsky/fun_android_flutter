@@ -25,13 +25,11 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 - Android：
 
-> https://github.com/phoenixsky/fun_android_flutter/releases/download/0.1.0/FunAndroid_0.1.0.apk
-
-   ![android.png](https://upload-images.jianshu.io/upload_images/581515-5d0d8ddcd273d18b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/200)
+    - [release](https://github.com/phoenixsky/fun_android_flutter/releases)
 
 - iOS: 
 
-> `reject` , App includes Android references in whole concept. adjust later
+> `Apple Rejected` , App includes Android references in whole concept. adjust later
 
 
 
