@@ -51,7 +51,9 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 - 在详情中移除收藏后,回到收藏列表页面自动刷新
 
 ## 2019-08-26 
-- 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
+- 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))
+
+![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
 
 # 项目结构
 
@@ -128,14 +130,13 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 1.  表单中，光标不会切换到下一个。待更新到1.7.8-hotfix4后的稳定版再观察修复。
 
-2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。
+2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。所以接入了两套WebView方案
 
 3.  [webview_flutter](https://pub.dev/packages/webview_flutter) 不能结合`CustomScrollView`滑动。见[issue](https://github.com/flutter/flutter/issues/31243#issuecomment-521564216) 。
 
 4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
-
-5.  Tabbar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
+5.  TabBar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 # Future
 
