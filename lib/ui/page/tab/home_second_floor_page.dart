@@ -24,15 +24,12 @@ class HomeSecondFloorOuter extends StatelessWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Text(
-              '跌跌撞撞中,依旧热爱这个世界.',
-              style: Theme.of(context).textTheme.overline.copyWith(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                fontFamily: 'kuaile'
-                  ),
-            ),
+            child: Text('跌跌撞撞中,依旧热爱这个世界.',
+                style: Theme.of(context).textTheme.overline.copyWith(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    )),
           ),
           Align(alignment: Alignment(0, 0.8), child: child),
         ],
