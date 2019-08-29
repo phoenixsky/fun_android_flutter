@@ -29,6 +29,7 @@ class S implements WidgetsLocalizations {
   String get cancel => "Cancel";
   String get clear => "Clear";
   String get close => "Close";
+  String get coin => "Coin";
   String get collectionRemove => "Remove";
   String get confirm => "Confirm";
   String get darkMode => "Dark Mode";
@@ -153,6 +154,8 @@ class $zh_CN extends S {
   String get loadMoreIdle => "上拉加载更多";
   @override
   String get openBrowser => "浏览器打开";
+  @override
+  String get coin => "积分";
   @override
   String get splashSkip => "跳过";
   @override

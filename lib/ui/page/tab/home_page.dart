@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
 
@@ -108,7 +110,9 @@ class _HomePageState extends State<HomePage>
                                 onDoubleTap: tapToTopModel.scrollToTop,
                                 child: EmptyAnimatedSwitcher(
                                   display: tapToTopModel.showTopBtn,
-                                  child: Text(S.of(context).appName),
+                                  child: Text(Platform.isIOS
+                                      ? 'FunFlutter'
+                                      : S.of(context).appName),
                                 ),
                               ),
                             ),

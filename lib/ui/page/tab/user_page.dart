@@ -113,27 +113,39 @@ class UserHeaderWidget extends StatelessWidget {
                             ),
                             Offstage(
                               offstage: !model.hasUser,
-                              child: ProviderWidget<CoinModel>(
-                                  model: CoinModel(),
-                                  onModelReady: (model) => model.initData(),
-                                  builder: (context, model, child) => InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, RouteName.coinRecordList);
-                                      },
-                                      child: Text('积分: ${model.coin}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .body1
-                                              .apply(
-                                                  color: Colors.white
-                                                      .withAlpha(200))
-                                              .copyWith(
-                                                  decoration: TextDecoration
-                                                      .underline)))),
+                              child: UserCoin(),
                             )
                           ])
                         ])))));
+  }
+}
+
+class UserCoin extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ProviderWidget<CoinModel>(
+        model: CoinModel(),
+        onModelReady: (model) => model.initData(),
+        builder: (context, model, child) {
+          if (model.busy) {
+            return CupertinoActivityIndicator(radius: 8);
+          }
+          var textStyle = Theme.of(context).textTheme.body1.copyWith(
+              color: Colors.white.withAlpha(200),
+              decoration: TextDecoration.underline);
+          return InkWell(
+              onTap: () {
+                if (model.error) {
+                  model.initData();
+                } else if (model.idle) {
+                  Navigator.pushNamed(context, RouteName.coinRecordList);
+                }
+              },
+              child: model.error
+                  ? Text(S.of(context).retry, style: textStyle)
+                  : Text('${S.of(context).coin}：${model.coin}',
+                      style: textStyle));
+        });
   }
 }
 
