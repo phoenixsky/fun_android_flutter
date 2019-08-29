@@ -25,6 +25,8 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>itms</string>
+		<string>jianshu</string>
+		<string>juejin</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -32,8 +34,8 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-        <key>NSAllowsArbitraryLoadsInWebContent</key>
-        <true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
