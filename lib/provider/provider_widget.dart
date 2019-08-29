@@ -12,8 +12,8 @@ class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
 
   ProviderWidget({
     Key key,
-    this.builder,
-    this.model,
+    @required this.builder,
+    @required this.model,
     this.child,
     this.onModelReady,
   }) : super(key: key);
@@ -59,9 +59,9 @@ class ProviderWidget2<A extends ChangeNotifier, B extends ChangeNotifier>
 
   ProviderWidget2({
     Key key,
-    this.builder,
-    this.model1,
-    this.model2,
+    @required this.builder,
+    @required this.model1,
+    @required this.model2,
     this.child,
     this.onModelReady,
   }) : super(key: key);

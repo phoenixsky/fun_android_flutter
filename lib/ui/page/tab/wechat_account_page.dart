@@ -6,6 +6,7 @@ import 'package:fun_android/model/article.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
+import 'package:fun_android/ui/widget/skeleton.dart';
 import 'package:fun_android/view_model/wechat_account_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/model/tree.dart';
@@ -123,7 +124,7 @@ class _WechatArticleListState extends State<WechatArticleList>
       onModelReady: (model) => model.initData(),
       builder: (context, model, child) {
         if (model.busy) {
-          return ViewStateSkeletonList(
+          return SkeletonList(
             builder: (context, index) => ArticleSkeletonItem(),
           );
         } else if (model.error) {

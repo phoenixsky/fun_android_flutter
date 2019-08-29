@@ -102,7 +102,7 @@ class TreeCategoryWidget extends StatelessWidget {
                   tree.children.length,
                   (index) => ActionChip(
                         onPressed: () {
-                          Navigator.of(context).pushNamed(RouteName.treeList,
+                          Navigator.of(context).pushNamed(RouteName.structureList,
                               arguments: [tree, index]);
                         },
                         label: Text(

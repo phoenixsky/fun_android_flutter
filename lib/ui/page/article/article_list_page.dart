@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
+import 'package:fun_android/ui/widget/skeleton.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/tree.dart';
@@ -34,7 +35,7 @@ class _ArticleListPageState extends State<ArticleListPage>
       onModelReady: (model) => model.initData(),
       builder: (context, model, child) {
         if (model.busy) {
-          return ViewStateSkeletonList(
+          return SkeletonList(
             builder: (context, index) => ArticleSkeletonItem(),
           );
         } else if (model.error) {

@@ -1,8 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:fun_android/provider/view_state_widget.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'skeleton.dart';
 
 class ArticleSkeletonItem extends StatelessWidget {
   final int index;

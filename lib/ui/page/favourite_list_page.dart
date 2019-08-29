@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
+import 'package:fun_android/ui/widget/skeleton.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -39,7 +40,7 @@ class _FavouriteListPageState extends State<FavouriteListPage> {
         },
         builder: (context, model, child) {
           if (model.busy) {
-            return ViewStateSkeletonList(
+            return SkeletonList(
               builder: (context, index) => ArticleSkeletonItem(),
             );
           } else if (model.error) {

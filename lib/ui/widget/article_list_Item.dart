@@ -92,7 +92,7 @@ class ArticleItemWidget extends StatelessWidget {
                             children: <Widget>[
                               ArticleTitleWidget(article.title),
                               SizedBox(
-                                height: 5,
+                                height: 2,
                               ),
                               Text(
                                 article.desc,

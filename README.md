@@ -42,6 +42,9 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 更新
 
+## 2019-08-29
+- 添加积分记录和排行榜功能
+
 ## 2019-08-28
 - 在设置中添加WebViewPlugin的开关
 - 在详情中移除收藏后,回到收藏列表页面自动刷新

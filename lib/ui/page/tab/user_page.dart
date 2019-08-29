@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/change_log_page.dart';
+import 'package:fun_android/view_model/coin_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_config.dart';
@@ -59,72 +60,80 @@ class UserHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: BottomClipper(),
-      child: Container(
-        color: Theme.of(context).primaryColor.withAlpha(200),
-        padding: EdgeInsets.only(top: 10),
-        child: Consumer<UserModel>(
-            builder: (context, model, child) => InkWell(
-                  onTap: model.hasUser
-                      ? null
-                      : () {
-                          Navigator.of(context).pushNamed(RouteName.login);
-                        },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      InkWell(
-                        child: Hero(
-                          tag: 'loginLogo',
-                          child: ClipOval(
-                            child: Image.asset(
-                                ImageHelper.wrapAssets('user_avatar.png'),
-                                fit: BoxFit.cover,
-                                width: 80,
-                                height: 80,
-                                color: model.hasUser
-                                    ? Theme.of(context)
-                                        .accentColor
-                                        .withAlpha(200)
-                                    : Theme.of(context)
-                                        .accentColor
-                                        .withAlpha(10),
-                                // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
-                                colorBlendMode: BlendMode.colorDodge),
+        clipper: BottomClipper(),
+        child: Container(
+            color: Theme.of(context).primaryColor.withAlpha(200),
+            padding: EdgeInsets.only(top: 10),
+            child: Consumer<UserModel>(
+                builder: (context, model, child) => InkWell(
+                    onTap: model.hasUser
+                        ? null
+                        : () {
+                            Navigator.of(context).pushNamed(RouteName.login);
+                          },
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          InkWell(
+                            child: Hero(
+                              tag: 'loginLogo',
+                              child: ClipOval(
+                                child: Image.asset(
+                                    ImageHelper.wrapAssets('user_avatar.png'),
+                                    fit: BoxFit.cover,
+                                    width: 80,
+                                    height: 80,
+                                    color: model.hasUser
+                                        ? Theme.of(context)
+                                            .accentColor
+                                            .withAlpha(200)
+                                        : Theme.of(context)
+                                            .accentColor
+                                            .withAlpha(10),
+                                    // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
+                                    colorBlendMode: BlendMode.colorDodge),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                          model.hasUser
-                              ? model.user.nickname
-                              : S.of(context).toSignIn,
-                          style: Theme.of(context)
-                              .textTheme
-                              .title
-                              .apply(color: Colors.white.withAlpha(200))),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Visibility(
-                        visible: model.hasUser,
-                        maintainState: true,
-                        maintainSize: true,
-                        maintainAnimation: true,
-                        child: Text('ID: ${model.user?.id.toString()}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .caption
-                                .apply(color: Colors.white.withAlpha(200))),
-                      ),
-                    ],
-                  ),
-                )),
-      ),
-    );
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Column(children: <Widget>[
+                            Text(
+                                model.hasUser
+                                    ? model.user.nickname
+                                    : S.of(context).toSignIn,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .title
+                                    .apply(color: Colors.white.withAlpha(200))),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Offstage(
+                              offstage: !model.hasUser,
+                              child: ProviderWidget<CoinModel>(
+                                  model: CoinModel(),
+                                  onModelReady: (model) => model.initData(),
+                                  builder: (context, model, child) => InkWell(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RouteName.coinRecordList);
+                                      },
+                                      child: Text('积分: ${model.coin}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .body1
+                                              .apply(
+                                                  color: Colors.white
+                                                      .withAlpha(200))
+                                              .copyWith(
+                                                  decoration: TextDecoration
+                                                      .underline)))),
+                            )
+                          ])
+                        ])))));
   }
 }
 
@@ -139,7 +148,7 @@ class UserListWidget extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).favourites),
             onTap: () {
-              Navigator.of(context).pushNamed(RouteName.collectionList);
+              Navigator.of(context).pushNamed(RouteName.favouriteList);
             },
             leading: Icon(
               Icons.favorite_border,
