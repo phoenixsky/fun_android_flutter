@@ -63,11 +63,15 @@ class _WebViewState extends State<ArticleDetailPage> {
           initialUrl: widget.article.link,
           // 加载js
           javascriptMode: JavascriptMode.unrestricted,
-
           navigationDelegate: (NavigationRequest request) {
             ///TODO isForMainFrame为false,页面不跳转.导致网页内很多链接点击没效果
             debugPrint('导航$request');
-            return NavigationDecision.navigate;
+            if (!request.url.startsWith('http')) {
+              ThirdAppUtils.openAppByUrl(request.url);
+              return NavigationDecision.prevent;
+            } else {
+              return NavigationDecision.navigate;
+            }
           },
           onWebViewCreated: (WebViewController controller) {
             _webViewController = controller;
@@ -173,6 +177,7 @@ class _WebViewState extends State<ArticleDetailPage> {
       debugPrint('canGoBack--->$value');
       return canGoBack.value = value;
     });
+
     /// 是否可以前进
     _webViewController.canGoForward().then((value) {
       debugPrint('canGoForward--->$value');
