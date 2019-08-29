@@ -95,7 +95,7 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
                       : Icon(Icons.favorite_border),
                   onPressed: () async {
                     await addFavourites(context,
-                        article: widget.article, model: model);
+                        article: widget.article, model: model,playAnim: false);
                   },
                 ),
               ),
