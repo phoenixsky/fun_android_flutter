@@ -49,7 +49,6 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-08-30
 
-- 发布iOS的ipa文件
 - 修复积分数值在登录后没有刷新的bug
 - 修复进入Splash页面短暂黑屏的bug
 - 修复未登录时,点击收藏还可以播放动画的bug
