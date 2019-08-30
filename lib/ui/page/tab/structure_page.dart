@@ -38,17 +38,17 @@ class _StructurePageState extends State<StructurePage>
                         )),
               )),
           body: TabBarView(
-              children: [TreeCategoryList(), NavigationSiteCategoryList()])),
+              children: [StructureCategoryList(), NavigationSiteCategoryList()])),
     );
   }
 }
 /// 体系->体系
-class TreeCategoryList extends StatefulWidget {
+class StructureCategoryList extends StatefulWidget {
   @override
-  _TreeCategoryListState createState() => _TreeCategoryListState();
+  _StructureCategoryListState createState() => _StructureCategoryListState();
 }
 
-class _TreeCategoryListState extends State<TreeCategoryList>
+class _StructureCategoryListState extends State<StructureCategoryList>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -73,17 +73,17 @@ class _TreeCategoryListState extends State<TreeCategoryList>
                 itemCount: model.list.length,
                 itemBuilder: (context, index) {
                   Tree item = model.list[index];
-                  return TreeCategoryWidget(item);
+                  return StructureCategoryWidget(item);
                 }),
           );
         });
   }
 }
 
-class TreeCategoryWidget extends StatelessWidget {
+class StructureCategoryWidget extends StatelessWidget {
   final Tree tree;
 
-  TreeCategoryWidget(this.tree);
+  StructureCategoryWidget(this.tree);
 
   @override
   Widget build(BuildContext context) {
