@@ -29,11 +29,11 @@ class ThemeModel with ChangeNotifier {
   ThemeModel() {
     /// 明暗模式
     _brightness = Brightness.values[
-        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 0];
+        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 1];
 
     /// 获取主题色
     _themeColor = Colors.primaries[
-        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 0];
+        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 5];
 
     /// 获取字体
     _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
