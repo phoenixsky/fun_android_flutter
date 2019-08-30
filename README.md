@@ -20,9 +20,14 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [请前往release页面](https://github.com/phoenixsky/fun_android_flutter/releases)
+    * [请前往release页面下载](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS: 
-  >  `审核被拒...待调整后上架` ,由于该app内容含有大量Android相关信息,过于挑衅`Apple`,不知道还有没有希望过审.
+    >  `审核被拒...待调整后上架` ,由于该app内容含有大量Android相关信息,过于挑衅`Apple`,不知道还有没有希望过审.
+  
+  * 代码编译:
+    如果要查看运行效果,一定要使用Release模式,差距非常大
+    > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
+    
 
 # 介绍
 借用群里水友的两句对白，在预览版出来时候
@@ -38,6 +43,13 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## 2019-08-30
+
+- 修复积分数值在登录后没有刷新的bug
+- 修复进入Splash页面短暂黑屏的bug
+- 修复未登录时,点击收藏还可以播放动画的bug
+- 默认主题色调整为亮色
 
 ## 2019-08-29
 - 添加积分记录和排行榜功能
@@ -58,6 +70,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 |                                                              |                                                              |
 
 # Provider MVVM的简单使用方式
+
 *  快速添加一个拥有下拉刷新,上拉加载更多的页面.比如开发一个`玩Android`首页列表页面
     1. Model
         ![Api](https://upload-images.jianshu.io/upload_images/581515-f60f2fceef71b2cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -136,9 +149,10 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # Future
 
-1.  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
+*  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
 
 # 作者的话
+
 *  坐标上海,想找Flutter方向的工作,4年Android开发,可面向API进行小程序,Vue开发.还成功上架过weex应用.
 
 # 感谢
