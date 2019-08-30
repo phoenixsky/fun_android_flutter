@@ -22,11 +22,14 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
   * Android：
     * [请前往release页面下载](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS: 
+    * 暂未上架AppStore,可在[release](https://github.com/phoenixsky/fun_android_flutter/releases)下载`ipa`文件,用xcode安装
     >  `审核被拒...待调整后上架` ,由于该app内容含有大量Android相关信息,过于挑衅`Apple`,不知道还有没有希望过审.
   
   * 代码编译:
-    如果要查看运行效果,一定要使用Release模式,差距非常大
+    * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
     > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
+    * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
+    ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500)
     
 
 # 介绍
@@ -46,6 +49,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-08-30
 
+- 发布iOS的ipa文件
 - 修复积分数值在登录后没有刷新的bug
 - 修复进入Splash页面短暂黑屏的bug
 - 修复未登录时,点击收藏还可以播放动画的bug
