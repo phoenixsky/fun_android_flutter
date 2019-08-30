@@ -111,10 +111,7 @@ class UserHeaderWidget extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            Offstage(
-                              offstage: !model.hasUser,
-                              child: UserCoin(),
-                            )
+                            if (model.hasUser) UserCoin()
                           ])
                         ])))));
   }

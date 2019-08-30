@@ -29,8 +29,11 @@ class _WebViewState extends State<ArticleDetailPage> {
   ValueNotifier canGoBack = ValueNotifier(false);
   ValueNotifier canGoForward = ValueNotifier(false);
 
+  Future canOpenAppFuture;
+
   @override
   void initState() {
+    canOpenAppFuture = ThirdAppUtils.canOpenApp(widget.article.link);
     super.initState();
   }
 
@@ -149,7 +152,7 @@ class _WebViewState extends State<ArticleDetailPage> {
         ),
       ),
       floatingActionButton: FutureBuilder<String>(
-        future: ThirdAppUtils.canOpenApp(widget.article.link),
+        future: canOpenAppFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return FloatingActionButton(

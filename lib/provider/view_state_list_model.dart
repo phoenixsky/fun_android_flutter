@@ -1,7 +1,5 @@
-import 'package:fun_android/config/net/api.dart';
 import 'package:fun_android/provider/view_state_model.dart';
 
-import 'view_state.dart';
 
 /// 基于
 abstract class ViewStateListModel<T> extends ViewStateModel {
@@ -30,10 +28,6 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
         }
       }
     } catch (e, s) {
-      if (e is DioError && e.error is UnAuthorizedException) {
-        setUnAuthorized();
-        return;
-      }
       handleCatch(e, s);
     }
   }

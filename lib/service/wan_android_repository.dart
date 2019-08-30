@@ -126,7 +126,7 @@ class WanAndroidRepository {
 
   // 收藏
   static collect(id) async {
-    http.post('lg/collect/$id/json');
+    await http.post('lg/collect/$id/json');
   }
 
   // 取消收藏
