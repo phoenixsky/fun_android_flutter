@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io' show ContentType;
 
+import 'package:fun_android/config/app_store.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -41,7 +42,8 @@ class Http extends Dio {
 
 // 必须是顶层函数
 _parseAndDecode(String response) {
-  return jsonDecode(response);
+  /// 移除接口中所有android关键字
+  return jsonDecode(replaceAndroid((response)));
 }
 
 parseJson(String text) {

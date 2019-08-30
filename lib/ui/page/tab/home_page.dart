@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fun_android/config/app_store.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/skeleton.dart';
@@ -184,6 +185,7 @@ class BannerWidget extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   return InkWell(
                       onTap: () {
+                        if(appStoreReview) return;
                         var banner = banners[index];
                         Navigator.of(context).pushNamed(RouteName.articleDetail,
                             arguments: Article()

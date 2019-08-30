@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_android/config/app_store.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 
 class BannerImage extends StatelessWidget {
@@ -12,7 +13,7 @@ class BannerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-        imageUrl: ImageHelper.wrapUrl(url),
+        imageUrl: appStoreReview ? appleBannerUrl : ImageHelper.wrapUrl(url),
         placeholder: (context, url) =>
             Center(child: CupertinoActivityIndicator()),
         errorWidget: (context, url, error) => Icon(Icons.error),
