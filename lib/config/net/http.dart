@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io' show ContentType;
 
-import 'package:fun_android/config/app_store.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
