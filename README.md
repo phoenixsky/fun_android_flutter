@@ -24,6 +24,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
   * iOS:
   
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
+    > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
   
   * 代码编译:
     * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
