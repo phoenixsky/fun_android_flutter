@@ -29,7 +29,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 - iOS: 
 
-> `Apple Rejected` , App includes Android references in whole concept. adjust later
+    [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
 
 
 
