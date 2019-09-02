@@ -38,7 +38,6 @@ class S implements WidgetsLocalizations {
   String get fieldNotNull => "not empty";
   String get fontKuaiLe => "ZCOOL KuaiLe";
   String get githubIssue => "Can't find mail app,please github issues";
-  String get joinWanAndroid => "Join WanAndroid";
   String get loadFailed => "Load failed,retry later";
   String get loadMoreFailed => "Load Failed,Click Retry!";
   String get loadMoreIdle => "Load More..";
@@ -47,6 +46,7 @@ class S implements WidgetsLocalizations {
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
   String get needLogin => "Go to Sign In";
+  String get needLoginTitle => "a Oh..";
   String get noAccount => "No Account ? ";
   String get openBrowser => "Open Browser";
   String get pageStateError => "Load Failed";
@@ -169,6 +169,8 @@ class $zh_CN extends S {
   @override
   String get signIn3thd => "第三方登录";
   @override
+  String get needLoginTitle => "未登录";
+  @override
   String get pageStateError => "加载失败";
   @override
   String get rate => "评分";
@@ -220,8 +222,6 @@ class $zh_CN extends S {
   String get githubIssue => "未找到邮件客户端,请前往github,提issue";
   @override
   String get searchHot => "热门搜索";
-  @override
-  String get joinWanAndroid => "请先登录";
   @override
   String get darkMode => "黑夜模式";
   @override

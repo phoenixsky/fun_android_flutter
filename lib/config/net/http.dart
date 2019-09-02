@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:io' show ContentType;
 
-import 'package:path_provider/path_provider.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
