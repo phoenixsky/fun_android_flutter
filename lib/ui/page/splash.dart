@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:fun_android/config/app_store.dart';
 
 import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/config/resource_mananger.dart';
@@ -15,7 +14,7 @@ class SplashImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,//背景色
-      child: appStoreReview ? null: Image.asset(
+      child: Image.asset(
         ImageHelper.wrapAssets('splash_bg.png'),
         fit: BoxFit.fill,
       ),
