@@ -46,7 +46,9 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
   Widget build(BuildContext context) {
     return WebviewScaffold(
       url: widget.article.link,
-      withOverviewMode: false,
+      withJavascript: true,
+      displayZoomControls: true,
+      withZoom: true,
       appBar: AppBar(
         title: WebViewTitle(
           title: widget.article.title,
@@ -95,7 +97,7 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
                       : Icon(Icons.favorite_border),
                   onPressed: () async {
                     await addFavourites(context,
-                        article: widget.article, model: model,playAnim: false);
+                        article: widget.article, model: model, playAnim: false);
                   },
                 ),
               ),
