@@ -1,10 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:fun_android/config/net/api.dart';
-import 'package:dio/dio.dart';
-
-import 'view_state.dart';
 import 'view_state_list_model.dart';
 
 /// 基于

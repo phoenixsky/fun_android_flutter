@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/generated/i18n.dart';
-import 'package:shimmer/shimmer.dart';
 
 /// 加载中
 class ViewStateBusyWidget extends StatelessWidget {

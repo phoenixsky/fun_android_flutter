@@ -1,5 +1,4 @@
-import 'package:fun_android/provider/view_state_model.dart';
-
+import 'view_state_model.dart';
 
 /// 基于
 abstract class ViewStateListModel<T> extends ViewStateModel {

@@ -218,7 +218,6 @@ class HomeTopArticleList extends StatelessWidget {
         childCount: homeModel.topArticles?.length ?? 0,
       ),
     );
-    ;
   }
 }
 

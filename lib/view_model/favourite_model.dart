@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fun_android/config/net/api.dart';
 import 'package:fun_android/model/article.dart';
-import 'package:fun_android/provider/view_state.dart';
 import 'package:fun_android/provider/view_state_refresh_list_model.dart';
 import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';

@@ -9,7 +9,6 @@ import 'package:fun_android/view_model/register_model.dart';
 
 import 'package:fun_android/ui/page/user/login_widget.dart';
 
-import 'login_page.dart';
 import 'login_field_widget.dart';
 
 class RegisterPage extends StatefulWidget {
