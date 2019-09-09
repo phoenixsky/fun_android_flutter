@@ -34,16 +34,24 @@ class _UserPageState extends State<UserPage>
           actions: <Widget>[
             ProviderWidget<LoginModel>(
                 model: LoginModel(Provider.of(context)),
-                builder: (context, model, child) => Offstage(
-                      offstage: !model.userModel.hasUser,
-                      child: IconButton(
-                        tooltip: S.of(context).logout,
-                        icon: Icon(Icons.exit_to_app),
-                        onPressed: () {
-                          model.logout();
-                        },
-                      ),
-                    ))
+                builder: (context, model, child) {
+                  if(model.busy){
+                    return Padding(
+                      padding: const EdgeInsets.only(right:10.0),
+                      child: CupertinoActivityIndicator(),
+                    );
+                  }
+                  if(model.userModel.hasUser){
+                    return IconButton(
+                      tooltip: S.of(context).logout,
+                      icon: Icon(Icons.exit_to_app),
+                      onPressed: () {
+                        model.logout();
+                      },
+                    );
+                  }
+                  return SizedBox.shrink();
+                })
           ],
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: 240,

@@ -9,7 +9,9 @@ class LoginTextField extends StatefulWidget {
   final bool obscureText;
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
+  final FocusNode focusNode;
   final TextInputAction textInputAction;
+  final ValueChanged<String> onFieldSubmitted;
 
   LoginTextField({
     this.label,
@@ -17,7 +19,9 @@ class LoginTextField extends StatefulWidget {
     this.controller,
     this.obscureText: false,
     this.validator,
+    this.focusNode,
     this.textInputAction,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -61,7 +65,9 @@ class _LoginTextFieldState extends State<LoginTextField> {
             var validator = widget.validator ?? (_) => null;
             return text.trim().length > 0 ? validator(text) : S.of(context).fieldNotNull;
           },
+          focusNode: widget.focusNode,
           textInputAction: widget.textInputAction,
+          onFieldSubmitted:widget.onFieldSubmitted,
           decoration: InputDecoration(
             prefixIcon: Icon(
               widget.icon,

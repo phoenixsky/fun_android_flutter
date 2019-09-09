@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   /// 理论上应该在当前页面dispose,
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _pwdFocus = FocusNode();
 
   @override
   void dispose() {
@@ -76,12 +77,17 @@ class _LoginPageState extends State<LoginPage> {
                                 icon: Icons.person_outline,
                                 controller: _nameController,
                                 textInputAction: TextInputAction.next,
+                                onFieldSubmitted: (text) {
+                                  FocusScope.of(context)
+                                      .requestFocus(_pwdFocus);
+                                },
                               ),
                               LoginTextField(
                                 controller: _passwordController,
                                 label: S.of(context).password,
                                 icon: Icons.lock_outline,
                                 obscureText: true,
+                                focusNode: _pwdFocus,
                                 textInputAction: TextInputAction.done,
                               ),
                               LoginButton(_nameController, _passwordController),
