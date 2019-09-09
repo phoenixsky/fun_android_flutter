@@ -166,7 +166,7 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
           painter: _DropdownMenuPainter(
             color: Theme.of(context).canvasColor,
             elevation: route.elevation,
-            selectedIndex: route.selectedIndex,
+            selectedIndex: 0,//强制每次都从上到下弹出
             resize: _resize,
           ),
           child: Semantics(
