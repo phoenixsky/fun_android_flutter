@@ -7,6 +7,8 @@ import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
+import 'package:provider/provider.dart';
 
 import 'Image.dart';
 import 'animated_provider.dart';
@@ -30,6 +32,8 @@ class ArticleItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var backgroundColor = Theme.of(context).scaffoldBackgroundColor;
+    /// 用于Hero动画的标记
+    UniqueKey uniqueKey = UniqueKey();
     return Stack(
       children: <Widget>[
         Material(
@@ -138,7 +142,18 @@ class ArticleItemWidget extends StatelessWidget {
           right: 0,
           child: hideFavourite
               ? SizedBox.shrink()
-              : ArticleFavouriteWidget(article),
+              : Consumer<GlobalFavouriteStateModel>(
+                  builder: (context, model, child) {
+                    //利用child局部刷新
+                    if (model[article.id] == null) {
+                      return child;
+                    }
+                    return ArticleFavouriteWidget(
+                        article..collect = model[article.id],
+                        uniqueKey);
+                  },
+                  child: ArticleFavouriteWidget(article, uniqueKey),
+                ),
         )
       ],
     );
@@ -164,45 +179,41 @@ class ArticleTitleWidget extends StatelessWidget {
 /// 收藏按钮
 class ArticleFavouriteWidget extends StatelessWidget {
   final Article article;
+  final UniqueKey uniqueKey;
 
-  ArticleFavouriteWidget(this.article);
+  ArticleFavouriteWidget(this.article, this.uniqueKey);
 
   @override
   Widget build(BuildContext context) {
-    ///位移动画的tag
-    var uniqueKey = UniqueKey();
     return ProviderWidget<FavouriteModel>(
-      model: FavouriteModel(),
-      builder: (_, model, child) {
-        return GestureDetector(
+      model: FavouriteModel(
+          globalFavouriteModel: Provider.of(context, listen: false)),
+      builder: (_, favouriteModel, __) => GestureDetector(
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
-            if (!model.busy) {
+            if (!favouriteModel.busy) {
               addFavourites(context,
-                  article: article, model: model, tag: uniqueKey);
+                  article: article, model: favouriteModel, tag: uniqueKey);
             }
           },
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-            child: Hero(
-              tag: uniqueKey,
-              child: ScaleAnimatedSwitcher(
-                child: model.busy
-                    ? SizedBox(
-                        height: 24,
-                        width: 24,
-                        child: CupertinoActivityIndicator(radius: 5),
-                      )
-                    : Icon(
-                        article.collect
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: Colors.redAccent[100]),
-              ),
-            ),
-          ),
-        );
-      },
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Hero(
+                tag: uniqueKey,
+                child: ScaleAnimatedSwitcher(
+                    child: favouriteModel.busy
+                        ? SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CupertinoActivityIndicator(radius: 5))
+                        : Consumer<UserModel>(
+                      builder: (context,userModel,child)=>Icon(
+                          userModel.hasUser && article.collect
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.redAccent[100]),
+                    )),
+              ))),
     );
   }
 }

@@ -18,6 +18,7 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
       if (data.isEmpty) {
         setEmpty();
       } else {
+        onCompleted(data);
         list = data;
         if (init) {
           //改变页面状态为非加载中
@@ -33,4 +34,6 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
 
   // 加载数据
   Future<List<T>> loadData();
+
+  onCompleted(List<T> data) {}
 }

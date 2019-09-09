@@ -27,6 +27,7 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
       if (data.isEmpty) {
         setEmpty();
       } else {
+        onCompleted(data);
         list.clear();
         list.addAll(data);
         refreshController.refreshCompleted();
@@ -58,6 +59,7 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel {
         _currentPageNum--;
         refreshController.loadNoData();
       } else {
+        onCompleted(data);
         list.addAll(data);
         if (data.length < pageSize) {
           refreshController.loadNoData();

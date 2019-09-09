@@ -8,6 +8,8 @@ import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -90,11 +92,14 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
                 onPressed: flutterWebViewPlugin.reload,
               ),
               ProviderWidget<FavouriteModel>(
-                model: FavouriteModel(),
+                model: FavouriteModel(
+                    globalFavouriteModel: Provider.of(context, listen: false)),
                 builder: (context, model, child) => IconButton(
-                  icon: widget.article.collect ?? true
-                      ? Icon(Icons.favorite, color: Colors.redAccent[100])
-                      : Icon(Icons.favorite_border),
+                  icon:
+                      Provider.of<UserModel>(context, listen: false).hasUser &&
+                                  widget.article.collect ?? true
+                          ? Icon(Icons.favorite, color: Colors.redAccent[100])
+                          : Icon(Icons.favorite_border),
                   onPressed: () async {
                     await addFavourites(context,
                         article: widget.article, model: model, playAnim: false);
