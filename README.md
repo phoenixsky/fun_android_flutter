@@ -20,7 +20,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.2.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.3.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS:
   
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
@@ -47,6 +47,18 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## 2019-09-09
+
+- 增加各页面里文章 `收藏状态` 同步的功能
+    - 首页收藏后,其他tab页对应item的收藏状态同步
+    - 我的收藏页面里移除收藏.其他页面状态同步
+    - 登录登出后各页面收藏状态刷新
+    - 如果相同账号在其他平台修改过收藏状态,只需要刷新列表即可同步收藏状态.(WanAndroid接口目前存在问题)
+- 调整Dropdown弹出动画
+- 首页初次加载数据禁用上拉记载更多功能
+- 登录页面输入框可通过回车键切换
+
 
 ## 2019-08-30
 
