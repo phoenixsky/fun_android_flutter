@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage>
                       footer: RefresherFooter(),
                       onRefresh: homeModel.refresh,
                       onLoading: homeModel.loadMore,
-                      enablePullUp: true,
+                      enablePullUp: homeModel.list.isNotEmpty,
                       child: CustomScrollView(
                         controller: tapToTopModel.scrollController,
                         slivers: <Widget>[
