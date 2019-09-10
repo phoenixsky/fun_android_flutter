@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                             children: <Widget>[
                               LoginTextField(
                                 label: S.of(context).userName,
-                                icon: Icons.person_outline,
+                                icon: Icons.perm_identity,
                                 controller: _nameController,
                                 textInputAction: TextInputAction.next,
                                 onFieldSubmitted: (text) {

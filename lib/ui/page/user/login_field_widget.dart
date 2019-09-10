@@ -59,6 +59,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
       child: ValueListenableBuilder(
         valueListenable: obscureNotifier,
         builder: (context, value, child) => TextFormField(
+          textAlignVertical: TextAlignVertical.center,
           controller: controller,
           obscureText: value,
           validator: (text) {
@@ -71,22 +72,15 @@ class _LoginTextFieldState extends State<LoginTextField> {
           textInputAction: widget.textInputAction,
           onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(bottom: 5.0),
-              child: Icon(
-                widget.icon,
-                color: theme.accentColor,
-                size: 20,
-              ),
-            ),
+            prefixIcon: Icon(widget.icon,color: theme.accentColor,size: 22),
             hintText: widget.label,
-            hintStyle: TextStyle(fontSize: 15),
+            hintStyle: TextStyle(fontSize: 16),
             suffixIcon: LoginTextFieldSuffixIcon(
               controller: controller,
               obscureText: widget.obscureText,
               obscureNotifier: obscureNotifier,
             ),
-          ).applyDefaults(theme.inputDecorationTheme),
+          ),
         ),
       ),
     );
@@ -109,6 +103,7 @@ class LoginTextFieldSuffixIcon extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Offstage(
           offstage: !obscureText,
