@@ -6,6 +6,7 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/model/article.dart';
+import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
@@ -207,14 +208,10 @@ class WebViewTitle extends StatelessWidget {
         FutureBuilder<bool>(
           future: future,
           initialData: false,
-          builder: (context, snapshot) {
-            return Offstage(
-              offstage: snapshot.data,
-              child: Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: CupertinoActivityIndicator()),
-            );
-          },
+          builder: (context, snapshot) => snapshot.data
+              ? SizedBox.shrink()
+              : Padding(
+                  padding: EdgeInsets.only(right: 5), child: AppBarIndicator()),
         ),
         Expanded(
             child: Text(
@@ -251,7 +248,7 @@ class WebViewPopupMenu extends StatelessWidget {
           case 1:
             break;
           case 2:
-            Share.share(article.title+' '+article.link);
+            Share.share(article.title + ' ' + article.link);
             break;
         }
       },

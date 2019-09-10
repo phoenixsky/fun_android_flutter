@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/change_log_page.dart';
+import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/view_model/coin_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
@@ -37,8 +38,8 @@ class _UserPageState extends State<UserPage>
                 builder: (context, model, child) {
                   if(model.busy){
                     return Padding(
-                      padding: const EdgeInsets.only(right:10.0),
-                      child: CupertinoActivityIndicator(),
+                      padding: const EdgeInsets.only(right:15.0),
+                      child: AppBarIndicator(),
                     );
                   }
                   if(model.userModel.hasUser){

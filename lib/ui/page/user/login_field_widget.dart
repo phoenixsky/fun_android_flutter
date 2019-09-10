@@ -168,7 +168,7 @@ class _LoginTextFieldClearIconState extends State<LoginTextFieldClearIcon> {
       },
       child: InkWell(
           onTap: () {
-            widget.controller.clear();
+            widget.controller.text = '';
           },
           child: Icon(CupertinoIcons.clear,
               size: 30, color: Theme.of(context).hintColor)),
