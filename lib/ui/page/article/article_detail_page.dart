@@ -251,7 +251,7 @@ class WebViewPopupMenu extends StatelessWidget {
           case 1:
             break;
           case 2:
-            Share.share(article.link, subject: article.title);
+            Share.share(article.title+' '+article.link);
             break;
         }
       },
