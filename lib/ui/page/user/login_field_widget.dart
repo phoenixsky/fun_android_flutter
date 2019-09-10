@@ -63,16 +63,21 @@ class _LoginTextFieldState extends State<LoginTextField> {
           obscureText: value,
           validator: (text) {
             var validator = widget.validator ?? (_) => null;
-            return text.trim().length > 0 ? validator(text) : S.of(context).fieldNotNull;
+            return text.trim().length > 0
+                ? validator(text)
+                : S.of(context).fieldNotNull;
           },
           focusNode: widget.focusNode,
           textInputAction: widget.textInputAction,
-          onFieldSubmitted:widget.onFieldSubmitted,
+          onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
-            prefixIcon: Icon(
-              widget.icon,
-              color: theme.accentColor,
-              size: 20,
+            prefixIcon: Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: Icon(
+                widget.icon,
+                color: theme.accentColor,
+                size: 20,
+              ),
             ),
             hintText: widget.label,
             hintStyle: TextStyle(fontSize: 15),

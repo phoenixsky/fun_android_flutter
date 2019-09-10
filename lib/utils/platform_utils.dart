@@ -4,7 +4,11 @@ import 'dart:async';
 import 'package:device_info/device_info.dart';
 import 'package:package_info/package_info.dart';
 
+const bool inProduction = const bool.fromEnvironment("dart.vm.product");
+
 class PlatformUtils {
+
+
   static String getPlatform() => Platform.operatingSystem;
 
   static bool isAndroid() => Platform.isAndroid;
