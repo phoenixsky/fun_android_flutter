@@ -72,7 +72,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           textInputAction: widget.textInputAction,
           onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon,color: theme.accentColor,size: 22),
+            prefixIcon: Icon(widget.icon, color: theme.accentColor, size: 22),
             hintText: widget.label,
             hintStyle: TextStyle(fontSize: 16),
             suffixIcon: LoginTextFieldSuffixIcon(
@@ -168,7 +168,9 @@ class _LoginTextFieldClearIconState extends State<LoginTextFieldClearIcon> {
       },
       child: InkWell(
           onTap: () {
-            widget.controller.text = '';
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              widget.controller.clear();
+            });
           },
           child: Icon(CupertinoIcons.clear,
               size: 30, color: Theme.of(context).hintColor)),

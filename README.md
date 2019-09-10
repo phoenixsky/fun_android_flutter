@@ -48,14 +48,21 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 更新
 
+## 2019-09-10
+
+- flutter版本更新至`1.10.1`
+- 适配更新AppBar区域CupertinoActivityIndicator的主题色彩冲突
+- 移除OffState和Indicator的组合使用,优化性能
+- 调整textField的clear实现方式,防止报错
+
 ## 2019-09-09
 
-- 增加各页面里文章 `收藏状态` 同步的功能
+- 修复各页面里文章 `收藏` 状态没有同步的问题
     - 首页收藏后,其他tab页对应item的收藏状态同步
     - 我的收藏页面里移除收藏.其他页面状态同步
     - 登录登出后各页面收藏状态刷新
     - 如果相同账号在其他平台修改过收藏状态,只需要刷新列表即可同步收藏状态.(WanAndroid接口目前存在问题)
-- 调整Dropdown弹出动画
+- 优化Dropdown弹出动画
 - 首页初次加载数据禁用上拉记载更多功能
 - 登录页面输入框可通过回车键切换
 
