@@ -7,8 +7,7 @@ class DialogHelper {
     return await showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
-              title: Text(S.of(context).needLoginTitle),
-              content: Text(S.of(context).needLogin),
+              title: Text(S.of(context).needLogin),
               actions: <Widget>[
                 CupertinoButton(
                   onPressed: () {
