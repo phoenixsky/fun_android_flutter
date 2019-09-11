@@ -31,7 +31,8 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
     > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
     * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
     ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
-    
+    * Flutter (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
+
 
 # 介绍
 借用群里水友的两句对白，在预览版出来时候
@@ -50,7 +51,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-09-10
 
-- flutter版本更新至stable `v1.9.1+hotfix.2`
+- flutter版本更新
 - 适配更新AppBar区域CupertinoActivityIndicator的主题色彩冲突
 - 移除OffState和Indicator的组合使用,优化性能
 - 调整textField的clear实现方式,防止报错
