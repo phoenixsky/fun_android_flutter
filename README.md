@@ -50,7 +50,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-09-10
 
-- flutter版本更新至`1.10.1`
+- flutter版本更新至stable `v1.9.1+hotfix.2`
 - 适配更新AppBar区域CupertinoActivityIndicator的主题色彩冲突
 - 移除OffState和Indicator的组合使用,优化性能
 - 调整textField的clear实现方式,防止报错
