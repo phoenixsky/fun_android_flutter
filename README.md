@@ -22,16 +22,16 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
   * Android：
     * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.3.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS:
-  
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
     > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
   
   * 代码编译:
+    * Flutter (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
     * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
-    > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
+        > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
     * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
     ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
-    * Flutter (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
+    
 
 
 # 介绍
