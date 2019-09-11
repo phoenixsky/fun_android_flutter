@@ -4,7 +4,9 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/ui/widget/favourite_animation.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
 
 import 'dialog_helper.dart';
 
@@ -26,8 +28,15 @@ addFavourites(BuildContext context,
   if (model.unAuthorized) {
     if (await DialogHelper.showLoginDialog(context)) {
       var success = await Navigator.pushNamed(context, RouteName.login);
-      if (success ?? false)
-        addFavourites(context, article: article, model: model, tag: tag);
+      if (success ?? false) {
+        //登录后,判断是否已经收藏
+        if (!Provider.of<UserModel>(context, listen: false)
+            .user
+            .collectIds
+            .contains(article.id)) {
+          addFavourites(context, article: article, model: model, tag: tag);
+        }
+      }
     }
   } else if (model.error) {
     //失败

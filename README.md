@@ -20,17 +20,20 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [请前往release页面下载](https://github.com/phoenixsky/fun_android_flutter/releases)
-  * iOS: 
-    * 暂未上架AppStore,可在[release](https://github.com/phoenixsky/fun_android_flutter/releases)下载`ipa`文件,用xcode安装
-    >  `审核被拒...待调整后上架` ,由于该app内容含有大量Android相关信息,过于挑衅`Apple`,不知道还有没有希望过审.
+    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.3.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+  * iOS:
+  
+    [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
+    > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
   
   * 代码编译:
+    * Flutter SDK (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
     * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
-    > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
+        > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
     * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
-    ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500)
+    ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
     
+
 
 # 介绍
 借用群里水友的两句对白，在预览版出来时候
@@ -46,6 +49,25 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## 2019-09-10
+
+- flutter版本更新
+- 适配更新AppBar区域CupertinoActivityIndicator的主题色彩冲突
+- 移除OffState和Indicator的组合使用,优化性能
+- 调整textField的clear实现方式,防止报错
+
+## 2019-09-09
+
+- 修复各页面里文章 `收藏` 状态没有同步的问题
+    - 首页收藏后,其他tab页对应item的收藏状态同步
+    - 我的收藏页面里移除收藏.其他页面状态同步
+    - 登录登出后各页面收藏状态刷新
+    - 如果相同账号在其他平台修改过收藏状态,只需要刷新列表即可同步收藏状态.(WanAndroid接口目前存在问题)
+- 优化Dropdown弹出动画
+- 首页初次加载数据禁用上拉记载更多功能
+- 登录页面输入框可通过回车键切换
+
 
 ## 2019-08-30
 

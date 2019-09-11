@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fun_android/config/storage_manager.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/locale_model.dart';

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/change_log_page.dart';
+import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/view_model/coin_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
@@ -34,16 +35,24 @@ class _UserPageState extends State<UserPage>
           actions: <Widget>[
             ProviderWidget<LoginModel>(
                 model: LoginModel(Provider.of(context)),
-                builder: (context, model, child) => Offstage(
-                      offstage: !model.userModel.hasUser,
-                      child: IconButton(
-                        tooltip: S.of(context).logout,
-                        icon: Icon(Icons.exit_to_app),
-                        onPressed: () {
-                          model.logout();
-                        },
-                      ),
-                    ))
+                builder: (context, model, child) {
+                  if(model.busy){
+                    return Padding(
+                      padding: const EdgeInsets.only(right:15.0),
+                      child: AppBarIndicator(),
+                    );
+                  }
+                  if(model.userModel.hasUser){
+                    return IconButton(
+                      tooltip: S.of(context).logout,
+                      icon: Icon(Icons.exit_to_app),
+                      onPressed: () {
+                        model.logout();
+                      },
+                    );
+                  }
+                  return SizedBox.shrink();
+                })
           ],
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: 240,

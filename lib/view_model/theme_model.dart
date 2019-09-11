@@ -90,6 +90,10 @@ class ThemeModel with ChangeNotifier {
     themeData = themeData.copyWith(
       brightness: _brightness,
       accentColor: accentColor,
+      cupertinoOverrideTheme: CupertinoThemeData(
+        primaryColor: themeColor,
+        brightness: _brightness,
+      ),
       appBarTheme: themeData.appBarTheme.copyWith(elevation: 0),
       splashColor: themeColor.withAlpha(50),
       hintColor: themeData.hintColor.withAlpha(90),
@@ -104,10 +108,7 @@ class ThemeModel with ChangeNotifier {
         labelStyle: themeData.textTheme.caption,
         backgroundColor: themeData.chipTheme.backgroundColor.withOpacity(0.1),
       ),
-      cupertinoOverrideTheme: CupertinoThemeData(
-          primaryColor: themeColor,
-          brightness: _brightness,
-          textTheme: CupertinoTextThemeData(brightness: Brightness.light)),
+//          textTheme: CupertinoTextThemeData(brightness: Brightness.light)
       inputDecorationTheme: ThemeHelper.inputDecorationTheme(themeData),
     );
 

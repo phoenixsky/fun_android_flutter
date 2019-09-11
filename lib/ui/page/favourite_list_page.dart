@@ -84,7 +84,10 @@ class _FavouriteListPageState extends State<FavouriteListPage> {
                             color: Colors.redAccent,
                             icon: Icons.delete,
                             onTap: () {
-                              FavouriteModel().collect(item);
+                              FavouriteModel(
+                                      globalFavouriteModel:
+                                          Provider.of(context, listen: false))
+                                  .collect(item);
                               removeItem(model.list, index);
                             },
                           )

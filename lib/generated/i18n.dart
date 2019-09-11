@@ -46,7 +46,6 @@ class S implements WidgetsLocalizations {
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
   String get needLogin => "Go to Sign In";
-  String get needLoginTitle => "a Oh..";
   String get noAccount => "No Account ? ";
   String get openBrowser => "Open Browser";
   String get pageStateError => "Load Failed";
@@ -168,8 +167,6 @@ class $zh_CN extends S {
   String get myFavourites => "我的收藏";
   @override
   String get signIn3thd => "第三方登录";
-  @override
-  String get needLoginTitle => "未登录";
   @override
   String get pageStateError => "加载失败";
   @override

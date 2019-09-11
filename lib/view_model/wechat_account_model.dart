@@ -4,6 +4,8 @@ import 'package:fun_android/provider/view_state_refresh_list_model.dart';
 import 'package:fun_android/provider/view_state_list_model.dart';
 import 'package:fun_android/service/wan_android_repository.dart';
 
+import 'favourite_model.dart';
+
 /// 微信公众号
 class WechatAccountCategoryModel extends ViewStateListModel<Tree> {
   @override
@@ -22,5 +24,10 @@ class WechatArticleListModel extends ViewStateRefreshListModel<Article> {
   @override
   Future<List<Article>> loadData({int pageNum}) async {
     return await WanAndroidRepository.fetchWechatAccountArticles(pageNum, id);
+  }
+
+  @override
+  onCompleted(List data) {
+    GlobalFavouriteStateModel.refresh(data);
   }
 }

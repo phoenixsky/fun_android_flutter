@@ -9,7 +9,9 @@ class LoginTextField extends StatefulWidget {
   final bool obscureText;
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
+  final FocusNode focusNode;
   final TextInputAction textInputAction;
+  final ValueChanged<String> onFieldSubmitted;
 
   LoginTextField({
     this.label,
@@ -17,7 +19,9 @@ class LoginTextField extends StatefulWidget {
     this.controller,
     this.obscureText: false,
     this.validator,
+    this.focusNode,
     this.textInputAction,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -59,23 +63,23 @@ class _LoginTextFieldState extends State<LoginTextField> {
           obscureText: value,
           validator: (text) {
             var validator = widget.validator ?? (_) => null;
-            return text.trim().length > 0 ? validator(text) : S.of(context).fieldNotNull;
+            return text.trim().length > 0
+                ? validator(text)
+                : S.of(context).fieldNotNull;
           },
+          focusNode: widget.focusNode,
           textInputAction: widget.textInputAction,
+          onFieldSubmitted: widget.onFieldSubmitted,
           decoration: InputDecoration(
-            prefixIcon: Icon(
-              widget.icon,
-              color: theme.accentColor,
-              size: 20,
-            ),
+            prefixIcon: Icon(widget.icon, color: theme.accentColor, size: 22),
             hintText: widget.label,
-            hintStyle: TextStyle(fontSize: 15),
+            hintStyle: TextStyle(fontSize: 16),
             suffixIcon: LoginTextFieldSuffixIcon(
               controller: controller,
               obscureText: widget.obscureText,
               obscureNotifier: obscureNotifier,
             ),
-          ).applyDefaults(theme.inputDecorationTheme),
+          ),
         ),
       ),
     );
@@ -98,6 +102,7 @@ class LoginTextFieldSuffixIcon extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Offstage(
           offstage: !obscureText,
@@ -162,7 +167,9 @@ class _LoginTextFieldClearIconState extends State<LoginTextFieldClearIcon> {
       },
       child: InkWell(
           onTap: () {
-            widget.controller.clear();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              widget.controller.clear();
+            });
           },
           child: Icon(CupertinoIcons.clear,
               size: 30, color: Theme.of(context).hintColor)),

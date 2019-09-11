@@ -6,9 +6,12 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/model/article.dart';
+import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/utils/third_app_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -127,15 +130,18 @@ class _WebViewState extends State<ArticleDetailPage> {
                 },
               ),
               ProviderWidget<FavouriteModel>(
-                model: FavouriteModel(),
+                model: FavouriteModel(
+                    globalFavouriteModel: Provider.of(context, listen: false)),
                 builder: (context, model, child) {
                   var tag = 'detail';
+                  var userModel =
+                      Provider.of<UserModel>(context, listen: false);
                   return IconButton(
                     tooltip: S.of(context).favourites,
                     icon: Hero(
                       tag: tag,
                       child: Icon(
-                          widget.article.collect ?? true
+                          userModel.hasUser && widget.article.collect ?? true
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.redAccent[100]),
@@ -202,14 +208,10 @@ class WebViewTitle extends StatelessWidget {
         FutureBuilder<bool>(
           future: future,
           initialData: false,
-          builder: (context, snapshot) {
-            return Offstage(
-              offstage: snapshot.data,
-              child: Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: CupertinoActivityIndicator()),
-            );
-          },
+          builder: (context, snapshot) => snapshot.data
+              ? SizedBox.shrink()
+              : Padding(
+                  padding: EdgeInsets.only(right: 5), child: AppBarIndicator()),
         ),
         Expanded(
             child: Text(
@@ -246,7 +248,7 @@ class WebViewPopupMenu extends StatelessWidget {
           case 1:
             break;
           case 2:
-            Share.share(article.link, subject: article.title);
+            Share.share(article.title + ' ' + article.link);
             break;
         }
       },

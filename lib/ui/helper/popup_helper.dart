@@ -79,47 +79,47 @@ class PopupWindowRoute extends PopupRoute {
         },
       ),
     );
-    return Material(
-      color: Colors.transparent,
-      child: GestureDetector(
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.transparent,
-              ),
-              Positioned(
-                top: 100,
-                right: 0,
-                left: 0,
-                height: 200,
-                child: AnimatedBuilder(
-                  animation: animation,
-                  builder: (context, child) {
-                    return Opacity(
-                        opacity: animation.value,
-                        child: Material(
-                          type: MaterialType.card,
-                          color: Colors.red,
-                          child: Align(
-                              alignment: AlignmentDirectional.topStart,
-                              widthFactor: CurveTween(curve: Interval(0.0, 1))
-                                  .evaluate(animation),
-                              heightFactor: CurveTween(curve: Interval(0.5, 1))
-                                  .evaluate(animation),
-                              child: child),
-                        ));
-                  },
-                  child: child,
-                ),
-              )
-            ],
-          ),
-          onTap: () {
-            Navigator.of(context).pop();
-          }),
-    );
+//    return Material(
+//      color: Colors.transparent,
+//      child: GestureDetector(
+//          child: Stack(
+//            children: <Widget>[
+//              Container(
+//                width: MediaQuery.of(context).size.width,
+//                height: MediaQuery.of(context).size.height,
+//                color: Colors.transparent,
+//              ),
+//              Positioned(
+//                top: 100,
+//                right: 0,
+//                left: 0,
+//                height: 200,
+//                child: AnimatedBuilder(
+//                  animation: animation,
+//                  builder: (context, child) {
+//                    return Opacity(
+//                        opacity: animation.value,
+//                        child: Material(
+//                          type: MaterialType.card,
+//                          color: Colors.red,
+//                          child: Align(
+//                              alignment: AlignmentDirectional.topStart,
+//                              widthFactor: CurveTween(curve: Interval(0.0, 1))
+//                                  .evaluate(animation),
+//                              heightFactor: CurveTween(curve: Interval(0.5, 1))
+//                                  .evaluate(animation),
+//                              child: child),
+//                        ));
+//                  },
+//                  child: child,
+//                ),
+//              )
+//            ],
+//          ),
+//          onTap: () {
+//            Navigator.of(context).pop();
+//          }),
+//    );
   }
 }
 

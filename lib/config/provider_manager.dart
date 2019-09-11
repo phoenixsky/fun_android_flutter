@@ -1,3 +1,4 @@
+import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/locale_model.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/view_model/theme_model.dart';
@@ -11,18 +12,20 @@ List<SingleChildCloneableWidget> providers = [
 
 /// 独立的model
 List<SingleChildCloneableWidget> independentServices = [
-//  Provider.value(value: Api())
   ChangeNotifierProvider<ThemeModel>.value(value: ThemeModel()),
   ChangeNotifierProvider<LocaleModel>.value(value: LocaleModel()),
-  ChangeNotifierProvider<UserModel>.value(value: UserModel())
+  ChangeNotifierProvider<GlobalFavouriteStateModel>.value(
+      value: GlobalFavouriteStateModel())
 ];
 
 /// 需要依赖的model
+///
+/// UserModel依赖globalFavouriteStateModel
 List<SingleChildCloneableWidget> dependentServices = [
-//  ProxyProvider<Api, AuthenticationService>(
-//    builder: (context, api, authenticationService) =>
-//        AuthenticationService(api: api),
-//  )
+  ChangeNotifierProxyProvider<GlobalFavouriteStateModel, UserModel>(
+    builder: (context, globalFavouriteStateModel, userModel) =>
+        userModel ?? UserModel(globalFavouriteStateModel: globalFavouriteStateModel),
+  )
 ];
 
 List<SingleChildCloneableWidget> uiConsumableProviders = [

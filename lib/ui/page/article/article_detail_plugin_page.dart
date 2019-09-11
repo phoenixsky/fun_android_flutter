@@ -6,10 +6,13 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/model/article.dart';
-import 'package:fun_android/utils/string_utils.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
+import 'package:fun_android/view_model/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'article_detail_page.dart';
 
 class ArticleDetailPluginPage extends StatefulWidget {
   final Article article;
@@ -46,7 +49,9 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
   Widget build(BuildContext context) {
     return WebviewScaffold(
       url: widget.article.link,
-      withOverviewMode: false,
+      withJavascript: true,
+      displayZoomControls: true,
+      withZoom: true,
       appBar: AppBar(
         title: WebViewTitle(
           title: widget.article.title,
@@ -88,14 +93,18 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
                 onPressed: flutterWebViewPlugin.reload,
               ),
               ProviderWidget<FavouriteModel>(
-                model: FavouriteModel(),
+                model: FavouriteModel(
+                    globalFavouriteModel: Provider.of(context, listen: false)),
                 builder: (context, model, child) => IconButton(
-                  icon: widget.article.collect ?? true
-                      ? Icon(Icons.favorite, color: Colors.redAccent[100])
-                      : Icon(Icons.favorite_border),
+                  icon:
+                      Provider.of<UserModel>(context, listen: false).hasUser &&
+                                  widget.article.collect ??
+                              true
+                          ? Icon(Icons.favorite, color: Colors.redAccent[100])
+                          : Icon(Icons.favorite_border),
                   onPressed: () async {
                     await addFavourites(context,
-                        article: widget.article, model: model,playAnim: false);
+                        article: widget.article, model: model, playAnim: false);
                   },
                 ),
               ),
@@ -103,40 +112,6 @@ class _WebViewState extends State<ArticleDetailPluginPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class WebViewTitle extends StatelessWidget {
-  final String title;
-  final Future<bool> future;
-
-  WebViewTitle({this.title, this.future});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        FutureBuilder<bool>(
-          future: future,
-          initialData: false,
-          builder: (context, snapshot) {
-            return Offstage(
-              offstage: snapshot.data,
-              child: Padding(
-                  padding: EdgeInsets.only(right: 5),
-                  child: CupertinoActivityIndicator()),
-            );
-          },
-        ),
-        Expanded(
-            child: Text(
-          //移除html标签
-          StringUtils.removeHtmlLabel(title),
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: 16),
-        ))
-      ],
     );
   }
 }

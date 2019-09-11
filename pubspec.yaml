@@ -1,7 +1,7 @@
 name: fun_android
 description: Fun or Flutter for Android
 
-version: 0.1.2+1
+version: 0.1.4+1
 
 environment:
   sdk: ">=2.4.0 <3.0.0"

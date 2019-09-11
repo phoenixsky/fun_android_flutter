@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 
 
 const Duration _kDropdownMenuDuration = Duration(milliseconds: 300);
-const double _kMenuItemHeight = 48.0;
+const double _kMenuItemHeight = kMinInteractiveDimension;
 const double _kDenseButtonHeight = 24.0;
 const EdgeInsets _kMenuItemPadding = EdgeInsets.symmetric(horizontal: 16.0);
 const EdgeInsetsGeometry _kAlignedButtonPadding = EdgeInsetsDirectional.only(start: 16.0, end: 4.0);
@@ -157,7 +157,7 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
         ),
       ));
     }
-
+    ///修改源码: 调整下拉框高度
     return Container(
       height: MediaQuery.of(context).size.height * .5,
       child: FadeTransition(
@@ -166,7 +166,7 @@ class _DropdownMenuState<T> extends State<_DropdownMenu<T>> {
           painter: _DropdownMenuPainter(
             color: Theme.of(context).canvasColor,
             elevation: route.elevation,
-            selectedIndex: route.selectedIndex,
+            selectedIndex: 0,///修改源码:强制每次都从上到下弹出
             resize: _resize,
           ),
           child: Semantics(
@@ -368,7 +368,8 @@ class _DropdownRoutePage<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasDirectionality(context));
-    final double availableHeight = constraints.maxHeight;
+    ///修改源码: 调整下拉框高度
+    final double availableHeight = constraints.maxHeight * 0.5;
     final double maxMenuHeight = availableHeight - 2.0 * _kMenuItemHeight;
 
     final double buttonTop = buttonRect.top;
@@ -412,6 +413,7 @@ class _DropdownRoutePage<T> extends StatelessWidget {
       // the button is close to the bottom of the screen and the selected item
       // is close to 0.
       final double scrollOffset = preferredMenuHeight > maxMenuHeight ? math.max(0.0, selectedItemOffset - (buttonTop - menuTop)) : 0.0;
+      ///修改源码: 调整默认滚动位置
       route.scrollController = ScrollController(initialScrollOffset: scrollOffset);
     }
 
