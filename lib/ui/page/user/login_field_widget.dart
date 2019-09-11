@@ -59,7 +59,6 @@ class _LoginTextFieldState extends State<LoginTextField> {
       child: ValueListenableBuilder(
         valueListenable: obscureNotifier,
         builder: (context, value, child) => TextFormField(
-          textAlignVertical: TextAlignVertical.center,
           controller: controller,
           obscureText: value,
           validator: (text) {
