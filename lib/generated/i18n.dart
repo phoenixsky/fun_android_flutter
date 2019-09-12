@@ -23,10 +23,12 @@ class S implements WidgetsLocalizations {
 
   String get Like => "Like";
   String get about => "About";
+  String get action_update => "Update";
   String get appName => "Fun Android";
   String get article_tag_top => "Top";
   String get autoBySystem => "Auto";
   String get cancel => "Cancel";
+  String get checkUpdate => "Check Update";
   String get clear => "Clear";
   String get close => "Close";
   String get coin => "Coin";
@@ -102,6 +104,8 @@ class $zh_CN extends S {
   @override
   String get favourites => "收藏";
   @override
+  String get action_update => "更新";
+  @override
   String get refreshIdle => "下拉可刷新";
   @override
   String get twoPwdDifferent => "两次密码不一致";
@@ -109,6 +113,8 @@ class $zh_CN extends S {
   String get about => "关于";
   @override
   String get unLike => "取消收藏";
+  @override
+  String get checkUpdate => "检查更新";
   @override
   String get tabStructure => "体系";
   @override

@@ -1,4 +1,4 @@
-import 'package:fun_android/config/net/http.dart';
+import 'package:fun_android/config/net/wan_android_api.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/model/banner.dart';
 import 'package:fun_android/model/coin_record.dart';
@@ -86,7 +86,7 @@ class WanAndroidRepository {
   }
 
   /// 登录
-  /// [Http.initData] 添加了拦截器 设置了自动cookie.
+  /// [Http._init] 添加了拦截器 设置了自动cookie.
   static Future login(String username, String password) async {
     var response = await http.post<Map>('user/login', queryParameters: {
       'username': username,

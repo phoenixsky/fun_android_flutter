@@ -22,9 +22,35 @@ class DialogHelper {
                   onPressed: () async {
                     Navigator.of(context).pop(true);
                   },
-                  child: new Text(S.of(context).confirm, style: TextStyle(color: Colors.black)),
+                  child: new Text(S.of(context).confirm,
+                      style: TextStyle(color: Colors.black)),
                 ),
               ],
             ));
   }
+}
+
+/// App更新提示框
+showUpdateDialog(context, url) {
+  showCupertinoDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+            title: Text('检测到新版本,是否更新'),
+            actions: <Widget>[
+              CupertinoButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: new Text(
+                  S.of(context).cancel,
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              CupertinoButton(
+                onPressed: () async {},
+                child: new Text(S.of(context).action_update,
+                    style: TextStyle(color: Colors.black)),
+              ),
+            ],
+          ));
 }

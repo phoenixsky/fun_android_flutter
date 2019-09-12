@@ -62,5 +62,7 @@
   "collectionRemove": "Remove",
   "article_tag_top": "Top",
   "openBrowser": "Open Browser",
-  "coin": "Coin"
+  "coin": "Coin",
+  "checkUpdate": "Check Update",
+  "action_update": "Update"
 }

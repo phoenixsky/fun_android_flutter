@@ -62,5 +62,7 @@
   "collectionRemove": "移除收藏",
   "article_tag_top": "置顶",
   "openBrowser": "浏览器打开",
-  "coin": "积分"
+  "coin": "积分",
+  "checkUpdate": "检查更新",
+  "action_update": "更新"
 }
