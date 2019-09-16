@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 ///
 /// 方便数据初始化
 class ProviderWidget<T extends ChangeNotifier> extends StatefulWidget {
-  final Widget Function(BuildContext context, T model, Widget child) builder;
+  final ValueWidgetBuilder<T> builder;
   final T model;
   final Widget child;
   final Function(T) onModelReady;
