@@ -7,22 +7,6 @@ import 'package:fun_android/config/router_config.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/generated/i18n.dart';
 
-
-/// 用于项目初始化之前显示的页面
-class SplashImage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,//背景色
-      child: Image.asset(
-        ImageHelper.wrapAssets('splash_bg.png'),
-        fit: BoxFit.fill,
-      ),
-    );
-  }
-}
-
-
 class SplashPage extends StatefulWidget {
   @override
   _SplashPageState createState() => _SplashPageState();
