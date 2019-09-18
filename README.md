@@ -26,12 +26,12 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
     > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
   
-  * 代码编译:
-    * Flutter SDK (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
-    * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
-        > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
-    * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
-    ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+# 代码编译:
+  * Flutter SDK (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
+  * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
+      > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
+  * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
+  ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
     
 
 
@@ -49,6 +49,18 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## 2019-09-18  V0.1.4
+
+- 适配Flutter新版本(1.9-1.10)
+- 加入LeanCloud API云服务
+- 移除之前屏幕适配方案,对NativeView影响过大
+- 移除修复首页黑屏问题的代码(官方已修复)
+- 修复版本更新导致的AppBar中进度条颜色与背景色不明显的问题
+- 重构Http使用方式,解耦性更好
+- 首页banner高度调整
+- **Android加入版本更新**
+- Android状态栏透明
 
 ## 2019-09-10
 
@@ -197,6 +209,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 # 关于作者
 * [Github](https://github.com/phoenixsky)
 * [个人博客](http://blog.phoenixsky.cn/)
+* [掘金](https://juejin.im/user/567fe97c60b25aa3dcd4bcc0)
 * [简书](https://www.jianshu.com/u/145e6297cb26)
 * Email: moran.fc@gmail.com
 

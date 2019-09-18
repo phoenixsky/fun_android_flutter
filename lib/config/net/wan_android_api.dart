@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -35,37 +33,19 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) {
-    var statusCode = response.statusCode;
-    if (statusCode != 200) {
-      /// 非200会在http的onError()中
+    RespData respData = RespData.fromJson(response.data);
+    if (respData.success) {
+      response.data = respData.data;
+      return http.resolve(response);
     } else {
-//      debugPrint('---api-response--->resp----->${response.data}');
-      if (response.data is Map) {
-        RespData respData = RespData.fromJson(response.data);
-        if (respData.success) {
-          response.data = respData.data;
-          return http.resolve(response);
-        } else {
-          return handleFailed(respData);
-        }
-      } else {
-        /// WanAndroid API 如果报错,返回的数据类型存在问题
-        /// eg: 没有登录的返回的值为'{"errorCode":-1001,"errorMsg":"请先登录！"}'
-        /// 虽然是json样式,但是[response.headers.contentType?.mimeType]的值为'text/html'
-        /// 导致dio没有解析为json对象.两种解决方案:
-        /// 1.在post/get方法前加入泛型(Map),让其强制转换
-        /// 2.在这里统一处理再次解析
-        debugPrint('---api-response--->error--not--map---->$response');
-        RespData respData = RespData.fromJson(json.decode(response.data));
-        return handleFailed(respData);
-      }
+      return handleFailed(respData);
     }
   }
 
   Future<Response> handleFailed(RespData respData) {
     debugPrint('---api-response--->error---->$respData');
     if (respData.code == -1001) {
-      // 由于cookie过期,所以需要清除本地存储的登录信息
+      // 如果cookie过期,需要清除本地存储的登录信息
 //      StorageManager.localStorage.deleteItem(UserModel.keyUser);
       // 需要登录
       throw const UnAuthorizedException();

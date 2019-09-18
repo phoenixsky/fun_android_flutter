@@ -36,13 +36,13 @@ class _UserPageState extends State<UserPage>
             ProviderWidget<LoginModel>(
                 model: LoginModel(Provider.of(context)),
                 builder: (context, model, child) {
-                  if(model.busy){
+                  if (model.busy) {
                     return Padding(
-                      padding: const EdgeInsets.only(right:15.0),
+                      padding: const EdgeInsets.only(right: 15.0),
                       child: AppBarIndicator(),
                     );
                   }
-                  if(model.userModel.hasUser){
+                  if (model.userModel.hasUser) {
                     return IconButton(
                       tooltip: S.of(context).logout,
                       icon: Icon(Icons.exit_to_app),
@@ -134,7 +134,7 @@ class UserCoin extends StatelessWidget {
         onModelReady: (model) => model.initData(),
         builder: (context, model, child) {
           if (model.busy) {
-            return CupertinoActivityIndicator(radius: 8);
+            return AppBarIndicator(radius: 8);
           }
           var textStyle = Theme.of(context).textTheme.body1.copyWith(
               color: Colors.white.withAlpha(200),
