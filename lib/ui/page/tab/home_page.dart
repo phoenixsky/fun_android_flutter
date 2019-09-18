@@ -38,12 +38,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    var size = MediaQuery.of(context).size;
-
     /// iPhoneX 头部适配
-    var top = MediaQuery.of(context).padding.top;
-    var bannerHeight = size.width * 9 / 16 - top;
-
+    double bannerHeight = 150 + MediaQuery.of(context).padding.top;
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
       // 使用PrimaryScrollController保留iOS点击状态栏回到顶部的功能
@@ -164,40 +160,39 @@ class _HomePageState extends State<HomePage>
 class BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-        aspectRatio: 16 / 9,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
-          child: Consumer<HomeModel>(builder: (_, homeModel, __) {
-            if (homeModel.busy) {
-              return CupertinoActivityIndicator();
-            } else {
-              var banners = homeModel?.banners ?? [];
-              return Swiper(
-                loop: true,
-                autoplay: true,
-                autoplayDelay: 5000,
-                pagination: SwiperPagination(),
-                itemCount: banners.length,
-                itemBuilder: (ctx, index) {
-                  return InkWell(
-                      onTap: () {
-                        var banner = banners[index];
-                        Navigator.of(context).pushNamed(RouteName.articleDetail,
-                            arguments: Article()
-                              ..id = banner.id
-                              ..title = banner.title
-                              ..link = banner.url
-                              ..collect = false);
-                      },
-                      child: BannerImage(banners[index].imagePath));
-                },
-              );
-            }
-          }),
-        ));
+    return Container(
+      height:  150 + MediaQuery.of(context).padding.top,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
+      child: Consumer<HomeModel>(builder: (_, homeModel, __) {
+        if (homeModel.busy) {
+          return CupertinoActivityIndicator();
+        } else {
+          var banners = homeModel?.banners ?? [];
+          return Swiper(
+            loop: true,
+            autoplay: true,
+            autoplayDelay: 5000,
+            pagination: SwiperPagination(),
+            itemCount: banners.length,
+            itemBuilder: (ctx, index) {
+              return InkWell(
+                  onTap: () {
+                    var banner = banners[index];
+                    Navigator.of(context).pushNamed(RouteName.articleDetail,
+                        arguments: Article()
+                          ..id = banner.id
+                          ..title = banner.title
+                          ..link = banner.url
+                          ..collect = false);
+                  },
+                  child: BannerImage(banners[index].imagePath));
+            },
+          );
+        }
+      }),
+    );
   }
 }
 

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:fun_android/config/ui_adapter_config.dart';
 import 'package:fun_android/config/storage_manager.dart';
 
 import 'config/provider_manager.dart';
@@ -17,12 +17,12 @@ import 'view_model/theme_model.dart';
 
 main() async {
   Provider.debugCheckInvalidValueType = null;
-
-  final widgetsBinding = InnerWidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
-  widgetsBinding
-    ..attachRootWidget(App())
-    ..scheduleWarmUpFrame();
+  runApp(App());
+  // Android状态栏透明
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 }
 
 class App extends StatelessWidget {

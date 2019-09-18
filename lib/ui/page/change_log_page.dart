@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fun_android/generated/i18n.dart';
-import 'package:fun_android/view_model/app_model.dart';
+import 'package:fun_android/ui/widget/app_update.dart';
 
 class ChangeLogPage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -23,23 +23,14 @@ class ChangeLogPage extends StatelessWidget {
             left: 30,
             right: 30,
             bottom: 8,
-            child: CupertinoButton(
-              color: Theme.of(context).accentColor,
-              onPressed: () async {
-                if (Platform.isAndroid) {
-                  /// TODO 1.增加Loading状态
-                  String url = await CheckUpdateModel().checkUpdate();
-                  if (url?.isNotEmpty ?? false) {
-                    /// 通过flutter_downloader 1.2.1下载
-                  }
-                } else {
-                  Navigator.pop(context);
-                }
-              },
-              child: Text(Platform.isAndroid
-                  ? S.of(context).checkUpdate
-                  : S.of(context).close),
-            ),
+            child: Platform.isIOS
+                ? CupertinoButton(
+                    color: Theme.of(context).accentColor,
+                    child: Text(S.of(context).close),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    })
+                : AppUpdateButton(),
           )
         ]),
       ),

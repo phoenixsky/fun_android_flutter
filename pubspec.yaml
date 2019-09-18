@@ -60,7 +60,11 @@ dependencies:
 
   # 评分
   launch_review: ^2.0.0
-
+  # 下载
+  progress_dialog: ^1.2.0
+  open_file: ^2.0.3
+  # android权限弹窗
+#  permission_handler: ^3.2.2
 
 dev_dependencies:
   flutter_test:

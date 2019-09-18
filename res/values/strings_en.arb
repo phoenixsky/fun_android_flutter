@@ -64,5 +64,11 @@
   "openBrowser": "Open Browser",
   "coin": "Coin",
   "checkUpdate": "Check Update",
-  "action_update": "Update"
+  "action_update": "Update",
+  "leastVersion": "Least version now ",
+  "downloadApk": "downloading...",
+  "reDownloadApkContent": "It has been detected that it has been downloaded, whether it is installed",
+  "downloadAgain": "Download",
+  "installApk": "Install",
+  "newVersion": "New Version"
 }

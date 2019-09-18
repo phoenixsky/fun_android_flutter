@@ -1,12 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/ui/widget/app_update.dart';
+import 'package:fun_android/view_model/app_model.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'home_page.dart';
 import 'project_page.dart';
 import 'structure_page.dart';
 import 'user_page.dart';
 import 'wechat_account_page.dart';
+
+List<Widget> pages = <Widget>[
+  HomePage(),
+  ProjectPage(),
+  WechatAccountPage(),
+  StructurePage(),
+  UserPage()
+];
 
 class TabNavigator extends StatefulWidget {
   TabNavigator({Key key}) : super(key: key);
@@ -76,12 +87,18 @@ class _TabNavigatorState extends State<TabNavigator> {
       ),
     );
   }
-}
 
-List<Widget> pages = <Widget>[
-  HomePage(),
-  ProjectPage(),
-  WechatAccountPage(),
-  StructurePage(),
-  UserPage()
-];
+  @override
+  void initState() {
+    checkAppUpdate();
+    super.initState();
+  }
+
+  Future checkAppUpdate() async {
+    String url = await AppUpdateModel().checkUpdate();
+    if (url != null) {
+      bool result = await showUpdateDialog(context);
+      if (result == true) downloadApp(context, url);
+    }
+  }
+}

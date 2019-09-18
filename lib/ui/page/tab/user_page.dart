@@ -55,7 +55,7 @@ class _UserPageState extends State<UserPage>
                 })
           ],
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          expandedHeight: 240,
+          expandedHeight: 180 + MediaQuery.of(context).padding.top,
           flexibleSpace: UserHeaderWidget(),
           pinned: false,
         ),

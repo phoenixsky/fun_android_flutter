@@ -64,5 +64,11 @@
   "openBrowser": "浏览器打开",
   "coin": "积分",
   "checkUpdate": "检查更新",
-  "action_update": "更新"
+  "action_update": "更新",
+  "leastVersion": "已是最新版本",
+  "downloadApk": "下载中,请稍后...",
+  "reDownloadApkContent": "检测到本地已下载过该版本,是否直接安装",
+  "downloadAgain": "重新下载",
+  "installApk": "直接安装",
+  "newVersion": "发现新版本,是否更新"
 }
