@@ -50,7 +50,12 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 更新
 
-## 2019-09-18 **V0.1.4**
+## V0.1.5 `2019-09-19`
+
+- Flutter SDK更新至**Channel dev, v1.10.3**,修复`我的`页面莫名卡死的问题
+- 修改Android端App名称为Fun Android
+
+## V0.1.4 `2019-09-18`
 
 - 适配Flutter 1.9.x
 - **Android加入版本更新**
