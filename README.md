@@ -27,7 +27,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
     > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
   
 # 代码编译:
-  * Flutter SDK (Channel stable, v1.9.1+hotfix.2, on Mac OS X 10.14.6 18G87, locale zh-Hans-CN)
+  * Flutter SDK (Channel dev, v1.10.3)
   * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
       > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
@@ -42,7 +42,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 *   3C：我想看最漂亮的。
 
-感谢这位朋友对`FunAndroid`的认可。
+感谢这位朋友对`Fun Android`的认可。
 
 关于App的主题风格，不全是Google倡导的Material Design 也不全是Apple的Cupertino Style。由于我是一个Android开发者，但又长期使用的iPhone，所以App的风格是两者的结合又夹杂了点私货。个人认为iOS版本的确实好看点。
 
@@ -52,14 +52,14 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-09-18 **V0.1.4**
 
-- 适配Flutter新版本`Flutter 1.9.1+hotfix.2 • channel stable`
-- 移除修复首页黑屏问题的代码`官方在1.10.1版本已修复`
+- 适配Flutter 1.9.x
+- **Android加入版本更新**
 - 加入LeanCloud API云服务
+- 移除修复首页黑屏问题的代码`官方在1.10.1版本已修复`
 - 移除之前屏幕适配方案,对NativeView影响过大
 - 修复版本更新导致的AppBar中进度条颜色与背景色不明显的问题
 - 重构Http使用方式,解耦性更好
 - 首页banner高度调整
-- **Android加入版本更新**
 - Android状态栏透明
 
 ## 2019-09-10
