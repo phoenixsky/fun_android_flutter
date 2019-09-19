@@ -212,7 +212,7 @@ class UserListWidget extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
-            title: Text(S.of(context).about),
+            title: Text(S.of(context).versionUpdate),
             onTap: () {
               Navigator.push(
                 context,
@@ -223,7 +223,7 @@ class UserListWidget extends StatelessWidget {
               );
             },
             leading: Icon(
-              Icons.error_outline,
+              Icons.system_update,
               color: iconColor,
             ),
             trailing: Icon(Icons.chevron_right),

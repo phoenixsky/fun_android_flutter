@@ -70,5 +70,6 @@
   "reDownloadApkContent": "It has been detected that it has been downloaded, whether it is installed",
   "downloadAgain": "Download",
   "installApk": "Install",
-  "newVersion": "New Version"
+  "newVersion": "New Version",
+  "versionUpdate": "Version Update"
 }

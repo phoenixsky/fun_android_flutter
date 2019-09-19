@@ -52,10 +52,10 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-09-18 **V0.1.4**
 
-- 适配Flutter新版本(1.9-1.10)
+- 适配Flutter新版本`Flutter 1.9.1+hotfix.2 • channel stable`
+- 移除修复首页黑屏问题的代码`官方在1.10.1版本已修复`
 - 加入LeanCloud API云服务
 - 移除之前屏幕适配方案,对NativeView影响过大
-- 移除修复首页黑屏问题的代码(官方已修复)
 - 修复版本更新导致的AppBar中进度条颜色与背景色不明显的问题
 - 重构Http使用方式,解耦性更好
 - 首页banner高度调整
@@ -71,7 +71,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 ## 2019-09-09
 
-- 修复各页面里文章 `收藏` 状态没有同步的问题
+- 修复各页面里文章 **收藏** 状态没有同步的问题
     - 首页收藏后,其他tab页对应item的收藏状态同步
     - 我的收藏页面里移除收藏.其他页面状态同步
     - 登录登出后各页面收藏状态刷新

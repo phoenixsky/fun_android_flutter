@@ -89,6 +89,7 @@ class S implements WidgetsLocalizations {
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
+  String get versionUpdate => "Version Update";
   String get viewStateButtonRefresh => "Refresh";
   String get viewStateMessageEmpty => "Nothing Found";
   String get viewStateMessageUnAuth => "Not sign in yet";
@@ -147,6 +148,8 @@ class $zh_CN extends S {
   String get searchShake => "换一换";
   @override
   String get Like => "收藏";
+  @override
+  String get versionUpdate => "版本更新";
   @override
   String get loadMoreFailed => "加载失败,请点击重试";
   @override

@@ -70,5 +70,6 @@
   "reDownloadApkContent": "检测到本地已下载过该版本,是否直接安装",
   "downloadAgain": "重新下载",
   "installApk": "直接安装",
-  "newVersion": "发现新版本,是否更新"
+  "newVersion": "发现新版本,是否更新",
+  "versionUpdate": "版本更新"
 }

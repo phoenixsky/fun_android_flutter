@@ -11,7 +11,7 @@ class ChangeLogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).appName),
+        title: Text(S.of(context).versionUpdate),
       ),
       body: SafeArea(
         child: Stack(children: <Widget>[
@@ -27,7 +27,7 @@ class ChangeLogPage extends StatelessWidget {
                 ? CupertinoButton(
                     color: Theme.of(context).accentColor,
                     child: Text(S.of(context).close),
-                    onPressed: () async {
+                    onPressed: () {
                       Navigator.pop(context);
                     })
                 : AppUpdateButton(),
@@ -59,7 +59,7 @@ class _ChangeLogViewState extends State<ChangeLogView> {
   @override
   Widget build(BuildContext context) {
     if (_changelog == null) {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
     return Markdown(data: _changelog);
   }
