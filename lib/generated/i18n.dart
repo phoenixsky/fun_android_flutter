@@ -55,8 +55,6 @@ class S implements WidgetsLocalizations {
   String get newVersion => "New Version";
   String get noAccount => "No Account ? ";
   String get openBrowser => "Open Browser";
-  String get pageStateError => "Load Failed";
-  String get pageStateRetry => "Retry";
   String get password => "Password";
   String get rate => "Rate";
   String get reDownloadApkContent => "It has been detected that it has been downloaded, whether it is installed";
@@ -90,7 +88,9 @@ class S implements WidgetsLocalizations {
   String get unLike => "UnLike";
   String get userName => "Username";
   String get versionUpdate => "Version Update";
+  String get viewStateButtonError => "Load Failed";
   String get viewStateButtonRefresh => "Refresh";
+  String get viewStateButtonRetry => "Retry";
   String get viewStateMessageEmpty => "Nothing Found";
   String get viewStateMessageUnAuth => "Not sign in yet";
   String get wechatAccount => "Wechat";
@@ -118,6 +118,8 @@ class $zh_CN extends S {
   String get refreshIdle => "下拉可刷新";
   @override
   String get twoPwdDifferent => "两次密码不一致";
+  @override
+  String get viewStateButtonRetry => "重试";
   @override
   String get about => "关于";
   @override
@@ -171,6 +173,8 @@ class $zh_CN extends S {
   @override
   String get noAccount => "还没账号? ";
   @override
+  String get viewStateButtonError => "加载失败";
+  @override
   String get downloadApk => "下载中,请稍后...";
   @override
   String get loadMoreIdle => "上拉加载更多";
@@ -191,8 +195,6 @@ class $zh_CN extends S {
   @override
   String get signIn3thd => "第三方登录";
   @override
-  String get pageStateError => "加载失败";
-  @override
   String get rate => "评分";
   @override
   String get theme => "色彩主题";
@@ -210,8 +212,6 @@ class $zh_CN extends S {
   String get wechatAccount => "公众号";
   @override
   String get loadMoreLoading => "加载中...";
-  @override
-  String get pageStateRetry => "重试";
   @override
   String get toSignUp => "去注册";
   @override

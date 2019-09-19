@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
-      sdk: flutter
+    sdk: flutter
   cupertino_icons: ^0.1.2
 
   # State

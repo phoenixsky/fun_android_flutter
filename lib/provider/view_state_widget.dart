@@ -37,7 +37,7 @@ class ViewStateWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 150),
             child: Text(
-              message ?? S.of(context).pageStateError,
+              message ?? S.of(context).viewStateButtonError,
               style: Theme.of(context)
                   .textTheme
                   .body1
@@ -149,7 +149,7 @@ class ViewStateButton extends StatelessWidget {
     return OutlineButton(
       child: child ??
           Text(
-            S.of(context).pageStateRetry,
+            S.of(context).viewStateButtonRetry,
             style: TextStyle(wordSpacing: 5),
           ),
       textColor: Colors.grey,
