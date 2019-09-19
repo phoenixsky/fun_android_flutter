@@ -89,6 +89,7 @@ class S implements WidgetsLocalizations {
   String get userName => "Username";
   String get versionUpdate => "Version Update";
   String get viewStateButtonError => "Load Failed";
+  String get viewStateButtonLogin => "Sign In";
   String get viewStateButtonRefresh => "Refresh";
   String get viewStateButtonRetry => "Retry";
   String get viewStateMessageEmpty => "Nothing Found";
@@ -242,6 +243,8 @@ class $zh_CN extends S {
   String get signIn => "登录";
   @override
   String get githubIssue => "未找到邮件客户端,请前往github,提issue";
+  @override
+  String get viewStateButtonLogin => "登录";
   @override
   String get searchHot => "热门搜索";
   @override

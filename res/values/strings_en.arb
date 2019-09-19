@@ -5,6 +5,7 @@
   "viewStateButtonRefresh": "Refresh",
   "viewStateButtonRetry": "Retry",
   "viewStateButtonError": "Load Failed",
+  "viewStateButtonLogin": "Sign In",
   "refreshIdle": "Pull down to refresh",
   "refreshRefreshWhenRelease": "Refresh when release",
   "refreshing": "Refreshing...",

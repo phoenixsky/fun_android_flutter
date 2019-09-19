@@ -5,6 +5,7 @@
   "viewStateButtonRefresh": "刷新一下",
   "viewStateButtonRetry": "重试",
   "viewStateButtonError": "加载失败",
+  "viewStateButtonLogin": "登录",
   "refreshIdle": "下拉可刷新",
   "refreshRefreshWhenRelease": "释放可刷新",
   "refreshing": "刷新中",
