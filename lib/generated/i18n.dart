@@ -221,7 +221,7 @@ class $zh_CN extends S {
   @override
   String get clear => "清空";
   @override
-  String get needLogin => "还没有登录,请先登录..";
+  String get needLogin => "请先登录";
   @override
   String get refresh => "刷新";
   @override
