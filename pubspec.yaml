@@ -26,7 +26,7 @@ dependencies:
 
   # Data
   #  json_annotation: ^2.4.0
-  dio: ^2.1.13
+  dio: ^2.1.16
   cookie_jar: ^1.0.0
   shared_preferences: ^0.5.2+2
   # 本地json对象存储

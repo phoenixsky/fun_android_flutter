@@ -98,7 +98,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.16"
+    version: "2.2.2"
   flare_dart:
     dependency: transitive
     description:
