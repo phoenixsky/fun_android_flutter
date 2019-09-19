@@ -20,7 +20,7 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.4.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.5.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
   * iOS:
   
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
