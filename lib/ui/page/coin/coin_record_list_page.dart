@@ -59,8 +59,7 @@ class CoinRecordListPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     // desc": "2019-08-28 10:09:15 签到,积分：10 + 12"
                     // desc 提出 bug #issues/174 ,积分+10
-                    CoinRecord item = model.list[index];
-                    debugPrint('coinRecord--$item');
+                    CoinRecord item = model. list[index];
                     String dateTime =
                         DateTime.fromMillisecondsSinceEpoch(item.date)
                             .toString()
