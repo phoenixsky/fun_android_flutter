@@ -21,6 +21,8 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 # 下载地址: 
   * Android：
     * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.5.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+        ![二维码](https://qr.api.cli.im/qr?data=http%253A%252F%252Fapp.cdn.meetingplus.cn%252FFunAndroid_0.1.5.apk&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=cliim&key=6e05f023a49bbab42f3245a6a61c2610)
+    
   * iOS:
   
     [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
