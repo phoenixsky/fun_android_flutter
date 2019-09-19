@@ -28,7 +28,8 @@ class AppUpdateButton extends StatelessWidget {
             : () async {
                 String url = await model.checkUpdate();
                 if (url != null) {
-                  await downloadApp(context, url);
+                  bool result = await showUpdateDialog(context);
+                  if (result == true) downloadApp(context, url);
                 } else {
                   showToast(S.of(context).leastVersion);
                 }
