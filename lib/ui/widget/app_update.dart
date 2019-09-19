@@ -113,8 +113,8 @@ showReDownloadDialog(context) async {
 }
 
 /// App更新提示框
-showUpdateDialog(context) {
-  showDialog(
+showUpdateDialog(context) async {
+  return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
             content: Text(S.of(context).newVersion),
