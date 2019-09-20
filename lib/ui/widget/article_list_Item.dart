@@ -10,7 +10,7 @@ import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/user_model.dart';
 import 'package:provider/provider.dart';
 
-import 'Image.dart';
+import 'image.dart';
 import 'animated_provider.dart';
 import 'article_tag.dart';
 
