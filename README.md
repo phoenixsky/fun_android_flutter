@@ -20,9 +20,9 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.5.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.6.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
         
-        ![二维码](https://qr.api.cli.im/qr?data=http%253A%252F%252Fapp.cdn.meetingplus.cn%252FFunAndroid_0.1.5.apk&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=cliim&key=6e05f023a49bbab42f3245a6a61c2610)
+        ![二维码](https://qr.api.cli.im/qr?data=http%3A%2F%2Fqr61.cn%2Fodempq%2FquS5fYM&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=bizcliim&time=1568947308&key=1ef7092d2d39ddcb84bdb8460fe11e7d)
     
   * iOS:
   
@@ -52,6 +52,10 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## V0.1.6 `2019-09-20`
+
+- 修复收藏列表进入详情时,页面报错的bug
 
 ## V0.1.5 `2019-09-19`
 
