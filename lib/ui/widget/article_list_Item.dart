@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/favourite_model.dart';

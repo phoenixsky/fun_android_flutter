@@ -16,12 +16,12 @@ class SearchSuggestions<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints viewportConstraints) {
+      builder: (BuildContext context, BoxConstraints constraints) {
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: viewportConstraints.maxHeight,
-              minWidth: viewportConstraints.maxWidth,
+              minHeight: constraints.maxHeight,
+              minWidth: constraints.maxWidth,
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),

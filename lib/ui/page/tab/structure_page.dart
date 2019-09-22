@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/model/navigation_site.dart';
 import 'package:fun_android/model/tree.dart';
 import 'package:fun_android/provider/provider_widget.dart';

@@ -7,7 +7,7 @@ import 'package:fun_android/ui/widget/skeleton.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/flutter/refresh_animatedlist.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';

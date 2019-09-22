@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/model/coin_record.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
