@@ -42,6 +42,7 @@ class App extends StatelessWidget {
                   locale: localeModel.locale,
                   localizationsDelegates: const [
                     S.delegate,
+                    RefreshLocalizations.delegate,//下拉刷新
                     GlobalCupertinoLocalizations.delegate,
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate

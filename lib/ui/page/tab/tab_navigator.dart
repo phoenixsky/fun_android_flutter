@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/widget/app_update.dart';
-import 'package:fun_android/view_model/app_model.dart';
 
 import 'home_page.dart';
 import 'project_page.dart';
@@ -89,15 +88,7 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   @override
   void initState() {
-    checkAppUpdate();
+    checkAppUpdate(context);
     super.initState();
-  }
-
-  Future checkAppUpdate() async {
-    String url = await AppUpdateModel().checkUpdate();
-    if (url?.isNotEmpty ?? false) {
-      bool result = await showUpdateDialog(context);
-      if (result == true) downloadApp(context, url);
-    }
   }
 }

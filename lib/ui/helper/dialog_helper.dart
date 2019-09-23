@@ -14,14 +14,14 @@ class DialogHelper {
                     Navigator.of(context).pop(false);
                   },
                   child: Text(
-                    S.of(context).cancel,
+                    S.of(context).actionCancel,
                   ),
                 ),
                 CupertinoDialogAction(
                   onPressed: () async {
                     Navigator.of(context).pop(true);
                   },
-                  child: Text(S.of(context).confirm),
+                  child: Text(S.of(context).actionConfirm),
                 ),
               ],
             ));

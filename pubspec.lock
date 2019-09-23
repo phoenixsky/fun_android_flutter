@@ -310,13 +310,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.4.0"
-  progress_dialog:
-    dependency: "direct main"
-    description:
-      name: progress_dialog
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.2.0"
   provider:
     dependency: "direct main"
     description:
@@ -330,7 +323,7 @@ packages:
       name: pull_to_refresh
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.5.4"
+    version: "1.5.6"
   quiver:
     dependency: transitive
     description:

@@ -212,7 +212,7 @@ class UserListWidget extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
-            title: Text(S.of(context).versionUpdate),
+            title: Text(S.of(context).appUpdateCheckUpdate),
             onTap: () {
               Navigator.push(
                 context,
@@ -228,6 +228,9 @@ class UserListWidget extends StatelessWidget {
             ),
             trailing: Icon(Icons.chevron_right),
           ),
+          SizedBox(
+            height: 30,
+          )
         ]),
       ),
     );

@@ -11,7 +11,7 @@ class ChangeLogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).versionUpdate),
+        title: Text(S.of(context).appUpdateCheckUpdate),
       ),
       body: SafeArea(
         child: Stack(children: <Widget>[

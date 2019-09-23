@@ -8,10 +8,6 @@ class HomeRefreshHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClassicHeader(
-      idleText: S.of(context).refreshIdle,
-      releaseText: S.of(context).refreshRefreshWhenRelease,
-      refreshingText: S.of(context).refreshing,
-      completeText: S.of(context).refreshComplete,
       canTwoLevelText: S.of(context).refreshTwoLevel,
       textStyle: TextStyle(color: Colors.white),
       outerBuilder: (child) => HomeSecondFloorOuter(child),
@@ -27,10 +23,10 @@ class RefresherFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClassicFooter(
-      failedText: S.of(context).loadMoreFailed,
-      idleText: S.of(context).loadMoreIdle,
-      loadingText: S.of(context).loadMoreLoading,
-      noDataText: S.of(context).loadMoreNoData,
+//      failedText: S.of(context).loadMoreFailed,
+//      idleText: S.of(context).loadMoreIdle,
+//      loadingText: S.of(context).loadMoreLoading,
+//      noDataText: S.of(context).loadMoreNoData,
     );
   }
 }

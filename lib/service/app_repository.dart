@@ -8,8 +8,8 @@ class AppRepository {
         queryParameters: {'where': '{"platform":"$platform"}'});
     var result = response.data[0];
     debugPrint('当前版本为===>$version');
-    debugPrint('最新版本为===>${result['version']}');
     if (result['version'] != version) {
+      debugPrint('发现新版本===>${result['version']}\nurl:${result['url']}');
       return result['url'];
     }
     return null;

@@ -23,48 +23,40 @@ class S implements WidgetsLocalizations {
 
   String get Like => "Like";
   String get about => "About";
-  String get action_update => "Update";
+  String get actionCancel => "Cancel";
+  String get actionConfirm => "Confirm";
   String get appName => "Fun Android";
+  String get appUpdateActionDownloadAgain => "Download";
+  String get appUpdateActionInstallApk => "Install";
+  String get appUpdateActionUpdate => "Update";
+  String get appUpdateCheckUpdate => "Check Update";
+  String get appUpdateDownloading => "downloading...";
+  String get appUpdateLeastVersion => "Least version now ";
+  String get appUpdateReDownloadContent => "It has been detected that it has been downloaded, whether it is installed";
+  String get appUpdateUpdate => "Version Update";
   String get article_tag_top => "Top";
   String get autoBySystem => "Auto";
-  String get cancel => "Cancel";
-  String get checkUpdate => "Check Update";
   String get clear => "Clear";
   String get close => "Close";
   String get coin => "Coin";
   String get collectionRemove => "Remove";
-  String get confirm => "Confirm";
   String get darkMode => "Dark Mode";
-  String get downloadAgain => "Download";
-  String get downloadApk => "downloading...";
   String get favourites => "Favorites";
   String get feedback => "FeedBack";
   String get fieldNotNull => "not empty";
   String get fontKuaiLe => "ZCOOL KuaiLe";
   String get githubIssue => "Can't find mail app,please github issues";
-  String get installApk => "Install";
-  String get leastVersion => "Least version now ";
   String get loadFailed => "Load failed,retry later";
-  String get loadMoreFailed => "Load Failed,Click Retry!";
-  String get loadMoreIdle => "Load More..";
-  String get loadMoreLoading => "Loading...";
-  String get loadMoreNoData => "No more data";
   String get logout => "Sign Out";
   String get myFavourites => "My favourites";
   String get needLogin => "Go to Sign In";
-  String get newVersion => "New Version";
   String get noAccount => "No Account ? ";
   String get openBrowser => "Open Browser";
   String get password => "Password";
   String get rate => "Rate";
-  String get reDownloadApkContent => "It has been detected that it has been downloaded, whether it is installed";
   String get rePassword => "Confirm Password";
   String get refresh => "Refresh";
-  String get refreshComplete => "Refresh Complete";
-  String get refreshIdle => "Pull down to refresh";
-  String get refreshRefreshWhenRelease => "Refresh when release";
   String get refreshTwoLevel => "release to enter second floor";
-  String get refreshing => "Refreshing...";
   String get retry => "Retry";
   String get searchHistory => "History";
   String get searchHot => "Hot";
@@ -87,7 +79,6 @@ class S implements WidgetsLocalizations {
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
-  String get versionUpdate => "Version Update";
   String get viewStateButtonError => "Load Failed";
   String get viewStateButtonLogin => "Sign In";
   String get viewStateButtonRefresh => "Refresh";
@@ -95,6 +86,7 @@ class S implements WidgetsLocalizations {
   String get viewStateMessageEmpty => "Nothing Found";
   String get viewStateMessageUnAuth => "Not sign in yet";
   String get wechatAccount => "Wechat";
+  String appUpdateFoundNewVersion(String version) => "New version $version";
 }
 
 class $en extends S {
@@ -108,15 +100,9 @@ class $zh_CN extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
-  String get cancel => "取消";
-  @override
-  String get downloadAgain => "重新下载";
-  @override
   String get favourites => "收藏";
   @override
-  String get action_update => "更新";
-  @override
-  String get refreshIdle => "下拉可刷新";
+  String get appUpdateLeastVersion => "已是最新版本";
   @override
   String get twoPwdDifferent => "两次密码不一致";
   @override
@@ -126,15 +112,13 @@ class $zh_CN extends S {
   @override
   String get unLike => "取消收藏";
   @override
-  String get reDownloadApkContent => "检测到本地已下载过该版本,是否直接安装";
-  @override
-  String get checkUpdate => "检查更新";
-  @override
   String get tabStructure => "体系";
   @override
   String get signUp => "注册";
   @override
   String get viewStateMessageEmpty => "空空如也";
+  @override
+  String get appUpdateActionInstallApk => "直接安装";
   @override
   String get viewStateMessageUnAuth => "未登录";
   @override
@@ -152,35 +136,27 @@ class $zh_CN extends S {
   @override
   String get Like => "收藏";
   @override
-  String get versionUpdate => "版本更新";
-  @override
-  String get loadMoreFailed => "加载失败,请点击重试";
-  @override
-  String get refreshRefreshWhenRelease => "释放可刷新";
+  String get appUpdateActionDownloadAgain => "重新下载";
   @override
   String get autoBySystem => "跟随系统";
-  @override
-  String get refreshComplete => "刷新完成";
   @override
   String get viewStateButtonRefresh => "刷新一下";
   @override
   String get loadFailed => "加载失败,请稍后重试";
   @override
-  String get installApk => "直接安装";
-  @override
   String get refreshTwoLevel => "欢迎光临,我的空中楼阁";
   @override
   String get article_tag_top => "置顶";
+  @override
+  String get appUpdateReDownloadContent => "检测到本地已下载过该版本,是否直接安装";
   @override
   String get noAccount => "还没账号? ";
   @override
   String get viewStateButtonError => "加载失败";
   @override
-  String get downloadApk => "下载中,请稍后...";
-  @override
-  String get loadMoreIdle => "上拉加载更多";
-  @override
   String get openBrowser => "浏览器打开";
+  @override
+  String get appUpdateActionUpdate => "更新";
   @override
   String get coin => "积分";
   @override
@@ -188,7 +164,11 @@ class $zh_CN extends S {
   @override
   String get collectionRemove => "移除收藏";
   @override
+  String get actionConfirm => "确认";
+  @override
   String get fontKuaiLe => "快乐字体";
+  @override
+  String get appUpdateCheckUpdate => "检查更新";
   @override
   String get settingLanguage => "多语言";
   @override
@@ -198,13 +178,15 @@ class $zh_CN extends S {
   @override
   String get rate => "评分";
   @override
+  String get actionCancel => "取消";
+  @override
   String get theme => "色彩主题";
   @override
   String get share => "分享";
   @override
-  String get fieldNotNull => "不能为空";
+  String get appUpdateUpdate => "版本更新";
   @override
-  String get leastVersion => "已是最新版本";
+  String get fieldNotNull => "不能为空";
   @override
   String get close => "关闭";
   @override
@@ -212,9 +194,9 @@ class $zh_CN extends S {
   @override
   String get wechatAccount => "公众号";
   @override
-  String get loadMoreLoading => "加载中...";
-  @override
   String get toSignUp => "去注册";
+  @override
+  String get appUpdateDownloading => "下载中,请稍后...";
   @override
   String get appName => "玩Android";
   @override
@@ -230,13 +212,9 @@ class $zh_CN extends S {
   @override
   String get userName => "用户名";
   @override
-  String get confirm => "确认";
-  @override
   String get tabHome => "首页";
   @override
   String get tabProject => "项目";
-  @override
-  String get refreshing => "刷新中";
   @override
   String get rePassword => "确认密码";
   @override
@@ -252,9 +230,7 @@ class $zh_CN extends S {
   @override
   String get searchHistory => "历史搜索";
   @override
-  String get loadMoreNoData => "没有更多数据了";
-  @override
-  String get newVersion => "发现新版本,是否更新";
+  String appUpdateFoundNewVersion(String version) => "发现新版本$version,是否更新";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
