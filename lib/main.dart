@@ -37,8 +37,8 @@ class App extends StatelessWidget {
                 hideFooterWhenNotFull: true, //列表数据不满一页,不触发加载更多
                 child: MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  theme: themeModel.themeData,
-                  darkTheme: themeModel.darkTheme,
+                  theme: themeModel.themeData(),
+                  darkTheme: themeModel.themeData(platformDarkMode:true),
                   locale: localeModel.locale,
                   localizationsDelegates: const [
                     S.delegate,

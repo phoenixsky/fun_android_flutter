@@ -10,15 +10,13 @@ import 'package:fun_android/config/storage_manager.dart';
 
 class ThemeModel with ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
-  static const kThemeBrightnessIndex = 'kThemeBrightnessIndex';
+  static const kThemeUserDarkMode = 'kThemeUserDarkMode';
   static const kFontIndex = 'kFontIndex';
 
   static const fontValueList = ['system', 'kuaile'];
 
-  ThemeData _themeData;
-
-  /// 明暗模式
-  Brightness _brightness;
+  /// 用户选择的明暗模式
+  bool _userDarkMode;
 
   /// 当前主题颜色
   MaterialColor _themeColor;
@@ -27,9 +25,9 @@ class ThemeModel with ChangeNotifier {
   int _fontIndex;
 
   ThemeModel() {
-    /// 明暗模式
-    _brightness = Brightness.values[
-        StorageManager.sharedPreferences.getInt(kThemeBrightnessIndex) ?? 1];
+    /// 用户选择的明暗模式
+    _userDarkMode =
+        StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
 
     /// 获取主题色
     _themeColor = Colors.primaries[
@@ -37,33 +35,29 @@ class ThemeModel with ChangeNotifier {
 
     /// 获取字体
     _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
-    _generateThemeData();
   }
-
-  ThemeData get themeData => _themeData;
-
-  ThemeData get darkTheme => _themeData.copyWith(brightness: Brightness.dark);
 
   int get fontIndex => _fontIndex;
 
   /// 切换指定色彩
   ///
   /// 没有传[brightness]就不改变brightness,color同理
-  void switchTheme({Brightness brightness, MaterialColor color}) {
-    _brightness = brightness ?? _brightness;
+  void switchTheme({bool userDarkMode, MaterialColor color}) {
+    _userDarkMode = userDarkMode ?? _userDarkMode;
     _themeColor = color ?? _themeColor;
-    _generateThemeData();
     notifyListeners();
-    saveTheme2Storage(_brightness, _themeColor);
+    saveTheme2Storage(userDarkMode, _themeColor);
   }
 
   /// 随机一个主题色彩
   ///
   /// 可以指定明暗模式,不指定则保持不变
   void switchRandomTheme({Brightness brightness}) {
-    brightness ??= (Random().nextBool() ? Brightness.dark : Brightness.light);
     int colorIndex = Random().nextInt(Colors.primaries.length - 1);
-    switchTheme(brightness: brightness, color: Colors.primaries[colorIndex]);
+    switchTheme(
+      userDarkMode: Random().nextBool(),
+      color: Colors.primaries[colorIndex],
+    );
   }
 
   /// 切换字体
@@ -74,12 +68,15 @@ class ThemeModel with ChangeNotifier {
   }
 
   /// 根据主题 明暗 和 颜色 生成对应的主题
-  _generateThemeData() {
-    var isDark = Brightness.dark == _brightness;
+  /// [dark]系统的Dark Mode
+  themeData({bool platformDarkMode: false}) {
+    var isDark = platformDarkMode || _userDarkMode;
+    Brightness brightness = isDark ? Brightness.dark : Brightness.light;
+
     var themeColor = _themeColor;
     var accentColor = isDark ? themeColor[700] : _themeColor;
     var themeData = ThemeData(
-        brightness: _brightness,
+        brightness: brightness,
         // 主题颜色属于亮色系还是属于暗色系(eg:dark时,AppBarTitle文字及状态栏文字的颜色为白色,反之为黑色)
         primaryColorBrightness: Brightness.dark,
         accentColorBrightness: Brightness.dark,
@@ -88,11 +85,11 @@ class ThemeModel with ChangeNotifier {
         fontFamily: fontValueList[fontIndex]);
 
     themeData = themeData.copyWith(
-      brightness: _brightness,
+      brightness: brightness,
       accentColor: accentColor,
       cupertinoOverrideTheme: CupertinoThemeData(
         primaryColor: themeColor,
-        brightness: _brightness,
+        brightness: brightness,
       ),
       appBarTheme: themeData.appBarTheme.copyWith(elevation: 0),
       splashColor: themeColor.withAlpha(50),
@@ -111,16 +108,15 @@ class ThemeModel with ChangeNotifier {
 //          textTheme: CupertinoTextThemeData(brightness: Brightness.light)
       inputDecorationTheme: ThemeHelper.inputDecorationTheme(themeData),
     );
-
-    _themeData = themeData;
+    return themeData;
   }
 
   /// 数据持久化到shared preferences
-  saveTheme2Storage(Brightness brightness, MaterialColor themeColor) async {
+  saveTheme2Storage(bool userDarkMode, MaterialColor themeColor) async {
     var index = Colors.primaries.indexOf(themeColor);
     await Future.wait([
       StorageManager.sharedPreferences
-          .setInt(kThemeBrightnessIndex, brightness.index),
+          .setBool(kThemeUserDarkMode, userDarkMode),
       StorageManager.sharedPreferences.setInt(kThemeColorIndex, index)
     ]);
   }

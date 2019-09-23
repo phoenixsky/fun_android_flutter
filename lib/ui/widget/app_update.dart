@@ -13,7 +13,6 @@ import 'package:path_provider/path_provider.dart';
 
 import 'button_progress_indicator.dart';
 
-
 class AppUpdateButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProviderWidget<AppUpdateModel>(
@@ -26,14 +25,15 @@ class AppUpdateButton extends StatelessWidget {
         onPressed: model.busy
             ? null
             : () async {
-          String url = await model.checkUpdate();
-          if (url?.isNotEmpty ?? false) {
-            bool result = await showUpdateAlertDialog(context,url.split('/').last);
-            if (result == true) downloadApp(context, url);
-          } else {
-            showToast(S.of(context).appUpdateLeastVersion);
-          }
-        },
+                String url = await model.checkUpdate();
+                if (url?.isNotEmpty ?? false) {
+                  bool result =
+                      await showUpdateAlertDialog(context, url.split('/').last);
+                  if (result == true) downloadApp(context, url);
+                } else {
+                  showToast(S.of(context).appUpdateLeastVersion);
+                }
+              },
       ),
     );
   }
@@ -55,25 +55,24 @@ showUpdateAlertDialog(context, version) async {
   return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(S.of(context).appUpdateFoundNewVersion(version)),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: new Text(
-              S.of(context).actionCancel,
-              style: TextStyle(color: Colors.black.withOpacity(0.5)),
-            ),
-          ),
-          FlatButton(
-            onPressed: () async {
-              Navigator.of(context).pop(true);
-            },
-            child: new Text(S.of(context).appUpdateActionUpdate),
-          ),
-        ],
-      ));
+            content: Text(S.of(context).appUpdateFoundNewVersion(version)),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: new Text(
+                  S.of(context).actionCancel
+                ),
+              ),
+              FlatButton(
+                onPressed: () async {
+                  Navigator.of(context).pop(true);
+                },
+                child: new Text(S.of(context).appUpdateActionUpdate),
+              ),
+            ],
+          ));
 }
 
 Future downloadApp(BuildContext context, String url) async {
@@ -87,7 +86,7 @@ Future downloadApp(BuildContext context, String url) async {
       OpenFile.open(apkPath);
     }
   } else {
-    var reDownload = await showReDownloadDialog(context);
+    var reDownload = await showReDownloadAlertDialog(context);
     //因为点击android的返回键,关闭dialog时的返回值为null
     if (reDownload != null) {
       if (reDownload) {
@@ -104,8 +103,9 @@ Future downloadApp(BuildContext context, String url) async {
 }
 
 showDownloadDialog(context, url, path) async {
-  CancelToken cancelToken = CancelToken();
   DateTime lastBackPressed;
+  CancelToken cancelToken = CancelToken();
+  bool downloading = false;
   return await showCupertinoDialog(
       context: context,
       builder: (context) {
@@ -116,26 +116,31 @@ showDownloadDialog(context, url, path) async {
                     Duration(seconds: 1)) {
               //两次点击间隔超过1秒则重新计时
               lastBackPressed = DateTime.now();
-              showToast('再次点击返回键,取消下载', position: ToastPosition.bottom);
+              showToast(S.of(context).appUpdateDoubleBackTips, position: ToastPosition.bottom);
               return false;
             }
             cancelToken.cancel();
-            showToast('下载已取消', position: ToastPosition.bottom);
+            showToast(S.of(context).appUpdateDownloadCanceled, position: ToastPosition.bottom);
             return true;
           },
           child: CupertinoAlertDialog(
-            title: Text('正在下载'),
+            title: Text(S.of(context).appUpdateDownloading),
             content: Builder(
               builder: (context) {
+                debugPrint('Downloader Builder');
                 ValueNotifier notifier = ValueNotifier(0.0);
-                Dio().download(url, path, cancelToken: cancelToken,
-                    onReceiveProgress: (progress, total) {
-                      debugPrint('value--${progress / total}');
-                      notifier.value = progress / total;
-                      if (notifier.value == 1) {
-                        Navigator.pop(context, true);
-                      }
-                    });
+                if (!downloading) {
+                  downloading = true;
+                  Dio().download(url, path, cancelToken: cancelToken,
+                      onReceiveProgress: (progress, total) {
+                    debugPrint('value--${progress / total}');
+                    notifier.value = progress / total;
+                  }).then((Response response) {
+                    Navigator.pop(context, true);
+                  }).catchError((onError){
+                    showToast(S.of(context).appUpdateDownloadFailed);
+                  });
+                }
                 return ValueListenableBuilder(
                   valueListenable: notifier,
                   builder: (context, value, child) {
@@ -154,39 +159,38 @@ showDownloadDialog(context, url, path) async {
       });
 }
 
-showReDownloadDialog(context) async {
+
+showReDownloadAlertDialog(context) async {
   return await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(S.of(context).appUpdateReDownloadContent),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              S.of(context).actionCancel,
-              style: TextStyle(color: Colors.black.withOpacity(0.5)),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: Text(
-              S.of(context).appUpdateActionDownloadAgain,
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-          FlatButton(
-            onPressed: () async {
-              Navigator.of(context).pop(false);
-            },
-            child: Text(S.of(context).appUpdateActionInstallApk),
-          ),
-        ],
-      ));
+            content: Text(S.of(context).appUpdateReDownloadContent),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  S.of(context).actionCancel,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: Text(
+                  S.of(context).appUpdateActionDownloadAgain,
+                ),
+              ),
+              FlatButton(
+                onPressed: () async {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text(S.of(context).appUpdateActionInstallApk),
+              ),
+            ],
+          ));
 }

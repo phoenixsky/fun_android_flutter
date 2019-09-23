@@ -20,9 +20,9 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 # 下载地址: 
   * Android：
-    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.6.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
+    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.7.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
         
-        ![二维码](https://qr.api.cli.im/qr?data=http%3A%2F%2Fqr61.cn%2Fodempq%2FquS5fYM&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=bizcliim&time=1568947308&key=1ef7092d2d39ddcb84bdb8460fe11e7d)
+        ![二维码](https://qr.api.cli.im/qr?data=http%3A%2F%2Fqr61.cn%2Fodempq%2FquS5fYM&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=cliim&time=1569234435&key=0636728dfe3f111dc7074c2b44a1d8d4)
     
   * iOS:
   
@@ -52,6 +52,13 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## V0.1.7 `2019-09-23`
+
+- DarkMode自动跟随系统设置
+- App更新组件调整
+- 适配Dio3.0版本
+- pull_to_refresh更新:加入国际化
 
 ## V0.1.6 `2019-09-20`
 

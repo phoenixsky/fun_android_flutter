@@ -6,6 +6,7 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/change_log_page.dart';
 import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/view_model/coin_model.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/config/router_manger.dart';
@@ -177,17 +178,14 @@ class UserListWidget extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).darkMode),
             onTap: () {
-              Provider.of<ThemeModel>(context).switchTheme(
-                  brightness: Theme.of(context).brightness == Brightness.light
-                      ? Brightness.dark
-                      : Brightness.light);
+              switchDarkMode(context);
             },
             leading: Transform.rotate(
               angle: -pi,
               child: Icon(
                 Theme.of(context).brightness == Brightness.light
-                    ? Icons.brightness_2
-                    : Icons.brightness_5,
+                    ? Icons.brightness_5
+                    : Icons.brightness_2,
                 color: iconColor,
               ),
             ),
@@ -195,8 +193,7 @@ class UserListWidget extends StatelessWidget {
                 activeColor: Theme.of(context).accentColor,
                 value: Theme.of(context).brightness == Brightness.dark,
                 onChanged: (value) {
-                  Provider.of<ThemeModel>(context).switchTheme(
-                      brightness: value ? Brightness.dark : Brightness.light);
+                  switchDarkMode(context);
                 }),
           ),
           SettingThemeWidget(),
@@ -235,6 +232,17 @@ class UserListWidget extends StatelessWidget {
       ),
     );
   }
+
+  void switchDarkMode(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness ==
+        Brightness.dark) {
+      showToast("检测到系统为暗黑模式,已为你自动切换",position: ToastPosition.bottom);
+    } else {
+      Provider.of<ThemeModel>(context).switchTheme(
+          userDarkMode:
+              Theme.of(context).brightness == Brightness.light);
+    }
+  }
 }
 
 class SettingThemeWidget extends StatelessWidget {
@@ -262,7 +270,7 @@ class SettingThemeWidget extends StatelessWidget {
                     onTap: () {
                       var model = Provider.of<ThemeModel>(context);
                       var brightness = Theme.of(context).brightness;
-                      model.switchTheme(brightness: brightness, color: color);
+                      model.switchTheme(color: color);
                     },
                     child: Container(
                       width: 40,

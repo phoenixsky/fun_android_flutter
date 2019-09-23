@@ -30,9 +30,12 @@ class S implements WidgetsLocalizations {
   String get appUpdateActionInstallApk => "Install";
   String get appUpdateActionUpdate => "Update";
   String get appUpdateCheckUpdate => "Check Update";
-  String get appUpdateDownloading => "downloading...";
+  String get appUpdateDoubleBackTips => "Press back again, cancel download";
+  String get appUpdateDownloadCanceled => "Download canceled";
+  String get appUpdateDownloadFailed => "Download failed";
+  String get appUpdateDownloading => "Downloading...";
   String get appUpdateLeastVersion => "Least version now ";
-  String get appUpdateReDownloadContent => "It has been detected that it has been downloaded, whether it is installed";
+  String get appUpdateReDownloadContent => "It has been detected that it has been downloaded, whether it is installed?";
   String get appUpdateUpdate => "Version Update";
   String get article_tag_top => "Top";
   String get autoBySystem => "Auto";
@@ -142,13 +145,17 @@ class $zh_CN extends S {
   @override
   String get viewStateButtonRefresh => "刷新一下";
   @override
+  String get appUpdateDoubleBackTips => "再次点击返回键,取消下载";
+  @override
   String get loadFailed => "加载失败,请稍后重试";
   @override
   String get refreshTwoLevel => "欢迎光临,我的空中楼阁";
   @override
   String get article_tag_top => "置顶";
   @override
-  String get appUpdateReDownloadContent => "检测到本地已下载过该版本,是否直接安装";
+  String get appUpdateDownloadFailed => "下载失败";
+  @override
+  String get appUpdateReDownloadContent => "检测到本地已下载过该版本,是否直接安装?";
   @override
   String get noAccount => "还没账号? ";
   @override
@@ -212,6 +219,8 @@ class $zh_CN extends S {
   @override
   String get userName => "用户名";
   @override
+  String get appUpdateDownloadCanceled => "下载已取消";
+  @override
   String get tabHome => "首页";
   @override
   String get tabProject => "项目";
@@ -230,7 +239,7 @@ class $zh_CN extends S {
   @override
   String get searchHistory => "历史搜索";
   @override
-  String appUpdateFoundNewVersion(String version) => "发现新版本$version,是否更新";
+  String appUpdateFoundNewVersion(String version) => "发现新版本$version,是否更新?";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
