@@ -1,5 +1,6 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fun_android/provider/view_state.dart';
 import 'api.dart';
@@ -10,6 +11,7 @@ final Http http = Http();
 class Http extends BaseHttp {
   @override
   void init() {
+    options.baseUrl = 'https://www.wanandroid.com/';
     interceptors
       ..add(ApiInterceptor())
       // cookie持久化 异步
@@ -20,11 +22,8 @@ class Http extends BaseHttp {
 
 /// 玩Android API
 class ApiInterceptor extends InterceptorsWrapper {
-  static const baseUrl = 'https://www.wanandroid.com/';
-
   @override
-  onRequest(RequestOptions options) {
-    options.baseUrl = baseUrl;
+  onRequest(RequestOptions options) async {
     debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' +
         ' queryParameters: ${options.queryParameters}');
 //    debugPrint('---api-request--->data--->${options.data}');

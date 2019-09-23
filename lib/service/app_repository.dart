@@ -3,7 +3,6 @@ import 'package:fun_android/config/net/lean_cloud_api.dart';
 
 /// App相关接口
 class AppRepository {
-  // 轮播
   static Future checkUpdate(String platform, String version) async {
     var response = await http.get('classes/appVersion',
         queryParameters: {'where': '{"platform":"$platform"}'});

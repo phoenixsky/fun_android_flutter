@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/native_imp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:fun_android/utils/platform_utils.dart';
@@ -15,7 +16,7 @@ parseJson(String text) {
   return compute(_parseAndDecode, text);
 }
 
-abstract class BaseHttp extends Dio {
+abstract class BaseHttp extends DioForNative {
   BaseHttp() {
     /// 初始化 加入app通用处理
     (transformer as DefaultTransformer).jsonDecodeCallback = parseJson;

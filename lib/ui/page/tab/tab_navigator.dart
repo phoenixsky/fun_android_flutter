@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/widget/app_update.dart';
 import 'package:fun_android/view_model/app_model.dart';
-import 'package:oktoast/oktoast.dart';
 
 import 'home_page.dart';
 import 'project_page.dart';
@@ -96,7 +95,7 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   Future checkAppUpdate() async {
     String url = await AppUpdateModel().checkUpdate();
-    if (url != null) {
+    if (url?.isNotEmpty ?? false) {
       bool result = await showUpdateDialog(context);
       if (result == true) downloadApp(context, url);
     }

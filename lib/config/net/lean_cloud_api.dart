@@ -8,17 +8,15 @@ final Http http = Http();
 class Http extends BaseHttp {
   @override
   void init() {
+    options.baseUrl = 'https://funandroid.phoenixsky.cn/1.1/';
     interceptors.add(LeanCloudApiInterceptor());
   }
 }
 
 /// App相关 API
 class LeanCloudApiInterceptor extends InterceptorsWrapper {
-  static const baseUrl = 'https://funandroid.phoenixsky.cn/1.1/';
-
   @override
-  onRequest(RequestOptions options) {
-    options.baseUrl = baseUrl;
+  onRequest(RequestOptions options) async {
     options.headers['X-LC-Id'] = 'z3J5KBtLrbmeMAyo6D2uXobV-9Nh9j0Va';
     options.headers['X-LC-Key'] = 'nxHpvHda10VYhx7fIUv5sqFo';
     options.headers['Content-Type'] = 'application/json';
