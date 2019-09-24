@@ -54,7 +54,7 @@ dependencies:
   shimmer: ^1.0.0
   # 更新展示支持mark_down
   flutter_markdown: ^0.2.0
-  flare_flutter: 1.5.5
+  flare_flutter: ^1.5.9
 
   # third_app
   url_launcher: ^5.1.2 #启动第三方app

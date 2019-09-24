@@ -112,14 +112,14 @@ packages:
       name: flare_dart
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.5"
+    version: "1.4.7"
   flare_flutter:
     dependency: "direct main"
     description:
       name: flare_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.5.5"
+    version: "1.5.9"
   flutter:
     dependency: "direct main"
     description: flutter
