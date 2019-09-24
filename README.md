@@ -1,42 +1,33 @@
-Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/master/README-EN.md) | [中文简体](https://github.com/phoenixsky/fun_android_flutter/blob/master/README.md)
-
-
-# 产品级Flutter开源项目FunAndroid，Provider MVVM的最佳实践
 > 基于Google的[Flutter](https://flutter.dev),及官方推荐状态管理[Provider](https://github.com/rrousselGit/provider)和[玩Android](https://wanandroid.com/)开放的API，打造的一款产品级开源App《[Fun Android](https://github.com/phoenixsky/fun_android_flutter)》
 
-![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](https://upload-images.jianshu.io/upload_images/581515-f3a4b2e4392e63bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500) 
+![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba7b8ec29?w=500&h=500&f=png&s=73992) 
 
 > Logo的里F，既代表了`Fun`也代表了`Flutter`.
 
 # 先来点样图
 
-|![splash.gif](https://upload-images.jianshu.io/upload_images/581515-1e3e9fe19d44adca.gif?imageMogr2/auto-orient/strip)| ![首页空中楼阁](https://upload-images.jianshu.io/upload_images/581515-2f68e3fc18a3161e.gif?imageMogr2/auto-orient/strip) | ![tab概览_1080-50-128.gif](https://upload-images.jianshu.io/upload_images/581515-be91ba09c020f594.gif?imageMogr2/auto-orient/strip)|
+|![splash.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba81f5d97?w=375&h=810&f=gif&s=1510179)| ![首页空中楼阁](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba80a0d00?w=250&h=540&f=gif&s=4839426) | ![tab概览_1080-50-128.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba8a2a682?w=250&h=540&f=gif&s=2990202)|
 | --- | --- | --- |
-| ![页面不同状态展示.gif](https://upload-images.jianshu.io/upload_images/581515-81e45c5a72fd6b83.gif?imageMogr2/auto-orient/strip) | ![搜索.gif](https://upload-images.jianshu.io/upload_images/581515-00f7b2f89cf141a1.gif?imageMogr2/auto-orient/strip)| ![收藏-50.gif](https://upload-images.jianshu.io/upload_images/581515-5c5e9b7219100c26.gif?imageMogr2/auto-orient/strip)|
-| ![登录页展示.gif](https://upload-images.jianshu.io/upload_images/581515-9d83d6940c9a57ed.gif?imageMogr2/auto-orient/strip) | ![收藏列表到登录.gif](https://upload-images.jianshu.io/upload_images/581515-15084c89cc5a55f2.gif?imageMogr2/auto-orient/strip) | ![主题切换-1080-75-256.gif](https://upload-images.jianshu.io/upload_images/581515-348b013cc8a52621.gif?imageMogr2/auto-orient/strip)| 
+| ![页面不同状态展示.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba907d9bd?w=375&h=810&f=gif&s=3024125) | ![搜索.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba918bab1?w=375&h=810&f=gif&s=3447239)| ![收藏-50.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebc94cf612?w=250&h=540&f=gif&s=3324262)|
+| ![登录页展示.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebd9316b4f?w=375&h=810&f=gif&s=1153965) | ![收藏列表到登录.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebe40dd5db?w=375&h=810&f=gif&s=2890935) | ![主题切换-1080-75-256.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebe9dc7aad?w=375&h=810&f=gif&s=2763511)| 
 
-# 项目地址：
+# 项目地址
  > [https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
-# 下载地址: 
-  * Android：
-    * [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.7.apk) | [Github DownLoad](https://github.com/phoenixsky/fun_android_flutter/releases)
-        
-        ![二维码](https://qr.api.cli.im/qr?data=http%3A%2F%2Fqr61.cn%2Fodempq%2FquS5fYM&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=2&logourl=http%3A%2F%2Falicliimg.clewm.net%2F020%2F802%2F5802020%2F1566638421597ff5250edab885fcb669e8344a12f03ea1566638376.png&size=260&kid=cliim&time=1569234435&key=0636728dfe3f111dc7074c2b44a1d8d4)
-    
-  * iOS:
-  
-    [![Get it from iTunes](https://lisk.io/assets/svg/download_on_the_app_store_badge.svg)](https://apps.apple.com/cn/app/id1477299503)
-    > 为了通过审核,将`android`等相关文字替换为了`iOS`,以及关闭了详情功能.在`2019年9月3日9点30分`后可正常使用.
-  
-# 代码编译:
+# 下载地址
+| Android |  iOS  |
+| :---: | :---: |
+| [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.7.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
+| ![二维码](https://user-gold-cdn.xitu.io/2019/9/23/16d5e08a0be395d4?w=260&h=260&f=png&s=4165) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
+
+
+# 代码编译
   * Flutter SDK (Channel dev, v1.10.3)
   * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
       > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
-  ![image.png](https://upload-images.jianshu.io/upload_images/581515-70d9efec3827e019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000)
+  ![image.png](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebf41a7cdc?w=1000&h=266&f=png&s=144513)
     
-
 
 # 介绍
 借用群里水友的两句对白，在预览版出来时候
@@ -117,11 +108,11 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 ## 2019-08-26 
 - 更新收藏动画的实现方式,之前实现的方式侵入性太强，每个页面都要先隐藏一个小❤❤。现在换了路由➕Hero的思路，重新调整了Flare。显示动画一行代码就ok。(如果你运行代码之后发现,该动画与图上会有一丝丝不一致,列表项右下角的小心会闪一下.不用担心那是flutter的bug,目前在master分支已经修复.见[pr-37341](https://github.com/flutter/flutter/pull/37341))
 
-    ![Hero-收藏-25-64.gif](https://upload-images.jianshu.io/upload_images/581515-c95bf682c308bd40.gif?imageMogr2/auto-orient/strip)
+    ![Hero-收藏-25-64.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebffb04cd8?w=236&h=468&f=gif&s=2132860)
 
 # 项目结构
 
-| ![项目结构1](https://upload-images.jianshu.io/upload_images/581515-74078e828d25fa7b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500) | ![项目解构2](https://upload-images.jianshu.io/upload_images/581515-362f48ef83763615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/500) |
+| ![项目结构1](https://user-gold-cdn.xitu.io/2019/9/18/16d43cec0809ff91?w=500&h=1092&f=png&s=250069) | ![项目解构2](https://user-gold-cdn.xitu.io/2019/9/18/16d43cec1e9ffedc?w=500&h=1067&f=png&s=226283) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                                                              |                                                              |
 
@@ -129,11 +120,11 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 *  快速添加一个拥有下拉刷新,上拉加载更多的页面.比如开发一个`玩Android`首页列表页面
     1. Model
-        ![Api](https://upload-images.jianshu.io/upload_images/581515-f60f2fceef71b2cc.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+        ![Api](https://user-gold-cdn.xitu.io/2019/9/18/16d43cec219bfccc?w=978&h=332&f=jpeg&s=30568)
     2. ViewModel
-        ![-w494](https://upload-images.jianshu.io/upload_images/581515-3ab778bafeb3b5b7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+        ![-w494](https://user-gold-cdn.xitu.io/2019/9/18/16d43cec37ddbd5b?w=988&h=296&f=jpeg&s=29699)
     3. View
-        ![-w637](https://upload-images.jianshu.io/upload_images/581515-1aa9bd76f0e6f600.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+        ![-w637](https://user-gold-cdn.xitu.io/2019/9/18/16d43cec22be5dbb?w=1240&h=1041&f=jpeg&s=135195)
 
 > 以上是Provider结合ViewModel的基础使用方式,考虑了App中会出现的比较全面的情况,希望大家一起探讨使用方式
 
@@ -207,9 +198,13 @@ Language: [English](https://github.com/phoenixsky/fun_android_flutter/blob/maste
 
 *  后期会上线大量博客，来讲述这个项目里所遇到的问题及解决的思路。
 
+# 寻找组织
+* Fun Flutter微信交流群  
+    ![](https://user-gold-cdn.xitu.io/2019/9/24/16d6123425957d3d?w=300&h=372&f=png&s=68996)
+
 # 作者的话
 
-*  坐标上海,想找Flutter方向的工作,4年Android开发,可面向API进行小程序,Vue开发.还成功上架过weex应用.
+*  坐标上海,想找Flutter方向的工作,4年Android开发
 
 # 感谢
 
