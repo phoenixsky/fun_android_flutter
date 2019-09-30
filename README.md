@@ -200,7 +200,7 @@
 
 # 寻找组织
 * Fun Flutter微信交流群  
-    ![](https://user-gold-cdn.xitu.io/2019/9/24/16d6123425957d3d?w=300&h=372&f=png&s=68996)
+    ![](https://user-gold-cdn.xitu.io/2019/9/30/16d82a8ca24dd0f1?w=300&h=386&f=png&s=65192)
 
 # 作者的话
 
