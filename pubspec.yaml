@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   # State
-  provider: ^3.0.0+1
+  provider: ^3.1.0
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
@@ -66,6 +66,9 @@ dependencies:
 
   # android权限弹窗
 #  permission_handler: ^3.2.2
+
+  # 上报
+  flutter_bugly: 0.2.7
 
 dev_dependencies:
   flutter_test:

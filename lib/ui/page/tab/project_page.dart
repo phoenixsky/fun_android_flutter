@@ -25,8 +25,14 @@ class _ProjectPageState extends State<ProjectPage>
   @override
   bool get wantKeepAlive => true;
 
-  ValueNotifier<int> valueNotifier = ValueNotifier(0);
+  ValueNotifier<int> valueNotifier;
   TabController tabController;
+
+  @override
+  void initState() {
+    valueNotifier = ValueNotifier(0);
+    super.initState();
+  }
 
   @override
   void dispose() {
