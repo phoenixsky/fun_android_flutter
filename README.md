@@ -18,7 +18,7 @@
 | Android |  iOS  |
 | :---: | :---: |
 | [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.8.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![](https://user-gold-cdn.xitu.io/2019/10/13/16dc5565901827c3?w=260&h=260&f=png&s=30406) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
+| ![](https://user-gold-cdn.xitu.io/2019/10/13/16dc5594ccf06c14?w=260&h=260&f=png&s=7824) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
 
 
 # 代码编译
