@@ -17,8 +17,8 @@
 # 下载地址
 | Android |  iOS  |
 | :---: | :---: |
-| [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.7.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![二维码](https://user-gold-cdn.xitu.io/2019/9/23/16d5e08a0be395d4?w=260&h=260&f=png&s=4165) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
+| [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.8.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
+| ![二维码](![](https://user-gold-cdn.xitu.io/2019/10/13/16dc54d931196a4e?w=300&h=300&f=png&s=8887)) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
 
 
 # 代码编译
