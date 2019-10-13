@@ -18,11 +18,11 @@
 | Android |  iOS  |
 | :---: | :---: |
 | [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.8.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![二维码](![](https://user-gold-cdn.xitu.io/2019/10/13/16dc54d931196a4e?w=300&h=300&f=png&s=8887)) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
+| ![](https://user-gold-cdn.xitu.io/2019/10/13/16dc5565901827c3?w=260&h=260&f=png&s=30406) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
 
 
 # 代码编译
-  * Flutter SDK (Channel dev, v1.10.3)
+  * Flutter SDK (Channel dev, v1.10.4)
   * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
       > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
