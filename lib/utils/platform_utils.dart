@@ -4,18 +4,12 @@ import 'dart:async';
 import 'package:device_info/device_info.dart';
 import 'package:package_info/package_info.dart';
 
+export 'dart:io';
+
+/// 是否是生产环境
 const bool inProduction = const bool.fromEnvironment("dart.vm.product");
 
 class PlatformUtils {
-
-
-  static String getPlatform() => Platform.operatingSystem;
-
-  static bool isAndroid() => Platform.isAndroid;
-
-  static bool isIOS() => Platform.isIOS;
-
-  static String getFlutterVersion() => Platform.version;
 
   static Future<PackageInfo> getAppPackageInfo() {
     return PackageInfo.fromPlatform();
@@ -28,9 +22,9 @@ class PlatformUtils {
 
   static Future getDeviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    if (isAndroid()) {
+    if (Platform.isAndroid) {
       return await deviceInfo.androidInfo;
-    } else if (isIOS()) {
+    } else if (Platform.isIOS) {
       return await deviceInfo.iosInfo;
     } else {
       return null;

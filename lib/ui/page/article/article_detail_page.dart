@@ -22,10 +22,10 @@ class ArticleDetailPage extends StatefulWidget {
   ArticleDetailPage({this.article});
 
   @override
-  _WebViewState createState() => _WebViewState();
+  _ArticleDetailPageState createState() => _ArticleDetailPageState();
 }
 
-class _WebViewState extends State<ArticleDetailPage> {
+class _ArticleDetailPageState extends State<ArticleDetailPage> {
   WebViewController _webViewController;
   Completer<bool> _finishedCompleter = Completer();
 
@@ -141,7 +141,7 @@ class _WebViewState extends State<ArticleDetailPage> {
                     icon: Hero(
                       tag: tag,
                       child: Icon(
-                          userModel.hasUser && widget.article.collect ?? true
+                          userModel.hasUser && (widget.article.collect ?? true)
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.redAccent[100]),

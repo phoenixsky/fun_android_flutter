@@ -37,7 +37,7 @@ class ViewStateWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 150),
             child: Text(
-              message ?? S.of(context).pageStateError,
+              message ?? S.of(context).viewStateButtonError,
               style: Theme.of(context)
                   .textTheme
                   .body1
@@ -83,7 +83,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
       buttonText: buttonText ??
           Text(
             S.of(context).viewStateButtonRefresh,
-            style: TextStyle(letterSpacing: 5),
+            style: TextStyle(wordSpacing: 5),
           ),
     );
   }
@@ -112,7 +112,7 @@ class ViewStateUnAuthWidget extends StatelessWidget {
       message: message ?? S.of(context).viewStateMessageUnAuth,
       buttonText: buttonText ??
           Text(
-            S.of(context).signIn,
+            S.of(context).viewStateButtonLogin,
             style: TextStyle(wordSpacing: 5),
           ),
     );
@@ -149,7 +149,7 @@ class ViewStateButton extends StatelessWidget {
     return OutlineButton(
       child: child ??
           Text(
-            S.of(context).pageStateRetry,
+            S.of(context).viewStateButtonRetry,
             style: TextStyle(wordSpacing: 5),
           ),
       textColor: Colors.grey,
@@ -159,7 +159,3 @@ class ViewStateButton extends StatelessWidget {
     );
   }
 }
-
-
-
-

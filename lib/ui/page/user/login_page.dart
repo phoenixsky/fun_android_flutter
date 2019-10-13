@@ -7,7 +7,7 @@ import 'package:fun_android/generated/i18n.dart';
 
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/button_progress_indicator.dart';
 import 'package:fun_android/ui/widget/third_component.dart';

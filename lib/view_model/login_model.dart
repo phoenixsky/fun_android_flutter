@@ -16,16 +16,16 @@ class LoginModel extends ViewStateModel {
   }
 
   Future<bool> login(loginName, password) async {
-    setBusy(true);
+    setBusy();
     try {
       var user = await WanAndroidRepository.login(loginName, password);
       userModel.saveUser(user);
       StorageManager.sharedPreferences
           .setString(kLoginName, userModel.user.username);
-      setBusy(false);
+      setIdle();
       return true;
     } catch (e) {
-      setError(e is Error ? e.toString() : e.message);
+      setError(e);
       return false;
     }
   }
@@ -35,14 +35,14 @@ class LoginModel extends ViewStateModel {
       //防止递归
       return false;
     }
-    setBusy(true);
+    setBusy();
     try {
       await WanAndroidRepository.logout();
       userModel.clearUser();
-      setBusy(false);
+      setIdle();
       return true;
     } catch (e) {
-      setError(e is Error ? e.toString() : e.message);
+      setError(e);
       return false;
     }
   }

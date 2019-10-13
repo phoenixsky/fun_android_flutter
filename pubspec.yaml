@@ -1,7 +1,7 @@
 name: fun_android
 description: Fun or Flutter for Android
 
-version: 0.1.4+1
+version: 0.1.8+1
 
 environment:
   sdk: ">=2.4.0 <3.0.0"
@@ -10,23 +10,25 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
-      sdk: flutter
+    sdk: flutter
   cupertino_icons: ^0.1.2
 
   # State
-  provider: ^3.0.0+1
+  provider: ^3.1.0
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
   webview_flutter: ^0.3.13
-  flutter_webview_plugin: ^0.3.7
+  flutter_webview_plugin: ^0.3.8
   device_info: ^0.4.0+1
-  package_info: ^0.4.0+3
+  package_info: ^0.4.0+6
+  quiver: ^2.0.5
   #  connectivity: ^0.4.3+6
 
   # Data
   #  json_annotation: ^2.4.0
-  dio: ^2.1.13
+  dio: ^3.0.1
+  dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.0
   shared_preferences: ^0.5.2+2
   # 本地json对象存储
@@ -43,24 +45,30 @@ dependencies:
 
   # UI
   oktoast: ^2.1.7
-  pull_to_refresh: ^1.5.4
+  pull_to_refresh: ^1.5.6
   flutter_swiper: ^1.1.6
   cached_network_image: ^1.1.1
   # 类iOS侧滑菜单
   flutter_slidable: 0.5.3
   # 谁用谁闪亮
   shimmer: ^1.0.0
+  # 识别图片的主要颜色
+#  palette_generator: ^0.2.0
   # 更新展示支持mark_down
   flutter_markdown: ^0.2.0
-  flare_flutter: 1.5.5
+  flare_flutter: ^1.5.9
 
   # third_app
+  url_launcher: ^5.1.6 #启动第三方app
   share: 0.6.2+1 #分享
-  url_launcher: ^5.1.2 #启动第三方app
-
-  # 评分
   launch_review: ^2.0.0
+  open_file: ^2.0.3
 
+  # android权限弹窗
+#  permission_handler: ^3.2.2
+
+  # 上报 目前问题比较多
+#  flutter_bugly: 0.2.7
 
 dev_dependencies:
   flutter_test:

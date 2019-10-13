@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/ui/widget/favourite_animation.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/model/coin_record.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/provider/view_state_widget.dart';
@@ -58,12 +58,26 @@ class CoinRecordListPage extends StatelessWidget {
                       ),
                   itemBuilder: (context, index) {
                     // desc": "2019-08-28 10:09:15 签到,积分：10 + 12"
-                    CoinRecord item = model.list[index];
-                    String dateTime = item.desc.substring(0, 20);
-                    String title =
-                        item.desc.substring(20, item.desc.indexOf(','));
-                    String coin =
-                        item.desc.substring(item.desc.indexOf('：') + 1);
+                    // desc 提出 bug #issues/174 ,积分+10
+                    CoinRecord item = model. list[index];
+                    String dateTime =
+                        DateTime.fromMillisecondsSinceEpoch(item.date)
+                            .toString()
+                            .substring(0, 19);
+                    String title;
+                    String coin;
+                    if (item.type == 1) {
+                      //签到
+                      title = '签到';
+                      coin = item.desc.substring(item.desc.indexOf('：') + 1);
+                    } else if (item.type == 99) {
+                      //修复bug
+                      title = item.desc.substring(0,item.desc.indexOf(','));
+                      coin= item.coinCount.toString();
+                    }else{
+                      title ='其他类型';
+                      coin= item.coinCount.toString();
+                    }
                     return ListTile(
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),

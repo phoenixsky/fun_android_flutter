@@ -11,7 +11,7 @@ class LoginTopPanel extends StatelessWidget {
     return ClipPath(
       clipper: BottomClipper(),
       child: Container(
-        height: MediaQuery.of(context).size.width * 0.6,
+        height: 220,
         color: Theme.of(context).primaryColor,
       ),
     );

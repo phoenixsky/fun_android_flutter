@@ -9,22 +9,23 @@ class DialogHelper {
         builder: (context) => CupertinoAlertDialog(
               title: Text(S.of(context).needLogin),
               actions: <Widget>[
-                CupertinoButton(
+                CupertinoDialogAction(
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
-                  child: new Text(
-                    S.of(context).cancel,
-                    style: TextStyle(color: Colors.black),
+                  child: Text(
+                    S.of(context).actionCancel,
                   ),
                 ),
-                CupertinoButton(
+                CupertinoDialogAction(
                   onPressed: () async {
                     Navigator.of(context).pop(true);
                   },
-                  child: new Text(S.of(context).confirm, style: TextStyle(color: Colors.black)),
+                  child: Text(S.of(context).actionConfirm),
                 ),
               ],
             ));
   }
 }
+
+

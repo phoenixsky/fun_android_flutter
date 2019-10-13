@@ -8,12 +8,12 @@ class CoinModel extends ViewStateModel {
   int coin = 0;
 
   initData() async {
-    setBusy(true);
+    setBusy();
     try {
       coin = await WanAndroidRepository.fetchCoin();
-      setBusy(false);
+      setIdle();
     } catch (e, s) {
-      handleCatch(e, s);
+      handleException(e, s);
     }
   }
 }

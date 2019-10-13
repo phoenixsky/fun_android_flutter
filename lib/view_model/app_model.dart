@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:fun_android/provider/view_state_model.dart';
+import 'package:fun_android/service/app_repository.dart';
+import 'package:fun_android/utils/platform_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const kAppFirstEntry = 'kAppFirstEntry';
@@ -11,5 +16,21 @@ class AppModel with ChangeNotifier {
     var sharedPreferences = await SharedPreferences.getInstance();
     isFirst = sharedPreferences.getBool(kAppFirstEntry);
     notifyListeners();
+  }
+}
+
+class AppUpdateModel extends ViewStateModel {
+  checkUpdate() async {
+    String url;
+    setBusy();
+    try {
+      var appVersion = await PlatformUtils.getAppVersion();
+      url =
+          await AppRepository.checkUpdate(Platform.operatingSystem, appVersion);
+      setIdle();
+    } catch (e) {
+      setError(e);
+    }
+    return url;
   }
 }

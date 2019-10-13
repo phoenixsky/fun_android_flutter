@@ -6,9 +6,10 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/change_log_page.dart';
 import 'package:fun_android/ui/widget/app_bar.dart';
 import 'package:fun_android/view_model/coin_model.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/resource_mananger.dart';
-import 'package:fun_android/config/router_config.dart';
+import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/bottom_clipper.dart';
 import 'package:fun_android/view_model/login_model.dart';
@@ -36,13 +37,13 @@ class _UserPageState extends State<UserPage>
             ProviderWidget<LoginModel>(
                 model: LoginModel(Provider.of(context)),
                 builder: (context, model, child) {
-                  if(model.busy){
+                  if (model.busy) {
                     return Padding(
-                      padding: const EdgeInsets.only(right:15.0),
+                      padding: const EdgeInsets.only(right: 15.0),
                       child: AppBarIndicator(),
                     );
                   }
-                  if(model.userModel.hasUser){
+                  if (model.userModel.hasUser) {
                     return IconButton(
                       tooltip: S.of(context).logout,
                       icon: Icon(Icons.exit_to_app),
@@ -55,7 +56,7 @@ class _UserPageState extends State<UserPage>
                 })
           ],
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          expandedHeight: 240,
+          expandedHeight: 200 + MediaQuery.of(context).padding.top,
           flexibleSpace: UserHeaderWidget(),
           pinned: false,
         ),
@@ -134,7 +135,7 @@ class UserCoin extends StatelessWidget {
         onModelReady: (model) => model.initData(),
         builder: (context, model, child) {
           if (model.busy) {
-            return CupertinoActivityIndicator(radius: 8);
+            return AppBarIndicator(radius: 8);
           }
           var textStyle = Theme.of(context).textTheme.body1.copyWith(
               color: Colors.white.withAlpha(200),
@@ -177,17 +178,14 @@ class UserListWidget extends StatelessWidget {
           ListTile(
             title: Text(S.of(context).darkMode),
             onTap: () {
-              Provider.of<ThemeModel>(context).switchTheme(
-                  brightness: Theme.of(context).brightness == Brightness.light
-                      ? Brightness.dark
-                      : Brightness.light);
+              switchDarkMode(context);
             },
             leading: Transform.rotate(
               angle: -pi,
               child: Icon(
                 Theme.of(context).brightness == Brightness.light
-                    ? Icons.brightness_2
-                    : Icons.brightness_5,
+                    ? Icons.brightness_5
+                    : Icons.brightness_2,
                 color: iconColor,
               ),
             ),
@@ -195,8 +193,7 @@ class UserListWidget extends StatelessWidget {
                 activeColor: Theme.of(context).accentColor,
                 value: Theme.of(context).brightness == Brightness.dark,
                 onChanged: (value) {
-                  Provider.of<ThemeModel>(context).switchTheme(
-                      brightness: value ? Brightness.dark : Brightness.light);
+                  switchDarkMode(context);
                 }),
           ),
           SettingThemeWidget(),
@@ -212,7 +209,7 @@ class UserListWidget extends StatelessWidget {
             trailing: Icon(Icons.chevron_right),
           ),
           ListTile(
-            title: Text(S.of(context).about),
+            title: Text(S.of(context).appUpdateCheckUpdate),
             onTap: () {
               Navigator.push(
                 context,
@@ -223,14 +220,28 @@ class UserListWidget extends StatelessWidget {
               );
             },
             leading: Icon(
-              Icons.error_outline,
+              Icons.system_update,
               color: iconColor,
             ),
             trailing: Icon(Icons.chevron_right),
           ),
+          SizedBox(
+            height: 30,
+          )
         ]),
       ),
     );
+  }
+
+  void switchDarkMode(BuildContext context) {
+    if (MediaQuery.of(context).platformBrightness ==
+        Brightness.dark) {
+      showToast("检测到系统为暗黑模式,已为你自动切换",position: ToastPosition.bottom);
+    } else {
+      Provider.of<ThemeModel>(context).switchTheme(
+          userDarkMode:
+              Theme.of(context).brightness == Brightness.light);
+    }
   }
 }
 
@@ -259,7 +270,7 @@ class SettingThemeWidget extends StatelessWidget {
                     onTap: () {
                       var model = Provider.of<ThemeModel>(context);
                       var brightness = Theme.of(context).brightness;
-                      model.switchTheme(brightness: brightness, color: color);
+                      model.switchTheme(color: color);
                     },
                     child: Container(
                       width: 40,
