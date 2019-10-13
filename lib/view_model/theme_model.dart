@@ -46,7 +46,7 @@ class ThemeModel with ChangeNotifier {
     _userDarkMode = userDarkMode ?? _userDarkMode;
     _themeColor = color ?? _themeColor;
     notifyListeners();
-    saveTheme2Storage(userDarkMode, _themeColor);
+    saveTheme2Storage(_userDarkMode, _themeColor);
   }
 
   /// 随机一个主题色彩
