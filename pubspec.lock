@@ -183,7 +183,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.7"
+    version: "0.3.8"
   html:
     dependency: transitive
     description:
@@ -433,7 +433,7 @@ packages:
       name: url_launcher
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "5.1.2"
+    version: "5.1.6"
   uuid:
     dependency: transitive
     description:
