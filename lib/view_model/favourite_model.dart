@@ -31,7 +31,7 @@ class FavouriteModel extends ViewStateModel {
   FavouriteModel({@required this.globalFavouriteModel});
 
   collect(Article article) async {
-    setBusy(true);
+    setBusy();
     try {
       // article.collect 字段为null,代表是从我的收藏页面进入的 需要调用特殊的取消接口
       if (article.collect == null) {
@@ -48,9 +48,9 @@ class FavouriteModel extends ViewStateModel {
         }
       }
       article.collect = !(article.collect ?? true);
-      setBusy(false);
+      setIdle();
     } catch (e, s) {
-      handleCatch(e, s);
+      handleException(e, s);
     }
   }
 }

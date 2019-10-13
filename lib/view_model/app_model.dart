@@ -22,14 +22,14 @@ class AppModel with ChangeNotifier {
 class AppUpdateModel extends ViewStateModel {
   checkUpdate() async {
     String url;
-    setBusy(true);
+    setBusy();
     try {
       var appVersion = await PlatformUtils.getAppVersion();
       url =
           await AppRepository.checkUpdate(Platform.operatingSystem, appVersion);
-      setBusy(false);
+      setIdle();
     } catch (e) {
-      setError(e is Error ? e.toString() : e.message);
+      setError(e);
     }
     return url;
   }

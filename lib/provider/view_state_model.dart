@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'view_state.dart';
 
-
 class ViewStateModel with ChangeNotifier {
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool _disposed = false;
@@ -42,9 +41,14 @@ class ViewStateModel with ChangeNotifier {
 
   bool get unAuthorized => viewState == ViewState.unAuthorized;
 
-  void setBusy(bool value) {
+  void setIdle() {
     _errorMessage = null;
-    viewState = value ? ViewState.busy : ViewState.idle;
+    viewState = ViewState.idle;
+  }
+
+  void setBusy() {
+    _errorMessage = null;
+    viewState = ViewState.busy;
   }
 
   void setEmpty() {
@@ -52,8 +56,24 @@ class ViewStateModel with ChangeNotifier {
     viewState = ViewState.empty;
   }
 
-  void setError(String message) {
-    _errorMessage = message;
+  /// [e]分类Error和Exception两种
+  void setError(e, {String message, StackTrace stackTrace}) {
+    if (e is String) {
+      _errorMessage = e;
+    } else {
+      debugPrint('''
+<-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
+$e
+<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->
+    ''');
+
+      debugPrint('''
+<-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
+$stackTrace
+<-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->
+    ''');
+      _errorMessage = message ?? (e is Error ? e.toString() : e.message);
+    }
     viewState = ViewState.error;
   }
 
@@ -85,14 +105,12 @@ class ViewStateModel with ChangeNotifier {
   /// 统一处理子类的异常情况
   /// [e],有可能是Error,也有可能是Exception.所以需要判断处理
   /// [s] 为堆栈信息
-  void handleCatch(e, s) {
+  void handleException(e, s) {
     // DioError的判断,理论不应该拿进来,增强了代码耦合性,抽取为时组件时.应移除
     if (e is DioError && e.error is UnAuthorizedException) {
       setUnAuthorized();
     } else {
-      debugPrint('error--->\n' + e.toString());
-      debugPrint('statck--->\n' + s.toString());
-      setError(e is Error ? e.toString() : e.message);
+      setError(e, stackTrace: s);
     }
   }
 }

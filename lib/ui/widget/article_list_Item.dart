@@ -9,6 +9,7 @@ import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/user_model.dart';
 import 'package:provider/provider.dart';
+import 'package:quiver/strings.dart';
 
 import 'image.dart';
 import 'animated_provider.dart';
@@ -70,7 +71,7 @@ class ArticleItemWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Text(
-                          article.author,
+                          isNotBlank(article.author) ? article.author : article.shareUser,
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),

@@ -38,8 +38,9 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     /// iPhoneX 头部适配
-    double bannerHeight = 150 + MediaQuery.of(context).padding.top;
+    double bannerHeight = 150 + MediaQuery.of(context).padding.top / 2;
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
       // 使用PrimaryScrollController保留iOS点击状态栏回到顶部的功能
@@ -56,7 +57,10 @@ class _HomePageState extends State<HomePage>
               removeTop: false,
               child: Builder(builder: (_) {
                 if (homeModel.error) {
-                  return ViewStateWidget(onPressed: homeModel.initData);
+                  return ViewStateWidget(
+                    onPressed: homeModel.initData,
+                    message: homeModel.errorMessage,
+                  );
                 }
                 return RefreshConfiguration.copyAncestor(
                   context: context,
@@ -115,11 +119,14 @@ class _HomePageState extends State<HomePage>
                             expandedHeight: bannerHeight,
                             pinned: true,
                           ),
-//                          SliverPadding(
-//                            padding: EdgeInsets.only(top: 5),
-//                          ),
-                          if (homeModel.idle)
-                            HomeTopArticleList(),
+                          if (homeModel.empty)
+                            SliverToBoxAdapter(
+                                child: Padding(
+                              padding: const EdgeInsets.only(top: 50),
+                              child: ViewStateEmptyWidget(
+                                  onPressed: homeModel.initData),
+                            )),
+                          if (homeModel.idle) HomeTopArticleList(),
                           HomeArticleList(),
                         ],
                       )),
@@ -161,7 +168,7 @@ class BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:  150 + MediaQuery.of(context).padding.top,
+      height: 150 + MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
       ),

@@ -3,6 +3,8 @@ import 'package:fun_android/utils/string_utils.dart';
 class Article {
   String apkLink;
   String author;
+  /// 2019.10.13 添加分享人,author可能为空
+  String shareUser;
   int chapterId;
   String chapterName;
   bool collect;
@@ -34,6 +36,7 @@ class Article {
     Article articleBean = Article();
     articleBean.apkLink = map['apkLink'];
     articleBean.author = map['author'];
+    articleBean.shareUser = map['shareUser'];
     articleBean.chapterId = map['chapterId'];
 //    articleBean.chapterName = map['chapterName'];
     articleBean.chapterName = StringUtils.urlDecoder(map["chapterName"]);
@@ -67,6 +70,7 @@ class Article {
   Map toJson() => {
         "apkLink": apkLink,
         "author": author,
+        "shareUser": shareUser,
         "chapterId": chapterId,
         "chapterName": chapterName,
         "collect": collect,

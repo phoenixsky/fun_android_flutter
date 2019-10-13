@@ -83,7 +83,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
       buttonText: buttonText ??
           Text(
             S.of(context).viewStateButtonRefresh,
-            style: TextStyle(letterSpacing: 5),
+            style: TextStyle(wordSpacing: 5),
           ),
     );
   }
@@ -159,7 +159,3 @@ class ViewStateButton extends StatelessWidget {
     );
   }
 }
-
-
-
-

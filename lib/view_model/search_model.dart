@@ -35,7 +35,7 @@ class SearchHotKeyModel extends ViewStateListModel {
         if (!ListEquality().equals(netList, localList)) {
           list = netList;
           localStorage.setItem(kSearchHotList, list);
-          setBusy(false);
+          setIdle();
         }
       });
       return localList;
