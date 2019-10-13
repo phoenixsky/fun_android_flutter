@@ -67,8 +67,8 @@ dependencies:
   # android权限弹窗
 #  permission_handler: ^3.2.2
 
-  # 上报
-  flutter_bugly: 0.2.7
+  # 上报 目前问题比较多
+#  flutter_bugly: 0.2.7
 
 dev_dependencies:
   flutter_test:
