@@ -98,6 +98,9 @@ class ThemeModel with ChangeNotifier {
       hintColor: themeData.hintColor.withAlpha(90),
       errorColor: Colors.red,
       cursorColor: accentColor,
+      textTheme: TextTheme(
+          /// 解决中文hint不居中的问题 https://github.com/flutter/flutter/issues/40248
+          subhead: TextStyle(textBaseline: TextBaseline.alphabetic)),
       textSelectionColor: accentColor.withAlpha(60),
       textSelectionHandleColor: accentColor.withAlpha(60),
       toggleableActiveColor: accentColor,
@@ -139,5 +142,4 @@ class ThemeModel with ChangeNotifier {
   static saveFontIndex(int index) async {
     await StorageManager.sharedPreferences.setInt(kFontIndex, index);
   }
-
 }
