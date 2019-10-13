@@ -25,9 +25,7 @@ class WrapperImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return appStoreReview
-        ? SizedBox.shrink()
-        : CachedNetworkImage(
+    return  CachedNetworkImage(
             imageUrl: imageUrl,
             width: width,
             height: height,

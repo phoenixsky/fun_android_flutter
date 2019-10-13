@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_android/config/app_store.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/widget/app_update.dart';
 
@@ -89,6 +90,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   @override
   void initState() {
     checkAppUpdate(context);
+    fetchReviewState();
     super.initState();
   }
 }

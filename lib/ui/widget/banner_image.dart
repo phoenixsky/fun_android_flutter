@@ -13,7 +13,7 @@ class BannerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-        imageUrl: appStoreReview ? appleBannerUrl : ImageHelper.wrapUrl(url),
+        imageUrl: ImageHelper.wrapUrl(url),
         placeholder: (context, url) =>
             Center(child: CupertinoActivityIndicator()),
         errorWidget: (context, url, error) => Icon(Icons.error),

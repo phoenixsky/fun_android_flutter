@@ -15,11 +15,4 @@ class AppRepository {
     return null;
   }
 
-  /// AppStore Review
-  static Future isReview(String version) async {
-    var response = await http.get('appStoreReview', queryParameters: {
-      'version': version,
-    });
-    return response.data['review'];
-  }
 }

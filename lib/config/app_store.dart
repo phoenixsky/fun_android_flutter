@@ -1,10 +1,34 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:fun_android/utils/platform_utils.dart';
+
+import 'net/lean_cloud_api.dart';
+
+const kAppStoreReviewing = 'kAppStoreReviewing';
+
+var isReviewing = true;
+
 /// 是否在审核期间
 bool get appStoreReview {
-  return Platform.isIOS && DateTime.now().isBefore(DateTime(2019, 9, 3, 9, 30));
+  return Platform.isIOS ? isReviewing : false;
 }
 
+/// 或者正在审核字段 1:正在审核
+Future fetchReviewState() async {
+  // 设置过审核结束后,就无需再进入了
+  if (DateTime.now().isAfter(DateTime(2019, 10, 20, 9, 30))) return;
+  if (!isReviewing) return;
+  var version = await PlatformUtils.getAppVersion();
+  var response = await http.get('classes/appVersion', queryParameters: {
+    'where': '{"platform": "appStore", "version": "$version"}'
+  });
+  var result = response.data[0]['url'];
+  isReviewing = result == '1';
+  debugPrint('是否正在review:$isReviewing');
+}
+
+/// 替换android字符
 String replaceAndroid(String str) {
   if (appStoreReview) {
     return str
