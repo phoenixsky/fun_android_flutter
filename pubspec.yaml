@@ -27,7 +27,6 @@ dependencies:
 
   # Data
   #  json_annotation: ^2.4.0
-#  dio: ^2.1.16
   dio: ^3.0.1
   dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.0
@@ -53,7 +52,8 @@ dependencies:
   flutter_slidable: 0.5.3
   # 谁用谁闪亮
   shimmer: ^1.0.0
-  palette_generator: ^0.2.0
+  # 识别图片的主要颜色
+#  palette_generator: ^0.2.0
   # 更新展示支持mark_down
   flutter_markdown: ^0.2.0
   flare_flutter: ^1.5.9

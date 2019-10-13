@@ -2,11 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart' hide Banner, showSearch;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/skeleton.dart';
+import 'package:fun_android/utils/status_bar_utils.dart';
+import 'package:fun_android/view_model/theme_model.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/config/router_manger.dart';
@@ -57,9 +60,12 @@ class _HomePageState extends State<HomePage>
               removeTop: false,
               child: Builder(builder: (_) {
                 if (homeModel.error) {
-                  return ViewStateWidget(
-                    onPressed: homeModel.initData,
-                    message: homeModel.errorMessage,
+                  return AnnotatedRegion<SystemUiOverlayStyle>(
+                    value: StatusBarUtils.systemUiOverlayStyle(context),
+                    child: ViewStateWidget(
+                      onPressed: homeModel.initData,
+                      message: homeModel.errorMessage,
+                    ),
                   );
                 }
                 return RefreshConfiguration.copyAncestor(
@@ -68,11 +74,10 @@ class _HomePageState extends State<HomePage>
                   twiceTriggerDistance: kHomeRefreshHeight - 15,
                   //最大下拉距离,android默认为0,这里为了触发二楼
                   maxOverScrollExtent: kHomeRefreshHeight,
-
                   child: SmartRefresher(
-                      enableTwoLevel: true,
                       controller: homeModel.refreshController,
                       header: HomeRefreshHeader(),
+                      enableTwoLevel:homeModel.idle,
                       onTwoLevel: () async {
                         await Navigator.of(context)
                             .pushNamed(RouteName.homeSecondFloor);
@@ -82,6 +87,7 @@ class _HomePageState extends State<HomePage>
                             .twoLevelComplete();
                       },
                       footer: RefresherFooter(),
+                      enablePullDown: homeModel.idle,
                       onRefresh: homeModel.refresh,
                       onLoading: homeModel.loadMore,
                       enablePullUp: homeModel.list.isNotEmpty,
@@ -90,6 +96,12 @@ class _HomePageState extends State<HomePage>
                         slivers: <Widget>[
                           SliverToBoxAdapter(),
                           SliverAppBar(
+                            // 加载中并且亮色模式下,状态栏文字为黑色
+                            brightness: Theme.of(context).brightness ==
+                                        Brightness.light &&
+                                    homeModel.busy
+                                ? Brightness.light
+                                : Brightness.dark,
                             actions: <Widget>[
                               EmptyAnimatedSwitcher(
                                 display: tapToTopModel.showTopBtn,
@@ -111,7 +123,7 @@ class _HomePageState extends State<HomePage>
                                 child: EmptyAnimatedSwitcher(
                                   display: tapToTopModel.showTopBtn,
                                   child: Text(Platform.isIOS
-                                      ? 'FunFlutter'
+                                      ? 'Fun Flutter'
                                       : S.of(context).appName),
                                 ),
                               ),
@@ -151,7 +163,8 @@ class _HomePageState extends State<HomePage>
                     key: ValueKey(Icons.search),
                     onPressed: () {
                       showSearch(
-                          context: context, delegate: DefaultSearchDelegate());
+                          context: context,
+                          delegate: DefaultSearchDelegate());
                     },
                     child: Icon(
                       Icons.search,
@@ -168,7 +181,7 @@ class BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150 + MediaQuery.of(context).padding.top,
+      height: 150 + MediaQuery.of(context).padding.top/2,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
       ),

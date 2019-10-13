@@ -20,9 +20,10 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
   runApp(App());
-  // Android状态栏透明
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  // Android状态栏透明 splash为白色,所以调整状态栏文字为黑色
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light));
 }
 
 class App extends StatelessWidget {
@@ -38,11 +39,11 @@ class App extends StatelessWidget {
                 child: MaterialApp(
                   debugShowCheckedModeBanner: false,
                   theme: themeModel.themeData(),
-                  darkTheme: themeModel.themeData(platformDarkMode:true),
+                  darkTheme: themeModel.themeData(platformDarkMode: true),
                   locale: localeModel.locale,
                   localizationsDelegates: const [
                     S.delegate,
-                    RefreshLocalizations.delegate,//下拉刷新
+                    RefreshLocalizations.delegate, //下拉刷新
                     GlobalCupertinoLocalizations.delegate,
                     GlobalMaterialLocalizations.delegate,
                     GlobalWidgetsLocalizations.delegate

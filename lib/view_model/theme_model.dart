@@ -78,6 +78,8 @@ class ThemeModel with ChangeNotifier {
     var themeData = ThemeData(
         brightness: brightness,
         // 主题颜色属于亮色系还是属于暗色系(eg:dark时,AppBarTitle文字及状态栏文字的颜色为白色,反之为黑色)
+        // 这里设置为dark目的是,不管App是明or暗,都将appBar的字体颜色的默认值设为白色.
+        // 再AnnotatedRegion<SystemUiOverlayStyle>的方式,调整响应的状态栏颜色
         primaryColorBrightness: Brightness.dark,
         accentColorBrightness: Brightness.dark,
         primarySwatch: themeColor,
@@ -137,4 +139,5 @@ class ThemeModel with ChangeNotifier {
   static saveFontIndex(int index) async {
     await StorageManager.sharedPreferences.setInt(kFontIndex, index);
   }
+
 }

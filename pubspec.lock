@@ -282,13 +282,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.4.0+6"
-  palette_generator:
-    dependency: "direct main"
-    description:
-      name: palette_generator
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.0"
   path:
     dependency: transitive
     description:
