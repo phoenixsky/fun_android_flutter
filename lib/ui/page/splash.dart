@@ -54,50 +54,57 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     return Scaffold(
       body: WillPopScope(
         onWillPop: () => Future.value(false),
-        child: Stack(fit: StackFit.expand, children: <Widget>[
-          Image.asset(ImageHelper.wrapAssets('splash_bg.png'),
-              colorBlendMode: BlendMode.srcOver,
-              color: Colors.black.withOpacity(
-                  Theme.of(context).brightness == Brightness.light ? 0 : 0.65),
-              fit: BoxFit.fill),
-          AnimatedFlutterLogo(
-            animation: _animation,
-          ),
-          Align(
-            alignment: Alignment(0.0, 0.7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                AnimatedAndroidLogo(
-                  animation: _animation,
-                ),
-              ],
+        child: Opacity(
+          opacity: 0.3,
+          child: Stack(fit: StackFit.expand, children: <Widget>[
+            Image.asset(
+                ImageHelper.wrapAssets(
+                    Theme.of(context).brightness == Brightness.light
+                        ? 'splash_bg.png'
+                        : 'splash_bg_dark.png'),
+//              colorBlendMode: BlendMode.srcOver,//colorBlendMode方式在android等机器上有些延迟,导致有些闪屏,故采用两套图片的方式
+//              color: Colors.black.withOpacity(
+//                  Theme.of(context).brightness == Brightness.light ? 0 : 0.65),
+                fit: BoxFit.fill),
+            AnimatedFlutterLogo(
+              animation: _animation,
             ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: SafeArea(
-              child: InkWell(
-                onTap: () {
-                  nextPage(context);
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  margin: EdgeInsets.only(right: 20, bottom: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    color: Colors.black.withAlpha(100),
+            Align(
+              alignment: Alignment(0.0, 0.7),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  AnimatedAndroidLogo(
+                    animation: _animation,
                   ),
-                  child: AnimatedCountdown(
-                    context: context,
-                    animation: StepTween(begin: 3, end: 0)
-                        .animate(_countdownController),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: SafeArea(
+                child: InkWell(
+                  onTap: () {
+                    nextPage(context);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    margin: EdgeInsets.only(right: 20, bottom: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: Colors.black.withAlpha(100),
+                    ),
+                    child: AnimatedCountdown(
+                      context: context,
+                      animation: StepTween(begin: 3, end: 0)
+                          .animate(_countdownController),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ]),
+            )
+          ]),
+        ),
       ),
     );
   }
