@@ -55,15 +55,15 @@ android {
     }
 
     buildTypes {
+        // 签名文件并没有上传,可以使用自己的签名文件或者移除一下指令使用默认的签名
         release {
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
 //            minifyEnabled true
 //            useProguard true
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug{
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }
