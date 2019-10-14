@@ -5,8 +5,6 @@ import 'package:fun_android/utils/platform_utils.dart';
 
 import 'net/lean_cloud_api.dart';
 
-const kAppStoreReviewing = 'kAppStoreReviewing';
-
 var isReviewing = true;
 
 /// 是否在审核期间
@@ -16,15 +14,25 @@ bool get appStoreReview {
 
 /// 或者正在审核字段 1:正在审核
 Future fetchReviewState() async {
+  if (!Platform.isIOS) {
+    isReviewing = false;
+    return;
+  }
+  // 该日期后不再审核
+  if (DateTime.now().isAfter(DateTime(2019, 10, 20, 9, 30))) {
+    isReviewing = false;
+    return;
+  }
   // 设置过审核结束后,就无需再进入了
-  if (DateTime.now().isAfter(DateTime(2019, 10, 20, 9, 30))) return;
   if (!isReviewing) return;
   var version = await PlatformUtils.getAppVersion();
-  var response = await http.get('classes/appVersion', queryParameters: {
+  var response = await http.get<List>('classes/appVersion', queryParameters: {
     'where': '{"platform": "appStore", "version": "$version"}'
   });
-  var result = response.data[0]['url'];
-  isReviewing = result == '1';
+  if (response.data.length > 0) {
+    var result = response.data[0]['url'];
+    isReviewing = result == '1';
+  }
   debugPrint('是否正在review:$isReviewing');
 }
 
