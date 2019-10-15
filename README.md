@@ -15,11 +15,10 @@
  > [https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
 # 下载地址
-| Android |  iOS  |
-| :---: | :---: |
-| [国内云](http://app1.cdn.channelplus.cn/FunAndroid_0.1.9.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![](https://user-gold-cdn.xitu.io/2019/10/14/16dc8568f55ee2e4?w=260&h=260&f=png&s=7729) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
-
+    
+ > [蒲公英下载页](https://www.pgyer.com/Ki0F)
+   
+  ![](https://www.pgyer.com/app/qrcode/Ki0F)
 
 # 代码编译
   * Flutter SDK (Channel dev, v1.10.4)
