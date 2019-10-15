@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -54,7 +55,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       body: WillPopScope(
         onWillPop: () => Future.value(false),
         child: Stack(fit: StackFit.expand, children: <Widget>[
-          Image.asset(ImageHelper.wrapAssets('splash_bg.png'),
+          Image.asset(
+              ImageHelper.wrapAssets(
+                  Theme.of(context).brightness == Brightness.light
+                      ? 'splash_bg.png'
+                      : 'splash_bg_dark.png'),
+//              colorBlendMode: BlendMode.srcOver,//colorBlendMode方式在android等机器上有些延迟,导致有些闪屏,故采用两套图片的方式
+//              color: Colors.black.withOpacity(
+//                  Theme.of(context).brightness == Brightness.light ? 0 : 0.65),
               fit: BoxFit.fill),
           AnimatedFlutterLogo(
             animation: _animation,

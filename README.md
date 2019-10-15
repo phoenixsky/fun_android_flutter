@@ -17,8 +17,8 @@
 # 下载地址
 | Android |  iOS  |
 | :---: | :---: |
-| [国内云](http://app.cdn.meetingplus.cn/FunAndroid_0.1.8.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![](https://user-gold-cdn.xitu.io/2019/10/13/16dc5594ccf06c14?w=260&h=260&f=png&s=7824) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
+| [国内云](http://app1.cdn.channelplus.cn/FunAndroid_0.1.9.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
+| ![](https://user-gold-cdn.xitu.io/2019/10/14/16dc8568f55ee2e4?w=260&h=260&f=png&s=7729) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
 
 
 # 代码编译
@@ -43,6 +43,11 @@
 代码中存在的问题，请大家积极提[Issue](https://github.com/phoenixsky/fun_android_flutter/issues).
 
 # 更新
+
+## V0.1.9 `2019-10-14`
+- 极致黑(Native的闪屏页面适配darkMode)
+- 首页banner高度根据屏幕宽高适应
+- 签名文件调整
 
 ## V0.1.8 `2019-10-13`
 - 文章列表加入分享人

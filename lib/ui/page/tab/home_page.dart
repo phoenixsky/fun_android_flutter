@@ -10,7 +10,6 @@ import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/skeleton.dart';
 import 'package:fun_android/utils/status_bar_utils.dart';
-import 'package:fun_android/view_model/theme_model.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:fun_android/config/router_manger.dart';
@@ -42,9 +41,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    /// iPhoneX 头部适配
-    double bannerHeight = 150 + MediaQuery.of(context).padding.top / 2;
+    var bannerHeight = MediaQuery.of(context).size.width * 5 / 11;
     return ProviderWidget2<HomeModel, TapToTopModel>(
       model1: HomeModel(),
       // 使用PrimaryScrollController保留iOS点击状态栏回到顶部的功能
@@ -78,7 +75,7 @@ class _HomePageState extends State<HomePage>
                   child: SmartRefresher(
                       controller: homeModel.refreshController,
                       header: HomeRefreshHeader(),
-                      enableTwoLevel:homeModel.idle,
+                      enableTwoLevel: homeModel.idle,
                       onTwoLevel: () async {
                         await Navigator.of(context)
                             .pushNamed(RouteName.homeSecondFloor);
@@ -164,8 +161,7 @@ class _HomePageState extends State<HomePage>
                     key: ValueKey(Icons.search),
                     onPressed: () {
                       showSearch(
-                          context: context,
-                          delegate: DefaultSearchDelegate());
+                          context: context, delegate: DefaultSearchDelegate());
                     },
                     child: Icon(
                       Icons.search,
@@ -182,7 +178,6 @@ class BannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150 + MediaQuery.of(context).padding.top/2,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
       ),

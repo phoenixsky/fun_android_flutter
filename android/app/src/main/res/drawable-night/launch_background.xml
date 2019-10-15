@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Modify this file to customize your launch splash screen -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="#80ffffff"/>
+    </item>
+
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@mipmap/launch_image"
+            android:tint="#aa000000"
+            android:tintMode="src_over" />
+    </item>
+</layer-list>
