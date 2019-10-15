@@ -197,15 +197,13 @@
 
 # 目前已知存在的问题
 
-1.  表单中，光标不会切换到下一个。待更新到1.7.8-hotfix4后的稳定版再观察修复。
 
-2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。所以接入了两套WebView方案
+1.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。所以接入了两套WebView方案
 
-3.  [webview_flutter](https://pub.dev/packages/webview_flutter) 不能结合`CustomScrollView`滑动。见[issue](https://github.com/flutter/flutter/issues/31243#issuecomment-521564216) 。
+2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 不能结合`CustomScrollView`滑动。见[issue](https://github.com/flutter/flutter/issues/31243#issuecomment-521564216) 。
 
-4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
+3.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
-5.  TabBar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 # Future
 
@@ -213,11 +211,11 @@
 
 # 寻找组织
 * Fun Flutter微信交流群  
-    ![](https://user-gold-cdn.xitu.io/2019/10/7/16da6b9e81d31993?w=200&h=272&f=png&s=42801)
+    ![](https://user-gold-cdn.xitu.io/2019/10/15/16dcf5f9d74f3fc2?w=260&h=337&f=png&s=64303)
 
 # 作者的话
 
-*  坐标上海,想找Flutter方向的工作,4年Android开发
+*  坐标上海,打算找Flutter方向的工作.4年Android开发经验.
 
 # 感谢
 
