@@ -32,8 +32,7 @@ class AppUpdateButton extends StatelessWidget {
                 if (appUpdateInfo?.buildHaveNewVersion ?? false) {
                   bool result =
                       await showUpdateAlertDialog(context, appUpdateInfo);
-                  if (result == true)
-                    downloadApp(context, appUpdateInfo.downloadURL);
+                  if (result == true) downloadApp(context, appUpdateInfo);
                 } else {
                   showToast(S.of(context).appUpdateLeastVersion);
                 }
@@ -48,7 +47,7 @@ Future checkAppUpdate(BuildContext context) async {
   AppUpdateInfo appUpdateInfo = await AppUpdateModel().checkUpdate();
   if (appUpdateInfo?.buildHaveNewVersion ?? false) {
     bool result = await showUpdateAlertDialog(context, appUpdateInfo);
-    if (result == true) downloadApp(context, appUpdateInfo.downloadURL);
+    if (result == true) downloadApp(context, appUpdateInfo);
   }
 }
 
@@ -90,13 +89,14 @@ showUpdateAlertDialog(context, AppUpdateInfo appUpdateInfo) async {
           ));
 }
 
-Future downloadApp(BuildContext context, String url) async {
+Future downloadApp(BuildContext context, AppUpdateInfo appUpdateInfo) async {
+  var url = appUpdateInfo.downloadURL;
   var extDir = await getExternalStorageDirectory();
   debugPrint('extDir path: ${extDir.path}');
-
-  String apkPath = extDir.path + '/' + url.split('/').last;
+  String apkPath =
+      '${extDir.path}/FunAndroid_${appUpdateInfo.buildVersion}_${appUpdateInfo.buildVersionNo}_${appUpdateInfo.buildBuildVersion}.apk';
   File file = File(apkPath);
-  debugPrint('file path: ${file.path}');
+  debugPrint('apkPath path: ${file.path}');
   if (!file.existsSync()) {
     // 没有下载过
     if (await showDownloadDialog(context, url, apkPath) ?? false) {
