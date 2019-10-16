@@ -1,3 +1,5 @@
+Language: [简体中文](README.md) | [English](README-EN.md)
+
 > 基于Google的[Flutter](https://flutter.dev),及官方推荐状态管理[Provider](https://github.com/rrousselGit/provider)和[玩Android](https://wanandroid.com/)开放的API，打造的一款产品级开源App《[Fun Android](https://github.com/phoenixsky/fun_android_flutter)》
 
 ![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba7b8ec29?w=500&h=500&f=png&s=73992) 
