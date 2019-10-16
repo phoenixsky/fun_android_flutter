@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fun_android/config/net/pgyer_api.dart';
 import 'package:fun_android/provider/view_state_model.dart';
 import 'package:fun_android/service/app_repository.dart';
 import 'package:fun_android/utils/platform_utils.dart';
@@ -20,17 +21,17 @@ class AppModel with ChangeNotifier {
 }
 
 class AppUpdateModel extends ViewStateModel {
-  checkUpdate() async {
-    String url;
+  Future<AppUpdateInfo> checkUpdate() async {
+    AppUpdateInfo appUpdateInfo;
     setBusy();
     try {
       var appVersion = await PlatformUtils.getAppVersion();
-      url =
+      appUpdateInfo =
           await AppRepository.checkUpdate(Platform.operatingSystem, appVersion);
       setIdle();
-    } catch (e,s) {
-      setError(e,stackTrace: s);
+    } catch (e, s) {
+      setError(e, stackTrace: s);
     }
-    return url;
+    return appUpdateInfo;
   }
 }

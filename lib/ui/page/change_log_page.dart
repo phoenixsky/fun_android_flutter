@@ -6,12 +6,34 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/widget/app_update.dart';
+import 'package:fun_android/utils/platform_utils.dart';
+import 'package:package_info/package_info.dart';
 
-class ChangeLogPage extends StatelessWidget {
+class ChangeLogPage extends StatefulWidget {
+  @override
+  _ChangeLogPageState createState() => _ChangeLogPageState();
+}
+
+class _ChangeLogPageState extends State<ChangeLogPage> {
+  ValueNotifier versionNotifier;
+
+  @override
+  void initState() {
+    versionNotifier = ValueNotifier<String>('');
+    PackageInfo.fromPlatform().then((packageInfo) {
+      versionNotifier.value =
+          '${packageInfo.version}(${packageInfo.buildNumber})';
+    });
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).appUpdateCheckUpdate),
+        title: ValueListenableBuilder(
+          valueListenable: versionNotifier,
+            builder: (ctx, value, child) =>
+                Text(S.of(context).appUpdateCheckUpdate + ' v$value')),
       ),
       body: SafeArea(
         child: Stack(children: <Widget>[
