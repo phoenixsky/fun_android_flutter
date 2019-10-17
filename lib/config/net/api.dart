@@ -44,6 +44,7 @@ class HeaderInterceptor extends InterceptorsWrapper {
     return options;
   }
 
+
 //  @override
 //  onError(DioError err) {
 //    debugPrint(err.toString());
@@ -62,4 +63,19 @@ class HeaderInterceptor extends InterceptorsWrapper {
 //    }
 //    return http.reject(errorMsg);
 //  }
+}
+
+abstract class BaseRespData {
+  int code = 0;
+  String message;
+  dynamic data;
+
+  bool get success;
+
+  BaseRespData({this.code, this.message, this.data});
+
+  @override
+  String toString() {
+    return 'BaseRespData{code: $code, message: $message, data: $data}';
+  }
 }

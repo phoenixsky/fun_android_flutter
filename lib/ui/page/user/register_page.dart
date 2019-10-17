@@ -142,7 +142,9 @@ class RegisterButton extends StatelessWidget {
                   if (value) {
                     Navigator.of(context).pop(nameController.text);
                   } else {
-                    showToast(model.errorMessage);
+                    showToast(model.viewStateError.isNetworkError
+                        ? S.of(context).viewStateMessageNetworkError
+                        : model.errorMessage);
                   }
                 });
               }

@@ -37,20 +37,9 @@ class PgyerApiInterceptor extends InterceptorsWrapper {
   }
 }
 
-class RespData {
-  dynamic data;
-  int code;
-  String message;
-
+class RespData extends BaseRespData {
   /// 需要指定接口在什么条件下返回成功
   bool get success => code == 0;
-
-  RespData({this.data, this.code, this.message});
-
-  @override
-  String toString() {
-    return 'RespData{data: $data, status: $code, message: $message}';
-  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -97,15 +86,15 @@ class AppUpdateInfo {
   }
 
   Map toJson() => {
-    "buildBuildVersion": buildBuildVersion,
-    "forceUpdateVersion": forceUpdateVersion,
-    "forceUpdateVersionNo": forceUpdateVersionNo,
-    "needForceUpdate": needForceUpdate,
-    "downloadURL": downloadURL,
-    "buildHaveNewVersion": buildHaveNewVersion,
-    "buildVersionNo": buildVersionNo,
-    "buildVersion": buildVersion,
-    "buildShortcutUrl": buildShortcutUrl,
-    "buildUpdateDescription": buildUpdateDescription,
-  };
+        "buildBuildVersion": buildBuildVersion,
+        "forceUpdateVersion": forceUpdateVersion,
+        "forceUpdateVersionNo": forceUpdateVersionNo,
+        "needForceUpdate": needForceUpdate,
+        "downloadURL": downloadURL,
+        "buildHaveNewVersion": buildHaveNewVersion,
+        "buildVersionNo": buildVersionNo,
+        "buildVersion": buildVersion,
+        "buildShortcutUrl": buildShortcutUrl,
+        "buildUpdateDescription": buildUpdateDescription,
+      };
 }

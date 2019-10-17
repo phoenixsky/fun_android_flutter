@@ -22,18 +22,16 @@ class ViewStateError {
   String _errorMessage;
 
   ViewStateError(e, {String message, StackTrace stackTrace}) {
-//    if(e is String){
-//      _errorMessage = e;
-//    } else if (e is Error) {//错误类型
-//      _errorMessage = e.toString();
-//    } else { //exception
-//      _errorMessage = e.message;
-//    }
     printErrorStack(e, stackTrace);
     _errorMessage = e.toString();
     _message = message;
+
     if (e is DioError) {
       _type = ErrorType.networkError;
+      if (e.error is NotSuccessException) {
+        _type = ErrorType.defaultError;
+        _message = e.error.message;
+      }
     }
   }
 
@@ -43,6 +41,9 @@ class ViewStateError {
 
   String get errorMessage => _errorMessage;
 
+  /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
+  get isNetworkError => _type == ErrorType.networkError;
+
   @override
   String toString() {
     return 'ViewStateError{_errorType: $_type, _message: $_message, _errorMessage: $_errorMessage}';
@@ -50,6 +51,20 @@ class ViewStateError {
 }
 
 //enum ConnectivityStatus { WiFi, Cellular, Offline }
+
+/// 接口的code没有返回为true的异常
+class NotSuccessException implements Exception {
+  String message;
+
+  NotSuccessException.fromRespData(BaseRespData respData) {
+    message = respData.message;
+  }
+
+  @override
+  String toString() {
+    return 'NotExpectedException{respData: $message}';
+  }
+}
 
 /// 用于未登录等权限不够,需要跳转授权页面
 class UnAuthorizedException implements Exception {

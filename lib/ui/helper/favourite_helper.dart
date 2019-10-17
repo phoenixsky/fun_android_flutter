@@ -41,7 +41,11 @@ addFavourites(BuildContext context,
     }
   } else if (model.error) {
     //失败
-    showToast(S.of(context).loadFailed);
+//    showToast(S.of(context).loadFailed);
+    showToast(model.viewStateError.isNetworkError
+        ? S.of(context).viewStateMessageNetworkError
+        : model.errorMessage);
+
   } else {
     if (playAnim) {
       ///接口调用成功播放动画

@@ -32,41 +32,25 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) {
-//    debugPrint('---api-response--->resp----->${response.data}');
     RespData respData = RespData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;
       return http.resolve(response);
     } else {
-      return handleFailed(respData);
+      debugPrint('---api-response--->resp----->${response.data}');
+      if (respData.code == -1001) {
+        // 如果cookie过期,需要清除本地存储的登录信息
+        // StorageManager.localStorage.deleteItem(UserModel.keyUser);
+        throw const UnAuthorizedException(); // 需要登录
+      } else {
+        throw NotSuccessException.fromRespData(respData);
+      }
     }
-  }
-
-  Future<Response> handleFailed(RespData respData) {
-    debugPrint('---api-response--->error---->$respData');
-    if (respData.code == -1001) {
-      // 如果cookie过期,需要清除本地存储的登录信息
-//      StorageManager.localStorage.deleteItem(UserModel.keyUser);
-      // 需要登录
-      throw const UnAuthorizedException();
-    }
-    return http.reject(respData.message);
   }
 }
 
-class RespData {
-  dynamic data;
-  int code = 0;
-  String message;
-
+class RespData extends BaseRespData {
   bool get success => 0 == code;
-
-  RespData({this.data, this.code, this.message});
-
-  @override
-  String toString() {
-    return 'RespData{data: $data, status: $code, message: $message}';
-  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

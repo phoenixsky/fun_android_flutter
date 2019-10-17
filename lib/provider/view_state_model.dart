@@ -30,7 +30,7 @@ class ViewStateModel with ChangeNotifier {
 
   String get errorMessage => _viewStateError?.message;
 
-  /// 以下变量是为了代码书写方便,加入的变量.严格意义上讲,并不严谨
+  /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
 
   bool get busy => viewState == ViewState.busy;
 
