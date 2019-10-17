@@ -24,8 +24,8 @@ class LoginModel extends ViewStateModel {
           .setString(kLoginName, userModel.user.username);
       setIdle();
       return true;
-    } catch (e) {
-      setError(e);
+    } catch (e, s) {
+      setError(e,s);
       return false;
     }
   }
@@ -41,8 +41,8 @@ class LoginModel extends ViewStateModel {
       userModel.clearUser();
       setIdle();
       return true;
-    } catch (e) {
-      setError(e);
+    } catch (e, s) {
+      setError(e,s);
       return false;
     }
   }

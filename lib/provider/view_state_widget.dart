@@ -40,7 +40,7 @@ class ViewStateWidget extends StatelessWidget {
         color: titleStyle.color.withOpacity(0.7), fontSize: 14);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         image ?? Icon(IconFonts.pageError, size: 80, color: Colors.grey[500]),
         Padding(
@@ -57,7 +57,7 @@ class ViewStateWidget extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 200, minHeight: 150),
                 child: SingleChildScrollView(
-                  child: Text(message * 2 ?? '', style: messageStyle),
+                  child: Text(message ?? '', style: messageStyle),
                 ),
               ),
             ],
@@ -103,8 +103,11 @@ class ViewStateErrorWidget extends StatelessWidget {
     String defaultTextData = S.of(context).viewStateButtonRetry;
     switch (error.errorType) {
       case ErrorType.networkError:
-        defaultImage = const Icon(IconFonts.pageNetworkError,
-            size: 100, color: Colors.grey);
+        defaultImage = Transform.translate(
+          offset: Offset(-50,0),
+          child: const Icon(IconFonts.pageNetworkError,
+              size: 100, color: Colors.grey),
+        );
         defaultTitle = S.of(context).viewStateMessageNetworkError;
         errorMessage = '';// 网络异常移除message提示
         break;

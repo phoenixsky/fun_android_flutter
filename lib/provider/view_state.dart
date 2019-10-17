@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:fun_android/config/net/api.dart';
 import 'package:fun_android/provider/view_state_model.dart';
 
@@ -17,59 +18,22 @@ enum ErrorType {
 }
 
 class ViewStateError {
-  ErrorType _type = ErrorType.defaultError;
-  String _message;
-  String _errorMessage;
+  ErrorType errorType;
+  String message;
+  String errorMessage;
 
-  ViewStateError(e, {String message, StackTrace stackTrace}) {
-    printErrorStack(e, stackTrace);
-    _errorMessage = e.toString();
-    _message = message;
-
-    if (e is DioError) {
-      _type = ErrorType.networkError;
-      if (e.error is NotSuccessException) {
-        _type = ErrorType.defaultError;
-        _message = e.error.message;
-      }
-    }
+  ViewStateError(this.errorType, {this.message, this.errorMessage}) {
+    errorType ??= ErrorType.defaultError;
+    message ??= errorMessage;
   }
 
-  ErrorType get errorType => _type;
-
-  String get message => _message ?? _errorMessage;
-
-  String get errorMessage => _errorMessage;
-
   /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
-  get isNetworkError => _type == ErrorType.networkError;
+  get isNetworkError => errorType == ErrorType.networkError;
 
   @override
   String toString() {
-    return 'ViewStateError{_errorType: $_type, _message: $_message, _errorMessage: $_errorMessage}';
+    return 'ViewStateError{errorType: $errorType, message: $message, errorMessage: $errorMessage}';
   }
 }
 
 //enum ConnectivityStatus { WiFi, Cellular, Offline }
-
-/// 接口的code没有返回为true的异常
-class NotSuccessException implements Exception {
-  String message;
-
-  NotSuccessException.fromRespData(BaseRespData respData) {
-    message = respData.message;
-  }
-
-  @override
-  String toString() {
-    return 'NotExpectedException{respData: $message}';
-  }
-}
-
-/// 用于未登录等权限不够,需要跳转授权页面
-class UnAuthorizedException implements Exception {
-  const UnAuthorizedException();
-
-  @override
-  String toString() => 'UnAuthorizedException';
-}

@@ -30,7 +30,7 @@ class AppUpdateModel extends ViewStateModel {
           await AppRepository.checkUpdate(Platform.operatingSystem, appVersion);
       setIdle();
     } catch (e, s) {
-      setError(e, stackTrace: s);
+      setError(e,s);
     }
     return appUpdateInfo;
   }

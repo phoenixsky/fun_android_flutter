@@ -51,7 +51,7 @@ class FavouriteModel extends ViewStateModel {
       article.collect = !(article.collect ?? true);
       setIdle();
     } catch (e, s) {
-      setError(e,stackTrace: s);
+      setError(e,s);
     }
   }
 }

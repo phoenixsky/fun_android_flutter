@@ -69,6 +69,8 @@ class _HomePageState extends State<HomePage>
                   twiceTriggerDistance: kHomeRefreshHeight - 15,
                   //最大下拉距离,android默认为0,这里为了触发二楼
                   maxOverScrollExtent: kHomeRefreshHeight,
+                  headerTriggerDistance:
+                      80 + MediaQuery.of(context).padding.top/3,
                   child: SmartRefresher(
                       controller: homeModel.refreshController,
                       header: HomeRefreshHeader(),

@@ -19,7 +19,6 @@ class PgyerApiInterceptor extends InterceptorsWrapper {
   onRequest(RequestOptions options) async {
     options.queryParameters['_api_key'] = '00f25cece8e201753872c268b5832df9';
     options.queryParameters['appKey'] = '7954deb7bce815d3b49a0626ff0b76a7';
-
     debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' +
         ' queryParameters: ${options.queryParameters}');
     return options;
@@ -27,29 +26,20 @@ class PgyerApiInterceptor extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) {
-    RespData respData = RespData.fromJson(response.data);
+    ResponseData respData = ResponseData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;
       return http.resolve(response);
     } else {
-      return http.reject(respData.message);
+      throw NotSuccessException.fromRespData(respData);
     }
   }
 }
 
-class RespData extends BaseRespData {
-  /// 需要指定接口在什么条件下返回成功
+class ResponseData extends BaseResponseData {
   bool get success => code == 0;
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
-    data['data'] = this.data;
-    return data;
-  }
-
-  RespData.fromJson(Map<String, dynamic> json) {
+  ResponseData.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
     data = json['data'];

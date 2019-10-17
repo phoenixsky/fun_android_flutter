@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_android/config/net/api.dart';
 
 import 'view_state.dart';
 
@@ -60,10 +62,29 @@ class ViewStateModel with ChangeNotifier {
   }
 
   /// [e]分类Error和Exception两种
-  void setError(e, {String message, StackTrace stackTrace}) {
+  void setError(e, stackTrace, {String message}) {
+    ErrorType errorType = ErrorType.defaultError;
+    if (e is DioError) {
+      e = e.error;
+      if (e is UnAuthorizedException) {
+        stackTrace = null;
+        /// 已在onUnAuthorizedException中处理
+        setUnAuthorized();
+        return;
+      } else if (e is NotSuccessException) {
+        stackTrace = null;
+        message = e.message;
+      } else {
+        errorType = ErrorType.networkError;
+      }
+    }
     viewState = ViewState.error;
-    _viewStateError =
-        ViewStateError(e, message: message, stackTrace: stackTrace);
+    _viewStateError = ViewStateError(
+      errorType,
+      message: message,
+      errorMessage: e.toString(),
+    );
+    printErrorStack(e, stackTrace);
   }
 
   /// 未授权的回调
@@ -94,10 +115,8 @@ printErrorStack(e, s) {
   debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
 $e
-<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->
-    ''');
-
-  debugPrint('''
+<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
+  if (s != null) debugPrint('''
 <-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
 $s
 <-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->

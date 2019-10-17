@@ -7,11 +7,15 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 class HomeRefreshHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var strings = RefreshLocalizations.of(context)?.currentLocalization ??
+        EnRefreshString();
     return ClassicHeader(
       canTwoLevelText: S.of(context).refreshTwoLevel,
       textStyle: TextStyle(color: Colors.white),
       outerBuilder: (child) => HomeSecondFloorOuter(child),
       twoLevelView: Container(),
+      height: 70 + MediaQuery.of(context).padding.top / 3,
+      releaseText: strings.canRefreshText+',继续下拉触发惊喜',
     );
   }
 }
