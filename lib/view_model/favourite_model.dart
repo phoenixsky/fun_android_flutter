@@ -12,10 +12,11 @@ class FavouriteListModel extends ViewStateRefreshListModel<Article> {
 
   FavouriteListModel({this.loginModel});
 
+
   @override
-  void setUnAuthorized() {
+  void onUnAuthorizedException() {
+    super.onUnAuthorizedException();
     loginModel.logout();
-    super.setUnAuthorized();
   }
 
   @override
@@ -50,7 +51,7 @@ class FavouriteModel extends ViewStateModel {
       article.collect = !(article.collect ?? true);
       setIdle();
     } catch (e, s) {
-      handleException(e, s);
+      setError(e,stackTrace: s);
     }
   }
 }

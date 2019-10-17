@@ -24,7 +24,7 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
         setIdle();
       }
     } catch (e, s) {
-      handleException(e, s);
+      setError(e,stackTrace: s);
     }
   }
 

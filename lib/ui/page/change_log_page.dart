@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/provider/view_state_widget.dart';
 import 'package:fun_android/ui/widget/app_update.dart';
 import 'package:fun_android/utils/platform_utils.dart';
 import 'package:package_info/package_info.dart';
@@ -31,7 +32,7 @@ class _ChangeLogPageState extends State<ChangeLogPage> {
     return Scaffold(
       appBar: AppBar(
         title: ValueListenableBuilder(
-          valueListenable: versionNotifier,
+            valueListenable: versionNotifier,
             builder: (ctx, value, child) =>
                 Text(S.of(context).appUpdateCheckUpdate + ' v$value')),
       ),
@@ -81,7 +82,7 @@ class _ChangeLogViewState extends State<ChangeLogView> {
   @override
   Widget build(BuildContext context) {
     if (_changelog == null) {
-      return Center(child: CircularProgressIndicator());
+      return ViewStateBusyWidget();
     }
     return Markdown(data: _changelog);
   }

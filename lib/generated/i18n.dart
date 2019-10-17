@@ -82,11 +82,12 @@ class S implements WidgetsLocalizations {
   String get twoPwdDifferent => "The two passwords differ";
   String get unLike => "UnLike";
   String get userName => "Username";
-  String get viewStateButtonError => "Load Failed";
   String get viewStateButtonLogin => "Sign In";
   String get viewStateButtonRefresh => "Refresh";
   String get viewStateButtonRetry => "Retry";
   String get viewStateMessageEmpty => "Nothing Found";
+  String get viewStateMessageError => "Load Failed";
+  String get viewStateMessageNetworkError => "Load Failed,Check network ";
   String get viewStateMessageUnAuth => "Not sign in yet";
   String get wechatAccount => "Wechat";
   String appUpdateFoundNewVersion(String version) => "New version $version";
@@ -139,6 +140,8 @@ class $zh_CN extends S {
   @override
   String get Like => "收藏";
   @override
+  String get viewStateMessageNetworkError => "网络连接异常,请检查网络或稍后重试";
+  @override
   String get appUpdateActionDownloadAgain => "重新下载";
   @override
   String get autoBySystem => "跟随系统";
@@ -158,8 +161,6 @@ class $zh_CN extends S {
   String get appUpdateReDownloadContent => "检测到本地已下载过该版本,是否直接安装?";
   @override
   String get noAccount => "还没账号? ";
-  @override
-  String get viewStateButtonError => "加载失败";
   @override
   String get openBrowser => "浏览器打开";
   @override
@@ -182,6 +183,8 @@ class $zh_CN extends S {
   String get myFavourites => "我的收藏";
   @override
   String get signIn3thd => "第三方登录";
+  @override
+  String get viewStateMessageError => "加载失败";
   @override
   String get rate => "评分";
   @override

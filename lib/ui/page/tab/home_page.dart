@@ -58,12 +58,10 @@ class _HomePageState extends State<HomePage>
               child: Builder(builder: (_) {
                 if (homeModel.error) {
                   return AnnotatedRegion<SystemUiOverlayStyle>(
-                    value: StatusBarUtils.systemUiOverlayStyle(context),
-                    child: ViewStateWidget(
-                      onPressed: homeModel.initData,
-                      message: homeModel.errorMessage,
-                    ),
-                  );
+                      value: StatusBarUtils.systemUiOverlayStyle(context),
+                      child: ViewStateErrorWidget(
+                          error: homeModel.viewStateError,
+                          onPressed: homeModel.initData));
                 }
                 return RefreshConfiguration.copyAncestor(
                   context: context,

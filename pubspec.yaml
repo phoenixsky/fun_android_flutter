@@ -30,7 +30,7 @@ dependencies:
   dio: ^3.0.1
   dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.0
-  shared_preferences: ^0.5.2+2
+  shared_preferences: ^0.5.3+5
   # 本地json对象存储
   localstorage: ^2.0.0
 

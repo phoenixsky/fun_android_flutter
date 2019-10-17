@@ -39,7 +39,8 @@ class _ArticleListPageState extends State<ArticleListPage>
             builder: (context, index) => ArticleSkeletonItem(),
           );
         } else if (model.error) {
-          return ViewStateWidget(onPressed: model.initData);
+          return ViewStateErrorWidget(
+              error: model.viewStateError, onPressed: model.initData);
         } else if (model.empty) {
           return ViewStateEmptyWidget(onPressed: model.initData);
         }

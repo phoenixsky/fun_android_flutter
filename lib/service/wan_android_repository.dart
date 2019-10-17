@@ -24,7 +24,7 @@ class WanAndroidRepository {
 
   // 文章
   static Future fetchArticles(int pageNum, {int cid}) async {
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 1)); //增加动效
     var response = await http.get('article/list/$pageNum/json',
         queryParameters: (cid != null ? {'cid': cid} : null));
     return response.data['datas']

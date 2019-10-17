@@ -50,9 +50,9 @@ class _WechatAccountPageState extends State<WechatAccountPage>
           },
           builder: (context, model, child) {
             if (model.busy) {
-              return Center(child: CircularProgressIndicator());
+              return ViewStateBusyWidget();
             } else if (model.error) {
-              return ViewStateWidget(onPressed: model.initData);
+              return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
             }
 
             List<Tree> treeList = model.list;
@@ -133,7 +133,7 @@ class _WechatArticleListState extends State<WechatArticleList>
             builder: (context, index) => ArticleSkeletonItem(),
           );
         } else if (model.error) {
-          return ViewStateWidget(onPressed: model.initData);
+          return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
         } else if (model.empty) {
           return ViewStateEmptyWidget(onPressed: model.initData);
         }
