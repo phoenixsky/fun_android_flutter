@@ -88,6 +88,7 @@ class _SearchHotKeysWidgetState extends State<SearchHotKeysWidget> {
                   S.of(context).searchHot,
                   style: Provider.of<TextStyle>(context),
                 ),
+                onPressed: () {},
               ),
               Consumer<SearchHotKeyModel>(
                 builder: (context, model, _) {
@@ -160,6 +161,7 @@ class _SearchHistoriesWidgetState extends State<SearchHistoriesWidget> {
                   S.of(context).searchHistory,
                   style: Provider.of<TextStyle>(context),
                 ),
+                onPressed: () {},
               ),
               Consumer<SearchHistoryModel>(
                 builder: (context, model, child) => Visibility(

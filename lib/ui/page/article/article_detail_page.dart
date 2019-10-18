@@ -70,7 +70,6 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           // 加载js
           javascriptMode: JavascriptMode.unrestricted,
           navigationDelegate: (NavigationRequest request) {
-            ///TODO isForMainFrame为false,页面不跳转.导致网页内很多链接点击没效果
             debugPrint('导航$request');
             if (!request.url.startsWith('http')) {
               ThirdAppUtils.openAppByUrl(request.url);
