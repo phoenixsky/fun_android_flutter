@@ -31,6 +31,7 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   onResponse(Response response) {
+//    debugPrint('---api-response--->resp----->${response.data}');
     ResponseData respData = ResponseData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;

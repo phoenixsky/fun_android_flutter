@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage>
               context: context,
               removeTop: false,
               child: Builder(builder: (_) {
-                if (homeModel.error) {
+                if (homeModel.error && homeModel.list.isEmpty) {
                   return AnnotatedRegion<SystemUiOverlayStyle>(
                       value: StatusBarUtils.systemUiOverlayStyle(context),
                       child: ViewStateErrorWidget(
@@ -70,11 +70,11 @@ class _HomePageState extends State<HomePage>
                   //最大下拉距离,android默认为0,这里为了触发二楼
                   maxOverScrollExtent: kHomeRefreshHeight,
                   headerTriggerDistance:
-                      80 + MediaQuery.of(context).padding.top/3,
+                      80 + MediaQuery.of(context).padding.top / 3,
                   child: SmartRefresher(
                       controller: homeModel.refreshController,
                       header: HomeRefreshHeader(),
-                      enableTwoLevel: homeModel.idle,
+                      enableTwoLevel: homeModel.list.isNotEmpty,
                       onTwoLevel: () async {
                         await Navigator.of(context)
                             .pushNamed(RouteName.homeSecondFloor);
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage>
                             .twoLevelComplete();
                       },
                       footer: RefresherFooter(),
-                      enablePullDown: homeModel.idle,
+                      enablePullDown: homeModel.list.isNotEmpty,
                       onRefresh: homeModel.refresh,
                       onLoading: homeModel.loadMore,
                       enablePullUp: homeModel.list.isNotEmpty,
@@ -135,7 +135,8 @@ class _HomePageState extends State<HomePage>
                               child: ViewStateEmptyWidget(
                                   onPressed: homeModel.initData),
                             )),
-                          if (homeModel.idle) HomeTopArticleList(),
+                          if (homeModel.topArticles?.isNotEmpty ?? false)
+                            HomeTopArticleList(),
                           HomeArticleList(),
                         ],
                       )),

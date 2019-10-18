@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/page/tab/home_second_floor_page.dart';
+import 'package:fun_android/ui/widget/activity_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 首页列表的header
@@ -15,6 +17,7 @@ class HomeRefreshHeader extends StatelessWidget {
       outerBuilder: (child) => HomeSecondFloorOuter(child),
       twoLevelView: Container(),
       height: 70 + MediaQuery.of(context).padding.top / 3,
+      refreshingIcon: ActivityIndicator(brightness: Brightness.dark),
       releaseText: strings.canRefreshText+',继续下拉触发惊喜',
     );
   }

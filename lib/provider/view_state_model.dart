@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/net/api.dart';
+import 'package:fun_android/generated/i18n.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'view_state.dart';
 
@@ -29,6 +31,8 @@ class ViewStateModel with ChangeNotifier {
   ViewStateError _viewStateError;
 
   ViewStateError get viewStateError => _viewStateError;
+
+
 
   String get errorMessage => _viewStateError?.message;
 
@@ -61,6 +65,9 @@ class ViewStateModel with ChangeNotifier {
     onUnAuthorizedException();
   }
 
+  /// 未授权的回调
+  void onUnAuthorizedException() {}
+
   /// [e]分类Error和Exception两种
   void setError(e, stackTrace, {String message}) {
     ErrorType errorType = ErrorType.defaultError;
@@ -87,8 +94,17 @@ class ViewStateModel with ChangeNotifier {
     printErrorStack(e, stackTrace);
   }
 
-  /// 未授权的回调
-  void onUnAuthorizedException() {}
+  /// 显示错误消息
+  showErrorMessage(context, {String networkErrorMessage}) {
+    var message = viewStateError.message;
+    if (viewStateError.isNetworkError) {
+      message =
+          networkErrorMessage ?? S.of(context).viewStateMessageNetworkError;
+    }
+    Future.microtask((){
+      showToast(message, context: context);
+    });
+  }
 
   @override
   String toString() {

@@ -14,7 +14,6 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
   // 下拉刷新
   refresh({bool init = false}) async {
     try {
-      if (init) list.clear();
       List<T> data = await loadData();
       if (data.isEmpty) {
         list.clear();
@@ -26,8 +25,8 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
         setIdle();
       }
     } catch (e, s) {
-      list.clear();
-      setError(e,s);
+      if (init) list.clear();
+      setError(e, s);
     }
   }
 

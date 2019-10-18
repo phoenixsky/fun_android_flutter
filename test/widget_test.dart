@@ -25,9 +25,40 @@ void main() {
 //    expect(find.text('1'), findsOneWidget);
 //  });
 
-  test(('reg'), () {
-    String title = r"在Java 中<em class='highlight'>安全</em>使用接口引用";
+  test(('copy array'), () {
+    var a = [1000000000, 2, 3];
+    var b = [...a];
+    a[0] = 111;
+    print(a);
+    print(b);
 
-    print(title.replaceAll(RegExp("<[^>]+>"), ''));
+    var aa = ['我还没改名1', '我还没改名2','我还没改名3'];
+    var bb = [...aa];
+    aa[0] = '我已经改名啦1';
+    print(aa);
+    print(bb);
+
+//    var aa = [Person('11'),Person('22'),Person('33')];
+
+    var aaa = [
+      Person('111'),
+      Person('222'),
+      Person('222')
+    ];
+    var bbb = [...aaa];
+    aaa[0].name = '我要改名了';
+    print(aaa);
+    print(bbb);
   });
+}
+
+class Person {
+  String name;
+
+  Person(this.name);
+
+  @override
+  String toString() {
+    return 'Person{name: $name}';
+  }
 }

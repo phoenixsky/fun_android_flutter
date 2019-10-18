@@ -137,9 +137,7 @@ class LoginButton extends StatelessWidget {
                   if (value) {
                     Navigator.of(context).pop(true);
                   } else {
-                    showToast(model.viewStateError.isNetworkError
-                        ? S.of(context).viewStateMessageNetworkError
-                        : model.errorMessage);
+                    model.showErrorMessage(context);
                   }
                 });
               }
