@@ -51,7 +51,6 @@ abstract class BaseResponseData {
   String message;
   dynamic data;
 
-  @mustCallSuper
   bool get success;
 
   BaseResponseData({this.code, this.message, this.data});

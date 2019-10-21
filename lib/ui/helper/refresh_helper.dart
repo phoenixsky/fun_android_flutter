@@ -18,7 +18,7 @@ class HomeRefreshHeader extends StatelessWidget {
       twoLevelView: Container(),
       height: 70 + MediaQuery.of(context).padding.top / 3,
       refreshingIcon: ActivityIndicator(brightness: Brightness.dark),
-      releaseText: strings.canRefreshText+',继续下拉触发惊喜',
+      releaseText: strings.canRefreshText,
     );
   }
 }

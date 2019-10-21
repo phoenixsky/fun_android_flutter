@@ -79,13 +79,13 @@ class _HomePageState extends State<HomePage>
                         await Navigator.of(context)
                             .pushNamed(RouteName.homeSecondFloor);
                         await Future.delayed(Duration(milliseconds: 300));
-                        Provider.of<HomeModel>(context)
-                            .refreshController
-                            .twoLevelComplete();
+                        homeModel.refreshController.twoLevelComplete();
                       },
                       footer: RefresherFooter(),
                       enablePullDown: homeModel.list.isNotEmpty,
-                      onRefresh: homeModel.refresh,
+                      onRefresh: () async {
+                        await homeModel.refresh(context: context);
+                      },
                       onLoading: homeModel.loadMore,
                       enablePullUp: homeModel.list.isNotEmpty,
                       child: CustomScrollView(
