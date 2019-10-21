@@ -37,7 +37,7 @@ class CoinRecordListPage extends StatelessWidget {
               length: 11,
               builder: (context, index) => CoinRecordItemSkeleton(),
             );
-          } else if (model.error) {
+          } else if (model.error && model.list.isEmpty) {
             return ViewStateErrorWidget(
                 error: model.viewStateError, onPressed: model.initData);
           } else if (model.empty) {

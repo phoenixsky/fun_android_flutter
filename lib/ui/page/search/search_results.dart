@@ -24,7 +24,7 @@ class SearchResults extends StatelessWidget {
       builder: (context, model, child) {
         if (model.busy) {
           return ViewStateBusyWidget();
-        } else if (model.error) {
+        } else if (model.error && model.list.isEmpty) {
           return ViewStateErrorWidget(
               error: model.viewStateError, onPressed: model.initData);
         } else if (model.empty) {
