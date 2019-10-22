@@ -38,7 +38,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _countdownController =
         AnimationController(vsync: this, duration: Duration(seconds: 4));
     _countdownController.forward();
-
     super.initState();
   }
 

@@ -73,7 +73,7 @@ class ArticleItemWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Text(
-                          isNotBlank(article.author) ? article.author : article.shareUser,
+                          isNotBlank(article.author) ? article.author : article.shareUser ?? '',
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),

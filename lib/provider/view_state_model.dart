@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_android/config/net/api.dart';
+import 'package:fun_android/generated/i18n.dart';
+import 'package:oktoast/oktoast.dart';
 
 import 'view_state.dart';
 
@@ -20,16 +23,18 @@ class ViewStateModel with ChangeNotifier {
   ViewState get viewState => _viewState;
 
   set viewState(ViewState viewState) {
+    _viewStateError = null;
     _viewState = viewState;
     notifyListeners();
   }
 
-  /// 出错时的message
-  String _errorMessage;
+  ViewStateError _viewStateError;
 
-  String get errorMessage => _errorMessage;
+  ViewStateError get viewStateError => _viewStateError;
 
-  /// 以下变量是为了代码书写方便,加入的变量.严格意义上讲,并不严谨
+  String get errorMessage => _viewStateError?.message;
+
+  /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
 
   bool get busy => viewState == ViewState.busy;
 
@@ -42,49 +47,69 @@ class ViewStateModel with ChangeNotifier {
   bool get unAuthorized => viewState == ViewState.unAuthorized;
 
   void setIdle() {
-    _errorMessage = null;
     viewState = ViewState.idle;
   }
 
   void setBusy() {
-    _errorMessage = null;
     viewState = ViewState.busy;
   }
 
   void setEmpty() {
-    _errorMessage = null;
     viewState = ViewState.empty;
   }
 
-  /// [e]分类Error和Exception两种
-  void setError(e, {String message, StackTrace stackTrace}) {
-    if (e is String) {
-      _errorMessage = e;
-    } else {
-      debugPrint('''
-<-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
-$e
-<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->
-    ''');
-
-      debugPrint('''
-<-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
-$stackTrace
-<-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->
-    ''');
-      _errorMessage = message ?? (e is Error ? e.toString() : e.message);
-    }
-    viewState = ViewState.error;
+  void setUnAuthorized() {
+    viewState = ViewState.unAuthorized;
+    onUnAuthorizedException();
   }
 
-  void setUnAuthorized() {
-    _errorMessage = null;
-    viewState = ViewState.unAuthorized;
+  /// 未授权的回调
+  void onUnAuthorizedException() {}
+
+  /// [e]分类Error和Exception两种
+  void setError(e, stackTrace, {String message}) {
+    ErrorType errorType = ErrorType.defaultError;
+    if (e is DioError) {
+      e = e.error;
+      if (e is UnAuthorizedException) {
+        stackTrace = null;
+
+        /// 已在onUnAuthorizedException中处理
+        setUnAuthorized();
+        return;
+      } else if (e is NotSuccessException) {
+        stackTrace = null;
+        message = e.message;
+      } else {
+        errorType = ErrorType.networkError;
+      }
+    }
+    viewState = ViewState.error;
+    _viewStateError = ViewStateError(
+      errorType,
+      message: message,
+      errorMessage: e.toString(),
+    );
+    printErrorStack(e, stackTrace);
+  }
+
+  /// 显示错误消息
+  showErrorMessage(context, {String message}) {
+    if (viewStateError != null && message != null) {
+      if (viewStateError.isNetworkError) {
+        message ??= S.of(context).viewStateMessageNetworkError;
+      }else{
+        message ??= viewStateError.message;
+      }
+      Future.microtask(() {
+        showToast(message, context: context);
+      });
+    }
   }
 
   @override
   String toString() {
-    return 'BaseModel{_viewState: $viewState, _errorMessage: $_errorMessage}';
+    return 'BaseModel{_viewState: $viewState, _viewStateError: $_viewStateError}';
   }
 
   @override
@@ -99,18 +124,18 @@ $stackTrace
     _disposed = true;
     super.dispose();
   }
+}
 
-  /// Handle Error and Exception
-  ///
-  /// 统一处理子类的异常情况
-  /// [e],有可能是Error,也有可能是Exception.所以需要判断处理
-  /// [s] 为堆栈信息
-  void handleException(e, s) {
-    // DioError的判断,理论不应该拿进来,增强了代码耦合性,抽取为时组件时.应移除
-    if (e is DioError && e.error is UnAuthorizedException) {
-      setUnAuthorized();
-    } else {
-      setError(e, stackTrace: s);
-    }
-  }
+/// [e]为错误类型 :可能为 Error , Exception ,String
+/// [s]为堆栈信息
+printErrorStack(e, s) {
+  debugPrint('''
+<-----↓↓↓↓↓↓↓↓↓↓-----error-----↓↓↓↓↓↓↓↓↓↓----->
+$e
+<-----↑↑↑↑↑↑↑↑↑↑-----error-----↑↑↑↑↑↑↑↑↑↑----->''');
+  if (s != null) debugPrint('''
+<-----↓↓↓↓↓↓↓↓↓↓-----trace-----↓↓↓↓↓↓↓↓↓↓----->
+$s
+<-----↑↑↑↑↑↑↑↑↑↑-----trace-----↑↑↑↑↑↑↑↑↑↑----->
+    ''');
 }

@@ -31,7 +31,7 @@ class HomeSecondFloorOuter extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     )),
           ),
-          Align(alignment: Alignment(0, 0.8), child: child),
+          Align(alignment: Alignment(0, 0.85), child: child),
         ],
       ),
       alignment: Alignment.bottomCenter,

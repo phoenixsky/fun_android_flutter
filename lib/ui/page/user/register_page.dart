@@ -63,30 +63,25 @@ class _RegisterPageState extends State<RegisterPage> {
                                           label: S.of(context).userName,
                                           icon: Icons.person_outline,
                                           controller: _nameController,
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                         ),
                                         LoginTextField(
                                           label: S.of(context).password,
                                           icon: Icons.lock_outline,
                                           obscureText: true,
                                           controller: _passwordController,
-                                          textInputAction:
-                                              TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                         ),
                                         LoginTextField(
                                           label: S.of(context).rePassword,
                                           icon: Icons.lock_outline,
                                           obscureText: true,
                                           controller: _rePasswordController,
-                                          textInputAction:
-                                              TextInputAction.done,
+                                          textInputAction: TextInputAction.done,
                                           validator: (value) {
                                             return value !=
                                                     _passwordController.text
-                                                ? S
-                                                    .of(context)
-                                                    .twoPwdDifferent
+                                                ? S.of(context).twoPwdDifferent
                                                 : null;
                                           },
                                         ),
@@ -142,7 +137,7 @@ class RegisterButton extends StatelessWidget {
                   if (value) {
                     Navigator.of(context).pop(nameController.text);
                   } else {
-                    showToast(model.errorMessage);
+                    model.showErrorMessage(context);
                   }
                 });
               }

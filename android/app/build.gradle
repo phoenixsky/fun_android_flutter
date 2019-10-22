@@ -53,7 +53,6 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-
     buildTypes {
         // 签名文件并没有上传,可以使用自己的签名文件或者移除一下指令使用默认的签名
         release {
@@ -68,12 +67,6 @@ android {
         }
     }
 
-//    android.applicationVariants.all { variant ->
-//        variant.outputs.all {
-////            outputFileName = "FunAndroid_" + defaultConfig.versionCode + "_v" + defaultConfig.versionName + "_" + buildType.name + ".apk"
-//            outputFileName = "FunAndroid_" + defaultConfig.versionName + ".apk"
-//        }
-//    }
 }
 
 flutter {

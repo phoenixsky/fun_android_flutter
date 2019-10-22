@@ -9,8 +9,8 @@ class RegisterModel extends ViewStateModel {
       await WanAndroidRepository.register(loginName, password, rePassword);
       setIdle();
       return true;
-    } catch (e) {
-      setError(e);
+    } catch (e, s) {
+      setError(e,s);
       return false;
     }
   }

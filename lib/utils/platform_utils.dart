@@ -19,6 +19,10 @@ class PlatformUtils {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     return packageInfo.version;
   }
+  static Future<String> getBuildNum() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.buildNumber;
+  }
 
   static Future getDeviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

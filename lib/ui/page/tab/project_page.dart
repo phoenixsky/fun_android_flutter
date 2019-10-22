@@ -52,10 +52,10 @@ class _ProjectPageState extends State<ProjectPage>
           },
           builder: (context, model, child) {
             if (model.busy) {
-              return Center(child: CircularProgressIndicator());
+              return ViewStateBusyWidget();
             }
             if (model.error) {
-              return ViewStateWidget(onPressed: model.initData);
+              return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
             }
 
             List<Tree> treeList = model.list;

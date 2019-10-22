@@ -43,23 +43,44 @@ class HeaderInterceptor extends InterceptorsWrapper {
     options.headers['platform'] = Platform.operatingSystem;
     return options;
   }
-
-//  @override
-//  onError(DioError err) {
-//    debugPrint(err.toString());
-//    if (err.response == null) {
-//      return http.reject(err.message);
-//    }
-//    int statusCode = err.response?.statusCode;
-//    String errorMsg = err.response?.statusMessage;
-//    switch (statusCode) {
-//      case 405:
-//        errorMsg = 'code:$statusCode\n服务器接口方法未找到';
-//        break;
-//      default:
-//        errorMsg = 'code:$statusCode\n$errorMsg';
-//        break;
-//    }
-//    return http.reject(errorMsg);
-//  }
 }
+
+/// 子类需要重写
+abstract class BaseResponseData {
+  int code = 0;
+  String message;
+  dynamic data;
+
+  bool get success;
+
+  BaseResponseData({this.code, this.message, this.data});
+
+  @override
+  String toString() {
+    return 'BaseRespData{code: $code, message: $message, data: $data}';
+  }
+}
+
+
+/// 接口的code没有返回为true的异常
+class NotSuccessException implements Exception {
+  String message;
+
+  NotSuccessException.fromRespData(BaseResponseData respData) {
+    message = respData.message;
+  }
+
+  @override
+  String toString() {
+    return 'NotExpectedException{respData: $message}';
+  }
+}
+
+/// 用于未登录等权限不够,需要跳转授权页面
+class UnAuthorizedException implements Exception {
+  const UnAuthorizedException();
+
+  @override
+  String toString() => 'UnAuthorizedException';
+}
+

@@ -63,9 +63,9 @@ class _StructureCategoryListState extends State<StructureCategoryList>
         },
         builder: (context, model, child) {
           if (model.busy) {
-            return Center(child: CircularProgressIndicator());
-          } else if (model.error) {
-            return ViewStateWidget(onPressed: model.initData);
+            return ViewStateBusyWidget();
+          } else if (model.error && model.list.isEmpty) {
+            return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
           }
           return Scrollbar(
             child: ListView.builder(
@@ -139,9 +139,9 @@ class _NavigationSiteCategoryListState extends State<NavigationSiteCategoryList>
         },
         builder: (context, model, child) {
           if (model.busy) {
-            return Center(child: CircularProgressIndicator());
+            return ViewStateBusyWidget();
           } else if (model.error) {
-            return ViewStateWidget(onPressed: model.initData);
+            return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
           }
           return Scrollbar(
             child: ListView.builder(

@@ -1,3 +1,7 @@
+> Language: [简体中文](README.md) | [English](README-EN.md)
+
+</br>
+
 > 基于Google的[Flutter](https://flutter.dev),及官方推荐状态管理[Provider](https://github.com/rrousselGit/provider)和[玩Android](https://wanandroid.com/)开放的API，打造的一款产品级开源App《[Fun Android](https://github.com/phoenixsky/fun_android_flutter)》
 
 ![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba7b8ec29?w=500&h=500&f=png&s=73992) 
@@ -15,11 +19,10 @@
  > [https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
 # 下载地址
-| Android |  iOS  |
-| :---: | :---: |
-| [国内云](http://app1.cdn.channelplus.cn/FunAndroid_0.1.9.apk) / [Releases Page](https://github.com/phoenixsky/fun_android_flutter/releases) | [App Store](https://apps.apple.com/cn/app/id1477299503) |
-| ![](https://user-gold-cdn.xitu.io/2019/10/14/16dc8568f55ee2e4?w=260&h=260&f=png&s=7729) | ![](https://user-gold-cdn.xitu.io/2019/9/24/16d612be974064d4?w=260&h=260&f=png&s=7591) |
-
+    
+ > [蒲公英下载页](https://www.pgyer.com/Ki0F)
+   
+  ![](https://www.pgyer.com/app/qrcode/Ki0F)
 
 # 代码编译
   * Flutter SDK (Channel dev, v1.10.4)
@@ -44,6 +47,15 @@
 
 # 更新
 
+## V0.1.12 `2019-10-21` (未发布)
+- 下拉刷新列表在加载失败时,如果当前页没有数据显示错误提示页,有数据则弹出toast提示
+
+## V0.1.11 `2019-10-17`
+- 增加网络加载失败的提示
+
+## V0.1.10 `2019-10-16`
+- 修复收藏页面'shareUser'字段为空导致报错的bug
+
 ## V0.1.9 `2019-10-14`
 - 极致黑(Native的闪屏页面适配darkMode)
 - 首页banner高度根据屏幕宽高适应
@@ -55,7 +67,6 @@
 - ViewStateModel中逻辑优化,bug fix
 - 状态栏字体颜色优化
 - 修复TextField中hint为中文时不居中的问题
-
 
 ## V0.1.7 `2019-09-23`
 
@@ -197,15 +208,13 @@
 
 # 目前已知存在的问题
 
-1.  表单中，光标不会切换到下一个。待更新到1.7.8-hotfix4后的稳定版再观察修复。
 
-2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。所以接入了两套WebView方案
+1.  [webview_flutter](https://pub.dev/packages/webview_flutter) 插件的问题还是很多，有些链接点击会没有反应，不会跳转。所以接入了两套WebView方案
 
-3.  [webview_flutter](https://pub.dev/packages/webview_flutter) 不能结合`CustomScrollView`滑动。见[issue](https://github.com/flutter/flutter/issues/31243#issuecomment-521564216) 。
+2.  [webview_flutter](https://pub.dev/packages/webview_flutter) 不能结合`CustomScrollView`滑动。见[issue](https://github.com/flutter/flutter/issues/31243#issuecomment-521564216) 。
 
-4.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
+3.  两个同样颜色的widget，中间莫名其妙的会多一条背景色的线。见[issue](https://github.com/flutter/flutter/issues/14288) 。
 
-5.  TabBar的Indicator的颜色，在Dark模式切换到Light模式时，偶尔会没有跟随切换。
 
 # Future
 
@@ -213,11 +222,11 @@
 
 # 寻找组织
 * Fun Flutter微信交流群  
-    ![](https://user-gold-cdn.xitu.io/2019/10/7/16da6b9e81d31993?w=200&h=272&f=png&s=42801)
+    ![](https://user-gold-cdn.xitu.io/2019/10/22/16df192896d3a9c1?w=260&h=336&f=png&s=54678)
 
 # 作者的话
 
-*  坐标上海,想找Flutter方向的工作,4年Android开发
+*  坐标上海,打算找Flutter方向的工作.4年Android开发经验.
 
 # 感谢
 

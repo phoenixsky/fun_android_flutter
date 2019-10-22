@@ -14,17 +14,19 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
   // 下拉刷新
   refresh({bool init = false}) async {
     try {
-      list.clear();
       List<T> data = await loadData();
       if (data.isEmpty) {
+        list.clear();
         setEmpty();
       } else {
         onCompleted(data);
+        list.clear();
         list.addAll(data);
         setIdle();
       }
     } catch (e, s) {
-      handleException(e, s);
+      if (init) list.clear();
+      setError(e, s);
     }
   }
 
