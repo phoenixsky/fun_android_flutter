@@ -31,18 +31,14 @@ class _ProviderWidgetState<T extends ChangeNotifier>
   @override
   void initState() {
     model = widget.model;
-
-    if (widget.onModelReady != null) {
-      widget.onModelReady(model);
-    }
-
+    widget.onModelReady?.call(model);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<T>(
-      builder: (context) => model,
+    return ChangeNotifierProvider<T>.value(
+      value: model,
       child: Selector<T,S>(
         selector: widget.selector,
         builder:widget.builder,
