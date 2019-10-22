@@ -40,11 +40,7 @@ addFavourites(BuildContext context,
       }
     }
   } else if (model.error) {
-    //失败
-//    showToast(S.of(context).loadFailed);
-    showToast(model.viewStateError.isNetworkError
-        ? S.of(context).viewStateMessageNetworkError
-        : model.errorMessage);
+    model.showErrorMessage(context);
 
   } else {
     if (playAnim) {
