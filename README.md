@@ -222,7 +222,7 @@
 
 # 寻找组织
 * Fun Flutter微信交流群  
-    ![](https://user-gold-cdn.xitu.io/2019/10/15/16dcf5f9d74f3fc2?w=260&h=337&f=png&s=64303)
+    ![](https://user-gold-cdn.xitu.io/2019/10/22/16df192896d3a9c1?w=260&h=336&f=png&s=54678)
 
 # 作者的话
 
