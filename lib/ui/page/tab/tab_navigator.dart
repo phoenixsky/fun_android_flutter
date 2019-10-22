@@ -90,7 +90,6 @@ class _TabNavigatorState extends State<TabNavigator> {
   @override
   void initState() {
     checkAppUpdate(context);
-    fetchReviewState();
     super.initState();
   }
 }

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fun_android/config/app_store.dart';
 
 import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/config/resource_mananger.dart';
@@ -38,6 +39,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     _countdownController =
         AnimationController(vsync: this, duration: Duration(seconds: 4));
     _countdownController.forward();
+    fetchReviewState();
     super.initState();
   }
 
