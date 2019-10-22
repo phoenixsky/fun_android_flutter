@@ -27,7 +27,7 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel<T> {
   /// [init] 是否是第一次加载
   /// true:  Error时,需要跳转页面
   /// false: Error时,不需要跳转页面,直接给出提示
-  Future<List<T>> refresh({bool init = false, BuildContext context}) async {
+  Future<List<T>> refresh({bool init = false}) async {
     try {
       _currentPageNum = pageNumFirst;
       var data = await loadData(pageNum: pageNumFirst);
@@ -56,14 +56,6 @@ abstract class ViewStateRefreshListModel<T> extends ViewStateListModel<T> {
       if (init) list.clear();
       refreshController.refreshFailed();
       setError(e, s);
-      /// 弹出错误toast
-      if (context != null && list.isNotEmpty) {
-        var message = viewStateError.message;
-        if (viewStateError.isNetworkError) {
-          message = S.of(context).viewStateMessageNetworkError;
-        }
-        showToast(message,duration: Duration(seconds: 3), context: context);
-      }
       return null;
     }
   }

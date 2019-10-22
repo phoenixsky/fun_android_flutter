@@ -1,6 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:fun_android/config/net/api.dart';
-import 'package:fun_android/provider/view_state_model.dart';
 
 /// 页面状态类型
 enum ViewState {

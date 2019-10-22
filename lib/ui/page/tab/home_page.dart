@@ -84,7 +84,8 @@ class _HomePageState extends State<HomePage>
                       footer: RefresherFooter(),
                       enablePullDown: homeModel.list.isNotEmpty,
                       onRefresh: () async {
-                        await homeModel.refresh(context: context);
+                        await homeModel.refresh();
+                        homeModel.showErrorMessage(context);
                       },
                       onLoading: homeModel.loadMore,
                       enablePullUp: homeModel.list.isNotEmpty,

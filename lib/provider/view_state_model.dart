@@ -32,8 +32,6 @@ class ViewStateModel with ChangeNotifier {
 
   ViewStateError get viewStateError => _viewStateError;
 
-
-
   String get errorMessage => _viewStateError?.message;
 
   /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
@@ -75,6 +73,7 @@ class ViewStateModel with ChangeNotifier {
       e = e.error;
       if (e is UnAuthorizedException) {
         stackTrace = null;
+
         /// 已在onUnAuthorizedException中处理
         setUnAuthorized();
         return;
@@ -95,15 +94,17 @@ class ViewStateModel with ChangeNotifier {
   }
 
   /// 显示错误消息
-  showErrorMessage(context, {String networkErrorMessage}) {
-    var message = viewStateError.message;
-    if (viewStateError.isNetworkError) {
-      message =
-          networkErrorMessage ?? S.of(context).viewStateMessageNetworkError;
+  showErrorMessage(context, {String message}) {
+    if (viewStateError != null && message != null) {
+      if (viewStateError.isNetworkError) {
+        message ??= S.of(context).viewStateMessageNetworkError;
+      }else{
+        message ??= viewStateError.message;
+      }
+      Future.microtask(() {
+        showToast(message, context: context);
+      });
     }
-    Future.microtask((){
-      showToast(message, context: context);
-    });
   }
 
   @override
