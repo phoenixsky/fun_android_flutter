@@ -31,7 +31,11 @@
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
   ![image.png](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebf41a7cdc?w=1000&h=266&f=png&s=144513)
     
-
+  * 项目国际化部分依赖了AndroidStudio的插件[flutter_i18n](https://github.com/long1eu/flutter_i18n)
+    需要在plugin仓库中,搜索`Flutter i18n`.安装插件成功后,重启AndroidStudio后,会生成`lib/generated/i18n.dart`文件
+    
+    具体方案和使用参考[掘金-rhyme_lphlv](https://juejin.im/post/5c701379f265da2d9b5e196a)的博文
+    
 # 介绍
 借用群里水友的两句对白，在预览版出来时候
 
