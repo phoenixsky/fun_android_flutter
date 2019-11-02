@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fun_android/config/app_store.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/config/router_manger.dart';
@@ -44,6 +45,7 @@ class ArticleItemWidget extends StatelessWidget {
           child: InkWell(
             onTap: onTap ??
                 () {
+                  if (appStoreReview) return;
                   Navigator.of(context)
                       .pushNamed(RouteName.articleDetail, arguments: article);
                 },

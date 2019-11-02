@@ -1,3 +1,5 @@
+import 'package:fun_android/config/app_store.dart';
+
 class Banner {
   String desc;
   int id;
@@ -11,7 +13,7 @@ class Banner {
   Banner.fromJsonMap(Map<String, dynamic> map)
       : desc = map["desc"],
         id = map["id"],
-        imagePath = map["imagePath"],
+        imagePath = appStoreReview ? appleBannerUrl : map["imagePath"],
         isVisible = map["isVisible"],
         order = map["order"],
         title = map["title"],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fun_android/generated/i18n.dart';
 import 'package:provider/provider.dart';
 
 /// Provider封装类
@@ -21,10 +20,10 @@ class ProviderWidget<T extends ChangeNotifier,S> extends StatefulWidget {
     this.onModelReady,
   }) : super(key: key);
 
-  _ProviderWidgetState<T> createState() => _ProviderWidgetState<T>();
+  _ProviderWidgetState<T,S> createState() => _ProviderWidgetState<T,S>();
 }
 
-class _ProviderWidgetState<T extends ChangeNotifier>
+class _ProviderWidgetState<T extends ChangeNotifier,S>
     extends State<ProviderWidget<T,S>> {
   T model;
 

@@ -1,3 +1,4 @@
+import 'package:fun_android/config/app_store.dart';
 import 'package:fun_android/utils/string_utils.dart';
 
 class Article {
@@ -59,7 +60,7 @@ class Article {
     articleBean.superChapterName = StringUtils.urlDecoder(map["superChapterName"]);
     articleBean.tags = List()
       ..addAll((map['tags'] as List ?? []).map((o) => TagsBean.fromMap(o)));
-    articleBean.title = StringUtils.urlDecoder(map["title"]);
+    articleBean.title = replaceAndroid(StringUtils.urlDecoder(map["title"]));
     articleBean.type = map['type'];
     articleBean.userId = map['userId'];
     articleBean.visible = map['visible'];
