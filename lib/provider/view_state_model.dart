@@ -18,7 +18,9 @@ class ViewStateModel with ChangeNotifier {
   /// 子类可以在构造函数指定需要的页面状态
   /// FooModel():super(viewState:ViewState.busy);
   ViewStateModel({ViewState viewState})
-      : _viewState = viewState ?? ViewState.idle;
+      : _viewState = viewState ?? ViewState.idle {
+    debugPrint('ViewStateModel---constructor--->$runtimeType');
+  }
 
   ViewState get viewState => _viewState;
 
@@ -95,10 +97,10 @@ class ViewStateModel with ChangeNotifier {
 
   /// 显示错误消息
   showErrorMessage(context, {String message}) {
-    if (viewStateError != null && message != null) {
+    if (viewStateError != null || message != null) {
       if (viewStateError.isNetworkError) {
         message ??= S.of(context).viewStateMessageNetworkError;
-      }else{
+      } else {
         message ??= viewStateError.message;
       }
       Future.microtask(() {
@@ -122,6 +124,7 @@ class ViewStateModel with ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    debugPrint('view_state_model dispose -->$runtimeType');
     super.dispose();
   }
 }
