@@ -144,7 +144,7 @@ class _LoginTextFieldClearIconState extends State<LoginTextFieldClearIcon> {
   void initState() {
     notifier = ValueNotifier(widget.controller.text.isEmpty);
     widget.controller.addListener(() {
-      notifier.value = widget.controller.text.isEmpty;
+      if(mounted) notifier.value = widget.controller.text.isEmpty;
     });
     super.initState();
   }
