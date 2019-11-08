@@ -47,7 +47,8 @@ dependencies:
   oktoast: ^2.1.7
   pull_to_refresh: ^1.5.6
   flutter_swiper: ^1.1.6
-  cached_network_image: ^1.1.1
+#  cached_network_image: ^1.1.1
+  cached_network_image: ^2.0.0-rc.1
   # 类iOS侧滑菜单
   flutter_slidable: 0.5.3
   # 谁用谁闪亮
