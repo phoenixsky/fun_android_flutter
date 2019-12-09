@@ -226,7 +226,7 @@
 
 # 寻找组织
 * Fun Flutter微信交流群  
-    ![](https://user-gold-cdn.xitu.io/2019/11/29/16eb6a0c7739f2dd?w=300&h=389&f=jpeg&s=41482)
+    加入我微信（GitHub用户名）备注`fun flutter`，拉你进群 
 
 # 作者的话
 
