@@ -234,13 +234,11 @@ class UserListWidget extends StatelessWidget {
   }
 
   void switchDarkMode(BuildContext context) {
-    if (MediaQuery.of(context).platformBrightness ==
-        Brightness.dark) {
-      showToast("检测到系统为暗黑模式,已为你自动切换",position: ToastPosition.bottom);
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      showToast("检测到系统为暗黑模式,已为你自动切换", position: ToastPosition.bottom);
     } else {
       Provider.of<ThemeModel>(context).switchTheme(
-          userDarkMode:
-              Theme.of(context).brightness == Brightness.light);
+          userDarkMode: Theme.of(context).brightness == Brightness.light);
     }
   }
 }
@@ -269,7 +267,7 @@ class SettingThemeWidget extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       var model = Provider.of<ThemeModel>(context);
-                      var brightness = Theme.of(context).brightness;
+                      // var brightness = Theme.of(context).brightness;
                       model.switchTheme(color: color);
                     },
                     child: Container(
