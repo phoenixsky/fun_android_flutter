@@ -433,7 +433,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
 //    );
 
     Widget body;
-    switch(widget.delegate._currentBody) {
+    switch (widget.delegate._currentBody) {
       case _SearchBody.suggestions:
         body = KeyedSubtree(
           key: const ValueKey<_SearchBody>(_SearchBody.suggestions),
@@ -451,11 +451,13 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
     String routeName;
     switch (defaultTargetPlatform) {
       case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
         routeName = '';
         break;
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         routeName = searchFieldLabel;
+        break;
     }
 
     return Semantics(

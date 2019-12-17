@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    hide SliverAnimatedListState, SliverAnimatedList;
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fun_android/generated/i18n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
