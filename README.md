@@ -25,7 +25,7 @@
   ![](https://www.pgyer.com/app/qrcode/Ki0F)
 
 # 代码编译
-  * Flutter SDK (Channel dev, v1.10.4)
+  * 当前代码的Flutter SDK (Channel stable, v1.12.13+hotfix.5).因flutter还在高速发展中,BreakingChange比较多.如有编译中代码错误,核对下sdk版本号
   * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
       > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
@@ -51,7 +51,17 @@
 
 # 更新
 
-## V0.1.12 `2019-10-21` (未发布)
+## V0.1.13 `2019-12-20` (未打包)
+- 修复之前未上传签名文件导致编译出错的问题
+- 更新SDK版本为`stable, v1.12.13+hotfix.5`
+- 更新Provider版本到3.2.0
+- 更新Cache_Network_Image到2.0.0RC
+- 隐藏部分重写导致import冲突的widget
+- 增加部分ignore配置
+- 感谢[liyujiang-gzu](https://github.com/liyujiang-gzu)的pr 
+
+
+## V0.1.12 `2019-10-21` (未打包)
 - 下拉刷新列表在加载失败时,如果当前页没有数据显示错误提示页,有数据则弹出toast提示
 
 ## V0.1.11 `2019-10-17`
@@ -230,7 +240,7 @@
 
 # 作者的话
 
-*  坐标上海,打算找Flutter方向的工作.4年Android开发经验.
+*  坐标上海,打算找Flutter方向的工作.有意向可以联系我
 
 # 感谢
 

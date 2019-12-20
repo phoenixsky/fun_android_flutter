@@ -29,7 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `Flutter`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
@@ -49,7 +49,7 @@ EXTERNAL SOURCES:
   device_info:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: Flutter
   flutter_webview_plugin:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   launch_review:
@@ -86,6 +86,6 @@ SPEC CHECKSUMS:
   url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
   webview_flutter: 1aa7604e6cdb451a9b7ed2c37d5454c0b440246b
 
-PODFILE CHECKSUM: 7fb83752f59ead6285236625b82473f90b1cb932
+PODFILE CHECKSUM: 3dbe063e9c90a5d7c9e4e76e70a821b9e2c1d271
 
 COCOAPODS: 1.8.3

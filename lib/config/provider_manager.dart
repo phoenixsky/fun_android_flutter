@@ -30,7 +30,7 @@ List<SingleChildCloneableWidget> dependentServices = [
   ChangeNotifierProxyProvider<GlobalFavouriteStateModel, UserModel>(
     create: null,
     update: (context, globalFavouriteStateModel, userModel) =>
-        userModel ??
+    userModel ??
         UserModel(globalFavouriteStateModel: globalFavouriteStateModel),
   )
 ];

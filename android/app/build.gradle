@@ -25,11 +25,6 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
-// 签名文件并没有开源,在这里可以替换你自己的release签名,或者将其注释掉,使用debug签名
-def keystorePropertiesFile = rootProject.file("signing/key.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 android {
     compileSdkVersion 28
 
@@ -47,23 +42,25 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            // 签名文件并没有开源,可以直接在${project}/android/目录下创建signing文件夹
+            // 根据`keystoreProperties`自行配置文件
+            def keystorePropertiesFile = rootProject.file("signing/key.properties")
+            if (keystorePropertiesFile.exists()) {
+                def keystoreProperties = new Properties()
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
         }
     }
     buildTypes {
         // 签名文件并没有上传,可以使用自己的签名文件或者移除一下指令使用默认的签名
         release {
             signingConfig signingConfigs.release
-//            debuggable true
-//            minifyEnabled true
-//            useProguard true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.release
         }
     }
 
