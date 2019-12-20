@@ -1,7 +1,7 @@
 name: fun_android
 description: Fun or Flutter for Android
 
-version: 0.1.11+1
+version: 0.1.13+1
 
 environment:
   sdk: ">=2.4.0 <3.0.0"
@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^0.1.2
 
   # State
-  provider: ^3.1.0
+  provider: ^3.2.0
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES

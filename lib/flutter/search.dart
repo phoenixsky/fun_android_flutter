@@ -456,6 +456,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         routeName = searchFieldLabel;
+        break;
     }
 
     return Semantics(

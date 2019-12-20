@@ -34,7 +34,7 @@ class SearchSuggestions<T> extends StatelessWidget {
                     Provider<TextStyle>.value(
                         value: Theme.of(context).textTheme.body1),
                     ProxyProvider<TextStyle, Color>(
-                      builder: (context, textStyle, _) =>
+                      update: (context, textStyle, _) =>
                           textStyle.color.withOpacity(0.5),
                     ),
                   ],

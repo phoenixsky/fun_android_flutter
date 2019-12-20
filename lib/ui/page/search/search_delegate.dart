@@ -72,9 +72,9 @@ class DefaultSearchDelegate extends SearchDelegate {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<SearchHistoryModel>(
-            builder: (_) => _searchHistoryModel),
+            create: (_) => _searchHistoryModel),
         ChangeNotifierProvider<SearchHotKeyModel>(
-            builder: (_) => _searchHotKeyModel),
+            create: (_) => _searchHotKeyModel),
       ],
       child: SearchSuggestions(delegate: this),
     );

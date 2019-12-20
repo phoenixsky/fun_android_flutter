@@ -13,13 +13,13 @@ List<SingleChildCloneableWidget> providers = [
 /// 独立的model
 List<SingleChildCloneableWidget> independentServices = [
   ChangeNotifierProvider<ThemeModel>(
-    builder: (context) => ThemeModel(),
+    create: (context) => ThemeModel(),
   ),
   ChangeNotifierProvider<LocaleModel>(
-    builder: (context) => LocaleModel(),
+    create: (context) => LocaleModel(),
   ),
   ChangeNotifierProvider<GlobalFavouriteStateModel>(
-    builder: (context) => GlobalFavouriteStateModel(),
+    create: (context) => GlobalFavouriteStateModel(),
   )
 ];
 
@@ -28,8 +28,9 @@ List<SingleChildCloneableWidget> independentServices = [
 /// UserModel依赖globalFavouriteStateModel
 List<SingleChildCloneableWidget> dependentServices = [
   ChangeNotifierProxyProvider<GlobalFavouriteStateModel, UserModel>(
-    builder: (context, globalFavouriteStateModel, userModel) =>
-        userModel ??
+    create: null,
+    update: (context, globalFavouriteStateModel, userModel) =>
+    userModel ??
         UserModel(globalFavouriteStateModel: globalFavouriteStateModel),
   )
 ];
