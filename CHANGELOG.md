@@ -1,8 +1,17 @@
 # 编译环境
-> Channel dev, v1.10.4
+> Channel stable, v1.12.13+hotfix.5
 
 
 # 最近更新
+
+## V0.1.13 `2019-12-20` (未打包)
+- 修复之前未上传签名文件导致编译出错的问题
+- 更新SDK版本为`stable, v1.12.13+hotfix.5`
+- 更新Provider版本到3.2.0
+- 更新Cache_Network_Image到2.0.0RC
+- 隐藏部分重写导致import冲突的widget
+- 增加部分ignore配置
+- 感谢[liyujiang-gzu](https://github.com/liyujiang-gzu)的pr 
 
 ## V0.1.12 `2019-10-21`
 - 下拉刷新列表在加载失败时,如果当前页没有数据显示错误提示页,有数据则弹出toast提示
