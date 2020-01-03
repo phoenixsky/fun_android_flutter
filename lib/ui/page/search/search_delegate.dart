@@ -71,12 +71,17 @@ class DefaultSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SearchHistoryModel>(
-            create: (_) => _searchHistoryModel),
-        ChangeNotifierProvider<SearchHotKeyModel>(
-            create: (_) => _searchHotKeyModel),
+        ChangeNotifierProvider<SearchHistoryModel>.value(value: _searchHistoryModel),
+        ChangeNotifierProvider<SearchHotKeyModel>.value(value: _searchHotKeyModel),
       ],
       child: SearchSuggestions(delegate: this),
     );
+  }
+
+  @override
+  void close(BuildContext context, result) {
+    _searchHistoryModel.dispose();
+    _searchHotKeyModel.dispose();
+    super.close(context, result);
   }
 }
