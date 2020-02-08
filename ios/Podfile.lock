@@ -42,7 +42,7 @@ DEPENDENCIES:
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - FMDB
 
 EXTERNAL SOURCES:
@@ -88,4 +88,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3dbe063e9c90a5d7c9e4e76e70a821b9e2c1d271
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

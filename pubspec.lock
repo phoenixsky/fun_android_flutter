@@ -261,6 +261,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.8"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.4"
   oktoast:
     dependency: "direct main"
     description:
@@ -316,7 +323,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "3.2.0"
+    version: "4.0.3"
   pull_to_refresh:
     dependency: "direct main"
     description:
@@ -464,4 +471,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">2.4.0 <3.0.0"
-  flutter: ">=1.10.15-pre.148 <2.0.0"
+  flutter: ">=1.12.1 <2.0.0"
