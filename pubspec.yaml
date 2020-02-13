@@ -94,3 +94,5 @@ flutter:
     - assets/animations/
     - CHANGELOG.md
 
+flutter_intl:
+  enabled: true

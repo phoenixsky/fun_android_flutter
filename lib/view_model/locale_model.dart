@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/storage_manager.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 
 class LocaleModel extends ChangeNotifier {
 //  static const localeNameList = ['auto', '中文', 'English'];

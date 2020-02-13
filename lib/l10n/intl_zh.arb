@@ -66,7 +66,7 @@
   "appUpdateActionDownloadAgain": "重新下载",
   "appUpdateActionInstallApk": "直接安装",
   "appUpdateUpdate": "版本更新",
-  "appUpdateFoundNewVersion": "发现新版本$version,是否更新?",
+  "appUpdateFoundNewVersion": "发现新版本{version},是否更新?",
   "appUpdateDownloadCanceled": "下载已取消",
   "appUpdateDoubleBackTips": "再次点击返回键,取消下载"
 }

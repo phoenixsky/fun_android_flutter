@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/page/tab/home_second_floor_page.dart';
 import 'package:fun_android/ui/widget/activity_indicator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

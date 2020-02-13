@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/locale_model.dart';
 import 'package:fun_android/view_model/setting_model.dart';

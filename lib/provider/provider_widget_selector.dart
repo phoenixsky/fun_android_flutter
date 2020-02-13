@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 /// Provider封装类

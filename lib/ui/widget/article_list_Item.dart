@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/helper/favourite_helper.dart';
 import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/model/article.dart';
