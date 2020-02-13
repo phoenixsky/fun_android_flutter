@@ -6,7 +6,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/config/resource_mananger.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 
 class SplashPage extends StatefulWidget {
   @override

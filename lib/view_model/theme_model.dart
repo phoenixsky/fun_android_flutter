@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/helper/theme_helper.dart';
 import 'package:fun_android/config/storage_manager.dart';
 

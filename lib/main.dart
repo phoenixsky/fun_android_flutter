@@ -11,7 +11,7 @@ import 'package:fun_android/config/storage_manager.dart';
 
 import 'config/provider_manager.dart';
 import 'config/router_manger.dart';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'view_model/locale_model.dart';
 import 'view_model/theme_model.dart';
 

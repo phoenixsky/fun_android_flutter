@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/net/pgyer_api.dart';
-import 'package:fun_android/generated/i18n.dart';
+import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/view_model/app_model.dart';
 import 'package:oktoast/oktoast.dart';
