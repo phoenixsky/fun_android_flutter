@@ -31,7 +31,7 @@
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
   ![image.png](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebf41a7cdc?w=1000&h=266&f=png&s=144513)
     
-  * 项目国际化方案从[flutter_i18n](https://github.com/long1eu/flutter_i18n)迁移到[flutter_intl](https://flutter.cn/docs/development/accessibility-and-localization/internationalization)方案
+  * 项目国际化方案从[flutter_i18n](https://github.com/long1eu/flutter_i18n)迁移到[flutter_intl](https://flutter.cn/docs/development/accessibility-and-localization/internationalization)方案,使用说明见[FunFlutter系列之国际化Intl方案 \- 掘金](https://juejin.im/post/5e4536d0e51d4526ef5f85a9)
 
     
 # 介绍
