@@ -25,7 +25,7 @@
   ![](https://www.pgyer.com/app/qrcode/Ki0F)
 
 # 代码编译
-  * 当前代码的Flutter SDK (Channel stable, v1.12.13+hotfix.7).因flutter还在高速发展中,BreakingChange比较多.如有编译中代码错误,核对下sdk版本号
+  * 当前代码的Flutter SDK (Channel stable, v1.12.13+hotfix.8).因flutter还在高速发展中,BreakingChange比较多.如有编译中代码错误,核对下sdk版本号
   * 如果要查看运行效果,一定要使用Release模式,流畅程度差距非常大
       > Flutter的`Debug`和`Release`的编译模式不同,下分别是 `JIT` 和 `AOT`.`Debug`模式支持`hot reload`.
   * iOS运行在splash页面卡住,需要检查当前的scheme,如果为`release`,需在命令行执行`flutter build ios`
@@ -50,8 +50,9 @@
 # 更新
 
 ## V0.1.14 `2020-02-13` (未打包)
+- 更新SDK版本为`stable, v1.12.13+hotfix.8`
 - 适配Provider4.x
-- 迁移国际化方案到`flutter_intl`
+- 迁移国际化方案到`flutter_intl`,使用说明见[FunFlutter系列之国际化Intl方案 \- 掘金](https://juejin.im/post/5e4536d0e51d4526ef5f85a9)
 
 ## V0.1.13 `2019-12-20` (未打包)
 - 修复之前未上传签名文件导致编译出错的问题
