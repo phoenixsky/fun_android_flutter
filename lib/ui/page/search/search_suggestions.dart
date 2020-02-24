@@ -68,7 +68,7 @@ class _SearchHotKeysWidgetState extends State<SearchHotKeysWidget> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      Provider.of<SearchHotKeyModel>(context).initData();
+      Provider.of<SearchHotKeyModel>(context,listen: false).initData();
     });
     super.initState();
   }
@@ -141,7 +141,7 @@ class _SearchHistoriesWidgetState extends State<SearchHistoriesWidget> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((callback) {
-      Provider.of<SearchHistoryModel>(context).initData();
+      Provider.of<SearchHistoryModel>(context,listen: false).initData();
     });
     super.initState();
   }
