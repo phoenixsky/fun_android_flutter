@@ -49,6 +49,11 @@
 
 # 更新
 
+## V0.1.15 `2020-02-24` (未打包)
+- 优化ViewStateError
+- ViewState状态重命名
+- 升级部分依赖库
+
 ## V0.1.14 `2020-02-13` (未打包)
 - 更新SDK版本为`stable, v1.12.13+hotfix.8`
 - 适配Provider4.x

@@ -183,7 +183,7 @@ packages:
       name: flutter_webview_plugin
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.8"
+    version: "0.3.10+1"
   html:
     dependency: transitive
     description:
@@ -274,7 +274,7 @@ packages:
       name: oktoast
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.1+1"
   open_file:
     dependency: "direct main"
     description:
@@ -461,7 +461,7 @@ packages:
       name: webview_flutter
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.3.13"
+    version: "0.3.19+8"
   xml:
     dependency: transitive
     description:
@@ -471,4 +471,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">2.4.0 <3.0.0"
-  flutter: ">=1.12.1 <2.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"

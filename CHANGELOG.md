@@ -4,6 +4,16 @@
 
 # 最近更新
 
+## V0.1.15 `2020-02-24` (未打包)
+- 优化ViewStateError
+- ViewState状态重命名
+- 升级部分依赖库
+
+## V0.1.14 `2020-02-13` (未打包)
+- 更新SDK版本为`stable, v1.12.13+hotfix.8`
+- 适配Provider4.x
+- 迁移国际化方案到`flutter_intl`,使用说明见[FunFlutter系列之国际化Intl方案 \- 掘金](https://juejin.im/post/5e4536d0e51d4526ef5f85a9)
+
 ## V0.1.13 `2019-12-20` (未打包)
 - 修复之前未上传签名文件导致编译出错的问题
 - 更新SDK版本为`stable, v1.12.13+hotfix.5`

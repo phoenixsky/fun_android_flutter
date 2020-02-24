@@ -1,7 +1,7 @@
 name: fun_android
 description: Fun or Flutter for Android
 
-version: 0.1.13+1
+version: 0.1.15+1
 
 environment:
   sdk: ">=2.4.0 <3.0.0"
@@ -18,8 +18,8 @@ dependencies:
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
-  webview_flutter: ^0.3.13
-  flutter_webview_plugin: ^0.3.8
+  webview_flutter: ^0.3.19
+  flutter_webview_plugin: ^0.3.10
   device_info: ^0.4.0+1
   package_info: ^0.4.0+6
   quiver: ^2.0.5
@@ -44,7 +44,7 @@ dependencies:
   #  crypto: ^2.0.6
 
   # UI
-  oktoast: ^2.1.7
+  oktoast: ^2.3.1
   pull_to_refresh: ^1.5.6
   flutter_swiper: ^1.1.6
 #  cached_network_image: ^1.1.1
