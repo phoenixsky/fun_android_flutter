@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' hide SliverAnimatedListState,SliverAnimatedList;
+import 'package:flutter/material.dart'
+    hide SliverAnimatedListState, SliverAnimatedList;
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
@@ -38,25 +39,28 @@ class _FavouriteListPageState extends State<FavouriteListPage> {
         onModelReady: (model) async {
           await model.initData();
         },
-        builder: (context, model, child) {
+        builder: (context, FavouriteListModel model, child) {
           if (model.busy) {
             return SkeletonList(
               builder: (context, index) => ArticleSkeletonItem(),
             );
-          } else if (model.error && model.list.isEmpty) {
-            return ViewStateErrorWidget(
-                error: model.viewStateError, onPressed: model.initData);
           } else if (model.empty) {
             return ViewStateEmptyWidget(onPressed: model.initData);
-          } else if (model.unAuthorized) {
-            return ViewStateUnAuthWidget(onPressed: () async {
-              var success =
-                  await Navigator.of(context).pushNamed(RouteName.login);
-              // 登录成功,获取数据,刷新页面
-              if (success ?? false) {
-                model.initData();
-              }
-            });
+          } else if (model.error) {
+            if (model.viewStateError.isUnauthorized) {
+              return ViewStateUnAuthWidget(onPressed: () async {
+                var success =
+                    await Navigator.of(context).pushNamed(RouteName.login);
+                // 登录成功,获取数据,刷新页面
+                if (success ?? false) {
+                  model.initData();
+                }
+              });
+            } else if (model.list.isEmpty) {
+              // 只有在页面上没有数据的时候才显示错误widget
+              return ViewStateErrorWidget(
+                  error: model.viewStateError, onPressed: model.initData);
+            }
           }
           return SmartRefresher(
               controller: model.refreshController,

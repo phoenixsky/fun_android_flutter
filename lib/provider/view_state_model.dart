@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_android/config/net/api.dart';
@@ -5,6 +7,8 @@ import 'package:fun_android/generated/l10n.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'view_state.dart';
+
+export 'view_state.dart';
 
 class ViewStateModel with ChangeNotifier {
   /// 防止页面销毁后,异步任务才完成,导致报错
@@ -22,6 +26,7 @@ class ViewStateModel with ChangeNotifier {
     debugPrint('ViewStateModel---constructor--->$runtimeType');
   }
 
+  /// ViewState
   ViewState get viewState => _viewState;
 
   set viewState(ViewState viewState) {
@@ -30,14 +35,14 @@ class ViewStateModel with ChangeNotifier {
     notifyListeners();
   }
 
+  /// ViewStateError
   ViewStateError _viewStateError;
 
   ViewStateError get viewStateError => _viewStateError;
 
-  String get errorMessage => _viewStateError?.message;
-
   /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
-
+  ///
+  /// get
   bool get busy => viewState == ViewState.busy;
 
   bool get idle => viewState == ViewState.idle;
@@ -46,8 +51,7 @@ class ViewStateModel with ChangeNotifier {
 
   bool get error => viewState == ViewState.error;
 
-  bool get unAuthorized => viewState == ViewState.unAuthorized;
-
+  /// set
   void setIdle() {
     viewState = ViewState.idle;
   }
@@ -60,30 +64,39 @@ class ViewStateModel with ChangeNotifier {
     viewState = ViewState.empty;
   }
 
-  void setUnAuthorized() {
-    viewState = ViewState.unAuthorized;
-    onUnAuthorizedException();
-  }
-
-  /// 未授权的回调
-  void onUnAuthorizedException() {}
-
   /// [e]分类Error和Exception两种
   void setError(e, stackTrace, {String message}) {
-    ErrorType errorType = ErrorType.defaultError;
-    if (e is DioError) {
-      e = e.error;
-      if (e is UnAuthorizedException) {
-        stackTrace = null;
+    ViewStateErrorType errorType = ViewStateErrorType.defaultError;
 
-        /// 已在onUnAuthorizedException中处理
-        setUnAuthorized();
-        return;
-      } else if (e is NotSuccessException) {
-        stackTrace = null;
-        message = e.message;
+    /// 见https://github.com/flutterchina/dio/blob/master/README-ZH.md#dioerrortype
+    if (e is DioError) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT ||
+          e.type == DioErrorType.SEND_TIMEOUT ||
+          e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        // timeout
+        errorType = ViewStateErrorType.networkTimeOutError;
+        message = e.error;
+      } else if (e.type == DioErrorType.RESPONSE) {
+        // incorrect status, such as 404, 503...
+        message = e.error;
+      } else if (e.type == DioErrorType.CANCEL) {
+        // to be continue...
+        message = e.error;
       } else {
-        errorType = ErrorType.networkError;
+        // dio将原error重新套了一层
+        e = e.error;
+        if (e is UnAuthorizedException) {
+          stackTrace = null;
+          errorType = ViewStateErrorType.unauthorizedError;
+        } else if (e is NotSuccessException) {
+          stackTrace = null;
+          message = e.message;
+        } else if (e is SocketException) {
+          errorType = ViewStateErrorType.networkTimeOutError;
+          message = e.message;
+        } else {
+          message = e.message;
+        }
       }
     }
     viewState = ViewState.error;
@@ -93,12 +106,15 @@ class ViewStateModel with ChangeNotifier {
       errorMessage: e.toString(),
     );
     printErrorStack(e, stackTrace);
+    onError(viewStateError);
   }
+
+  void onError(ViewStateError viewStateError) {}
 
   /// 显示错误消息
   showErrorMessage(context, {String message}) {
     if (viewStateError != null || message != null) {
-      if (viewStateError.isNetworkError) {
+      if (viewStateError.isNetworkTimeOut) {
         message ??= S.of(context).viewStateMessageNetworkError;
       } else {
         message ??= viewStateError.message;

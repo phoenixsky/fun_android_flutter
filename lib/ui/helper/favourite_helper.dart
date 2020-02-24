@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/config/router_manger.dart';
-import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/model/article.dart';
-import 'package:fun_android/provider/view_state.dart';
 import 'package:fun_android/ui/widget/favourite_animation.dart';
 import 'package:fun_android/view_model/favourite_model.dart';
 import 'package:fun_android/view_model/user_model.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 import 'dialog_helper.dart';
@@ -25,23 +22,23 @@ addFavourites(BuildContext context,
     Object tag: 'addFavourite',
     bool playAnim: true}) async {
   await model.collect(article);
-  //未登录
-  if (model.unAuthorized) {
-    if (await DialogHelper.showLoginDialog(context)) {
-      var success = await Navigator.pushNamed(context, RouteName.login);
-      if (success ?? false) {
-        //登录后,判断是否已经收藏
-        if (!Provider.of<UserModel>(context, listen: false)
-            .user
-            .collectIds
-            .contains(article.id)) {
-          addFavourites(context, article: article, model: model, tag: tag);
+  if (model.error) {
+    if (model.viewStateError.isUnauthorized) {
+      if (await DialogHelper.showLoginDialog(context)) {
+        var success = await Navigator.pushNamed(context, RouteName.login);
+        if (success ?? false) {
+          //登录后,判断是否已经收藏
+          if (!Provider.of<UserModel>(context, listen: false)
+              .user
+              .collectIds
+              .contains(article.id)) {
+            addFavourites(context, article: article, model: model, tag: tag);
+          }
         }
       }
+    } else {
+      model.showErrorMessage(context);
     }
-  } else if (model.error) {
-    model.showErrorMessage(context);
-
   } else {
     if (playAnim) {
       ///接口调用成功播放动画

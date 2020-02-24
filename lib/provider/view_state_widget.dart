@@ -75,6 +75,7 @@ class ViewStateWidget extends StatelessWidget {
   }
 }
 
+/// ErrorWidget
 class ViewStateErrorWidget extends StatelessWidget {
   final ViewStateError error;
   final String title;
@@ -102,20 +103,28 @@ class ViewStateErrorWidget extends StatelessWidget {
     var errorMessage = error.message;
     String defaultTextData = S.of(context).viewStateButtonRetry;
     switch (error.errorType) {
-      case ErrorType.networkError:
+      case ViewStateErrorType.networkTimeOutError:
         defaultImage = Transform.translate(
-          offset: Offset(-50,0),
+          offset: Offset(-50, 0),
           child: const Icon(IconFonts.pageNetworkError,
               size: 100, color: Colors.grey),
         );
         defaultTitle = S.of(context).viewStateMessageNetworkError;
-        errorMessage = '';// 网络异常移除message提示
+        // errorMessage = ''; // 网络异常移除message提示
         break;
-      case ErrorType.defaultError:
+      case ViewStateErrorType.defaultError:
         defaultImage =
             const Icon(IconFonts.pageError, size: 100, color: Colors.grey);
         defaultTitle = S.of(context).viewStateMessageError;
         break;
+
+      case ViewStateErrorType.unauthorizedError:
+        return ViewStateUnAuthWidget(
+          image: image,
+          message: message,
+          buttonText: buttonText,
+          onPressed: onPressed,
+        );
     }
 
     return ViewStateWidget(
@@ -128,6 +137,7 @@ class ViewStateErrorWidget extends StatelessWidget {
     );
   }
 }
+
 
 /// 页面无数据
 class ViewStateEmptyWidget extends StatelessWidget {
@@ -157,6 +167,7 @@ class ViewStateEmptyWidget extends StatelessWidget {
   }
 }
 
+
 /// 页面未授权
 class ViewStateUnAuthWidget extends StatelessWidget {
   final String message;
@@ -166,10 +177,10 @@ class ViewStateUnAuthWidget extends StatelessWidget {
 
   const ViewStateUnAuthWidget(
       {Key key,
-      this.image,
-      this.message,
-      this.buttonText,
-      @required this.onPressed})
+        this.image,
+        this.message,
+        this.buttonText,
+        @required this.onPressed})
       : super(key: key);
 
   @override
