@@ -58,7 +58,7 @@ class SettingPage extends StatelessWidget {
                       Text(S.of(context).settingFont),
                       Text(
                         ThemeModel.fontName(
-                            Provider.of<ThemeModel>(context).fontIndex,
+                            Provider.of<ThemeModel>(context,listen: false).fontIndex,
                             context),
                         style: Theme.of(context).textTheme.caption,
                       )
@@ -73,7 +73,7 @@ class SettingPage extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: ThemeModel.fontValueList.length,
                         itemBuilder: (context, index) {
-                          var model = Provider.of<ThemeModel>(context);
+                          var model = Provider.of<ThemeModel>(context,listen: false);
                           return RadioListTile(
                             value: index,
                             onChanged: (index) {

@@ -22,12 +22,12 @@ class SearchResults extends StatelessWidget {
         model.initData();
       },
       builder: (context, model, child) {
-        if (model.busy) {
+        if (model.isBusy) {
           return ViewStateBusyWidget();
-        } else if (model.error && model.list.isEmpty) {
+        } else if (model.isError && model.list.isEmpty) {
           return ViewStateErrorWidget(
               error: model.viewStateError, onPressed: model.initData);
-        } else if (model.empty) {
+        } else if (model.isEmpty) {
           return ViewStateEmptyWidget(onPressed: model.initData);
         }
         return SmartRefresher(

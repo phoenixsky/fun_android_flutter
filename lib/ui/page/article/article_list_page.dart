@@ -34,14 +34,14 @@ class _ArticleListPageState extends State<ArticleListPage>
       model: StructureListModel(widget.cid),
       onModelReady: (model) => model.initData(),
       builder: (context, model, child) {
-        if (model.busy) {
+        if (model.isBusy) {
           return SkeletonList(
             builder: (context, index) => ArticleSkeletonItem(),
           );
-        } else if (model.error && model.list.isEmpty) {
+        } else if (model.isError && model.list.isEmpty) {
           return ViewStateErrorWidget(
               error: model.viewStateError, onPressed: model.initData);
-        } else if (model.empty) {
+        } else if (model.isEmpty) {
           return ViewStateEmptyWidget(onPressed: model.initData);
         }
         return SmartRefresher(
