@@ -12,12 +12,14 @@ class FavouriteListModel extends ViewStateRefreshListModel<Article> {
 
   FavouriteListModel({this.loginModel});
 
-
   @override
-  void onUnAuthorizedException() {
-    super.onUnAuthorizedException();
-    loginModel.logout();
+  void onError(ViewStateError viewStateError) {
+    super.onError(viewStateError);
+    if (viewStateError.isUnauthorized) {
+      loginModel.logout();
+    }
   }
+
 
   @override
   Future<List<Article>> loadData({int pageNum}) async {
@@ -51,7 +53,7 @@ class FavouriteModel extends ViewStateModel {
       article.collect = !(article.collect ?? true);
       setIdle();
     } catch (e, s) {
-      setError(e,s);
+      setError(e, s);
     }
   }
 }
@@ -95,7 +97,7 @@ class GlobalFavouriteStateModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  contains(id){
+  contains(id) {
     return _map.containsKey(id);
   }
 
