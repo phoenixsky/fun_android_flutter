@@ -32,15 +32,15 @@ class CoinRecordListPage extends StatelessWidget {
         model: CoinRecordListModel(),
         onModelReady: (model) => model.initData(),
         builder: (context, model, child) {
-          if (model.busy) {
+          if (model.isBusy) {
             return SkeletonList(
               length: 11,
               builder: (context, index) => CoinRecordItemSkeleton(),
             );
-          } else if (model.error && model.list.isEmpty) {
+          } else if (model.isError && model.list.isEmpty) {
             return ViewStateErrorWidget(
                 error: model.viewStateError, onPressed: model.initData);
-          } else if (model.empty) {
+          } else if (model.isEmpty) {
             return ViewStateEmptyWidget(onPressed: model.initData);
           }
           return SmartRefresher(

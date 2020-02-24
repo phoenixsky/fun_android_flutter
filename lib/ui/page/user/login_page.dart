@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/l10n.dart';
 
-import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/provider/provider_widget.dart';
@@ -64,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context, model, child) {
                           return Form(
                             onWillPop: () async {
-                              return !model.busy;
+                              return !model.isBusy;
                             },
                             child: child,
                           );
@@ -117,7 +116,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var model = Provider.of<LoginModel>(context);
     return LoginButtonWidget(
-      child: model.busy
+      child: model.isBusy
           ? ButtonProgressIndicator()
           : Text(
               S.of(context).signIn,
@@ -126,7 +125,7 @@ class LoginButton extends StatelessWidget {
                   .title
                   .copyWith(wordSpacing: 6),
             ),
-      onPressed: model.busy
+      onPressed: model.isBusy
           ? null
           : () {
               var formState = Form.of(context);

@@ -192,7 +192,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
       builder: (_, favouriteModel, __) => GestureDetector(
           behavior: HitTestBehavior.opaque, //否则padding的区域点击无效
           onTap: () async {
-            if (!favouriteModel.busy) {
+            if (!favouriteModel.isBusy) {
               addFavourites(context,
                   article: article, model: favouriteModel, tag: uniqueKey);
             }
@@ -202,7 +202,7 @@ class ArticleFavouriteWidget extends StatelessWidget {
               child: Hero(
                 tag: uniqueKey,
                 child: ScaleAnimatedSwitcher(
-                    child: favouriteModel.busy
+                    child: favouriteModel.isBusy
                         ? SizedBox(
                             height: 24,
                             width: 24,

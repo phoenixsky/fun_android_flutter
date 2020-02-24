@@ -51,10 +51,10 @@ class _ProjectPageState extends State<ProjectPage>
             model.initData();
           },
           builder: (context, model, child) {
-            if (model.busy) {
+            if (model.isBusy) {
               return ViewStateBusyWidget();
             }
-            if (model.error) {
+            if (model.isError) {
               return ViewStateErrorWidget(error: model.viewStateError, onPressed: model.initData);
             }
 

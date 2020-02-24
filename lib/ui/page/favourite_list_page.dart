@@ -40,13 +40,13 @@ class _FavouriteListPageState extends State<FavouriteListPage> {
           await model.initData();
         },
         builder: (context, FavouriteListModel model, child) {
-          if (model.busy) {
+          if (model.isBusy) {
             return SkeletonList(
               builder: (context, index) => ArticleSkeletonItem(),
             );
-          } else if (model.empty) {
+          } else if (model.isEmpty) {
             return ViewStateEmptyWidget(onPressed: model.initData);
-          } else if (model.error) {
+          } else if (model.isError) {
             if (model.viewStateError.isUnauthorized) {
               return ViewStateUnAuthWidget(onPressed: () async {
                 var success =

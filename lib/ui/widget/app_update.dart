@@ -22,10 +22,10 @@ class AppUpdateButton extends StatelessWidget {
       model: AppUpdateModel(),
       builder: (_, model, __) => CupertinoButton(
         color: Theme.of(context).accentColor,
-        child: model.busy
+        child: model.isBusy
             ? ButtonProgressIndicator()
             : Text(S.of(context).appUpdateCheckUpdate),
-        onPressed: model.busy
+        onPressed: model.isBusy
             ? null
             : () async {
                 AppUpdateInfo appUpdateInfo = await model.checkUpdate();

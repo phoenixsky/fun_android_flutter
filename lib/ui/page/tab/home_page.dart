@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage>
               context: context,
               removeTop: false,
               child: Builder(builder: (_) {
-                if (homeModel.error && homeModel.list.isEmpty) {
+                if (homeModel.isError && homeModel.list.isEmpty) {
                   return AnnotatedRegion<SystemUiOverlayStyle>(
                       value: StatusBarUtils.systemUiOverlayStyle(context),
                       child: ViewStateErrorWidget(
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage>
                             // 加载中并且亮色模式下,状态栏文字为黑色
                             brightness: Theme.of(context).brightness ==
                                         Brightness.light &&
-                                    homeModel.busy
+                                    homeModel.isBusy
                                 ? Brightness.light
                                 : Brightness.dark,
                             actions: <Widget>[
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage>
                             expandedHeight: bannerHeight,
                             pinned: true,
                           ),
-                          if (homeModel.empty)
+                          if (homeModel.isEmpty)
                             SliverToBoxAdapter(
                                 child: Padding(
                               padding: const EdgeInsets.only(top: 50),
@@ -183,7 +183,7 @@ class BannerWidget extends StatelessWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
       ),
       child: Consumer<HomeModel>(builder: (_, homeModel, __) {
-        if (homeModel.busy) {
+        if (homeModel.isBusy) {
           return CupertinoActivityIndicator();
         } else {
           var banners = homeModel?.banners ?? [];
@@ -237,7 +237,7 @@ class HomeArticleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeModel homeModel = Provider.of(context);
-    if (homeModel.busy) {
+    if (homeModel.isBusy) {
       return SliverToBoxAdapter(
         child: SkeletonList(
           builder: (context, index) => ArticleSkeletonItem(),

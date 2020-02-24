@@ -22,7 +22,7 @@ addFavourites(BuildContext context,
     Object tag: 'addFavourite',
     bool playAnim: true}) async {
   await model.collect(article);
-  if (model.error) {
+  if (model.isError) {
     if (model.viewStateError.isUnauthorized) {
       if (await DialogHelper.showLoginDialog(context)) {
         var success = await Navigator.pushNamed(context, RouteName.login);

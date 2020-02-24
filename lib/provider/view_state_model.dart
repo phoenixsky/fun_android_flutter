@@ -43,13 +43,13 @@ class ViewStateModel with ChangeNotifier {
   /// 以下变量是为了代码书写方便,加入的get方法.严格意义上讲,并不严谨
   ///
   /// get
-  bool get busy => viewState == ViewState.busy;
+  bool get isBusy => viewState == ViewState.busy;
 
-  bool get idle => viewState == ViewState.idle;
+  bool get isIdle => viewState == ViewState.idle;
 
-  bool get empty => viewState == ViewState.empty;
+  bool get isEmpty => viewState == ViewState.empty;
 
-  bool get error => viewState == ViewState.error;
+  bool get isError => viewState == ViewState.error;
 
   /// set
   void setIdle() {

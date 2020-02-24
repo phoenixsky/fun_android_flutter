@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fun_android/generated/l10n.dart';
 
-import 'package:oktoast/oktoast.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/button_progress_indicator.dart';
 import 'package:fun_android/view_model/register_model.dart';
@@ -52,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           model: RegisterModel(),
                           builder: (context, model, child) => Form(
                                 onWillPop: () async {
-                                  return !model.busy;
+                                  return !model.isBusy;
                                 },
                                 child: LoginFormContainer(
                                   child: Column(
@@ -117,7 +116,7 @@ class RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginButtonWidget(
-      child: model.busy
+      child: model.isBusy
           ? ButtonProgressIndicator()
           : Text(
               S.of(context).signUp,
@@ -126,7 +125,7 @@ class RegisterButton extends StatelessWidget {
                   .title
                   .copyWith(wordSpacing: 6),
             ),
-      onPressed: model.busy
+      onPressed: model.isBusy
           ? null
           : () {
               if (Form.of(context).validate()) {
