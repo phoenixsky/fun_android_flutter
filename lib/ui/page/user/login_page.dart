@@ -32,6 +32,8 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
+    _pwdFocus.unfocus();
+    _pwdFocus.dispose();
     super.dispose();
   }
 
