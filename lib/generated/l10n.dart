@@ -8,18 +8,24 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
-  S(this.localeName);
+  S();
+  
+  static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S(localeName);
+      S.current = S();
+      
+      return S.current;
     });
   } 
 
@@ -27,8 +33,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  final String localeName;
-
+  /// `Fun Android`
   String get appName {
     return Intl.message(
       'Fun Android',
@@ -38,6 +43,7 @@ class S {
     );
   }
 
+  /// `Confirm`
   String get actionConfirm {
     return Intl.message(
       'Confirm',
@@ -47,6 +53,7 @@ class S {
     );
   }
 
+  /// `Cancel`
   String get actionCancel {
     return Intl.message(
       'Cancel',
@@ -56,6 +63,7 @@ class S {
     );
   }
 
+  /// `Load Failed`
   String get viewStateMessageError {
     return Intl.message(
       'Load Failed',
@@ -65,6 +73,7 @@ class S {
     );
   }
 
+  /// `Load Failed,Check network `
   String get viewStateMessageNetworkError {
     return Intl.message(
       'Load Failed,Check network ',
@@ -74,6 +83,7 @@ class S {
     );
   }
 
+  /// `Nothing Found`
   String get viewStateMessageEmpty {
     return Intl.message(
       'Nothing Found',
@@ -83,6 +93,7 @@ class S {
     );
   }
 
+  /// `Not sign in yet`
   String get viewStateMessageUnAuth {
     return Intl.message(
       'Not sign in yet',
@@ -92,6 +103,7 @@ class S {
     );
   }
 
+  /// `Refresh`
   String get viewStateButtonRefresh {
     return Intl.message(
       'Refresh',
@@ -101,6 +113,7 @@ class S {
     );
   }
 
+  /// `Retry`
   String get viewStateButtonRetry {
     return Intl.message(
       'Retry',
@@ -110,6 +123,7 @@ class S {
     );
   }
 
+  /// `Sign In`
   String get viewStateButtonLogin {
     return Intl.message(
       'Sign In',
@@ -119,6 +133,7 @@ class S {
     );
   }
 
+  /// `release to enter second floor`
   String get refreshTwoLevel {
     return Intl.message(
       'release to enter second floor',
@@ -128,6 +143,7 @@ class S {
     );
   }
 
+  /// `Retry`
   String get retry {
     return Intl.message(
       'Retry',
@@ -137,6 +153,7 @@ class S {
     );
   }
 
+  /// `Skip`
   String get splashSkip {
     return Intl.message(
       'Skip',
@@ -146,6 +163,7 @@ class S {
     );
   }
 
+  /// `Home`
   String get tabHome {
     return Intl.message(
       'Home',
@@ -155,6 +173,7 @@ class S {
     );
   }
 
+  /// `Project`
   String get tabProject {
     return Intl.message(
       'Project',
@@ -164,6 +183,7 @@ class S {
     );
   }
 
+  /// `Structure`
   String get tabStructure {
     return Intl.message(
       'Structure',
@@ -173,6 +193,7 @@ class S {
     );
   }
 
+  /// `Me`
   String get tabUser {
     return Intl.message(
       'Me',
@@ -182,6 +203,7 @@ class S {
     );
   }
 
+  /// `Setting`
   String get setting {
     return Intl.message(
       'Setting',
@@ -191,6 +213,7 @@ class S {
     );
   }
 
+  /// `Language`
   String get settingLanguage {
     return Intl.message(
       'Language',
@@ -200,6 +223,7 @@ class S {
     );
   }
 
+  /// `System Font`
   String get settingFont {
     return Intl.message(
       'System Font',
@@ -209,6 +233,7 @@ class S {
     );
   }
 
+  /// `Sign Out`
   String get logout {
     return Intl.message(
       'Sign Out',
@@ -218,6 +243,7 @@ class S {
     );
   }
 
+  /// `Favorites`
   String get favourites {
     return Intl.message(
       'Favorites',
@@ -227,6 +253,7 @@ class S {
     );
   }
 
+  /// `Dark Mode`
   String get darkMode {
     return Intl.message(
       'Dark Mode',
@@ -236,6 +263,7 @@ class S {
     );
   }
 
+  /// `Theme`
   String get theme {
     return Intl.message(
       'Theme',
@@ -245,6 +273,7 @@ class S {
     );
   }
 
+  /// `About`
   String get about {
     return Intl.message(
       'About',
@@ -254,6 +283,7 @@ class S {
     );
   }
 
+  /// `Close`
   String get close {
     return Intl.message(
       'Close',
@@ -263,6 +293,7 @@ class S {
     );
   }
 
+  /// `FeedBack`
   String get feedback {
     return Intl.message(
       'FeedBack',
@@ -272,6 +303,7 @@ class S {
     );
   }
 
+  /// `Can't find mail app,please github issues`
   String get githubIssue {
     return Intl.message(
       'Can\'t find mail app,please github issues',
@@ -281,6 +313,7 @@ class S {
     );
   }
 
+  /// `Auto`
   String get autoBySystem {
     return Intl.message(
       'Auto',
@@ -290,6 +323,7 @@ class S {
     );
   }
 
+  /// `ZCOOL KuaiLe`
   String get fontKuaiLe {
     return Intl.message(
       'ZCOOL KuaiLe',
@@ -299,6 +333,7 @@ class S {
     );
   }
 
+  /// `not empty`
   String get fieldNotNull {
     return Intl.message(
       'not empty',
@@ -308,6 +343,7 @@ class S {
     );
   }
 
+  /// `Username`
   String get userName {
     return Intl.message(
       'Username',
@@ -317,6 +353,7 @@ class S {
     );
   }
 
+  /// `Password`
   String get password {
     return Intl.message(
       'Password',
@@ -326,6 +363,7 @@ class S {
     );
   }
 
+  /// `Sign Up`
   String get toSignUp {
     return Intl.message(
       'Sign Up',
@@ -335,6 +373,7 @@ class S {
     );
   }
 
+  /// `Sign Up`
   String get signUp {
     return Intl.message(
       'Sign Up',
@@ -344,6 +383,7 @@ class S {
     );
   }
 
+  /// `Confirm Password`
   String get rePassword {
     return Intl.message(
       'Confirm Password',
@@ -353,6 +393,7 @@ class S {
     );
   }
 
+  /// `The two passwords differ`
   String get twoPwdDifferent {
     return Intl.message(
       'The two passwords differ',
@@ -362,6 +403,7 @@ class S {
     );
   }
 
+  /// `Sign In`
   String get toSignIn {
     return Intl.message(
       'Sign In',
@@ -371,6 +413,7 @@ class S {
     );
   }
 
+  /// `Sign In`
   String get signIn {
     return Intl.message(
       'Sign In',
@@ -380,6 +423,7 @@ class S {
     );
   }
 
+  /// `No Account ? `
   String get noAccount {
     return Intl.message(
       'No Account ? ',
@@ -389,6 +433,7 @@ class S {
     );
   }
 
+  /// `My favourites`
   String get myFavourites {
     return Intl.message(
       'My favourites',
@@ -398,6 +443,7 @@ class S {
     );
   }
 
+  /// `More`
   String get signIn3thd {
     return Intl.message(
       'More',
@@ -407,6 +453,7 @@ class S {
     );
   }
 
+  /// `Hot`
   String get searchHot {
     return Intl.message(
       'Hot',
@@ -416,6 +463,7 @@ class S {
     );
   }
 
+  /// `Shake`
   String get searchShake {
     return Intl.message(
       'Shake',
@@ -425,6 +473,7 @@ class S {
     );
   }
 
+  /// `History`
   String get searchHistory {
     return Intl.message(
       'History',
@@ -434,6 +483,7 @@ class S {
     );
   }
 
+  /// `Clear`
   String get clear {
     return Intl.message(
       'Clear',
@@ -443,6 +493,7 @@ class S {
     );
   }
 
+  /// `Refresh`
   String get refresh {
     return Intl.message(
       'Refresh',
@@ -452,6 +503,7 @@ class S {
     );
   }
 
+  /// `UnLike`
   String get unLike {
     return Intl.message(
       'UnLike',
@@ -461,6 +513,7 @@ class S {
     );
   }
 
+  /// `Like`
   String get Like {
     return Intl.message(
       'Like',
@@ -470,6 +523,7 @@ class S {
     );
   }
 
+  /// `Share`
   String get share {
     return Intl.message(
       'Share',
@@ -479,6 +533,7 @@ class S {
     );
   }
 
+  /// `Wechat`
   String get wechatAccount {
     return Intl.message(
       'Wechat',
@@ -488,6 +543,7 @@ class S {
     );
   }
 
+  /// `Rate`
   String get rate {
     return Intl.message(
       'Rate',
@@ -497,6 +553,7 @@ class S {
     );
   }
 
+  /// `Go to Sign In`
   String get needLogin {
     return Intl.message(
       'Go to Sign In',
@@ -506,6 +563,7 @@ class S {
     );
   }
 
+  /// `Load failed,retry later`
   String get loadFailed {
     return Intl.message(
       'Load failed,retry later',
@@ -515,6 +573,7 @@ class S {
     );
   }
 
+  /// `Remove`
   String get collectionRemove {
     return Intl.message(
       'Remove',
@@ -524,6 +583,7 @@ class S {
     );
   }
 
+  /// `Top`
   String get article_tag_top {
     return Intl.message(
       'Top',
@@ -533,6 +593,7 @@ class S {
     );
   }
 
+  /// `Open Browser`
   String get openBrowser {
     return Intl.message(
       'Open Browser',
@@ -542,6 +603,7 @@ class S {
     );
   }
 
+  /// `Coin`
   String get coin {
     return Intl.message(
       'Coin',
@@ -551,6 +613,7 @@ class S {
     );
   }
 
+  /// `Check Update`
   String get appUpdateCheckUpdate {
     return Intl.message(
       'Check Update',
@@ -560,6 +623,7 @@ class S {
     );
   }
 
+  /// `Update`
   String get appUpdateActionUpdate {
     return Intl.message(
       'Update',
@@ -569,6 +633,7 @@ class S {
     );
   }
 
+  /// `Least version now `
   String get appUpdateLeastVersion {
     return Intl.message(
       'Least version now ',
@@ -578,6 +643,7 @@ class S {
     );
   }
 
+  /// `Downloading...`
   String get appUpdateDownloading {
     return Intl.message(
       'Downloading...',
@@ -587,6 +653,7 @@ class S {
     );
   }
 
+  /// `Download failed`
   String get appUpdateDownloadFailed {
     return Intl.message(
       'Download failed',
@@ -596,6 +663,7 @@ class S {
     );
   }
 
+  /// `It has been detected that it has been downloaded, whether it is installed?`
   String get appUpdateReDownloadContent {
     return Intl.message(
       'It has been detected that it has been downloaded, whether it is installed?',
@@ -605,6 +673,7 @@ class S {
     );
   }
 
+  /// `Download`
   String get appUpdateActionDownloadAgain {
     return Intl.message(
       'Download',
@@ -614,6 +683,7 @@ class S {
     );
   }
 
+  /// `Install`
   String get appUpdateActionInstallApk {
     return Intl.message(
       'Install',
@@ -623,6 +693,7 @@ class S {
     );
   }
 
+  /// `Version Update`
   String get appUpdateUpdate {
     return Intl.message(
       'Version Update',
@@ -632,7 +703,8 @@ class S {
     );
   }
 
-  String appUpdateFoundNewVersion(dynamic version) {
+  /// `New version {version}`
+  String appUpdateFoundNewVersion(Object version) {
     return Intl.message(
       'New version $version',
       name: 'appUpdateFoundNewVersion',
@@ -641,6 +713,7 @@ class S {
     );
   }
 
+  /// `Download canceled`
   String get appUpdateDownloadCanceled {
     return Intl.message(
       'Download canceled',
@@ -650,6 +723,7 @@ class S {
     );
   }
 
+  /// `Press back again, cancel download`
   String get appUpdateDoubleBackTips {
     return Intl.message(
       'Press back again, cancel download',
@@ -665,7 +739,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale('zh', ''), Locale('en', ''),
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'zh'),
     ];
   }
 
@@ -678,7 +753,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }
