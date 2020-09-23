@@ -32,7 +32,8 @@ List<SingleChildWidget> independentServices = [
 List<SingleChildWidget> dependentServices = [
   ChangeNotifierProxyProvider<GlobalFavouriteStateModel, UserModel>(
     create: (_) => UserModel(),
-    update: (context, globalFavouriteStateModel, userModel) => userModel.update(globalFavouriteStateModel),
+    update: (context, globalFavouriteStateModel, userModel) => userModel
+        ..update(globalFavouriteStateModel),
   )
 ];
 

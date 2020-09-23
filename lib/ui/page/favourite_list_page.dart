@@ -5,6 +5,7 @@ import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
 import 'package:fun_android/ui/widget/skeleton.dart';
+import 'package:fun_android/view_model/user_model.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -35,7 +36,7 @@ class _FavouriteListPageState extends State<FavouriteListPage> {
         title: Text(S.of(context).myFavourites),
       ),
       body: ProviderWidget<FavouriteListModel>(
-        model: FavouriteListModel(loginModel: LoginModel(Provider.of(context))),
+        model: FavouriteListModel(loginModel: LoginModel(Provider.of<UserModel>(context))),
         onModelReady: (model) async {
           await model.initData();
         },
