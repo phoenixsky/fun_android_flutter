@@ -11,7 +11,7 @@ class ImageHelper {
   static String wrapUrl(String url) {
     if (url.startsWith('http')) {
       return url;
-    } else {}
+    }
     return imagePrefix + url;
   }
 
