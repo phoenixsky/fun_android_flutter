@@ -11,7 +11,7 @@ enum ViewState {
 enum ViewStateErrorType {
   defaultError,
   networkTimeOutError, //网络错误
-  unauthorizedError //为授权(一般为未登录)
+  unauthorizedError //未授权(一般为未登录)
 }
 
 class ViewStateError {

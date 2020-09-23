@@ -25,7 +25,7 @@ class PgyerApiInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  onResponse(Response response) {
+  onResponse(Response response) async {
     ResponseData respData = ResponseData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;

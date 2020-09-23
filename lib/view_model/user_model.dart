@@ -7,7 +7,7 @@ import 'favourite_model.dart';
 class UserModel extends ChangeNotifier {
   static const String kUser = 'kUser';
 
-  final GlobalFavouriteStateModel globalFavouriteStateModel;
+  GlobalFavouriteStateModel _globalFavouriteStateModel;
 
   User _user;
 
@@ -15,15 +15,20 @@ class UserModel extends ChangeNotifier {
 
   bool get hasUser => user != null;
 
-  UserModel({@required this.globalFavouriteStateModel}) {
+  UserModel() {
     var userMap = StorageManager.localStorage.getItem(kUser);
     _user = userMap != null ? User.fromJsonMap(userMap) : null;
+  }
+
+  update(GlobalFavouriteStateModel globalFavouriteStateModel) {
+    _globalFavouriteStateModel = globalFavouriteStateModel;
+    notifyListeners();
   }
 
   saveUser(User user) {
     _user = user;
     notifyListeners();
-    globalFavouriteStateModel.replaceAll(_user.collectIds);
+    _globalFavouriteStateModel.replaceAll(_user.collectIds);
     StorageManager.localStorage.setItem(kUser, user);
   }
 

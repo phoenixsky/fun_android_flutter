@@ -37,7 +37,7 @@ class HeaderInterceptor extends InterceptorsWrapper {
     var appVersion = await PlatformUtils.getAppVersion();
     var version = Map()
       ..addAll({
-        'appVerison': appVersion,
+        'appVersion': appVersion,
       });
     options.headers['version'] = version;
     options.headers['platform'] = Platform.operatingSystem;
