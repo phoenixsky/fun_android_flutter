@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:fun_android/config/router_manger.dart';
 import 'package:fun_android/config/resource_mananger.dart';
 import 'package:fun_android/generated/l10n.dart';
