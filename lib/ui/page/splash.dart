@@ -64,14 +64,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           ),
           Align(
             alignment: Alignment(0.0, 0.7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                AnimatedAndroidLogo(
-                  animation: _animation,
-                ),
-              ],
-            ),
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: AnimatedAndroidLogo(
+                animation: _animation,
+              ),
+            )
           ),
           Align(
             alignment: Alignment.bottomRight,
