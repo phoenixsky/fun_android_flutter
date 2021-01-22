@@ -4,7 +4,7 @@ description: Fun or Flutter for Android
 version: 0.1.15+1
 
 environment:
-  sdk: ">=2.4.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   flutter:

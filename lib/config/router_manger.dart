@@ -32,7 +32,7 @@ class RouteName {
   static const String coinRankingList = 'coinRankingList';
 }
 
-class Router {
+class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteName.splash:
