@@ -1,7 +1,7 @@
 name: fun_android
 description: Fun or Flutter for Android
 
-version: 0.1.15+1
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.8.0 <3.0.0"
@@ -30,9 +30,9 @@ dependencies:
   dio: ^3.0.10
   dio_cookie_manager: ^1.0.0
   cookie_jar: ^1.0.1
-  shared_preferences: 0.5.10
+  shared_preferences: ^2.0.5
   # 本地json对象存储
-  localstorage: ^3.0.2+5
+  localstorage: ^4.0.0+1
 
   # Html Encoder/Decoder
   html_unescape: ^1.0.2
