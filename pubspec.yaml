@@ -18,7 +18,7 @@ dependencies:
 
   # Base Component
   # WebView iOS添加键值对 o.flutter.embedded_views_preview = YES
-  webview_flutter: ^0.3.22+1
+  webview_flutter: ^1.0.7
   flutter_webview_plugin: ^0.3.11
   device_info: ^0.4.2+7
   package_info: ^0.4.3
@@ -37,7 +37,7 @@ dependencies:
   # Html Encoder/Decoder
   html_unescape: ^1.0.2
   # 解析html标签
-  flutter_html: ^1.0.2
+  flutter_html: ^1.3.0
 
   # 判断list是否相等
   collection: ^1.14.13
@@ -80,9 +80,7 @@ dev_dependencies:
 #  json_serializable: ^3.1.0
 
 flutter:
-
   uses-material-design: true
-
   fonts:
     - family: iconfont
       fonts:
@@ -91,8 +89,8 @@ flutter:
       fonts:
         - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
   assets:
-    - assets/images/
     - assets/animations/
+    - assets/images/
     - CHANGELOG.md
 
 flutter_intl:

@@ -1,10 +1,6 @@
-import 'dart:convert';
 import 'dart:ui';
-import 'package:convert/convert.dart';
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:html_unescape/html_unescape.dart';
 
 class StatusBarUtils {
 

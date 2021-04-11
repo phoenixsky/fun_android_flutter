@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart'
     hide SliverAnimatedListState, SliverAnimatedList;
+// import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fun_android/flutter/refresh_animatedlist.dart';
 import 'package:fun_android/generated/l10n.dart';
 import 'package:fun_android/ui/helper/refresh_helper.dart';
 import 'package:fun_android/ui/widget/article_skeleton.dart';
@@ -9,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:fun_android/config/router_manger.dart';
-import 'package:fun_android/flutter/refresh_animatedlist.dart';
 import 'package:fun_android/model/article.dart';
 import 'package:fun_android/provider/provider_widget.dart';
 import 'package:fun_android/ui/widget/article_list_Item.dart';

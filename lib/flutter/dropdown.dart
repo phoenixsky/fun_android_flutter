@@ -502,7 +502,7 @@ class DropdownButtonHideUnderline extends InheritedWidget {
   /// Returns whether the underline of [DropdownButton] widgets should
   /// be hidden.
   static bool at(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(DropdownButtonHideUnderline) != null;
+    return context.dependOnInheritedWidgetOfExactType(aspect: DropdownButtonHideUnderline) != null;
   }
 
   @override
@@ -769,7 +769,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
       padding: _kMenuItemPadding.resolve(textDirection),
       selectedIndex: _selectedIndex ?? 0,
       elevation: widget.elevation,
-      theme: Theme.of(context, shadowThemeOnly: true),
+      theme: Theme.of(context),
       style: _textStyle,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
     );
