@@ -4,17 +4,24 @@
 
 在1.x的基础上主要更新了以下内容
 
- 1. 适配Flutter SDK 2.0
+ 1. 适配Flutter SDK 2.0+
 
  2. 迁移[空安全](https://dart.cn/null-safety)
 
  3. 状态管理从[Provider](https://pub.flutter-io.cn/packages/provider)迁移到了使用层面更便于理解的[GetX](https://pub.dev/packages/get)
 
-> 2.x && null-safety && GetX
-
+> Flutter SDK 2.x+ && null-safety && GetX
 
 ## 项目结构
 
+
+
+
+
+## 相关插件
+
+1. getx相关便捷代码生成插件[getx-snippets-intelliJ](https://github.com/cjamcu/getx-snippets-intelliJ) | [getx-snippets-vscode](https://github.com/kauemurakami/getx_snippets_extension) 快速生成代码
+2. getx相关便捷模块(文件夹、文件)生成插件[getx_template](https://github.com/CNAD666/getx_template) 快速生成文件
 
 
 
