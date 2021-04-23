@@ -18,10 +18,11 @@ dependencies:
   device_info: ^2.0.0
   path_provider: ^2.0.1
   url_launcher: ^6.0.3
-  hive: ^2.0.3
+  hive: ^2.0.4
   share: ^2.0.1
 
   get:
+  flutter_hooks:
   dio:
 
   shimmer: ^2.0.0
@@ -33,7 +34,7 @@ dev_dependencies:
 flutter:
 
   assets:
-#    - asset/animation/
-    - asset/image/
+    - assets/animations/
+    - assets/images/
 
   uses-material-design: true
