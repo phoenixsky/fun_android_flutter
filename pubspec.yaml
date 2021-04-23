@@ -20,6 +20,7 @@ dependencies:
   url_launcher: ^6.0.3
   hive: ^2.0.4
   share: ^2.0.1
+  logging: ^1.0.1
 
   get:
   flutter_hooks:

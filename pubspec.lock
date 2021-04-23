@@ -149,6 +149,13 @@ packages:
       url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
     source: hosted
     version: "0.6.3"
+  logging:
+    dependency: "direct main"
+    description:
+      name: logging
+      url: "https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+    source: hosted
+    version: "1.0.1"
   matcher:
     dependency: transitive
     description:
