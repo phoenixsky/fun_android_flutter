@@ -2,17 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:funflutter_wandroid/ui/router/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:funflutter_wandroid/utils/log_utils.dart' as log;
 import 'package:funflutter_wandroid/extension/assets_wrapper.dart';
 
-import 'splash_logic.dart';
-
-class SplashPage extends StatelessWidget {
-  final SplashLogic logic = Get.put(SplashLogic());
-
+class SplashPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    print("SplashPage build");
+    log.d("SplashPage build");
+    var animation = useSplashAnimation();
     return Scaffold(
       body: WillPopScope(
         // 防止android用户点击返回退出
@@ -25,8 +24,8 @@ class SplashPage extends StatelessWidget {
                     ? "splash_bg.png".assetsImgUrl
                     : "splash_bg_dark.png".assetsImgUrl,
                 fit: BoxFit.fill),
-            AnimatedFlutterLogo(animation: logic.animation),
-            AnimatedAndroidLogo(animation: logic.animation),
+            AnimatedFlutterLogo(animation: animation),
+            AnimatedAndroidLogo(animation: animation),
             NextButton()
           ],
         ),
@@ -37,7 +36,7 @@ class SplashPage extends StatelessWidget {
 
 /// 动画抽取,两个logo重用
 Animation<double> useSplashAnimation() {
-  print("useSplashAnimation");
+  log.d("useSplashAnimation");
   final animationController = useAnimationController(duration: 1.5.seconds);
   final animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(curve: Curves.easeInOutBack, parent: animationController))
@@ -49,9 +48,8 @@ Animation<double> useSplashAnimation() {
       }
     });
   useEffect(() {
-    print("useEffect");
+    log.d("useEffect");
     animationController.forward();
-    return animationController.dispose;
   }, []);
   return animation;
 }
@@ -66,7 +64,7 @@ class AnimatedFlutterLogo extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("AnimatedFlutterLogo get build");
+    log.d("FlutterLogo  build");
     return AnimatedAlign(
       duration: Duration(milliseconds: 10),
       alignment: Alignment(0, 0.2 + animation.value * 0.3),
@@ -90,6 +88,7 @@ class AnimatedAndroidLogo extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
+    log.d("AndroidLogo build");
     return Align(
       alignment: Alignment(0.0, 0.7),
       child: Row(
@@ -115,12 +114,11 @@ class AnimatedAndroidLogo extends AnimatedWidget {
 class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var nextPage = Get.find<SplashLogic>().nextPage;
     return Align(
       alignment: Alignment.bottomRight,
       child: SafeArea(
         child: InkWell(
-            onTap: nextPage,
+            onTap: _nextPage,
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                 margin: EdgeInsets.only(right: 20, bottom: 20),
@@ -128,11 +126,16 @@ class NextButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.black.withAlpha(100),
                 ),
-                child: CountDownText(nextPage))
+                child: CountDownText(_nextPage))
             // child: Obx(() => Text("跳过 ${logic.counter}"))),
             ),
       ),
     );
+  }
+
+  _nextPage() {
+    // off关掉路由的方式,会自动触发onClose
+    Get.offNamed(AppRoutes.HOME);
   }
 }
 
