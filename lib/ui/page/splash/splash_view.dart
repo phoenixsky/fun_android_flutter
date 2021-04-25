@@ -21,8 +21,8 @@ class SplashPage extends HookWidget {
           children: [
             Image.asset(
                 Get.isDarkMode
-                    ? "splash_bg.png".assetsImgUrl
-                    : "splash_bg_dark.png".assetsImgUrl,
+                    ? "splash_bg.png".assetImg
+                    : "splash_bg_dark.png".assetImg,
                 fit: BoxFit.fill),
             AnimatedFlutterLogo(animation: animation),
             AnimatedAndroidLogo(animation: animation),
@@ -70,7 +70,7 @@ class AnimatedFlutterLogo extends AnimatedWidget {
       alignment: Alignment(0, 0.2 + animation.value * 0.3),
       curve: Curves.bounceOut,
       child: Image.asset(
-        "splash_flutter.png".assetsImgUrl,
+        "splash_flutter.png".assetImg,
         width: 280,
         height: 120,
       ),
@@ -95,12 +95,12 @@ class AnimatedAndroidLogo extends AnimatedWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Image.asset(
-            'splash_fun.png'.assetsImgUrl,
+            'splash_fun.png'.assetImg,
             width: 140 * (1 - animation.value),
             height: 80 * (1 - animation.value),
           ),
           Image.asset(
-            'splash_android.png'.assetsImgUrl,
+            'splash_android.png'.assetImg,
             width: 200 * (animation.value),
             height: 80 * (animation.value),
           ),
