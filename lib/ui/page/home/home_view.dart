@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'home_logic.dart';
 
 class HomePage extends StatelessWidget {
-
   final HomeLogic logic = Get.put(HomeLogic());
 
   @override
@@ -12,7 +11,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("title")),
       body: Center(
-        child: Text("body"),
+        child: InkWell(
+            onTap: () {
+              logic.fetchBanner();
+            },
+            child: Text("body")),
       ),
     );
   }

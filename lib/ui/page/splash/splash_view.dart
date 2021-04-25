@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:funflutter_wandroid/ui/router/app_pages.dart';
 import 'package:get/get.dart';
-import 'package:funflutter_wandroid/utils/log_utils.dart' ;
 import 'package:funflutter_wandroid/extension/assets_wrapper.dart';
 
 class SplashPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    logDebug("SplashPage build");
     var animation = useSplashAnimation();
     return Scaffold(
       body: WillPopScope(
@@ -36,7 +34,6 @@ class SplashPage extends HookWidget {
 
 /// 动画抽取,两个logo重用
 Animation<double> useSplashAnimation() {
-  logDebug("useSplashAnimation");
   final animationController = useAnimationController(duration: 1.5.seconds);
   final animation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(curve: Curves.easeInOutBack, parent: animationController))
@@ -48,7 +45,6 @@ Animation<double> useSplashAnimation() {
       }
     });
   useEffect(() {
-    logDebug("useEffect");
     animationController.forward();
   }, []);
   return animation;
@@ -64,7 +60,6 @@ class AnimatedFlutterLogo extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    logDebug("FlutterLogo  build");
     return AnimatedAlign(
       duration: Duration(milliseconds: 10),
       alignment: Alignment(0, 0.2 + animation.value * 0.3),
@@ -88,7 +83,6 @@ class AnimatedAndroidLogo extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    logDebug("AndroidLogo build");
     return Align(
       alignment: Alignment(0.0, 0.7),
       child: Row(
