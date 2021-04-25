@@ -135,7 +135,7 @@ class NextButton extends StatelessWidget {
 
   _nextPage() {
     // off关掉路由的方式,会自动触发onClose
-    Get.offNamed(AppRoutes.HOME);
+    Get.offNamed(AppRoutes.MAIN_TAB);
   }
 }
 
