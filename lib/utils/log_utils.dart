@@ -6,27 +6,27 @@ import 'dart:developer' as _dev;
 
 import 'package:logging/logging.dart';
 
-const String _TAG = 'LOG';
+const String _tag = 'LOG';
 
-void logInfo(dynamic message, {String tag = _TAG, StackTrace? stackTrace}) {
+void logInfo(dynamic message, {String tag = _tag, StackTrace? stackTrace}) {
   _printLog(message, '$tag ❕', stackTrace, level: Level.CONFIG);
 }
 
-void logDebug(dynamic message, {String tag = _TAG, StackTrace? stackTrace}) {
+void logDebug(dynamic message, {String tag = _tag, StackTrace? stackTrace}) {
   _printLog(message, '$tag 📣', stackTrace, level: Level.INFO);
 }
 
-void logWarning(dynamic message, {String tag = _TAG, StackTrace? stackTrace}) {
+void logWarning(dynamic message, {String tag = _tag, StackTrace? stackTrace}) {
   _printLog(message, '$tag ⚠️', stackTrace, level: Level.WARNING);
 }
 
 void logError(dynamic message,
-    {String tag = _TAG, StackTrace? stackTrace, bool withStackTrace = true}) {
+    {String tag = _tag, StackTrace? stackTrace, bool withStackTrace = true}) {
   _printLog(message, '$tag ❌', stackTrace,
       isError: true, level: Level.SEVERE, withStackTrace: withStackTrace);
 }
 
-void logJson(dynamic message, {String tag = _TAG, StackTrace? stackTrace}) {
+void logJson(dynamic message, {String tag = _tag, StackTrace? stackTrace}) {
   _printLog(message, '$tag 💠', stackTrace);
 }
 
