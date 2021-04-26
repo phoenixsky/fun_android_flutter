@@ -26,49 +26,16 @@ abstract class BaseHttpClient extends DioForNative {
 
   void _beforeInit() {
     (transformer as DefaultTransformer).jsonDecodeCallback = _parseJson;
-    // 最初的
-    interceptors
-      ..add(InterceptorsWrapper(onResponse: (response, handler) {
-        logDebug('------------------- OriginResponseData -------------------');
-        logDebug('${response.data}', tag: _tag);
-        handler.next(response);
-      }));
-    interceptors..add(HeaderInterceptor());
+    // 第一个拦截器,打印未经过处理的response数据
+    interceptors.add(OriginInterceptor());
+    interceptors.add(HeaderInterceptor());
   }
 
   void onInit() {}
 
   void _afterInit() {
     /// LogInterceptor 需要添加到队尾,interceptors的结构为FIFO
-    interceptors..add(EasyLogInterceptor());
-  }
-}
-
-/// 基础响应类
-///
-abstract class BaseResponseEntity<T> {
-  late int code;
-  late String message;
-  late T data;
-
-  /// 是否响应成功
-  bool get success;
-
-  /// 需要安装FlutterJsonBeanFactory
-  T generateOBJ<O>(Object json) {
-    if (T.toString() == 'String') {
-      return json.toString() as T;
-    } else if (T.toString() == 'Map<dynamic, dynamic>') {
-      return json as T;
-    } else {
-      /// List类型数据由fromJsonAsT判断处理
-      return JsonConvert.fromJsonAsT<T>(json);
-    }
-  }
-
-  @override
-  String toString() {
-    return 'BaseResponseEntity{code: $code, message: $message, data: $data}';
+    interceptors.add(EasyLogInterceptor());
   }
 }
 
@@ -118,19 +85,60 @@ class EasyLogInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     _endTime = DateTime.now();
-
-    /// 计算时间差
-    final int duration = _endTime.difference(_startTime).inMilliseconds;
     // logDebug('------------------- ProcessedResponseData -------------------');
     // logJson('${response.data}', tag: _tag);
-    logDebug('----------End: $duration 毫秒----------', tag: _tag);
     super.onResponse(response, handler);
+    logDuration();
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    logDebug(err, tag: _tag);
+    _endTime = DateTime.now();
     super.onError(err, handler);
+    logDuration();
+  }
+
+  logDuration() {
+    final int duration = _endTime.difference(_startTime).inMilliseconds;
+    logDebug('----------End: $duration 毫秒----------', tag: _tag);
+  }
+}
+
+class OriginInterceptor extends Interceptor {
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    logDebug('------------------- OriginResponseData -------------------',
+        tag: _tag);
+    logDebug('${response.data}', tag: _tag);
+    handler.next(response);
+  }
+}
+
+/// 基础响应类
+///
+abstract class BaseResponseEntity<T> {
+  late int code;
+  late String message;
+  late T data;
+
+  /// 是否响应成功
+  bool get success;
+
+  /// 需要安装FlutterJsonBeanFactory
+  T generateOBJ<O>(Object json) {
+    if (T.toString() == 'String') {
+      return json.toString() as T;
+    } else if (T.toString() == 'Map<dynamic, dynamic>') {
+      return json as T;
+    } else {
+      /// List类型数据由fromJsonAsT判断处理
+      return JsonConvert.fromJsonAsT<T>(json);
+    }
+  }
+
+  @override
+  String toString() {
+    return 'BaseResponseEntity{code: $code, message: $message, data: $data}';
   }
 }
 

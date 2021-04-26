@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:funflutter_wandroid/ui/router/app_pages.dart';
@@ -13,18 +14,24 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light));
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    final botToastBuilder = BotToastInit();
+
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: (context, child) => botToastBuilder(context, child),
         // theme: appThemeData,
         initialRoute: AppPages.INITIAL,
         defaultTransition: Transition.fade,
         getPages: AppPages.pages,
+        navigatorObservers: [BotToastNavigatorObserver()],
         // locale
         translations: AppTranslations(),
         // 系统语言

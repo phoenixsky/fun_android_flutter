@@ -11,11 +11,22 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("title")),
       body: Center(
-        child: InkWell(
-            onTap: () {
-              logic.fetchBanner();
-            },
-            child: Text("body")),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: logic.fetchBanners,
+              child: Text("testNetErrorFutureOnError"),
+            ),
+            ElevatedButton(
+              onPressed: logic.fetchBanners,
+              child: Text("testNetErrorFutureCacheError"),
+            ),
+            ElevatedButton(
+              onPressed: logic.fetchBanners,
+              child: Text("testNetErrorAsync"),
+            ),
+          ],
+        ),
       ),
     );
   }
