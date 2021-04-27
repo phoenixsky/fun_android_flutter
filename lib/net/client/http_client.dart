@@ -107,9 +107,13 @@ class EasyLogInterceptor extends Interceptor {
 class OriginInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    logDebug('------------------- OriginResponseData -------------------',
-        tag: _tag);
-    logDebug('${response.data}', tag: _tag);
+    if (response.requestOptions.responseType == ResponseType.json) {
+      logDebug(
+          '↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ OriginResponseData ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\n\n'
+          '${json.encode(response.data)}'
+          '\n\n↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ OriginResponseData ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑',
+          tag: _tag);
+    }
     handler.next(response);
   }
 }
