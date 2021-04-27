@@ -1,6 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:funflutter_wandroid/net/api/wandroid_api.dart';
-import 'package:funflutter_wandroid/net/net.dart';
+import 'package:funflutter_wandroid/net/client/net_exception.dart';
 import 'package:funflutter_wandroid/utils/log_utils.dart';
 import 'package:get/get.dart';
 

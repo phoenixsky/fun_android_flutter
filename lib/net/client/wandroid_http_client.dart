@@ -4,11 +4,11 @@
 // @github https://github.com/phoenixsky
 // @group fun flutter
 
-import 'package:dio/dio.dart';
 import 'package:funflutter_wandroid/net/client/http_client.dart';
-import 'package:funflutter_wandroid/net/client/net_error.dart';
+import 'package:funflutter_wandroid/net/client/net_exception.dart';
 import 'package:funflutter_wandroid/ui/page/login/login_view.dart';
 import 'package:get/get.dart' hide Response;
+
 
 const _tag = "WandroidHttpClient";
 final Http http = Http();
@@ -37,7 +37,7 @@ class ApiInterceptor extends Interceptor {
     } else {
       var dioError =
           DioError(requestOptions: response.requestOptions, response: response);
-      //
+      // 
       if (responseEntity.code == -1001) {
         // 理论上不应该在这里跳转UI
         Get.to(LoginPage(),

@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:funflutter_wandroid/utils/log_utils.dart';
+export 'package:dio/dio.dart';
 
 /// @author phoenixsky
 /// @date 4/26/21

@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:funflutter_wandroid/generated/json/base/json_convert_content.dart';
 import 'package:funflutter_wandroid/utils/log_utils.dart';
 
+
 const _tag = "HttpClient";
 
 /// 支持多实例的dio扩展类
@@ -104,6 +105,7 @@ class EasyLogInterceptor extends Interceptor {
   }
 }
 
+/// 原始json打印
 class OriginInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {

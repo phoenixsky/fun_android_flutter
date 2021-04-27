@@ -2,7 +2,6 @@ import 'package:funflutter_wandroid/entity/banner_entity.dart';
 import 'package:funflutter_wandroid/generated/json/base/json_convert_content.dart';
 import 'package:funflutter_wandroid/net/client/wandroid_http_client.dart';
 
-export '';
 
 /// @author phoenixsky
 /// @date 4/26/21
