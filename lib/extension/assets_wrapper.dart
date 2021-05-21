@@ -1,7 +1,7 @@
 // 资源类扩展方法
 
-String _assetImagePrefix = "assets/images/";
-String _assetAnimationPrefix = "assets/animations/";
+const String _assetImagePrefix = "assets/images/";
+const String _assetAnimationPrefix = "assets/animations/";
 
 /// 资源类扩展方法
 extension wrapAsset on String {
