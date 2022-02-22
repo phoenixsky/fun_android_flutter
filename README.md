@@ -4,17 +4,16 @@
 
 > 基于Google的[Flutter](https://flutter.dev),及官方推荐状态管理[Provider](https://github.com/rrousselGit/provider)和[玩Android](https://wanandroid.com/)开放的API，打造的一款产品级开源App《[Fun Android](https://github.com/phoenixsky/fun_android_flutter)》
 
-![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba7b8ec29?w=500&h=500&f=png&s=73992) 
+![logo,灵感来自2dimensions是个蓝色的F，自己挺喜欢，就down了下来，后来又翻了好久也没找到作者，如果侵权请联系我](http://blogimgs.phoenixsky.cn/fun_android/0-fun_android_500.png) 
 
 > Logo的里F，既代表了`Fun`也代表了`Flutter`.
 
 # 先来点样图
 
-|![splash.gif](http://blogimgs.phoenixsky.cn/2019-08-22-0-%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif)| ![首页空中楼阁](http://blogimgs.phoenixsky.cn/2019-08-22-1-%E7%A9%BA%E4%B8%AD%E9%98%81%E6%A5%BC.gif) | ![tab概览_1080-50-128.gif](http://blogimgs.phoenixsky.cn/2019-08-22-2-%E9%A1%B5%E9%9D%A2%E7%8A%B6%E6%80%81%E9%AA%A8%E6%9E%B6%E5%B1%8F.gif)|
-| --- | --- | --- |
-| ![页面不同状态展示.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba907d9bd?w=375&h=810&f=gif&s=3024125) | ![搜索.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43ceba918bab1?w=375&h=810&f=gif&s=3447239)| ![收藏-50.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebc94cf612?w=250&h=540&f=gif&s=3324262)|
-| ![登录页展示.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebd9316b4f?w=375&h=810&f=gif&s=1153965) | ![收藏列表到登录.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebe40dd5db?w=375&h=810&f=gif&s=2890935) | ![主题切换-1080-75-256.gif](https://user-gold-cdn.xitu.io/2019/9/18/16d43cebe9dc7aad?w=375&h=810&f=gif&s=2763511)| 
-
+| ![splash.gif](http://blogimgs.phoenixsky.cn/fun_android/1-1-splash.gif) | ![首页空中楼阁](http://blogimgs.phoenixsky.cn/fun_android/1-2-%E9%A6%96%E9%A1%B5%E7%A9%BA%E4%B8%AD%E6%A5%BC%E9%98%81.gif) | ![tab概览_1080-50-128.gif](http://blogimgs.phoenixsky.cn/fun_android/1-3-tab%E6%A6%82%E8%A7%88.gif) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![页面不同状态展示.gif](http://blogimgs.phoenixsky.cn/fun_android/2-1-%E9%A1%B5%E9%9D%A2%E4%B8%8D%E5%90%8C%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA.gif) | ![搜索.gif](http://blogimgs.phoenixsky.cn/fun_android/2-2-%E6%90%9C%E7%B4%A2.gif.) | ![收藏-50.gif](http://blogimgs.phoenixsky.cn/fun_android/2-3-%E6%94%B6%E8%97%8F.gif) |
+| ![登录页展示.gif](http://blogimgs.phoenixsky.cn/fun_android/3-1-%E7%99%BB%E5%BD%95%E9%A1%B5%E5%B1%95%E7%A4%BA.gif) | ![收藏列表到登录.gif](http://blogimgs.phoenixsky.cn/fun_android/3-2-%E6%94%B6%E8%97%8F%E5%88%97%E8%A1%A8%E5%88%B0%E7%99%BB%E5%BD%95.gif) | ![主题切换.gif](http://blogimgs.phoenixsky.cn/fun_android/3-3-%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2.gif) |
 # 项目地址
  > [https://github.com/phoenixsky/fun_android_flutter](https://github.com/phoenixsky/fun_android_flutter)
 
