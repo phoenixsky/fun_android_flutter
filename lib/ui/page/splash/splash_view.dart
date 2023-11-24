@@ -6,7 +6,7 @@ import '../../asset.dart';
 import 'splash_logic.dart';
 
 class SplashPage extends StatelessWidget {
-  SplashPage({Key? key}) : super(key: key);
+  SplashPage({super.key});
 
   final logic = Get.put(SplashLogic());
 

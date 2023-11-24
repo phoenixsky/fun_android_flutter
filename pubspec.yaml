@@ -25,15 +25,23 @@ dependencies:
 
   cupertino_icons: ^1.0.2
 
-#  get: ^5.0.0-release-candidate-5
+  # GetX 文档：https://github.com/jonataslaw/getx/blob/master/documentation/zh_CN/state_management.md
   get: ^5.0.0-release-candidate-5
+  # 下拉刷新 文档：https://github.com/xuelongqy/flutter_easy_refresh/blob/v3/README_CN.md
+  easy_refresh: ^3.3.2+4
+  # 图片轮播 文档：https://github.com/best-flutter/flutter_swiper/blob/master/README-ZH.md
+  card_swiper: ^3.0.1
+  # 网络图片加载 文档：https://github.com/fluttercandies/extended_image/blob/master/README-ZH.md
+  extended_image: ^8.2.0
+
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
 
 # 有关此文件的通用 Dart 部分的信息，请参阅
 # 下一页： https://dart.dev/tools/pub/pubspec
@@ -41,7 +49,7 @@ dev_dependencies:
 # 以下部分特定于 Flutter 包。
 flutter:
 
-# 以下行确保 Material Icons 字体为
+  # 以下行确保 Material Icons 字体为
   # 包含在您的应用程序中，以便您可以使用
   # 材质 Icons 类。
   uses-material-design: true
@@ -53,8 +61,8 @@ flutter:
 
   assets:
     - assets/images/
-#    - assets/animations/
-#    - CHANGELOG.md
+  #    - assets/animations/
+  #    - CHANGELOG.md
 
   # image asset可以引用一个或多个特定于分辨率的“variants”，请参阅
   # https://flutter.dev/assets-and-images/#resolution-aware

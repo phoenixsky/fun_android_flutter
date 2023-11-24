@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'project_list_logic.dart';
 
 class ProjectListPage extends StatelessWidget {
-  const ProjectListPage({Key? key}) : super(key: key);
+  const ProjectListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final logic = Get.put(ProjectListLogic());
 
-    return Container();
+    return Center(
+      child: Text(toString()),
+    );
   }
 }
