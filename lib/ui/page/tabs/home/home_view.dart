@@ -1,7 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:funflutter_wanandroid/ui/widget/anmiated_widgets.dart';
+import 'package:funflutter_wanandroid/ui/widget/animated_widgets.dart';
 import 'package:get/get.dart';
 
 import 'home_logic.dart';
